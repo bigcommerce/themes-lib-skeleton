@@ -1,0 +1,38 @@
+<!doctype html>
+<!--[if IE 8]><html class="no-js ie8 lt-ie10 lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js ie9 lt-ie10"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width" />
+
+  {{{ head.meta_tags }}}
+
+  <title>
+    {{ head.title }}
+  </title>
+
+  <link rel="shortcut icon" href="{{ head.favicon }}">
+
+  {{{ head.rsslinks }}}
+  {{{ head.stylesheets }}}
+  {{{ head.scripts }}}
+
+</head>
+
+<body>
+
+  {{> components/header }}
+
+  <div class="main-content">
+    {{#block "page"}}{{/block}}
+  </div>
+
+  {{> components/footer }}
+
+  {{footer.scripts}}
+
+</body>
+</html>
