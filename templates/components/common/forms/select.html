@@ -1,0 +1,12 @@
+
+<div>
+  <label for="{{id}}">{{label}}</label>
+  <select class="{{class}}" id="{{id}}" aria-required="{{required}}" {{#if style}}style="{{style}}" {{/if}}>
+    {{#if options}}
+      <option value="">{{chooseprefix}}</option>
+      {{#each options}}
+        <option {{#equals ../options.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
+      {{/each}}
+    {{/if}}
+  </select>
+</div>
