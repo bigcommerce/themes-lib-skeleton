@@ -1,0 +1,7 @@
+
+<section class="products-new">
+  <h2 class="section-title">{{ lang 'home.new_products' }}</h2>
+  {{#each this}}
+    {{> components/products/product-item this}}
+  {{/each}}
+</section>

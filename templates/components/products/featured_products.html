@@ -1,0 +1,7 @@
+
+<section class="products-featured">
+  <h2 class="section-title">{{ lang 'home.featured_products' }}</h2>
+  {{#each this}}
+    {{> components/products/product-item this}}
+  {{/each}}
+</section>

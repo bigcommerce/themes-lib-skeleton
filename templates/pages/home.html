@@ -1,7 +1,14 @@
+---
+carousel: true
+new_products: 2
+featured_products: 2
+---
 
 {{#partial "page"}}
 
-  <p>Ding!</p>
+  {{> components/carousel }}
+  {{> components/products/new_products new_products}}
+  {{> components/products/featured_products featured_products}}
 
 {{/partial}}
 

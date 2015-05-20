@@ -3,7 +3,9 @@
     "welcome_back": "Welcome back, {name}"
   },
   "home": {
-    "heading": "Home"
+    "heading": "Home",
+    "new_products": "New Products",
+    "featured_products": "Featured Products"
   },
   "blog": {
     "recent_posts": "Recent Posts",
