@@ -1,0 +1,56 @@
+
+%clearfix:before,
+%clearfix:after {
+  content: " ";
+  display: table;
+}
+
+%clearfix:after {
+  clear: both;
+}
+
+%font-smoothing {
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+%heading-text-treatment {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: $heading-font;
+  font-weight: $heading-weight;
+  color: $heading-color;
+}
+
+%section-title-text-treatment {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: $heading-font;
+  font-weight: $heading-weight;
+  color: $section-title-color;
+}
+
+%meta-text-treatment {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: $meta-font;
+  font-weight: $meta-weight;
+  color: $meta-color;
+}
+
+%wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $max-width;
+  padding-left: 30px - $gutter;
+  padding-right: 30px - $gutter;
+
+  /* Solves border-box issue with max-width in IE8 */
+  .lt-ie9 & { width: $max-width; }
+}
+
+%full-width {
+  padding-left: 30px;
+  padding-right: 30px;
+}
