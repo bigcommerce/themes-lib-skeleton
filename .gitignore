@@ -1,5 +1,7 @@
 .DS_Store
 .stencil
 npm-debug.log
+
 jspm_packages
 node_modules
+assets/css-artifacts
