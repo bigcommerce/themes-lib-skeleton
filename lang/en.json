@@ -1,6 +1,11 @@
 {
   "header": {
-    "welcome_back": "Welcome back, {name}"
+    "logged_in_as": "Logged in as {name}",
+    "log_out": "Log out",
+    "log_in": "Log in",
+    "sign_up": "Sign up",
+    "view_cart": "View cart",
+    "search": "Search"
   },
   "home": {
     "heading": "Home",
