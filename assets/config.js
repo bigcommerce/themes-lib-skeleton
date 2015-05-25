@@ -24,16 +24,11 @@ System.config({
     "imagesloaded": "npm:imagesloaded@3.1.8",
     "jquery": "github:components/jquery@2.1.4",
     "knockout": "github:knockout/knockout@3.3.0",
-    "lodash": "npm:lodash@3.9.1",
-    "github:bigcommerce/stencil-utils@0.0.6": {
-      "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
-      "jquery": "github:components/jquery@2.1.4",
-      "lodash": "npm:lodash@3.9.1"
-    },
+    "lodash": "npm:lodash@3.9.2",
     "github:bigcommerce/stencil-utils@0.0.9": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4",
-      "lodash": "npm:lodash@3.9.1"
+      "lodash": "npm:lodash@3.9.2"
     },
     "github:jspm/nodelibs-process@0.1.1": {
       "process": "npm:process@0.10.1"
