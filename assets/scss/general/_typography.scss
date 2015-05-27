@@ -14,7 +14,7 @@ body {
 a {
   color: $accent-color;
   text-decoration: none;
-  @include transition(color 0.2s $ease-out-quad);
+  transition: color 0.2s $ease-out-quad;
 
   &:hover {
     @include hover($accent-color);
@@ -187,7 +187,7 @@ table.mobile-layout {
   border-radius: 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  @include transition(all 0.2s $ease-out-quad);
+  transition: all 0.2s $ease-out-quad;
 
   &:hover {
     @include button-hover($accent-color,background);
@@ -249,7 +249,7 @@ textarea {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 
-  @include transition(border-color 0.2s $ease-out-quad);
+  transition: border-color 0.2s $ease-out-quad;
 
   @include placeholder {
     color: lighten($input-color,20%);
