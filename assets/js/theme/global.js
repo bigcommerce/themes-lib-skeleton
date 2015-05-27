@@ -1,5 +1,6 @@
 import $ from "jquery";
 import PageManager from "../page-manager";
+import themeObject from "./global/theme-object";
 import quickSearch from "./global/quick-search";
 import currencySelector from "./global/currency-selector";
 
