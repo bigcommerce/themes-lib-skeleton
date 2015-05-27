@@ -25,6 +25,7 @@ System.config({
     "jquery": "github:components/jquery@2.1.4",
     "knockout": "github:knockout/knockout@3.3.0",
     "lodash": "npm:lodash@3.9.2",
+    "normalize.css": "npm:normalize.css@3.0.3",
     "github:bigcommerce/stencil-utils@0.0.9": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4",
