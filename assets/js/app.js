@@ -1,24 +1,24 @@
-import stencilUtils from "bigcommerce/stencil-utils";
-import async from "caolan/async";
-import account from "./theme/account";
-import auth from "./theme/auth";
-import blog from "./theme/blog";
-import brand from "./theme/brand";
-import brands from "./theme/brands";
-import cart from "./theme/cart";
-import category from "./theme/category";
-import compare from "./theme/compare";
-import errors from "./theme/errors";
-import giftCertificate from "./theme/gift-certificate";
-import global from "./theme/global";
-import home from "./theme/home";
-import orderComplete from "./theme/order-complete";
-import page from "./theme/page";
-import product from "./theme/product";
-import search from "./theme/search";
-import sitemap from "./theme/sitemap";
-import subscribe from "./theme/subscribe";
-import wishlist from "./theme/wishlist";
+import stencilUtils from 'bigcommerce/stencil-utils';
+import async from 'caolan/async';
+import account from './theme/account';
+import auth from './theme/auth';
+import blog from './theme/blog';
+import brand from './theme/brand';
+import brands from './theme/brands';
+import cart from './theme/cart';
+import category from './theme/category';
+import compare from './theme/compare';
+import errors from './theme/errors';
+import giftCertificate from './theme/gift-certificate';
+import global from './theme/global';
+import home from './theme/home';
+import orderComplete from './theme/order-complete';
+import page from './theme/page';
+import product from './theme/product';
+import search from './theme/search';
+import sitemap from './theme/sitemap';
+import subscribe from './theme/subscribe';
+import wishlist from './theme/wishlist';
 
 let PageClasses = {
     mapping: {
@@ -78,7 +78,7 @@ function series(pageObj) {
  * @returns {*}
  */
 function loadGlobal(pages) {
-    let global = pages.get("global");
+    let global = pages.get('global');
     return new global;
 }
 
@@ -88,7 +88,7 @@ function loadGlobal(pages) {
  * @param {} pages
  */
 function loader(pageFunc, pages) {
-    if (pages.get("global")) {
+    if (pages.get('global')) {
         series(loadGlobal(pages));
     }
     series(pageFunc);
@@ -110,7 +110,7 @@ export default function (templateFile) {
                 let pageType = new pageTypeFn();
                 return loader(pageType, pages);
             } else {
-                throw new Error(templateFile + " Module not found")
+                throw new Error(templateFile + ' Module not found')
             }
         }
     }

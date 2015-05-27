@@ -1,17 +1,17 @@
-import $ from "jquery";
-import _ from "lodash";
-import ko from "knockout";
-import utils from "bigcommerce/stencil-utils";
+import $ from 'jquery';
+import _ from 'lodash';
+import ko from 'knockout';
+import utils from 'bigcommerce/stencil-utils';
 
 export default function () {
     let quickSearchViewModel = {
-            results: ko.observable("")
+            results: ko.observable('')
         },
         params = {
-            render_with: "search/quick-results"
+            render_with: 'search/quick-results'
         };
 
-    ko.applyBindings(quickSearchViewModel, $(".quickSearchResults").get(0));
+    ko.applyBindings(quickSearchViewModel, $('.quickSearchResults').get(0));
 
     //stagger searching for 400ms after last input
     let doSearch = _.debounce((searchQuery) => {
@@ -20,7 +20,7 @@ export default function () {
         });
     }, 400);
 
-    utils.hooks.on("search-quick", (event) => {
+    utils.hooks.on('search-quick', (event) => {
         let searchQuery = $(event.currentTarget).val();
 
         if (searchQuery.length < 3) return; // server will only perform search with at least 3 characters

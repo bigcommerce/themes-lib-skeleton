@@ -1,17 +1,17 @@
 /*
  Import all product specific js
  */
-import $ from "jquery";
-import ko from "knockout";
-import PageManager from "../page-manager";
-import utils from "bigcommerce/stencil-utils";
+import $ from 'jquery';
+import ko from 'knockout';
+import PageManager from '../page-manager';
+import utils from 'bigcommerce/stencil-utils'
 
 export default class Product extends PageManager {
     constructor() {
         super();
 
-        this.productId = $("[name='product_id']").val();
-        this.$productView = $(".productView");
+        this.productId = $('[name="product_id"]').val();
+        this.$productView = $('.productView');
 
         this.viewModel = { // The knockout.js view model
             quantity: ko.observable(1),
@@ -44,7 +44,7 @@ export default class Product extends PageManager {
      */
     productOptions() {
         // product options
-        $("body").on("change", "#product-options", (event) => {
+        $('body').on('change', '#product-options', (event) => {
             let $target = $(event.target),     // actual element that is clicked
                 $ele = $(event.currentTarget), // the element that has the data-tag
                 targetVal = $target.val(),     // value of the target
@@ -70,12 +70,12 @@ export default class Product extends PageManager {
      *
      */
     quantityChange() {
-        $("#product-quantity").on("click", "button", (event) => {
+        $('#product-quantity').on('click', 'button', (event) => {
             event.preventDefault();
             let qty = this.viewModel.quantity(),
                 $target = $(event.target);
 
-            if ($target.data("action") === "inc") {
+            if ($target.data('action') === 'inc') {
                 qty++;
             } else if (qty > 1) {
                 qty--;
@@ -91,11 +91,11 @@ export default class Product extends PageManager {
      *
      */
     addProductToCart() {
-        utils.hooks.on("cart-item-add", (event, ele) => {
+        utils.hooks.on('cart-item-add', (event, ele) => {
             event.preventDefault();
 
-            let quantity = this.$productView.find("#product-quantity [name=qty\\[\\]]").val(),
-                $optionsContainer = this.$productView.find("#product-options"),
+            let quantity = this.$productView.find('#product-quantity [name=qty\\[\\]]').val(),
+                $optionsContainer = this.$productView.find('#product-options'),
                 options;
 
             options = this.getOptionValues($optionsContainer);
@@ -109,8 +109,8 @@ export default class Product extends PageManager {
                 }
 
                 // fetch cart to display in cart preview
-                utils.cart.getContent({render_with: "cart/preview"}, (err, content) => {
-                    $("[data-cart-preview]").html(content);
+                utils.cart.getContent({render_with: 'cart/preview'}, (err, content) => {
+                    $('[data-cart-preview]').html(content);
                 });
             });
         });
@@ -132,13 +132,13 @@ export default class Product extends PageManager {
         //
         // :input:not(:radio)
         //      This is to retrieve all text, hidden, dropdown fields that don't have "groups".
-        let $optionValues = $container.find(":input:radio:checked, :input:not(:radio)"),
+        let $optionValues = $container.find(':input:radio:checked, :input:not(:radio)'),
             params = {};
 
         // iterate over values
         $optionValues.each((index, ele) => {
             let $ele = $(ele),
-                name = $ele.attr("name"),
+                name = $ele.attr('name'),
                 val = $ele.val();
 
             params[name] = val;
