@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import imagesLoaded from 'imagesloaded';
-import trend from '../plugins/trend';
+import trend from 'jquery-trend';
 
 export default class Carousel {
 

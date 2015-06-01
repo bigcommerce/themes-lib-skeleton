@@ -23,6 +23,7 @@ System.config({
     "core-js": "npm:core-js@0.8.4",
     "imagesloaded": "npm:imagesloaded@3.1.8",
     "jquery": "github:components/jquery@2.1.4",
+    "jquery-trend": "npm:jquery-trend@0.1.0",
     "knockout": "github:knockout/knockout@3.3.0",
     "lodash": "npm:lodash@3.9.2",
     "normalize.css": "npm:normalize.css@3.0.3",
