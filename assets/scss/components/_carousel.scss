@@ -9,10 +9,10 @@
   left: 0;
   width: 100%;
   transition: all 0.3s $ease-out-quad;
-  @include opacity(0);
+  opacity: 0;
 
   &.active {
-    @include opacity(1);
+    opacity: 1;
   }
 }
 

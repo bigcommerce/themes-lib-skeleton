@@ -251,7 +251,7 @@ textarea {
 
   transition: border-color 0.2s $ease-out-quad;
 
-  @include placeholder {
+  &::placeholder {
     color: lighten($input-color,20%);
   }
 
@@ -263,7 +263,7 @@ textarea {
     color: $error-color;
     border: 1px solid $error-color;
 
-    @include placeholder {
+    &::placeholder {
       color: lighten($error-color,30%);
     }
   }
@@ -310,7 +310,7 @@ input[type="password"] {
     width: 100%; /* needed for Firefox */
     height: 100%; /* needed for IE */
     -webkit-appearance: none;
-    @include opacity(0);
+    opacity: 0;
   }
 }
 
