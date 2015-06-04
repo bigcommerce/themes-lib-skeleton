@@ -17,7 +17,6 @@ The plan is to develop a set of reusable 'modules' (carousel, slider, lightbox e
 ```
 $ npm install -g jspm
 ```
-### Bitbucket as registry
 
 Because our modules are private and hosted on bitbucket, it's important to also install [jspm-git](https://www.npmjs.com/package/jspm-git) which will allow for packages to be pulled from registries other than npm and github:
 
