@@ -36,7 +36,7 @@ scss
   |-- general/
   |-- pages/
   +-- theme.scss
-  
+
 ```
 
 ##### general/
@@ -51,11 +51,10 @@ For overrides to any modules you may need. If you've got a `carousel` module and
 ### JS
 ```
 js
-  |-- test-unit/
   |-- theme/
   |-- app.js
   +-- page-manager.js
-  
+
 ```
 ...
 
@@ -65,7 +64,7 @@ templates
   |-- components/
   |-- layout/
   +-- pages/
-  
+
 ```
 
 
