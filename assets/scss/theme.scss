@@ -6,4 +6,5 @@
 @import "general/fonts";
 @import "general/typography";
 
-@import "components/carousel";
+@import "../jspm_packages/bitbucket/pixelunion/bc-carousel@master/scss/carousel.scss";
+@import "modules/carousel";

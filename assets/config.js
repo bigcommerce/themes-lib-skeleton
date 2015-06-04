@@ -9,7 +9,8 @@ System.config({
   "paths": {
     "*": "*.js",
     "github:*": "jspm_packages/github/*.js",
-    "npm:*": "jspm_packages/npm/*.js"
+    "npm:*": "jspm_packages/npm/*.js",
+    "bitbucket:*": "jspm_packages/bitbucket/*.js"
   }
 });
 
@@ -18,6 +19,7 @@ System.config({
     "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
     "babel": "npm:babel@4.7.16",
     "babel-runtime": "npm:babel-runtime@4.7.16",
+    "bc-carousel": "bitbucket:pixelunion/bc-carousel@master",
     "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.0.9",
     "caolan/async": "github:caolan/async@0.9.2",
     "core-js": "npm:core-js@0.8.4",
@@ -27,6 +29,11 @@ System.config({
     "knockout": "github:knockout/knockout@3.3.0",
     "lodash": "npm:lodash@3.9.2",
     "normalize.css": "npm:normalize.css@3.0.3",
+    "bitbucket:pixelunion/bc-carousel@master": {
+      "imagesloaded": "npm:imagesloaded@3.1.8",
+      "jquery": "github:components/jquery@2.1.4",
+      "jquery-trend": "github:PixelUnion/jquery.trend@0.1.0"
+    },
     "github:bigcommerce/stencil-utils@0.0.9": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4",
