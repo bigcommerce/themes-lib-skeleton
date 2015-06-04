@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import PageManager from '../page-manager';
-import Carousel from './components/carousel';
+import Carousel from 'bc-carousel';
 
 export default class Home extends PageManager {
     constructor() {

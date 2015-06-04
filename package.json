@@ -13,6 +13,7 @@
     },
     "dependencies": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@^0.4.14",
+      "bc-carousel": "bitbucket:pixelunion/bc-carousel@master",
       "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@^0.0.9",
       "caolan/async": "github:caolan/async@^0.9.2",
       "imagesloaded": "npm:imagesloaded@^3.1.8",
