@@ -2,47 +2,20 @@
 $max-width: 1260px;
 $font-size: 15px;
 $gutter: 15px;
-$ease-out-quad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+$ease-out-quad: cubic-bezier(0.250,0.460,0.450,0.940);
 
 @mixin breakpoint($point) {
   @if $point == xl {
-    @media (min-width: 1281px) { @content; }
-  }
-  @else if $point == l {
-    @media (max-width: 1280px) { @content; }
-  }
-  @else if $point == m {
-    @media (max-width: 1060px) { @content; }
-  }
-  @else if $point == ms {
-    @media (max-width: 960px) { @content; }
-  }
-  @else if $point == s {
-    @media (max-width: 720px) { @content; }
-  }
-  @else if $point == xs {
-    @media (max-width: 500px) { @content; }
-  }
-}
-
-@mixin hover($color, $property: color) {
-  @if lightness($color) > 10% {
-    #{$property}: darken($color,8%);
-  } @else {
-    #{$property}: lighten($color,10%);
-  }
-}
-
-@mixin button-hover($color, $property: color) {
-  @if lightness($color) > 20% {
-    #{$property}: darken($color,5%);
-  } @else {
-    #{$property}: lighten($color,6%);
-  }
-}
-
-@mixin retina {
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    @content;
+    @include media($min: 1280px) { @content; }
+  } @else if $point == l {
+    @include media($max: 1280px) { @content; }
+  } @else if $point == m {
+    @include media($max: 1060px) { @content; }
+  } @else if $point == ms {
+    @include media($max: 960px) { @content; }
+  } @else if $point == s {
+    @include media($max: 720px) { @content; }
+  } @else if $point == xs {
+    @include media($max: 500px) { @content; }
   }
 }

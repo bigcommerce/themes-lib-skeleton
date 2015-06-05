@@ -1,0 +1,33 @@
+/* Forms */
+
+.form-input {
+  display: block;
+  color: $input-color;
+  background: $input-background-color;
+  bordercolor: $input-border-color;
+  border-radius: 0;
+  transition: border-color 0.2s $ease-out-quad;
+
+  &::placeholder {
+    color: lighten($input-color,20%);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+/* Form errors */
+
+.form-error {
+  color: $error-color;
+  border: 1px solid $error-color;
+
+  &::placeholder {
+    color: lighten($error-color,30%);
+  }
+}
+
+.form-error-message {
+  color: $error-color;
+}

@@ -1,0 +1,53 @@
+/* General */
+
+body {
+  font-family: $body-font;
+  color: $body-color;
+  font-size: $font-size;
+  line-height: 1.666;
+}
+
+/* Links */
+
+a {
+  color: $accent-color;
+  transition: color 0.2s $ease-out-quad;
+
+  &:hover {
+    @include hover($accent-color);
+  }
+}
+
+/* Headers */
+
+h1, h2, h3, h4, h5, h6 {
+  @extend %heading-text-treatment;
+  line-height: 1.25;
+}
+
+h1 { font-size: 36px; }
+h2 { font-size: 28px; }
+h3 { font-size: 20px; }
+h4 { font-size: 18px; }
+h5 { font-size: 14px; }
+h6 { font-size: 14px; }
+
+.page-title {
+  @extend %heading-text-treatment, %wrapper, %full-width;
+  font-size: 26px;
+}
+
+.section-title {
+  @extend %section-title-text-treatment;
+  font-size: 14px;
+}
+
+/* Basic elements */
+
+hr {
+  background: $border-color;
+}
+
+cite {
+  color: $meta-color;
+}

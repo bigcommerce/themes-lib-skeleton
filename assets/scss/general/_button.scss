@@ -1,0 +1,29 @@
+/* Buttons */
+
+.button {
+  color: $primary-button-color;
+  font-family: $button-font;
+  font-weight: $button-weight;
+  background: $accent-color;
+  transition: all 0.2s $ease-out-quad;
+
+  &:hover {
+    @include button-hover($accent-color,background);
+    color: $primary-button-color;
+  }
+
+  &.secondary {
+    background: $secondary-button-background;
+    color: $secondary-button-color;
+
+    &:hover {
+      @include button-hover($secondary-button-background,background);
+      color: $secondary-button-color;
+    }
+  }
+
+  &.disabled {
+    background: $disabled-button-background;
+    color: $disabled-button-color;
+  }
+}

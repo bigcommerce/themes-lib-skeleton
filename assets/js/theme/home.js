@@ -8,7 +8,7 @@ export default class Home extends PageManager {
 
         new Carousel({
             el: $('.carousel'),
-            carouselDelay: Theme.carouselDelay
+            delay: Theme.carouselDelay
         });
     }
 

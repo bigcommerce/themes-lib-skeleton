@@ -1,0 +1,12 @@
+/* Tables */
+
+table {
+  color: $body-color;
+  border-color: $border-color;
+}
+
+th {
+  @extend %heading-text-treatment;
+  color: $input-color !important;
+  background: $input-background-color;
+}
