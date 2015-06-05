@@ -3,9 +3,7 @@
   "description": "Pixel Union theme skeleton for the Bigcommerce platform.",
   "version": "0.0.1",
   "private": true,
-  "dependencies": {
-    "jspm": "^0.15.1"
-  },
+  "dependencies": {},
   "jspm": {
     "directories": {
       "baseURL": "assets",
