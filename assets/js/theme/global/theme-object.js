@@ -1,3 +1,3 @@
 
 Theme = {};
-Theme.carouselDelay = 4; // seconds
+Theme.carouselDelay = 4000; // 4 seconds

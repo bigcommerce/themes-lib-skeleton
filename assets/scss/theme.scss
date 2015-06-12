@@ -5,6 +5,10 @@
 // Settings
 @import "general/user-settings";
 
+// Helpers
+@import "general/mixins";
+@import "general/extends";
+
 // Modules
 @import "../jspm_packages/bitbucket/pixelunion/bc-carousel@0.0.2/scss/carousel";
 
@@ -12,8 +16,6 @@
 @import "modules/carousel";
 
 // General
-@import "general/mixins";
-@import "general/extends";
 @import "general/fonts";
 @import "general/general";
 @import "general/button";
