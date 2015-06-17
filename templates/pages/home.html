@@ -1,14 +1,20 @@
 ---
 carousel: true
-new_products: 2
-featured_products: 2
+products:
+  featured:
+    limit: 6
+  new:
+    limit: 6
+blog:
+  posts:
+    limit: 3
 ---
 
 {{#partial "page"}}
 
   {{> components/carousel }}
-  {{> components/products/new_products new_products}}
-  {{> components/products/featured_products featured_products}}
+  {{> components/products/new_products products.new}}
+  {{> components/products/featured_products products.featured}}
 
 {{/partial}}
 
