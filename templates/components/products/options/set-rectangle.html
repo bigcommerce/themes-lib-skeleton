@@ -1,7 +1,9 @@
 
-<div>
-  {{#if this.required }}<span class="required">*</span>{{/if}}
-  {{ this.display_name }}
+<div class="form-field">
+  <div class="form-label-text">
+    {{ this.display_name }}
+    {{#if this.required }}<span class="required">*</span>{{/if}}
+  </div>
   {{#each this.values}}
     <label>
       {{this.label}}

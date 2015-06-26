@@ -1,8 +1,9 @@
-
-<div>
-  <label>
-    {{#if this.required }}<span class="required">*</span>{{/if}}
-    {{ this.display_name }}
-    <input type="file" name="attribute[{{this.id}}]">
+<div class="form-field">
+  <label class="form-label">
+    <div class="form-label-text">
+      {{ this.display_name }}
+      {{#if this.required }}<span class="required">*</span>{{/if}}
+    </div>
+    <input type="file" class="form-input" name="attribute[{{this.id}}]">
   </label>
 </div>
