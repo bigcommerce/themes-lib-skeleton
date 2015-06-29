@@ -1,9 +1,8 @@
-<div class="form-field">
+<div class="form-field  {{#if this.required }}required{{/if}}">
   <label class="form-label">
 
     <div class="form-label-text">
       {{ this.display_name }}
-      {{#if this.required }}<span class="required">*</span>{{/if}}
     </div>
     <div class="date-select-group">
       <select name="attribute[{{this.id}}][month]" class="form-input month">

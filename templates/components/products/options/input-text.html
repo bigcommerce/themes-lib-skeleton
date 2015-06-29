@@ -1,9 +1,8 @@
 
-<div class="form-field">
+<div class="form-field {{#if this.required }}required{{/if}}">
   <label class="form-label">
     <div class="form-label-text">
       {{ this.display_name }}
-      {{#if this.required }}<span class="required">*</span>{{/if}}
     </div>
     <input type="text" class="form-input" name="attribute[{{this.id}}]" value="{{this.prefill}}">
   </label>

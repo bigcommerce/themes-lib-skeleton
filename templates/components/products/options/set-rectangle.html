@@ -1,8 +1,7 @@
 
-<div class="form-field">
+<div class="form-field {{#if this.required }}required{{/if}}">
   <div class="form-label-text">
     {{ this.display_name }}
-    {{#if this.required }}<span class="required">*</span>{{/if}}
   </div>
   {{#each this.values}}
     <label>
