@@ -1,15 +1,15 @@
 
-<div class="form-field {{#if this.required }}required{{/if}}">
+<div class="form-field {{#if required }}required{{/if}}">
   <div class="form-label-text">
-    {{ this.display_name }}
+    {{ display_name }}
   </div>
 
   <div class="swatches">
-    {{#each this.values}}
+    {{#each values}}
       <label class="swatch-wrap">
         <input type="radio" class="swatch-radio" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
 
-        <span class="sr-only">{{this.label}}</span>
+        <span class="sr-only">{{label}}</span>
 
         {{#if pattern}}
           <div class="swatch" style="background-image: url('{{pattern}}');"></div>

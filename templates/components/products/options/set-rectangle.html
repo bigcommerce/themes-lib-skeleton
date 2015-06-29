@@ -1,11 +1,11 @@
 
-<div class="form-field {{#if this.required }}required{{/if}}">
+<div class="form-field {{#if required }}required{{/if}}">
   <div class="form-label-text">
-    {{ this.display_name }}
+    {{ display_name }}
   </div>
-  {{#each this.values}}
+  {{#each values}}
     <label>
-      {{this.label}}
+      {{label}}
       <input type="radio" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
     </label>
   {{/each}}

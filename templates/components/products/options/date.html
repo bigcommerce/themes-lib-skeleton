@@ -1,25 +1,25 @@
-<div class="form-field  {{#if this.required }}required{{/if}}">
+<div class="form-field  {{#if required }}required{{/if}}">
   <label class="form-label">
 
     <div class="form-label-text">
-      {{ this.display_name }}
+      {{ display_name }}
     </div>
     <div class="date-select-group">
-      <select name="attribute[{{this.id}}][month]" class="form-input month">
+      <select name="attribute[{{id}}][month]" class="form-input month">
         <option disabled>{{lang 'date.month' }}</option>
         {{#enumerate 1 12}}
           <option value="{{ this }}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>{{getShortMonth this }}</option>
         {{/enumerate}}
       </select>
 
-      <select name="attribute[{{this.id}}][day]" class="form-input day">
+      <select name="attribute[{{id}}][day]" class="form-input day">
         <option disabled>{{lang 'date.day' }}</option>
         {{#enumerate 1 31}}
           <option value="{{ this }}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>{{ this }}</option>
         {{/enumerate}}
       </select>
 
-      <select name="attribute[{{this.id}}][year]" class="form-input year">
+      <select name="attribute[{{id}}][year]" class="form-input year">
         <option disabled>{{lang 'date.year' }}</option>
         {{#enumerate earliest_year latest_year}}
           <option value="{{ this }}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>{{ this }}</option>
