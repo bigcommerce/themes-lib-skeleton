@@ -3,31 +3,30 @@
 <!--[if IE 9 ]><html class="no-js ie9 lt-ie10"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width" />
-
+  <meta name="viewport" content="width=device-width">
   {{{ head.meta_tags }}}
 
-  <title>
-    {{ head.title }}
-  </title>
+  <title>{{ head.title }}</title>
 
   <link rel="shortcut icon" href="{{ head.favicon }}">
 
-  {{{ head.rsslinks }}}
   {{{ head.stylesheets }}}
-
   <!-- Shouldn't need this when head.stylesheets starts working -->
   <link rel="stylesheet" href="/assets/css/theme.css">
 
-  {{{ head.scripts }}}
+  <!--TODO Need CDN asset Helper-->
+  <script src="/assets/jspm_packages/system.js"></script>
+  <script src="/assets/config.js"></script>
+  <!--TODO Need Bundled JS Helper-->
+  <!--Loads JSPM main application, then instantiates each page type module when needed.  -->
+  <script>System.import("js/app").then(function(data){ data.default("{{template_file}}").load()});</script>
 
+  {{{ head.rsslinks }}}
 </head>
 
 <body>
-
   {{> components/header }}
 
   <div class="main-content">
@@ -37,6 +36,5 @@
   {{> components/footer }}
 
   {{footer.scripts}}
-
 </body>
 </html>

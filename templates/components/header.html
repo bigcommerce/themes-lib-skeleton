@@ -1,38 +1,32 @@
+<header class="site-header" role="banner">
 
-<!--
-  Tools:
-    {{urls.gift_certificate.purchase}}
-    {{urls.account.wishlists}}
--->
-
-<header class="main-header" role="banner">
-
-  <div class="branding">
-    {{#if settings.store_logo}}
-      <a class="logo" href="/"><img src="{{settings.store_logo}}"></a>
-    {{else}}
-      <h1><a href="/">{{settings.store_name}}</a></h1>
-    {{/if}}
+  <div class="site-branding">
+    <a class="site-logo" href="{{ urls.home }}">
+      {{#if settings.store_logo.image}}
+        <img class="site-logo-image" src="{{ @image settings.store_logo.image 'logo' }}" alt="{{ settings.store_logo.title }}">
+      {{else}}
+        <span class="site-logo-text">{{ settings.store_logo.title }}</span>
+      {{/if}}
+    </a>
   </div>
 
-  <div class="header-tools">
-
+  <div class="site-header-tools">
     <p class="customer-links">
       {{#if customer }}
-        <a href="{{urls.account.index}}">{{ lang 'header.logged_in_as' name=customer.name }}</a>
-        <a href="{{urls.auth.logout}}">{{ lang 'header.log_out' }}</a>
+        <a href="{{urls.account.index}}">{{ @lang 'header.logged_in_as' name=customer.name }}</a>
+        <a href="{{urls.auth.logout}}">{{ @lang 'header.log_out' }}</a>
       {{else}}
-        <a href="{{urls.auth.login}}">{{ lang 'header.log_in' }}</a>
-        <a href="{{urls.auth.create_account}}">{{ lang 'header.sign_up' }}</a>
+        <a href="{{urls.auth.login}}">{{ @lang 'header.log_in' }}</a>
+        <a href="{{urls.auth.create_account}}">{{ @lang 'header.sign_up' }}</a>
       {{/if}}
     </p>
 
     {{> components/currency-selector}}
 
-    <a href="{{urls.cart}}">{{ lang 'header.view_cart' }}</a>
+    <a href="{{urls.cart}}">{{ @lang 'header.view_cart' }}</a>
 
     <form class="search-form" action="/search.php">
-      <input name="search_query" placeholder="{{ lang 'header.search' }}">
+      <input name="search_query" placeholder="{{ @lang 'header.search' }}">
     </form>
   </div>
 
