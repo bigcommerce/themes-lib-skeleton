@@ -1,0 +1,22 @@
+<!--
+
+  Readonly star ratings
+
+  {{> components/products/product-rating rating=this.product.rating total=this.product.num_reviews}}
+
+-->
+
+
+<div class="product-rating">
+  <div class="rating-stars-readonly" aria-hidden="true">
+    {{#enumerate 1 5}}
+      {{#compare ../this.rating this operator='>='}}
+        <span class="rating-star star-full"></span>
+      {{else}}
+        <span class="rating-star star-empty"></span>
+      {{/compare}}
+    {{/enumerate}}
+  </div>
+  <span class="rating-total-score">{{this.rating}}</span>
+  <span class="rating-total-votes">(<a href="#">{{this.total}}</a>)</span>
+</div>

@@ -1,31 +1,33 @@
-
 <div class="form-field {{#if required }}required{{/if}}">
-  <div class="form-label-text">
-    {{ display_name }}
+  <div class="form-label-text product-option-title">
+    {{display_name}}:
+    <span class="swatch-value"><em>{{@lang 'product.none_selected'}}</em></span>
   </div>
 
   <div class="swatches">
     {{#each values}}
-      <label class="swatch-wrap">
-        <input type="radio" class="swatch-radio" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
-
+      <label class="swatch-wrap" data-swatch-value="{{label}}">
         <span class="sr-only">{{label}}</span>
 
-        {{#if pattern}}
-          <div class="swatch" style="background-image: url('{{pattern}}');"></div>
-        {{/if}}
+        <input type="radio" class="swatch-radio" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
 
-        {{#if data.[0]}}
-          <div class="swatch" style="background-color: #{{data.[0]}}"></div>
-        {{/if}}
+        <div class="swatch">
+          {{#if pattern}}
+            <div class="swatch-color" style="background-image: url('{{pattern}}');"></div>
+          {{/if}}
 
-        {{#if data.[1]}}
-          <div class="swatch" style="background-color: #{{data.[1]}}"></div>
-        {{/if}}
+          {{#if data.[0]}}
+            <div class="swatch-color" style="background-color: #{{data.[0]}}"></div>
+          {{/if}}
 
-        {{#if data.[2]}}
-          <div class="swatch" style="background-color: #{{data.[2]}}"></div>
-        {{/if}}
+          {{#if data.[1]}}
+            <div class="swatch-color secondary" style="background-color: #{{data.[1]}}"></div>
+          {{/if}}
+
+          {{#if data.[2]}}
+            <div class="swatch-color tertiary" style="background-color: #{{data.[2]}}"></div>
+          {{/if}}
+        </div>
 
       </label>
     {{/each}}

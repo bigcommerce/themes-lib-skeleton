@@ -1,14 +1,24 @@
 
 <section class="carousel">
-  {{#each carousel}}
+  {{#each carousel.slides}}
     <figure class="carousel-item {{#if @first}}active{{/if}}">
-      <a class="carousel-item-image" href="{{{url}}}">
-        <img src="{{image}}" alt="{{{alt_text}}}" />
-      </a>
+     {{#if url}}
+        <a class="carousel-item-image-link" href="{{{url}}}">
+          <img class="carousel-item-image" src="{{image}}" alt="{{{alt_text}}}" />
+        </a>
+      {{else}}
+        <img class="carousel-item-image" src="{{image}}" alt="{{{alt_text}}}" />
+      {{/if}}
       <figcaption class="carousel-item-info">
-        <h2>{{heading}}</h2>
-        <p>{{text}}</p>
-        <a class="button" href="{{{url}}}">{{button_text}}</a>
+        {{#if url}}
+          <a href="{{url}}">
+            <h2 style="color: {{heading_color}}">{{heading}}</h2>
+            <p style="color: {{text_color}}">{{text}}</p>
+          <a class="button" href="{{{url}}}" style="color: {{button_text_color}};">{{button_text}}</a>
+        {{else}}
+          <h2 style="color: {{heading_color}}">{{heading}}</h2>
+          <p style="color: {{text_color}}">{{text}}</p>
+        {{/if}}
       </figcaption>
     </figure>
   {{/each}}

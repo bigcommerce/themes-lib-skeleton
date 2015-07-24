@@ -1,33 +1,21 @@
-
 <!--
-  Tools:
-    {{add_to_cart_text}}
-    {{date_added}}
-    {{{image}}}
-    {{name}}
-    {{pre_order}}
-    {{{price}}}
-    {{rating}}
-    {{release_date}}
-    {{show_add_to_cart}}
-    {{summary}}
-    {{{url}}}
+
+  Product grid thumbnail block
+
+  {{add_to_cart_text}}
+  {{date_added}}
+  {{ @image }}
+  {{name}}
+  {{pre_order}}
+  {{{price}}}
+  {{rating}}
+  {{release_date}}
+  {{show_add_to_cart}}
+  {{summary}}
+  {{{url}}}
+
 -->
 
 <article class="product-item">
-  <figure class="product-item-thumbnail">
-    <a href="{{{url}}}" alt="{{name}}">
-      {{{image}}}
-    </a>
-  </figure>
-
-  <div class="product-item-details">
-    <h3 class="product-item-title">
-      <a href="{{{url}}}" alt="{{name}}">{{name}}</a>
-    </h3>
-
-    <p class="product-item-price">
-      {{{price}}}
-    </p>
-  </div>
+  <h3>{{name}}</h3>
 </article>

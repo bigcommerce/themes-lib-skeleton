@@ -22,9 +22,13 @@
   },
   "common": {
     "currency_converter": "Currency Converter",
-    "newsletter_signup": "Sign up for our newsletter",
     "form_submit": "Submit",
-    "prices_are_in": "Prices are in {CODE}"
+    "prices_are_in": "Prices are in {CODE}",
+    "newsletter": {
+      "heading": "Sign up for our newsletter",
+      "submit": "Subscribe",
+      "email": "Email"
+    }
   },
   "category": {
     "label": "Categories"

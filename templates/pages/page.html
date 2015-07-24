@@ -1,0 +1,16 @@
+---
+cart: true
+---
+
+{{#partial "page"}}
+
+<article class="page-container cms-page">
+  <h1 class="page-heading">{{page.title}}</h1>
+  <div class="page-content">
+    {{{page.content}}}
+  </div>
+</article>
+
+{{/partial}}
+
+{{> layout/base}}

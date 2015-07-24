@@ -1,13 +1,13 @@
 
 <div class="form-field {{#if required }}required{{/if}}">
-  <div class="form-field-title">
-    {{ display_name }}
+  <div class="product-option-title">
+    {{display_name}}
   </div>
-  <div class="rectangles">
+  <div class="form-rectangles">
     {{#each values}}
       <label class="form-label rectangle">
         <input type="radio" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
-        <span class="form-label-text">{{label}}</span>
+        <span class="rectangle-text">{{label}}</span>
       </label>
     {{/each}}
   </div>

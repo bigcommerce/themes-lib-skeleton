@@ -1,0 +1,18 @@
+---
+cart: true
+---
+
+{{#partial "page"}}
+
+
+<div class="blog-index">
+  {{#each blog.posts}}
+    {{> components/blog/blog-item this}}
+  {{/each}}
+</div>
+
+{{{@pre this}}}
+
+{{/partial}}
+
+{{> layout/base}}

@@ -1,35 +1,36 @@
-<header class="site-header" role="banner">
+<!--
 
-  <div class="site-branding">
-    <a class="site-logo" href="{{ urls.home }}">
-      {{#if settings.store_logo.image}}
-        <img class="site-logo-image" src="{{ @image settings.store_logo.image 'logo' }}" alt="{{ settings.store_logo.title }}">
-      {{else}}
-        <span class="site-logo-text">{{ settings.store_logo.title }}</span>
-      {{/if}}
-    </a>
+  ## logo
+
+  <div class="branding">
+    {{#if settings.store_logo.image.data}}
+      <a class="logo" href="/">
+        <img class="header-logo-image" src="{{@image settings.store_logo.image 'logo'}}" alt="{{settings.store_logo.image.alt}}">
+      </a>
+    {{else}}
+      <h1 class="text"><a href="/">{{settings.store_logo.title}}</a></h1>
+    {{/if}}
   </div>
 
-  <div class="site-header-tools">
-    <p class="customer-links">
-      {{#if customer }}
-        <a href="{{urls.account.index}}">{{ @lang 'header.logged_in_as' name=customer.name }}</a>
-        <a href="{{urls.auth.logout}}">{{ @lang 'header.log_out' }}</a>
-      {{else}}
-        <a href="{{urls.auth.login}}">{{ @lang 'header.log_in' }}</a>
-        <a href="{{urls.auth.create_account}}">{{ @lang 'header.sign_up' }}</a>
-      {{/if}}
-    </p>
+  ## user links
 
-    {{> components/currency-selector}}
-
-    <a href="{{urls.cart}}">{{ @lang 'header.view_cart' }}</a>
-
-    <form class="search-form" action="/search.php">
-      <input name="search_query" placeholder="{{ @lang 'header.search' }}">
-    </form>
+  <div class="customer-links">
+    {{#if customer }}
+      <a href="{{urls.account.index}}">{{ @lang 'header.logged_in_as' name=customer.name }}</a>
+      <a href="{{urls.auth.logout}}">{{ @lang 'header.log_out' }}</a>
+    {{else}}
+      <a href="{{urls.auth.create_account}}">{{ @lang 'header.sign_up' }}</a>
+      <a href="{{urls.auth.login}}">{{ @lang 'header.log_in' }}</a>
+    {{/if}}
   </div>
 
-  {{> components/navigation}}
+-->
+
+<header class="main-header" role="banner">
+
+  <div class="container">
+
+
+  </div>
 
 </header>

@@ -1,18 +1,20 @@
 
-<nav class="navigation">
-  <ul>
+<nav class="main-menu">
+  <ul class="nav-menu">
     {{#each navigation}}
-      <li>
-        <a href="{{url}}" data-hover="{{name}}">{{name}}</a>
+      <li class="nav-menu-item {{#if children}} menu-dropdown {{/if}}" >
+        <a href="{{url}}">{{name}}</a>
         {{#if children}}
-          <ul>
+          <ul class="dropdown">
             {{#each children}}
               <li>
-                <a href="{{url}}" data-hover="{{name}}">{{name}}</a>
+                <a href="{{url}}">{{name}}</a>
                 {{#if children}}
                   <ul>
                     {{#each children}}
-                      <li> <a href="{{url}}" data-hover="{{name}}">{{name}}</a> </li>
+                      <li>
+                        <a href="{{url}}">{{name}}</a>
+                      </li>
                     {{/each}}
                   </ul>
                 {{/if}}
@@ -24,3 +26,4 @@
     {{/each}}
   </ul>
 </nav>
+

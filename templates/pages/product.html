@@ -1,6 +1,55 @@
+---
+cart: true
+---
+
+<!--
+
+  Single Product Page
+
+    Base
+    {{product.title}}
+    {{product.price.base}}
+    {{product.id}}
+    {{{product.description}}}
+    {{product.stock_level}}
+    {{product.detail_messages}}
+
+    Brand
+    {{product.brand.name}}
+    {{product.brand.url}}
+
+    Reviews
+    {{product.num_reviews}}
+    {{this.product.rating}}
+
+    Urls
+    {{product.url}}
+    {{product.cart_url}}
+    {{product.add_to_wishlist_url}}
+
+    Conditionals
+    {{product.can_purchase}}
+    {{product.out_of_stock_message}}
+    {{product.pre_order}}
+
+  {{> components/products/product-images product}}
+  {{> components/products/review rating=this.product.rating total=this.product.num_reviews}}
+
+  {{#each product.customizations}}
+    {{{@dynamicComponent 'components/products/customizations'}}}
+  {{/each}}
+
+  {{#each product.options}}
+      {{{@dynamicComponent 'components/products/options'}}}
+  {{/each}}
+
+-->
+
+
 {{#partial "page"}}
-  <h1>pages/product.html</h1>
-  {{{ @pre this }}}
+
+  {{{@pre this.product}}}
+
 {{/partial}}
 
 {{> layout/base}}

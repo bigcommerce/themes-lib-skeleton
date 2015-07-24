@@ -1,28 +1,28 @@
-<div class="form-field  {{#if required }}required{{/if}}">
+<div class="form-field  {{#if required}}required{{/if}}">
   <label class="form-label">
 
-    <div class="form-label-text">
-      {{ display_name }}
+    <div class="form-label-text product-option-title">
+      {{display_name}}
     </div>
     <div class="date-select-group">
       <select name="attribute[{{id}}][month]" class="form-input month">
-        <option disabled>{{ @lang 'date.month' }}</option>
+        <option disabled>{{@lang 'date.month'}}</option>
         {{#enumerate 1 12}}
-          <option value="{{ this }}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>{{getShortMonth this }}</option>
+          <option value="{{this}}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>{{@getShortMonth this}}</option>
         {{/enumerate}}
       </select>
 
       <select name="attribute[{{id}}][day]" class="form-input day">
-        <option disabled>{{ @lang 'date.day' }}</option>
+        <option disabled>{{@lang 'date.day'}}</option>
         {{#enumerate 1 31}}
-          <option value="{{ this }}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>{{ this }}</option>
+          <option value="{{this}}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>{{this}}</option>
         {{/enumerate}}
       </select>
 
       <select name="attribute[{{id}}][year]" class="form-input year">
-        <option disabled>{{ @lang 'date.year' }}</option>
+        <option disabled>{{@lang 'date.year'}}</option>
         {{#enumerate earliest_year latest_year}}
-          <option value="{{ this }}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>{{ this }}</option>
+          <option value="{{this}}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>{{this}}</option>
         {{/enumerate}}
       </select>
     </div>
