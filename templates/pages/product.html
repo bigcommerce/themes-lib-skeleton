@@ -36,11 +36,11 @@ cart: true
   {{> components/products/review rating=this.product.rating total=this.product.num_reviews}}
 
   {{#each product.customizations}}
-    {{{@dynamicComponent 'components/products/customizations'}}}
+    {{{dynamicComponent 'components/products/customizations'}}}
   {{/each}}
 
   {{#each product.options}}
-      {{{@dynamicComponent 'components/products/options'}}}
+      {{{dynamicComponent 'components/products/options'}}}
   {{/each}}
 
 -->
@@ -48,7 +48,7 @@ cart: true
 
 {{#partial "page"}}
 
-  {{{@pre this.product}}}
+  {{{pre this.product}}}
 
 {{/partial}}
 

@@ -36,13 +36,13 @@ cart: true
     {{#if blog.post.tags.length}}
       <div class="post-tags">
         {{#each blog.post.tags}}
-          <a href="{{url}}" title="{{@lang 'blog.tag_permalink' tag=name}}">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
+          <a href="{{url}}" title="{{lang 'blog.tag_permalink' tag=name}}">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
         {{/each}}
       </div>
     {{/if}}
 
     {{#if blog.post.author}}
-      <div class="post-meta post-author">{{@lang 'blog.posted_by' author=blog.post.author}}</div>
+      <div class="post-meta post-author">{{lang 'blog.posted_by' author=blog.post.author}}</div>
     {{/if}}
   </header>
 
@@ -53,7 +53,7 @@ cart: true
 
   <!-- Social sharing -->
   <aside class="blog-share">
-    <h5 class="heading">{{@lang 'blog.share_this'}}</h5>
+    <h5 class="heading">{{lang 'blog.share_this'}}</h5>
     <!-- TODO: awaiting decision regarding social & API -->
     {{> components/blog/social blog.post}}
   </aside>

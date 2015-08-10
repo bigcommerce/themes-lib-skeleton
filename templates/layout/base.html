@@ -14,11 +14,11 @@
   <link href="/assets/css/theme.css" rel="stylesheet">
 
   <!-- TODO: dynamic fonts from settings -->
-  {{! > components/common/fonts fonts=(@pick theme_settings "fontFamily-sans" "fontFamily-serif" "fontFamily-headings" "fontFamily-hero")}}
+  {{! > components/common/fonts fonts=(pick theme_settings "fontFamily-sans" "fontFamily-serif" "fontFamily-headings" "fontFamily-hero")}}
 
   {{{head.scripts}}}
   {{{head.rsslinks}}}
-  {{@inject 'themeImageSizes' theme_images}}
+  {{inject 'themeImageSizes' theme_images}}
 
   {{> components/common/theme-object}}
 </head>
