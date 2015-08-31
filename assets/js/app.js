@@ -21,54 +21,54 @@ import subscribe from './theme/subscribe';
 import wishlist from './theme/wishlist';
 
 let PageClasses = {
-    mapping: {
-        "pages/account/orders/all": account,
-        "pages/account/addresses": account,
-        "pages/account/add-address": account,
-        "pages/account/add-return": account,
-        "pages/account/add-wishlist": wishlist,
-        "pages/account/recent-items": account,
-        "pages/account/download-item": account,
-        "pages/account/edit": account,
-        "pages/account/return-saved": account,
-        "pages/account/returns": account,
-        "pages/auth/login": auth,
-        "pages/auth/account-created": auth,
-        "pages/auth/create-account": auth,
-        "pages/auth/new-password": auth,
-        "pages/blog": blog,
-        "pages/blog-post": blog,
-        "pages/brand": brand,
-        "pages/brands": brand,
-        "pages/cart": cart,
-        "pages/category": category,
-        "pages/compare": compare,
-        "pages/errors": errors,
-        "pages/gift-certificate/purchase": giftCertificate,
-        "pages/gift-certificate/balance": giftCertificate,
-        "pages/gift-certificate/redeem": giftCertificate,
-        "global": global,
-        "pages/home": home,
-        "pages/order-complete": orderComplete,
-        "pages/page": page,
-        "pages/product": product,
-        "pages/search": search,
-        "pages/sitemap": sitemap,
-        "pages/subscribe": subscribe,
-        "page/account/wishlist-details": wishlist,
-        "pages/account/wishlists": wishlist
-    },
-    /**
-     * Getter method to ensure a good page type is accessed.
-     * @param page
-     * @returns {*}
-     */
-    get: function(page) {
-        if (this.mapping[page]) {
-            return this.mapping[page];
-        }
-        return false;
+  mapping: {
+    "pages/account/orders/all": account,
+    "pages/account/addresses": account,
+    "pages/account/add-address": account,
+    "pages/account/add-return": account,
+    "pages/account/add-wishlist": wishlist,
+    "pages/account/recent-items": account,
+    "pages/account/download-item": account,
+    "pages/account/edit": account,
+    "pages/account/return-saved": account,
+    "pages/account/returns": account,
+    "pages/auth/login": auth,
+    "pages/auth/account-created": auth,
+    "pages/auth/create-account": auth,
+    "pages/auth/new-password": auth,
+    "pages/blog": blog,
+    "pages/blog-post": blog,
+    "pages/brand": brand,
+    "pages/brands": brand,
+    "pages/cart": cart,
+    "pages/category": category,
+    "pages/compare": compare,
+    "pages/errors": errors,
+    "pages/gift-certificate/purchase": giftCertificate,
+    "pages/gift-certificate/balance": giftCertificate,
+    "pages/gift-certificate/redeem": giftCertificate,
+    "global": global,
+    "pages/home": home,
+    "pages/order-complete": orderComplete,
+    "pages/page": page,
+    "pages/product": product,
+    "pages/search": search,
+    "pages/sitemap": sitemap,
+    "pages/subscribe": subscribe,
+    "page/account/wishlist-details": wishlist,
+    "pages/account/wishlists": wishlist
+  },
+  /**
+   * Getter method to ensure a good page type is accessed.
+   * @param page
+   * @returns {*}
+   */
+  get: function(page) {
+    if (this.mapping[page]) {
+      return this.mapping[page];
     }
+    return false;
+  }
 };
 
 /**
@@ -76,15 +76,15 @@ let PageClasses = {
  * @param {Object} pageObj
  */
 function series(pageObj) {
-    async.series([
-        pageObj.before.bind(pageObj), // Executed first after constructor()
-        pageObj.loaded.bind(pageObj), // Main module logic
-        pageObj.after.bind(pageObj) // Clean up method that can be overridden for cleanup.
-    ], function (err) {
-        if (err) {
-            throw new Error(err);
-        }
-    })
+  async.series([
+    pageObj.before.bind(pageObj), // Executed first after constructor()
+    pageObj.loaded.bind(pageObj), // Main module logic
+    pageObj.after.bind(pageObj) // Clean up method that can be overridden for cleanup.
+  ], function (err) {
+    if (err) {
+      throw new Error(err);
+    }
+  })
 }
 
 /**
@@ -94,8 +94,8 @@ function series(pageObj) {
  * @returns {*}
  */
 function loadGlobal(pages) {
-    let global = pages.get('global');
-    return new global;
+  const global = pages.get('global');
+  return new global;
 }
 
 /**
@@ -104,10 +104,10 @@ function loadGlobal(pages) {
  * @param {} pages
  */
 function loader(pageFunc, pages) {
-    if (pages.get('global')) {
-        series(loadGlobal(pages));
-    }
-    series(pageFunc);
+  if (pages.get('global')) {
+    series(loadGlobal(pages));
+  }
+  series(pageFunc);
 }
 
 /**
@@ -117,19 +117,19 @@ function loader(pageFunc, pages) {
  * @returns {*}
  */
 export default function (templateFile) {
-    let pages = PageClasses;
+  const pages = PageClasses;
 
-    return {
-        load() {
-            $(() => {
-                let pageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
-                if (pageTypeFn) {
-                    let pageType = new pageTypeFn();
-                    return loader(pageType, pages);
-                } else {
-                    throw new Error(templateFile + ' Module not found')
-                }
-            });
+  return {
+    load() {
+      $(() => {
+        const pageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
+        if (pageTypeFn) {
+          const pageType = new pageTypeFn();
+          return loader(pageType, pages);
+        } else {
+          throw new Error(templateFile + ' Module not found')
         }
+      });
     }
+  }
 };

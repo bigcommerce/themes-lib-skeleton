@@ -1,20 +1,20 @@
 export default class PageManager {
-    constructor() {
-    }
+  constructor() {
+  }
 
-    before(next) {
-        next();
-    }
+  before(next) {
+    next();
+  }
 
-    loaded(next) {
-        next();
-    }
+  loaded(next) {
+    next();
+  }
 
-    after(next) {
-        next();
-    }
+  after(next) {
+    next();
+  }
 
-    type() {
-        return this.constructor.name;
-    }
+  type() {
+    return this.constructor.name;
+  }
 }

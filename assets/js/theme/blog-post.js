@@ -1,7 +1,7 @@
 import PageManager from '../page-manager';
 
 export default class BlogPost extends PageManager {
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+  }
 }
