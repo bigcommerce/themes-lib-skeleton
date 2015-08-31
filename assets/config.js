@@ -21,6 +21,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@4.7.16",
     "bc-baseline": "bitbucket:pixelunion/bc-baseline@0.0.4",
     "bc-carousel": "bitbucket:pixelunion/bc-carousel@1.1.0",
+    "bc-tabs": "bitbucket:pixelunion/bc-tabs@0.1.0",
     "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.0.9",
     "caolan/async": "github:caolan/async@0.9.2",
     "core-js": "npm:core-js@0.8.4",
@@ -40,6 +41,9 @@ System.config({
       "jquery": "github:components/jquery@2.1.4",
       "jquery-revealer": "github:pixelunion/jquery.revealer@2.0.0",
       "jquery-trend": "npm:jquery-trend@0.1.0"
+    },
+    "bitbucket:pixelunion/bc-tabs@0.1.0": {
+      "jquery": "github:components/jquery@2.1.4"
     },
     "github:bigcommerce/stencil-utils@0.0.9": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
