@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import PageManager from '../page-manager';
 import themeObject from './components/theme-object';
-import quickSearch from './components/quick-search';
 import currencySelector from './components/currency-selector';
 
 export default class Global extends PageManager {
@@ -15,7 +14,6 @@ export default class Global extends PageManager {
    * @param next
    */
   loaded(next) {
-    quickSearch();
     currencySelector();
     next();
   }
