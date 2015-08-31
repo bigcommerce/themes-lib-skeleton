@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import PageManager from '../page-manager';
-import themeObject from './components/theme-object';
 import currencySelector from './components/currency-selector';
 
 export default class Global extends PageManager {
