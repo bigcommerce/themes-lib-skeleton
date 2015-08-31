@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import PageManager from '../page-manager';
-import themeObject from './global/theme-object';
-import quickSearch from './global/quick-search';
-import currencySelector from './global/currency-selector';
+import themeObject from './components/theme-object';
+import quickSearch from './components/quick-search';
+import currencySelector from './components/currency-selector';
 
 export default class Global extends PageManager {
     constructor() {
@@ -11,7 +11,7 @@ export default class Global extends PageManager {
 
     /**
      * You can wrap the execution in this method with an asynchronous function map using the async library
-     * if your global modules need async callback handling.
+     * if your components modules need async callback handling.
      * @param next
      */
     loaded(next) {
