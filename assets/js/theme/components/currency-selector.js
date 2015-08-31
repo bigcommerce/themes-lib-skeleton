@@ -1,16 +1,21 @@
-import _ from 'lodash';
-import utils from 'bigcommerce/stencil-utils';
-import ko from 'knockout';
-import PageManager from '../../page-manager';
+import $ from 'jquery';
 
-export default function () {
-    let viewModel = {
-            visible: ko.observable(false)
-        },
-        element = $('[data-model="CurrencySelector"]');
+export default class CurrencySelector {
+  constructor(el) {
+    this.$el = $(el);
+    this.currencySelector = this.$el.find('select');
 
-    _.forEach(element, function (el) {
-        ko.applyBindings(viewModel, el);
+    this._bindEvents();
+  }
+
+  _bindEvents() {
+    this.currencySelector.on('change', (event) => {
+      this._updateCurrency();
     });
-};
+  }
 
+  _updateCurrency() {
+    let newCurrency = this.currencySelector.val();
+    window.location = newCurrency;
+  }
+}
