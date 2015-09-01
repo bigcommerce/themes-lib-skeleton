@@ -24,6 +24,10 @@ export default class ProductUtils {
     this.$el.on('click', '[data-product-quantity-change]', (event) => {
       this._updateQuantity(event);
     });
+
+    utils.hooks.on('cart-item-add', (event, form) => {
+      this._addProductToCart(event);
+    });
   }
 
   _getViewModel($el) {
@@ -146,38 +150,36 @@ export default class ProductUtils {
    *
    */
   _addProductToCart() {
-    utils.hooks.on('cart-item-add', (event, form) => {
-      event.preventDefault();
+    // Do not do AJAX if browser doesn't support FormData
+    if (window.FormData === undefined) {
+      return;
+    }
 
-      const $form = $(form);
-      const quantity = this.$el.find('[data-product-quantity-input]').val();
+    event.preventDefault();
 
-      // Do not do AJAX if browser doesn't support FormData
-      if (window.FormData === undefined) {
-        return;
+    const $form = $(form);
+    const quantity = this.$el.find('[data-product-quantity-input]').val();
+
+    if (this.options.loader) {
+      this._toggleLoader($form);
+    }
+
+    // add item to cart
+    utils.api.cart.itemAdd(new FormData(form), (err, response) => {
+      // if there is an error
+      if (err || response.data.error) {
+        if (this.options.loader) {
+          this._toggleLoader($form);
+        }
+
+        return this._updateMessage(err || response, quantity);
       }
+
+      this._updateMessage(response, quantity);
 
       if (this.options.loader) {
         this._toggleLoader($form);
       }
-
-      // add item to cart
-      utils.api.cart.itemAdd(new FormData(form), (err, response) => {
-        // if there is an error
-        if (err || response.data.error) {
-          if (this.options.loader) {
-            this._toggleLoader($form);
-          }
-
-          return this._updateMessage(err || response, quantity);
-        }
-
-        this._updateMessage(response, quantity);
-
-        if (this.options.loader) {
-          this._toggleLoader($form);
-        }
-      });
     });
   }
 }
