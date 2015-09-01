@@ -21,7 +21,7 @@
       "jquery-trend": "npm:jquery-trend@^0.1.0",
       "knockout": "github:knockout/knockout@^3.3.0",
       "lodash": "npm:lodash@^3.5.0",
-      "normalize.css": "npm:normalize.css@^3.0.3"
+      "normalize.scss": "npm:normalize.scss@^0.1.0"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.0.12",
