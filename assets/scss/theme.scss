@@ -1,6 +1,6 @@
 // Libraries
 @import "../jspm_packages/npm/normalize.css@3.0.3/normalize";
-@import "../jspm_packages/bitbucket/pixelunion/bc-baseline@0.0.4/baseline";
+@import "../jspm_packages/bitbucket/pixelunion/bc-baseline@0.2.0/baseline";
 
 // Settings
 @import "general/user-settings";
@@ -10,7 +10,7 @@
 @import "general/extends";
 
 // Modules
-@import "../jspm_packages/bitbucket/pixelunion/bc-carousel@1.1.0/scss/carousel";
+@import "../jspm_packages/bitbucket/pixelunion/bc-carousel@2.1.0/scss/carousel";
 
 // Module overrides
 @import "modules/carousel";
