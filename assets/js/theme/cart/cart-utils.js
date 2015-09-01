@@ -75,9 +75,9 @@ export default class CartUtils {
       utils.api.cart.itemUpdate(itemId, newQuantity, (err, response) => {
         if (response.data.status === 'succeed') {
           this.productData[itemId].oldQuantity = newQuantity;
-          // TODO: Integrate refreshContent function
-          // const remove = (newQuantity === 0);
-          // refreshContent(remove);
+
+          const remove = (newQuantity === 0);
+          refreshContent(remove);
         } else {
           $quantityInput.val(this.productData[itemId].oldQuantity);
           // TODO: Setup proper error handling?
@@ -98,8 +98,7 @@ export default class CartUtils {
 
     utils.api.cart.itemRemove(itemId, (err, response) => {
       if (response.data.status === 'succeed') {
-        // TODO: Integrate refreshContent function
-        // refreshContent(true);
+        refreshContent(true);
       } else {
         // TODO: Setup proper error handling?
         alert(response.data.errors.join('\n'));
