@@ -4,8 +4,6 @@ import utils from 'bigcommerce/stencil-utils';
 
 export default class Cart extends PageManager {
   loaded(next) {
-    super();
-
     this.productData = {};
     this.$body = $(document.body);
 
