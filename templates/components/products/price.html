@@ -1,0 +1,36 @@
+<p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+  <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+  {{#if price.without_tax}}
+    <meta itemprop="price" content="{{price.without_tax.value}}">
+    <span data-product-price>
+      {{price.without_tax.formatted}}
+    </span>
+
+    {{#if price.saved}}
+      <span data-product-rrp>
+        {{price.rrp_without_tax.formatted}}
+      </span>
+    {{/if}}
+
+    {{#if show_tax}}
+      <span>{{lang 'product.excluding_tax'}}</span>
+    {{/if}}
+  {{/if}}
+
+  {{#if price.with_tax}}
+    <meta itemprop="price" content="{{price.with_tax.value}}">
+    <span data-product-price>
+      {{price.with_tax.formatted}}
+    </span>
+
+    {{#if price.saved}}
+      <span data-product-rrp>
+        {{price.rrp_with_tax.formatted}}
+      </span>
+    {{/if}}
+
+    {{#if show_tax}}
+      <span>{{lang 'product.including_tax'}}</span>
+    {{/if}}
+  {{/if}}
+</p>

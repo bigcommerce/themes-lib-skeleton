@@ -1,0 +1,81 @@
+<div data-product-details data-product-title="{{product.title}}">
+  {{#unless product.out_of_stock_message}}
+    <link itemprop="availability" href="http://schema.org/InStock">
+  {{else}}
+    <link itemprop="availability" href="http://schema.org/OutOfStock">
+  {{/unless}}
+
+  <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
+    <input type="hidden" name="action" value="add">
+    <input type="hidden" name="product_id" value="{{product.id}}" data-product-id>
+
+    <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+      {{#if settings.show_product_rating}}
+        <meta itemprop="ratingValue" content="{{product.rating}}">
+        <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+      {{/if}}
+      {{#if settings.show_product_reviews}}
+        <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+      {{/if}}
+    </div>
+
+    {{> components/products/price}}
+
+    {{#if product.options}}
+      <div data-product-option-change>
+        {{#each product.options}}
+          {{{dynamicComponent 'components/products/options'}}}
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if product.customizations}}
+      <div data-product-option-change>
+        {{#each product.customizations}}
+          {{{dynamicComponent 'components/products/customizations'}}}
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if product.show_quantity_input}}
+      <div class="form-field" data-product-quantity>
+        <label class="form-label" for="quantity">
+          <span class="form-label-text">{{lang 'product.quantity'}}</span>
+
+          <input
+            class="form-input"
+            type="text"
+            name="qty[]"
+            value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
+            min="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}0{{/if}}"
+            max="{{#if product.max_purchase_quantity '!==' 0}}{{product.max_purchase_quantity}}{{/if}}"
+            disabled="disabled"
+            data-product-quantity-input
+          >
+
+          <div>
+            <span data-product-quantity-change data-quantity-increment>&#43;</span>
+            <span data-product-quantity-change data-quantity-decrement>&ndash;</span>
+          </div>
+        </label>
+      </div>
+    {{/if}}
+
+    <div class="form-field" data-product-add>
+      {{#if product.pre_order}}
+        <input class="button" type="submit" value="{{lang 'product.pre_order'}}" data-button-purchase data-button-preorder>
+      {{else}}
+        <input class="button" type="submit" value="{{lang 'product.add_to_cart'}}" data-button-purchase>
+      {{/if}}
+      <span class="spinner"></span>
+    </div>
+  </form>
+
+  <div data-product-message></div>
+
+  {{#if product.description}}
+    <div itemprop="description">
+      {{{product.description}}}
+    </div>
+  {{/if}}
+</div>
