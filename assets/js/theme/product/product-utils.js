@@ -63,12 +63,12 @@ export default class ProductUtils {
     $quantity.val(newQuantity);
   }
 
-  _updateMessage(response, quantity) {
+  _updateMessage(isError, response, quantity) {
     let message = '';
 
     // if there is an error
-    if (response.data.error) {
-      message = response.data.error;
+    if (isError) {
+      message = response;
 
       setTimeout(() => {
         this.$el.find('[data-product-message]').html(message).addClass(this.options.errorClass);
@@ -166,16 +166,16 @@ export default class ProductUtils {
 
     // add item to cart
     utils.api.cart.itemAdd(new FormData(form), (err, response) => {
+      let isError = false;
+      let response = response ? response : err;
+
       // if there is an error
       if (err || response.data.error) {
-        if (this.options.loader) {
-          this._toggleLoader($form);
-        }
-
-        return this._updateMessage(err || response, quantity);
+        isError = true;
+        response = err || response.data.error;
       }
 
-      this._updateMessage(response, quantity);
+      this._updateMessage(isError, response, quantity);
 
       if (this.options.loader) {
         this._toggleLoader($form);
