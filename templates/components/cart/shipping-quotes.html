@@ -1,0 +1,16 @@
+
+<form class="form">
+  <ul>
+    {{#each quotes.shipping_methods}}
+      <li class="form-field form-inline">
+        <label for="shipping-quote-{{id}}">
+          <input id="shipping-quote-{{id}}" class="form-input input-radio" type="radio" name="shipping_method" value="{{id}}" data-shipping-quote>
+          <span class="form-label-text">{{provider_name}} {{cost.formatted}}</span>
+        </label>
+      </li>
+    {{/each}}
+  </ul>
+  <div class="form-actions">
+    <input class="button" type="submit" value="{{lang 'cart.shipping_calculator.select'}}">
+  </div>
+</form>

@@ -2,7 +2,9 @@ import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
 
 export default class CartUtils {
-  constructor() {
+  constructor(modules) {
+    this.modules = modules;
+    this.$body = $(document.body);
     this.productData = {};
   }
 
@@ -26,6 +28,22 @@ export default class CartUtils {
       event.preventDefault();
       this._removeCartItem(event);
     });
+
+    // TODO: Ensure that this implementation works correctly and doesn't produce and infinite loop.
+    this.$body.on('bind-events-cart', () => {
+      this._rebindEvents();
+    });
+  }
+
+  _rebindEvents() {
+    this._bindEvents();
+    this.modules.shippingCalculator.init();
+
+    // TODO: Add SelectWrapper js
+    // const $select = $('[data-shipping-calculator]').find('select');
+    // $select.each((i) => {
+    //   new SelectWrapper($select.eq(i));
+    // });
   }
 
   _cacheInitialQuantities() {

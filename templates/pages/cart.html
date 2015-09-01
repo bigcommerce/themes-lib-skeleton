@@ -1,8 +1,13 @@
 {{#partial "page"}}
 
   <h1 class="page-heading">{{lang 'cart.title'}}</h1>
+
   <div data-cart-content>
     {{> components/cart/content}}
+  </div>
+
+  <div data-cart-totals>
+    {{> components/cart/totals}}
   </div>
 
 {{/partial}}

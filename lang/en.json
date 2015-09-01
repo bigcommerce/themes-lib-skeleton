@@ -19,7 +19,17 @@
   "cart": {
     "title": "Your Cart",
     "quantity": "Quantity",
-    "update": "Update"
+    "update": "Update",
+    "shipping_calculator": {
+      "title": "Shipping",
+      "add_info": "Add Info",
+      "select_a_country": "Choose a Country",
+      "select_a_state": "Choose a State/Province",
+      "estimate_shipping": "Estimate Shipping",
+      "zip_postal_code": "Zip/Postcode",
+      "select": "Select",
+      "error": "Error"
+    }
   },
   "common": {
     "currency_converter": "Currency Converter",

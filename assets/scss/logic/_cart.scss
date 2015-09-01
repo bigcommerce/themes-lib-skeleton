@@ -1,0 +1,8 @@
+
+[data-shipping-calculator] {
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+}
