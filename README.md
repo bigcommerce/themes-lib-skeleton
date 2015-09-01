@@ -67,6 +67,9 @@ templates
 
 ```
 
+### Notes
 
+#### Quick Shop
+When developing a quick shop, all the base functions you'll need reside within `product-utils.js`—use these.
 
 
