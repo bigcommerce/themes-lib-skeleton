@@ -82,7 +82,7 @@ export default class Cart extends PageManager {
         } else {
           $quantityInput.val(this.productData[itemId].oldQuantity);
           // TODO: Setup proper error handling?
-          alert(response.data.errors.join('\n');
+          alert(response.data.errors.join('\n'));
           // TODO: Integrate OverlayUtils class
           // this.overlayUtils.hide();
         }
