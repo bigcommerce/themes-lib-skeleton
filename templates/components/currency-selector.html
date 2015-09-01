@@ -1,7 +1,7 @@
 {{#if currency_selector.currencies.length ">" 1}}
-  <div class="currency-selector-wrapper">
+  <div data-currency-selector>
     <span data-currency-selector-toggle>{{currency_selector.active_currency_name}}</span>
-    <select class="currency-selector">
+    <select>
       {{#each currency_selector.currencies}}
         <option value="{{{switch_url}}}" {{#if is_active}}selected{{/if}}>
           {{name}}

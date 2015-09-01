@@ -1,19 +1,11 @@
 import $ from 'jquery';
 import PageManager from '../page-manager';
-import currencySelector from './components/currency-selector';
+import CurrencySelector from './components/currency-selector';
 
 export default class Global extends PageManager {
   constructor() {
     super();
-  }
 
-  /**
-   * You can wrap the execution in this method with an asynchronous function map using the async library
-   * if your components modules need async callback handling.
-   * @param next
-   */
-  loaded(next) {
-    currencySelector();
-    next();
+    new CurrencySelector('[data-currency-switcher]');
   }
 }
