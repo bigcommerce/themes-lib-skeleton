@@ -17,8 +17,9 @@
     "label": "Blog"
   },
   "cart": {
-    "items": "{NUM, plural, =0{(0 items)} one {(# item)} other {(# items)}}",
-    "label": "Cart"
+    "title": "Your Cart",
+    "quantity": "Quantity",
+    "update": "Update"
   },
   "common": {
     "currency_converter": "Currency Converter",

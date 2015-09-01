@@ -1,0 +1,33 @@
+<!--
+  Gift wrap:
+    {{> components/cart/item-gift-wrap}}
+-->
+
+{{#each cart.items}}
+  <article data-cart-item data-item-id="{{id}}">
+    <span data-cart-item-quantity>
+      <label>
+        <span>{{lang 'cart.quantity'}}:</span>
+
+        {{!-- TODO: Make sure BC supplies min/max purchase quantity --}}
+        <input
+          class="form-input"
+          type="text"
+          name="qty[]"
+          value="{{quantity}}"
+          min="{{#if min_purchase_quantity}}{{min_purchase_quantity}}{{else}}0{{/if}}"
+          max="{{max_purchase_quantity}}"
+          disabled="disabled"
+          data-cart-item-quantity-input
+        >
+      </label>
+    </span>
+
+    <div>
+      <span data-cart-item-quantity-change data-cart-item-quantity-decrement>&ndash;</span>
+      <span data-cart-item-quantity-change data-cart-item-quantity-increment>&#43;</span>
+      <span data-cart-item-update>{{lang 'cart.update'}}</span>
+      <a href="{{remove_url}}" data-cart-item-remove>&times;</a>
+    </div>
+  </article>
+{{/each}}
