@@ -85,8 +85,8 @@ export default class ProductUtils {
                   .replace('*checkout_link*', `<a href=${Theme.localization.urls.checkout}>${Theme.localization.product.checkoutLink}</a>`);
 
       setTimeout(() => {
-          this.$el.find('[data-product-message]').html(message).removeClass(this.options.errorClass);
-          this.$el.find(`[data-product-add] this.options.loaderSelector`).removeClass(this.options.visibleClass);
+        this.$el.find('[data-product-message]').html(message).removeClass(this.options.errorClass);
+        this.$el.find(`[data-product-add] this.options.loaderSelector`).removeClass(this.options.visibleClass);
       }, 500);
     }
   }
