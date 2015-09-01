@@ -32,24 +32,16 @@ cart: true
     {{product.out_of_stock_message}}
     {{product.pre_order}}
 
-  {{> components/products/product-images product}}
-  {{> components/products/review rating=this.product.rating total=this.product.num_reviews}}
-
-  {{#each product.customizations}}
-    {{{dynamicComponent 'components/products/customizations'}}}
-  {{/each}}
-
-  {{#each product.options}}
-      {{{dynamicComponent 'components/products/options'}}}
-  {{/each}}
+  {{!> components/product/images}}
+  {{!> components/product/review rating=product.rating total=product.num_reviews}}
 
 -->
 
 
 {{#partial "page"}}
 
-  {{{pre this.product}}}
+  {{> components/product/details}}
+  {{{pre product}}}
 
 {{/partial}}
-
 {{> layout/base}}

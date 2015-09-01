@@ -19,12 +19,12 @@
       {{/if}}
     </div>
 
-    {{> components/products/price}}
+    {{> components/product/price}}
 
     {{#if product.options}}
       <div data-product-option-change>
         {{#each product.options}}
-          {{{dynamicComponent 'components/products/options'}}}
+          {{{dynamicComponent 'components/product/options'}}}
         {{/each}}
       </div>
     {{/if}}
@@ -32,7 +32,7 @@
     {{#if product.customizations}}
       <div data-product-option-change>
         {{#each product.customizations}}
-          {{{dynamicComponent 'components/products/customizations'}}}
+          {{{dynamicComponent 'components/product/customizations'}}}
         {{/each}}
       </div>
     {{/if}}
