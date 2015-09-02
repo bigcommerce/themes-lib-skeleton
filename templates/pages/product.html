@@ -40,7 +40,10 @@ cart: true
 
 {{#partial "page"}}
 
-  {{> components/product/details}}
+  <div data-product-container>
+    {{> components/product/details}}
+  </div>
+
   {{{pre product}}}
 
 {{/partial}}

@@ -24,10 +24,6 @@ export default class ProductUtils {
     this.$el.on('click', '[data-product-quantity-change]', (event) => {
       this._updateQuantity(event);
     });
-
-    utils.hooks.on('cart-item-add', (event, form) => {
-      this._addProductToCart(event);
-    });
   }
 
   _getViewModel($el) {
@@ -63,17 +59,15 @@ export default class ProductUtils {
     $quantity.val(newQuantity);
   }
 
-  _updateMessage(isError, response, quantity) {
+  _updateMessage(isError, response) {
     let message = '';
 
     // if there is an error
     if (isError) {
       message = response;
 
-      setTimeout(() => {
-        this.$el.find('[data-product-message]').html(message).addClass(this.options.errorClass);
-        this.$el.find(`[data-product-add] this.options.loaderSelector`).removeClass(this.options.visibleClass);
-      }, 500);
+      this.$el.find('[data-product-message]').html(message).addClass(this.options.errorClass);
+      this.$el.find(`[data-product-add] this.options.loaderSelector`).removeClass(this.options.visibleClass);
     }
 
     else {
@@ -84,10 +78,8 @@ export default class ProductUtils {
                   .replace('*continue_link*', `<a href='/'>${Theme.localization.product.homeLink}</a>`)
                   .replace('*checkout_link*', `<a href=${Theme.localization.urls.checkout}>${Theme.localization.product.checkoutLink}</a>`);
 
-      setTimeout(() => {
-        this.$el.find('[data-product-message]').html(message).removeClass(this.options.errorClass);
-        this.$el.find(`[data-product-add] this.options.loaderSelector`).removeClass(this.options.visibleClass);
-      }, 500);
+      this.$el.find('[data-product-message]').html(message).removeClass(this.options.errorClass);
+      this.$el.find(`[data-product-add] this.options.loaderSelector`).removeClass(this.options.visibleClass);
     }
   }
 
@@ -150,36 +142,35 @@ export default class ProductUtils {
    *
    */
   _addProductToCart() {
-    // Do not do AJAX if browser doesn't support FormData
-    if (window.FormData === undefined) {
-      return;
-    }
-
-    event.preventDefault();
-
-    const $form = $(form);
-    const quantity = this.$el.find('[data-product-quantity-input]').val();
-
-    if (this.options.loader) {
-      this._toggleLoader($form);
-    }
-
-    // add item to cart
-    utils.api.cart.itemAdd(new FormData(form), (err, response) => {
-      let isError = false;
-      let response = response ? response : err;
-
-      // if there is an error
-      if (err || response.data.error) {
-        isError = true;
-        response = err || response.data.error;
+    utils.hooks.on('cart-item-add', (event, form) => {
+      // Do not do AJAX if browser doesn't support FormData
+      if (window.FormData === undefined) {
+        return;
       }
 
-      this._updateMessage(isError, response, quantity);
+      event.preventDefault();
 
       if (this.options.loader) {
-        this._toggleLoader($form);
+        this._toggleLoader($(form));
       }
+
+      // add item to cart
+      utils.api.cart.itemAdd(new FormData(form), (err, response) => {
+        let isError = false;
+        let response = response ? response : err;
+
+        // if there is an error
+        if (err || response.data.error) {
+          isError = true;
+          response = err || response.data.error;
+        }
+
+        this._updateMessage(isError, response);
+
+        if (this.options.loader) {
+          this._toggleLoader($form);
+        }
+      });
     });
   }
 }
