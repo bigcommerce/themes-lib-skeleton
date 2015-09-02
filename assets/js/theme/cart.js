@@ -73,7 +73,7 @@ export default class Cart extends PageManager {
       const $quantityInput = $cartItem.find('[data-cart-item-quantity-input]');
       const newQuantity = this.productData[itemId].newQuantity;
 
-      utils.cart.itemUpdate(itemId, newQuantity, (err, response) => {
+      utils.api.cart.itemUpdate(itemId, newQuantity, (err, response) => {
         if (response.data.status === 'succeed') {
           this.productData[itemId].oldQuantity = newQuantity;
           // TODO: Integrate refreshContent function
@@ -97,7 +97,7 @@ export default class Cart extends PageManager {
     const $target = $(event.currentTarget);
     const itemId = $target.closest('[data-cart-item]').data('item-id');
 
-    utils.cart.itemRemove(itemId, (err, response) => {
+    utils.api.cart.itemRemove(itemId, (err, response) => {
       if (response.data.status === 'succeed') {
         // TODO: Integrate refreshContent function
         // refreshContent(true);
