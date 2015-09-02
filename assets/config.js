@@ -22,7 +22,7 @@ System.config({
     "bc-baseline": "bitbucket:pixelunion/bc-baseline@0.2.0",
     "bc-carousel": "bitbucket:pixelunion/bc-carousel@2.1.0",
     "bc-tabs": "bitbucket:pixelunion/bc-tabs@0.1.0",
-    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.0.9",
+    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.3.2",
     "caolan/async": "github:caolan/async@0.9.2",
     "core-js": "npm:core-js@0.8.4",
     "imagesloaded": "npm:imagesloaded@3.1.8",
@@ -40,7 +40,7 @@ System.config({
     "bitbucket:pixelunion/bc-tabs@0.1.0": {
       "jquery": "github:components/jquery@2.1.4"
     },
-    "github:bigcommerce/stencil-utils@0.0.9": {
+    "github:bigcommerce/stencil-utils@0.3.2": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4",
       "lodash": "npm:lodash@3.9.3"
