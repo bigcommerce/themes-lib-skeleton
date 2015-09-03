@@ -1,10 +1,11 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
+import refreshContent from './refresh-content';
 
 export default class CartUtils {
   constructor(modules) {
     this.modules = modules;
-    this.$body = $(document.body);
+    this.$cartContent = $('[data-cart-content]');
     this.productData = {};
   }
 
@@ -14,36 +15,30 @@ export default class CartUtils {
   }
 
   _bindEvents() {
-    $('[data-cart-item-quantity-change]').on('click', (event) => {
+    this.$cartContent.on('click', '[data-cart-item-quantity-change]', (event) => {
       event.preventDefault();
       this._updateQuantity(event);
     });
 
-    $('[data-cart-item-update]').on('click', (event) => {
+    this.$cartContent.on('click', '[data-cart-item-update]', (event) => {
       event.preventDefault();
       this._updateCartItem(event);
     });
 
-    $('[data-cart-item-remove]').on('click', (event) => {
+    this.$cartContent.on('click', '[data-cart-item-remove]', (event) => {
       event.preventDefault();
       this._removeCartItem(event);
     });
 
-    // TODO: Ensure that this implementation works correctly and doesn't produce and infinite loop.
-    this.$body.on('bind-events-cart', () => {
-      this._rebindEvents();
+    this.$cartContent.on('cart-initialize-modules', () => {
+      this.modules.shippingCalculator.init();
+
+      // TODO: Add SelectWrapper js
+      // const $select = $('[data-shipping-calculator]').find('select');
+      // $select.each((i) => {
+      //   new SelectWrapper($select.eq(i));
+      // });
     });
-  }
-
-  _rebindEvents() {
-    this._bindEvents();
-    this.modules.shippingCalculator.init();
-
-    // TODO: Add SelectWrapper js
-    // const $select = $('[data-shipping-calculator]').find('select');
-    // $select.each((i) => {
-    //   new SelectWrapper($select.eq(i));
-    // });
   }
 
   _cacheInitialQuantities() {

@@ -25,7 +25,7 @@ export default function(remove) {
     $cartContent.html(response.content);
     $cartTotals.html(response.totals);
 
-    $(document.body).trigger('bind-events-cart');
+    $cartContent.trigger('cart-initialize-modules');
 
     // TODO: Integrate OverlayUtils class
     // overlayUtils.hide();
