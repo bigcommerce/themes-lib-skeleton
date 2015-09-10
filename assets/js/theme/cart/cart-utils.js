@@ -5,9 +5,13 @@ import refreshContent from './refresh-content';
 export default class CartUtils {
   constructor(modules, callbacks) {
     this.modules = modules;
-    this.callbacks = callbacks;
     this.$cartContent = $('[data-cart-content]');
     this.productData = {};
+
+    this.callbacks = $.extend({
+      willUpdate: () => console.log('Update requested.'),
+      didUpdate: () => console.log('Update executed.'),
+    }, callbacks);
   }
 
   init() {
