@@ -1,2 +1,14 @@
-<h2>components/faceted-search/facets/multi.html</h2>
-{{{pre this}}}
+<ul class="{{#if selected}}is-open{{/if}} {{#unless start_collapsed}}is-open{{/unless}} {{#if items_count '<' total_items}}has-additional-filters{{/if}}" data-count="{{items_count}}" data-facet-filter-wrapper>
+  {{#each items}}
+    <li class="{{#if @index '>=' 5}}hidden{{/if}}" data-facet-item>
+      <a href="{{url}}" data-faceted-search-facet>
+        {{title}}
+        {{#if ../show_product_counts}}<span data-facet-item-count>({{count}})</span>{{/if}}
+      </a>
+    </li>
+  {{/each}}
+
+  {{#if items_count "<" total_items}}
+    <li data-facet-more>{{lang 'faceted_search.show_more'}}</li>
+  {{/if}}
+</ul>

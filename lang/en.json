@@ -48,6 +48,13 @@
     "label": "Brands",
     "view_brands": "View all brands"
   },
+  "faceted_search": {
+    "clear": "Clear",
+    "max_price": "Max price",
+    "min_price": "Min price",
+    "show_more": "Show more",
+    "update": "Update"
+  },
   "page": {
     "label": "Quick Links"
   },

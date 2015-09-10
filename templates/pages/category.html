@@ -1,6 +1,14 @@
 {{#partial "page"}}
-  <h1>pages/category.html</h1>
-  {{{pre this}}}
+  <h1>{{category.name}}</h1>
+
+  <main data-category>
+    {{> components/category/product-listing}}
+  </main>
+
+  <aside data-category-sidebar>
+    {{> components/category/sidebar}}
+  </aside>
+
 {{/partial}}
 
 {{> layout/base}}

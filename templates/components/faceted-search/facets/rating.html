@@ -1,2 +1,10 @@
-<h2>components/faceted-search/facets/rating.html</h2>
-{{{pre this}}}
+<ul class="{{#if selected}}is-open{{/if}} {{#unless start_collapsed}}is-open{{/unless}}" data-facet-filter-wrapper>
+  {{#each items}}
+    <li data-facet-item>
+      <a href="{{url}}" data-faceted-search-facet>
+        {{!> components/products/rating rating=param_value}}
+        {{#if ../show_product_counts}}<span data-facet-item-count>({{count}})</span>{{/if}}
+      </a>
+    </li>
+  {{/each}}
+</ul>
