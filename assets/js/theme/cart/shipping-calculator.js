@@ -3,11 +3,9 @@ import utils from 'bigcommerce/stencil-utils';
 import refreshContent from './refresh-content';
 
 export default class ShippingCalculator {
-  constructor(context, options) {
-    this.context = context;
+  constructor(options, callbacks) {
     this.options = options;
-    // TODO: Integrate OverlayUtils
-    // this.overlayUtils = new OverlayUtils();
+    this.callbacks = callbacks;
 
     this.init();
   }
@@ -60,8 +58,7 @@ export default class ShippingCalculator {
   }
 
   _calculateShipping() {
-    // TODO: Integrate OverlayUtils
-    // this.overlayUtils.show();
+    this.callbacks.willUpdate();
 
     let params = {
       country_id: $('[name="shipping-country"]', this.$calculatorForm).val(),
@@ -76,20 +73,18 @@ export default class ShippingCalculator {
         alert(response.data.errors.join('\n'));
       }
 
-      // TODO: Integrate OverlayUtils
-      // this.overlayUtils.hide();
+      this.callbacks.didUpdate();
 
       // bind the select button
       this.$shippingQuotes.find('.button').on('click', (event) => {
         event.preventDefault();
 
-        // TODO: Integrate OverlayUtils
-        // this.overlayUtils.show();
+        this.callbacks.willUpdate();
 
         const quoteId = $('[data-shipping-quote]:checked').val();
 
         utils.api.cart.submitShippingQuote(quoteId, (response) => {
-          refreshContent();
+          refreshContent(this.callbacks.didUpdate);
         });
       });
     });

@@ -3,8 +3,9 @@ import utils from 'bigcommerce/stencil-utils';
 import refreshContent from './refresh-content';
 
 export default class CartUtils {
-  constructor(modules) {
+  constructor(modules, callbacks) {
     this.modules = modules;
+    this.callbacks = callbacks;
     this.$cartContent = $('[data-cart-content]');
     this.productData = {};
   }
@@ -78,8 +79,7 @@ export default class CartUtils {
     const $cartItem = $target.closest('[data-cart-item]');
     const itemId = $cartItem.data('item-id');
 
-    // TODO: Integrate OverlayUtils class
-    // this.overlayUtils.show();
+    this.callbacks.willUpdate();
 
     if (this.productData[itemId].quantityAltered) {
       const $quantityInput = $cartItem.find('[data-cart-item-quantity-input]');
@@ -90,33 +90,32 @@ export default class CartUtils {
           this.productData[itemId].oldQuantity = newQuantity;
 
           const remove = (newQuantity === 0);
-          refreshContent(remove);
+          refreshContent(this.callbacks.didUpdate, remove);
         } else {
           $quantityInput.val(this.productData[itemId].oldQuantity);
           // TODO: Setup proper error handling?
           alert(response.data.errors.join('\n'));
-          // TODO: Integrate OverlayUtils class
-          // this.overlayUtils.hide();
+
+          this.callbacks.didUpdate();
         }
       });
     }
   }
 
   _removeCartItem() {
-    // TODO: Integrate OverlayUtils class
-    // this.overlayUtils.show();
+    this.callbacks.willUpdate();
 
     const $target = $(event.currentTarget);
     const itemId = $target.closest('[data-cart-item]').data('item-id');
 
     utils.api.cart.itemRemove(itemId, (err, response) => {
       if (response.data.status === 'succeed') {
-        refreshContent(true);
+        refreshContent(this.callbacks.didUpdate, true);
       } else {
         // TODO: Setup proper error handling?
         alert(response.data.errors.join('\n'));
-        // TODO: Integrate OverlayUtils class
-        // this.overlayUtils.hide();
+
+        this.callbacks.didUpdate();
       }
     });
   }

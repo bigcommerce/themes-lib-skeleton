@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
 
-export default function(remove) {
+export default function(didUpdate, remove) {
   const $cartTotals = $('[data-cart-totals]');
   const $cartContent = $('[data-cart-content]');
   const $cartItem = $('[data-cart-item]', $cartContent);
@@ -12,9 +12,6 @@ export default function(remove) {
           }
         };
 
-  // TODO: Integrate OverlayUtils class
-  // const overlayUtils = new OverlayUtils();
-
   // Remove last item from cart? Reload
   if (remove && $cartItem.length === 1) {
     return window.location.reload();
@@ -24,10 +21,11 @@ export default function(remove) {
     // TODO: Scope the call to this function by area that needs updating
     $cartContent.html(response.content);
     $cartTotals.html(response.totals);
-
     $cartContent.trigger('cart-initialize-modules');
 
-    // TODO: Integrate OverlayUtils class
-    // overlayUtils.hide();
+    // TODO: If the loading overlay is scoped to an area that is replaced
+    // it does not fade out, but is removed abrubtly (due to being a
+    // part of that area's content).
+    didUpdate();
   });
 }
