@@ -30,7 +30,6 @@ export default class Product extends PageManager {
   _updateMessage(isError, response) {
     let message = '';
 
-    // if there is an error
     if (isError) {
       message = response;
     }

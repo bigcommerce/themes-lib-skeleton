@@ -138,12 +138,11 @@ export default class ProductUtils {
 
       this.callbacks.willUpdate($(form));
 
-      // add item to cart
+      // Add item to cart
       utils.api.cart.itemAdd(new FormData(form), (err, response) => {
         let isError = false;
         response = response ? response : err;
 
-        // if there is an error
         if (err || response.data.error) {
           isError = true;
           response = err || response.data.error;
