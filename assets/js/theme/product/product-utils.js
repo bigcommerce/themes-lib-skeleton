@@ -135,7 +135,7 @@ export default class ProductUtils {
 
       event.preventDefault();
 
-      this.options.callbacks.willUpdate($(form));
+      this.options.callbacks.willUpdate(null, null, $(form));
 
       // Add item to cart
       utils.api.cart.itemAdd(new FormData(form), (err, response) => {
@@ -146,7 +146,7 @@ export default class ProductUtils {
           response = err || response.data.error;
         }
 
-        this.options.callbacks.didUpdate($(form), isError, response);
+        this.options.callbacks.didUpdate(isError, response, $(form));
       });
     });
   }

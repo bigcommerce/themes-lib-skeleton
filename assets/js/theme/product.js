@@ -15,17 +15,11 @@ export default class Product extends PageManager {
       tabSelector: '.tab-link',
       buttonDisabledClass: 'button-disabled',
       callbacks: {
-        willUpdate: ($scope) => this._toggleLoader($scope),
-        didUpdate: ($scope, isError, response) => {
-          this._toggleLoader($scope);
+        didUpdate: (isError, response) => {
           this._updateMessage(isError, response);
         },
       },
     }).init(this.context);
-  }
-
-  _toggleLoader($scope) {
-    $scope.find('.spinner').toggleClass('visible');
   }
 
   _updateMessage(isError, response) {
