@@ -48,8 +48,8 @@ export default class ProductUtils {
   _updateQuantity(event) {
     const $target = $(event.currentTarget);
     const $quantity = $target.closest('[data-product-quantity]').find('[data-product-quantity-input]');
-    const min = $quantity.prop('min');
-    const max = $quantity.prop('max');
+    const min = parseInt($quantity.prop('min'), 10);
+    const max = parseInt($quantity.prop('max'), 10);
     let newQuantity = parseInt($quantity.val(), 10);
 
     if ($target.is('[data-quantity-increment]') && (!max || newQuantity < max)) {

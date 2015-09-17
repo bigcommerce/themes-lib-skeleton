@@ -62,8 +62,8 @@ export default class CartUtils {
     const $cartItem = $target.closest('[data-cart-item]');
     const itemId = $cartItem.data('item-id');
     const $quantityInput = $cartItem.find('[data-cart-item-quantity-input]');
-    const min = $quantityInput.prop('min');
-    const max = $quantityInput.prop('max');
+    const min = parseInt($quantityInput.prop('min'), 10);
+    const max = parseInt($quantityInput.prop('max'), 10);
     let newQuantity = parseInt($quantityInput.val(), 10);
 
     if ($target.is('[data-cart-item-quantity-increment]') && (!max || newQuantity < max)) {
