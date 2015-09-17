@@ -157,7 +157,7 @@ export default class ProductUtils {
       // add item to cart
       utils.api.cart.itemAdd(new FormData(form), (err, response) => {
         let isError = false;
-        let response = response ? response : err;
+        response = response ? response : err;
 
         // if there is an error
         if (err || response.data.error) {
