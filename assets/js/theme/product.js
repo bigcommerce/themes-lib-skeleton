@@ -14,11 +14,12 @@ export default class Product extends PageManager {
     this.ProductUtils = new ProductUtils(this.el, {
       tabSelector: '.tab-link',
       buttonDisabledClass: 'button-disabled',
-    }, {
-      willUpdate: ($scope) => this._toggleLoader($scope),
-      didUpdate: ($scope, isError, response) => {
-        this._toggleLoader($scope);
-        this._updateMessage(isError, response);
+      callbacks: {
+        willUpdate: ($scope) => this._toggleLoader($scope),
+        didUpdate: ($scope, isError, response) => {
+          this._toggleLoader($scope);
+          this._updateMessage(isError, response);
+        },
       },
     }).init(this.context);
   }

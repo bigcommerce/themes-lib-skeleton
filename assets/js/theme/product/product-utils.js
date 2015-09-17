@@ -3,7 +3,7 @@ import utils from 'bigcommerce/stencil-utils';
 import Tabs from 'bc-tabs';
 
 export default class ProductUtils {
-  constructor(el, options, callbacks) {
+  constructor(el, options) {
     this.$el = $(el);
     this.productId = this.$el.find('[data-product-id]').val();
     this.$productMessage = this.$el.find('[data-product-message]');
@@ -11,12 +11,11 @@ export default class ProductUtils {
     this.options = $.extend({
       tabSelector: '.tab-link',
       buttonDisabledClass: 'button-disabled',
+      callbacks: {
+        willUpdate: () => console.log('Update requested.'),
+        didUpdate: () => console.log('Update executed.'),
+      },
     }, options);
-
-    this.callbacks = $.extend({
-      willUpdate: () => console.log('Update requested.'),
-      didUpdate: () => console.log('Update executed.'),
-    }, callbacks);
 
     this.tabs = new Tabs({
       moduleSelector: this.$el.find('[data-tabs]')
@@ -136,7 +135,7 @@ export default class ProductUtils {
 
       event.preventDefault();
 
-      this.callbacks.willUpdate($(form));
+      this.options.callbacks.willUpdate($(form));
 
       // Add item to cart
       utils.api.cart.itemAdd(new FormData(form), (err, response) => {
@@ -147,7 +146,7 @@ export default class ProductUtils {
           response = err || response.data.error;
         }
 
-        this.callbacks.didUpdate($(form), isError, response);
+        this.options.callbacks.didUpdate($(form), isError, response);
       });
     });
   }
