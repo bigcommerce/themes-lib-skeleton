@@ -34,7 +34,9 @@ export default class ProductUtils {
     }
   }
 
-  init() {
+  init(context) {
+    this.context = context;
+
     this._productOptions();
     this._addProductToCart();
   }
@@ -71,12 +73,12 @@ export default class ProductUtils {
     }
 
     else {
-      message = Theme.localization.product.addSuccess;
+      message = this.context.addSuccess;
       message = message
                   .replace('*product*', this.$el.find('[data-product-details]').data('product-title'))
-                  .replace('*cart_link*', `<a href=${Theme.localization.urls.cart}>${Theme.localization.product.cartLink}</a>`)
-                  .replace('*continue_link*', `<a href='/'>${Theme.localization.product.homeLink}</a>`)
-                  .replace('*checkout_link*', `<a href=${Theme.localization.urls.checkout}>${Theme.localization.product.checkoutLink}</a>`);
+                  .replace('*cart_link*', `<a href=${this.context.urlsCart}>${this.context.cartLink}</a>`)
+                  .replace('*continue_link*', `<a href='/'>${this.context.homeLink}</a>`)
+                  .replace('*checkout_link*', `<a href=${this.context.urlsCheckout}>${this.context.checkoutLink}</a>`);
 
       this.$el.find('[data-product-message]').html(message).removeClass(this.options.errorClass);
       this.$el.find(`[data-product-add] this.options.loaderSelector`).removeClass(this.options.visibleClass);
@@ -117,14 +119,14 @@ export default class ProductUtils {
 
         if (!data.purchasable || !data.instock) {
           viewModel.$addToCart
-            .val(Theme.localization.product.soldOut)
+            .val(this.context.soldOut)
             .addClass(this.options.buttonDisabledClass)
             .prop('disabled', true);
 
         } else {
-          let buttonText = Theme.localization.product.addToCart;
+          let buttonText = this.context.addToCart;
           if (viewModel.$addToCart.is('[data-button-preorder]')) {
-            buttonText = Theme.localization.product.preOrder;
+            buttonText = this.context.preOrder;
           }
 
           viewModel.$addToCart

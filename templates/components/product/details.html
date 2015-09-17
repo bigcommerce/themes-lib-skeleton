@@ -1,3 +1,16 @@
+{{inject 'addSuccess' (lang 'product.success')}}
+{{inject 'addToCart' (lang 'product.add_to_cart')}}
+{{inject 'cartLink' (lang 'product.cart_link')}}
+{{inject 'checkoutLink' (lang 'product.checkout_link')}}
+{{inject 'errorMessageGeneral' (lang 'product.error_message_general')}}
+{{inject 'homeLink' (lang 'product.home_link')}}
+{{inject 'outOfStock' (lang 'product.error_message_stock')}}
+{{inject 'preOrder' (lang 'product.pre_order')}}
+{{inject 'soldOut' (lang 'product.sold_out')}}
+
+{{inject 'urlsCart' urls.cart}}
+{{inject 'urlsCheckout' urls.checkout.single_address}}
+
 <div data-product-details data-product-title="{{product.title}}">
   {{#unless product.out_of_stock_message}}
     <link itemprop="availability" href="http://schema.org/InStock">

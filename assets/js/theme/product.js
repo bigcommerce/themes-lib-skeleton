@@ -5,8 +5,10 @@ import ProductUtils from './product/product-utils';
 export default class Product extends PageManager {
   constructor() {
     super();
+  }
 
-    this.productUtils = new ProductUtils({
+  loaded() {
+    this.ProductUtils = new ProductUtils({
       el: '[data-product-container]',
       loader: false,
       loaderSelector: '.spinner',
@@ -14,10 +16,6 @@ export default class Product extends PageManager {
       visibleClass: 'visible',
       errorClass: 'form-error-message',
       buttonDisabledClass: 'button-disabled',
-    });
-  }
-
-  loaded() {
-    this.productUtils.init();
+    }).init(this.context);
   }
 }

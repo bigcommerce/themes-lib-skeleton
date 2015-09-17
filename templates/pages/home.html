@@ -9,6 +9,10 @@ featured_products: 2
 
 {{#partial "page"}}
 
+  {{#if carousel}}
+    {{inject 'carouselDelay' carousel.swap_frequency}}
+  {{/if}}
+
   {{> components/product/products-new products.new}}
   {{> components/product/products-featured products.featured}}
 
