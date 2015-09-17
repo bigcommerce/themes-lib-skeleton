@@ -3,10 +3,20 @@ import utils from 'bigcommerce/stencil-utils';
 import Tabs from 'bc-tabs';
 
 export default class ProductUtils {
-  constructor(options) {
-    this.$el = $(options.el);
-    this.options = options;
+  constructor(el, options, callbacks) {
+    this.$el = $(el);
     this.productId = this.$el.find('[data-product-id]').val();
+    this.$productMessage = this.$el.find('[data-product-message]');
+
+    this.options = $.extend({
+      tabSelector: '.tab-link',
+      buttonDisabledClass: 'button-disabled',
+    }, options);
+
+    this.callbacks = $.extend({
+      willUpdate: () => console.log('Update requested.'),
+      didUpdate: () => console.log('Update executed.'),
+    }, callbacks);
 
     this.tabs = new Tabs({
       moduleSelector: this.$el.find('[data-tabs]')
@@ -41,16 +51,14 @@ export default class ProductUtils {
     this._addProductToCart();
   }
 
-  _toggleLoader($form) {
-    $form.find(this.options.spinnerSelector).toggleClass(this.options.visibleClass);
-  }
-
   _updateQuantity(event) {
     const $target = $(event.currentTarget);
     const $quantity = $target.closest('[data-product-quantity]').find('[data-product-quantity-input]');
     const min = parseInt($quantity.prop('min'), 10);
     const max = parseInt($quantity.prop('max'), 10);
     let newQuantity = parseInt($quantity.val(), 10);
+
+    this.$productMessage.empty();
 
     if ($target.is('[data-quantity-increment]') && (!max || newQuantity < max)) {
       newQuantity = newQuantity + 1;
@@ -59,30 +67,6 @@ export default class ProductUtils {
     }
 
     $quantity.val(newQuantity);
-  }
-
-  _updateMessage(isError, response) {
-    let message = '';
-
-    // if there is an error
-    if (isError) {
-      message = response;
-
-      this.$el.find('[data-product-message]').html(message).addClass(this.options.errorClass);
-      this.$el.find(`[data-product-add] this.options.loaderSelector`).removeClass(this.options.visibleClass);
-    }
-
-    else {
-      message = this.context.addSuccess;
-      message = message
-                  .replace('*product*', this.$el.find('[data-product-details]').data('product-title'))
-                  .replace('*cart_link*', `<a href=${this.context.urlsCart}>${this.context.cartLink}</a>`)
-                  .replace('*continue_link*', `<a href='/'>${this.context.homeLink}</a>`)
-                  .replace('*checkout_link*', `<a href=${this.context.urlsCheckout}>${this.context.checkoutLink}</a>`);
-
-      this.$el.find('[data-product-message]').html(message).removeClass(this.options.errorClass);
-      this.$el.find(`[data-product-add] this.options.loaderSelector`).removeClass(this.options.visibleClass);
-    }
   }
 
   /**
@@ -115,7 +99,7 @@ export default class ProductUtils {
         //   );
         // }
 
-        this.$el.find('[data-product-message]').empty();
+        this.$productMessage.empty();
 
         if (!data.purchasable || !data.instock) {
           viewModel.$addToCart
@@ -152,9 +136,7 @@ export default class ProductUtils {
 
       event.preventDefault();
 
-      if (this.options.loader) {
-        this._toggleLoader($(form));
-      }
+      this.callbacks.willUpdate($(form));
 
       // add item to cart
       utils.api.cart.itemAdd(new FormData(form), (err, response) => {
@@ -167,11 +149,7 @@ export default class ProductUtils {
           response = err || response.data.error;
         }
 
-        this._updateMessage(isError, response);
-
-        if (this.options.loader) {
-          this._toggleLoader($form);
-        }
+        this.callbacks.didUpdate($(form), isError, response);
       });
     });
   }
