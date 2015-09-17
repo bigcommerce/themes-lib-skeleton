@@ -16,7 +16,7 @@ export default class Cart extends PageManager {
     const cartContentOverlay = new Loading(loadingOptions, true, '[data-cart-content]');
     const cartTotalsOverlay = new Loading(loadingOptions, true, '[data-cart-totals]');
 
-    const shippingCalculator = new ShippingCalculator({
+    this.ShippingCalculator = new ShippingCalculator('[data-shipping-calculator]', {
       visibleClass: 'visible',
     },
     {
@@ -24,8 +24,8 @@ export default class Cart extends PageManager {
       didUpdate: () => cartTotalsOverlay.hide(),
     });
 
-    const cartUtils = new CartUtils({
-      shippingCalculator: shippingCalculator,
+    this.CartUtils = new CartUtils({
+      ShippingCalculator: this.ShippingCalculator,
     },
     {
       willUpdate: () => cartContentOverlay.show(),

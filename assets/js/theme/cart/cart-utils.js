@@ -36,7 +36,7 @@ export default class CartUtils {
     });
 
     this.$cartContent.on('cart-initialize-modules', () => {
-      this.modules.shippingCalculator.init();
+      this.modules.ShippingCalculator.init();
 
       // TODO: Add SelectWrapper js
       // const $select = $('[data-shipping-calculator]').find('select');
@@ -106,11 +106,10 @@ export default class CartUtils {
     }
   }
 
-  _removeCartItem() {
-    this.callbacks.willUpdate();
+  _removeCartItem(event) {
+    const itemId = $(event.currentTarget).closest('[data-cart-item]').data('item-id');
 
-    const $target = $(event.currentTarget);
-    const itemId = $target.closest('[data-cart-item]').data('item-id');
+    this.callbacks.willUpdate();
 
     utils.api.cart.itemRemove(itemId, (err, response) => {
       if (response.data.status === 'succeed') {

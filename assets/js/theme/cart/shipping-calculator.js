@@ -3,9 +3,17 @@ import utils from 'bigcommerce/stencil-utils';
 import refreshContent from './refresh-content';
 
 export default class ShippingCalculator {
-  constructor(options, callbacks) {
-    this.options = options;
-    this.callbacks = callbacks;
+  constructor(el, options, callbacks) {
+    this.$el = $(el);
+
+    this.options = $.extend({
+      visibleClass: 'visible',
+    }, options);
+
+    this.callbacks = $.extend({
+      willUpdate: () => console.log('Update requested.'),
+      didUpdate: () => console.log('Update executed.'),
+    }, callbacks);
 
     this.init();
   }
