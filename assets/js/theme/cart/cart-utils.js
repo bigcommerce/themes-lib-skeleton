@@ -3,15 +3,17 @@ import utils from 'bigcommerce/stencil-utils';
 import refreshContent from './refresh-content';
 
 export default class CartUtils {
-  constructor(modules, callbacks) {
+  constructor(modules, options) {
     this.modules = modules;
     this.$cartContent = $('[data-cart-content]');
     this.productData = {};
 
-    this.callbacks = $.extend({
-      willUpdate: () => console.log('Update requested.'),
-      didUpdate: () => console.log('Update executed.'),
-    }, callbacks);
+    this.options = $.extend({
+      callbacks: {
+        willUpdate: () => console.log('Update requested.'),
+        didUpdate: () => console.log('Update executed.'),
+      },
+    }, options);
   }
 
   init() {
@@ -83,7 +85,7 @@ export default class CartUtils {
     const $cartItem = $target.closest('[data-cart-item]');
     const itemId = $cartItem.data('item-id');
 
-    this.callbacks.willUpdate();
+    this.options.callbacks.willUpdate();
 
     if (this.productData[itemId].quantityAltered) {
       const $quantityInput = $cartItem.find('[data-cart-item-quantity-input]');
@@ -94,13 +96,13 @@ export default class CartUtils {
           this.productData[itemId].oldQuantity = newQuantity;
 
           const remove = (newQuantity === 0);
-          refreshContent(this.callbacks.didUpdate, remove);
+          refreshContent(this.options.callbacks.didUpdate, remove);
         } else {
           $quantityInput.val(this.productData[itemId].oldQuantity);
           // TODO: Setup proper error handling?
           alert(response.data.errors.join('\n'));
 
-          this.callbacks.didUpdate();
+          this.options.callbacks.didUpdate();
         }
       });
     }
@@ -109,16 +111,16 @@ export default class CartUtils {
   _removeCartItem(event) {
     const itemId = $(event.currentTarget).closest('[data-cart-item]').data('item-id');
 
-    this.callbacks.willUpdate();
+    this.options.callbacks.willUpdate();
 
     utils.api.cart.itemRemove(itemId, (err, response) => {
       if (response.data.status === 'succeed') {
-        refreshContent(this.callbacks.didUpdate, true);
+        refreshContent(this.options.callbacks.didUpdate, true);
       } else {
         // TODO: Setup proper error handling?
         alert(response.data.errors.join('\n'));
 
-        this.callbacks.didUpdate();
+        this.options.callbacks.didUpdate();
       }
     });
   }

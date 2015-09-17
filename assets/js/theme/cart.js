@@ -18,18 +18,19 @@ export default class Cart extends PageManager {
 
     this.ShippingCalculator = new ShippingCalculator('[data-shipping-calculator]', {
       visibleClass: 'visible',
-    },
-    {
-      willUpdate: () => cartTotalsOverlay.show(),
-      didUpdate: () => cartTotalsOverlay.hide(),
+      // callbacks: {
+      //   willUpdate: () => {},
+      //   didUpdate: () => {},
+      // },
     });
 
     this.CartUtils = new CartUtils({
       ShippingCalculator: this.ShippingCalculator,
-    },
-    {
-      willUpdate: () => cartContentOverlay.show(),
-      didUpdate: () => cartContentOverlay.hide(),
+    }, {
+      // callbacks: {
+      //   willUpdate: () => {},
+      //   didUpdate: () => {},
+      // },
     }).init();
 
     next();
