@@ -1,21 +1,19 @@
 System.config({
-  "baseURL": "/assets/",
-  "transpiler": "babel",
-  "babelOptions": {
+  baseURL: "/assets/",
+  defaultJSExtensions: true,
+  transpiler: "babel",
+  babelOptions: {
     "optional": [
       "runtime"
     ]
   },
-  "paths": {
-    "*": "*.js",
-    "github:*": "jspm_packages/github/*.js",
-    "npm:*": "jspm_packages/npm/*.js",
-    "bitbucket:*": "jspm_packages/bitbucket/*.js"
-  }
-});
+  paths: {
+    "github:*": "jspm_packages/github/*",
+    "npm:*": "jspm_packages/npm/*",
+    "bitbucket:*": "jspm_packages/bitbucket/*"
+  },
 
-System.config({
-  "map": {
+  map: {
     "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
     "babel": "npm:babel@4.7.16",
     "babel-runtime": "npm:babel-runtime@4.7.16",
@@ -71,4 +69,3 @@ System.config({
     }
   }
 });
-
