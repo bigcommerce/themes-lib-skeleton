@@ -80,11 +80,11 @@ function series(pageObj) {
     pageObj.before.bind(pageObj), // Executed first after constructor()
     pageObj.loaded.bind(pageObj), // Main module logic
     pageObj.after.bind(pageObj) // Clean up method that can be overridden for cleanup.
-  ], function (err) {
+  ], function(err) {
     if (err) {
       throw new Error(err);
     }
-  })
+  });
 }
 
 /**
@@ -94,8 +94,8 @@ function series(pageObj) {
  * @returns {*}
  */
 function loadGlobal(pages) {
-  const global = pages.get('global');
-  return new global;
+  let Global = pages.get('global');
+  return new Global;
 }
 
 /**
@@ -105,31 +105,40 @@ function loadGlobal(pages) {
  */
 function loader(pageFunc, pages) {
   if (pages.get('global')) {
-    series(loadGlobal(pages));
+    let globalPageManager = loadGlobal(pages);
+    globalPageManager.context = pageFunc.context;
+
+    series(globalPageManager);
   }
   series(pageFunc);
 }
 
 /**
- * This is the function that gets exported to JSPM
- * Gets the templateFile name passed in from the JSPM loader
+ * This function gets added to the global window and then called
+ * on page load with the current template loaded and JS Context passed in
  * @param templateFile String
+ * @param context
  * @returns {*}
  */
-export default function (templateFile) {
-  const pages = PageClasses;
+window.stencilBootstrap = function stencilBootstrap(templateFile, context) {
+  let pages = PageClasses;
+
+  context = context || '{}';
+  context = JSON.parse(context);
 
   return {
     load() {
       $(() => {
-        const pageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
-        if (pageTypeFn) {
-          const pageType = new pageTypeFn();
+        let PageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
+
+        if (PageTypeFn) {
+          let pageType = new PageTypeFn();
+          pageType.context = context;
           return loader(pageType, pages);
-        } else {
-          throw new Error(templateFile + ' Module not found')
         }
+
+        throw new Error(templateFile + ' Module not found');
       });
     }
-  }
+  };
 };
