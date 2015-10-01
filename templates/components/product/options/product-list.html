@@ -8,7 +8,7 @@
     <div class="form-inline">
       {{#each values}}
         <label class="form-label radio" for="attribute_{{id}}_{{../id}}">
-          <input class="form-input" id="attribute_{{id}}_{{../id}}" name="attribute[{{../id}}]" type="radio" value="{{id}}" {{#if selected}}checked{{/if}}>
+          <input class="form-input" id="attribute_{{id}}_{{../id}}" name="attribute[{{../id}}]" type="radio" value="{{id}}" {{#if selected}}checked{{/if}} {{#if ../required}}required{{/if}}>
           <span class="form-label-text">{{label}}</span>
         </label>
       {{/each}}
