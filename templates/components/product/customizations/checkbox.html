@@ -1,7 +1,7 @@
 <div class="form-field form-inline {{#if required}}required{{/if}}">
   <label class="form-label" for="product-field-{{id}}">
     <input class="form-input input-checkbox" id="product-field-{{id}}" name="ProductFields[{{this.id}}]" type="checkbox" value="{{value}}" {{#if checked}}checked{{/if}}>
-    <div class="form-label-text">
+    <div class="form-label-text product-option-title">
       {{display_name}}
     </div>
   </label>
