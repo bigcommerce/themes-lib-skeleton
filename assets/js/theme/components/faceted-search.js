@@ -1,7 +1,7 @@
 import { hooks, api } from 'bigcommerce/stencil-utils';
 import $ from 'jquery';
 import Url from 'url';
-import History from 'history/scripts/bundled/html4+html5/jquery.history';
+import 'history/scripts/bundled/html4+html5/jquery.history';
 
 export default class FacetedSearch {
   constructor(options, overlayCallbacks, callback) {
