@@ -1,27 +1,30 @@
 System.config({
-  baseURL: "/assets/",
-  defaultJSExtensions: true,
-  transpiler: "babel",
-  babelOptions: {
+  "baseURL": "/assets/",
+  "transpiler": "babel",
+  "babelOptions": {
     "optional": [
       "runtime"
     ]
   },
-  paths: {
-    "github:*": "jspm_packages/github/*",
-    "npm:*": "jspm_packages/npm/*",
-    "bitbucket:*": "jspm_packages/bitbucket/*"
+  "paths": {
+    "github:*": "jspm_packages/github/*.js",
+    "npm:*": "jspm_packages/npm/*.js",
+    "bitbucket:*": "jspm_packages/bitbucket/*.js",
+    "*": "*.js"
   },
+  "defaultJSExtensions": true
+});
 
-  map: {
+System.config({
+  "map": {
     "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
     "babel": "npm:babel@4.7.16",
     "babel-runtime": "npm:babel-runtime@4.7.16",
-    "bc-baseline": "bitbucket:pixelunion/bc-baseline@0.2.0",
+    "bc-baseline": "bitbucket:pixelunion/bc-baseline@0.2.1",
     "bc-carousel": "bitbucket:pixelunion/bc-carousel@2.1.0",
     "bc-loading": "bitbucket:pixelunion/bc-loading@1.0.0",
     "bc-tabs": "bitbucket:pixelunion/bc-tabs@0.1.0",
-    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.3.2",
+    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.3.4",
     "caolan/async": "github:caolan/async@0.9.2",
     "core-js": "npm:core-js@0.8.4",
     "history": "github:browserstate/history.js@1.8.0",
@@ -29,7 +32,7 @@ System.config({
     "jquery": "github:components/jquery@2.1.4",
     "jquery-trend": "npm:jquery-trend@0.1.0",
     "knockout": "github:knockout/knockout@3.3.0",
-    "lodash": "npm:lodash@3.9.3",
+    "lodash": "npm:lodash@3.10.1",
     "normalize.scss": "npm:normalize.scss@0.1.0",
     "url": "github:jspm/nodelibs-url@0.1.0",
     "bitbucket:pixelunion/bc-carousel@2.1.0": {
@@ -45,10 +48,10 @@ System.config({
     "bitbucket:pixelunion/bc-tabs@0.1.0": {
       "jquery": "github:components/jquery@2.1.4"
     },
-    "github:bigcommerce/stencil-utils@0.3.2": {
+    "github:bigcommerce/stencil-utils@0.3.4": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4",
-      "lodash": "npm:lodash@3.9.3"
+      "lodash": "npm:lodash@3.10.1"
     },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
@@ -73,12 +76,12 @@ System.config({
     },
     "npm:imagesloaded@3.1.8": {
       "eventie": "npm:eventie@1.0.6",
-      "wolfy87-eventemitter": "npm:wolfy87-eventemitter@4.2.11"
+      "wolfy87-eventemitter": "npm:wolfy87-eventemitter@4.3.0"
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:lodash@3.9.3": {
+    "npm:lodash@3.10.1": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:punycode@1.3.2": {
@@ -94,8 +97,9 @@ System.config({
       "inherits": "npm:inherits@2.0.1",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:wolfy87-eventemitter@4.2.11": {
+    "npm:wolfy87-eventemitter@4.3.0": {
       "fs": "github:jspm/nodelibs-fs@0.1.2"
     }
   }
 });
+
