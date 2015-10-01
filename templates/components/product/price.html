@@ -1,7 +1,11 @@
-<p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
   <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
   {{#if price.without_tax}}
-    <meta itemprop="price" content="{{price.without_tax.value}}">
+
+    {{#if schema_org}}
+      <meta itemprop="price" content="{{price.without_tax.value}}">
+    {{/if}}
+
     <span data-product-price>
       {{price.without_tax.formatted}}
     </span>
@@ -18,7 +22,13 @@
   {{/if}}
 
   {{#if price.with_tax}}
-    <meta itemprop="price" content="{{price.with_tax.value}}">
+
+    {{#if schema_org}}
+      {{#unless price.without_tax}}
+        <meta itemprop="price" content="{{price.with_tax.value}}">
+      {{/unless}}
+    {{/if}}
+
     <span data-product-price>
       {{price.with_tax.formatted}}
     </span>
@@ -33,4 +43,12 @@
       <span>{{lang 'product.including_tax'}}</span>
     {{/if}}
   {{/if}}
-</p>
+
+  {{#if show_savings}}
+    {{#if price.saved}}
+      <span data-product-price-saved>
+        {{price.saved.formatted}}
+      </span>
+    {{/if}}
+  {{/if}}
+</div>
