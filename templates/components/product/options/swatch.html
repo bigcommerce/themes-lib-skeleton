@@ -6,10 +6,10 @@
 
   <div class="swatches">
     {{#each values}}
-      <label class="swatch-wrap" data-swatch-value="{{label}}">
+      <label class="swatch-wrap" data-swatch-value="{{label}}" for="attribute_{{id}}_{{../id}}">
         <span class="sr-only">{{label}}</span>
 
-        <input type="radio" class="swatch-radio" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
+        <input class="swatch-radio" id="attribute_{{id}}_{{../id}}" name="attribute[{{../id}}]" type="radio" value="{{id}}" {{#if selected}}checked{{/if}}>
 
         <div class="swatch">
           {{#if pattern}}

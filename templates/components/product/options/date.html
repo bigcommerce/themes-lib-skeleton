@@ -5,21 +5,21 @@
       {{display_name}}
     </div>
     <div class="date-select-group">
-      <select name="attribute[{{id}}][month]" class="form-input month">
+      <select class="form-input input-select month" name="attribute[{{id}}][month]">
         <option disabled>{{lang 'date.month'}}</option>
         {{#enumerate 1 12}}
           <option value="{{this}}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>{{getShortMonth this}}</option>
         {{/enumerate}}
       </select>
 
-      <select name="attribute[{{id}}][day]" class="form-input day">
+      <select class="form-input input-select day" name="attribute[{{id}}][day]">
         <option disabled>{{lang 'date.day'}}</option>
         {{#enumerate 1 31}}
           <option value="{{this}}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>{{this}}</option>
         {{/enumerate}}
       </select>
 
-      <select name="attribute[{{id}}][year]" class="form-input year">
+      <select class="form-input input-select year" name="attribute[{{id}}][year]">
         <option disabled>{{lang 'date.year'}}</option>
         {{#enumerate earliest_year latest_year}}
           <option value="{{this}}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>{{this}}</option>

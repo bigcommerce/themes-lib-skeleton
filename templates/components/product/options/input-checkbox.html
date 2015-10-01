@@ -1,6 +1,6 @@
 <div class="form-field form-inline {{#if required}}required{{/if}}">
   <label class="form-label" for="attribute-{{id}}">
-    <input class="form-input input-checkbox" type="checkbox" name="attribute[{{id}}]" value="{{value}}" id="attribute-{{id}}" {{#if checked}}checked{{/if}}>
+    <input class="form-input input-checkbox" id="attribute-{{id}}" name="attribute[{{id}}]" type="checkbox" value="{{value}}" {{#if checked}}checked{{/if}}>
     <div class="form-label-text">
       {{display_name}}
     </div>

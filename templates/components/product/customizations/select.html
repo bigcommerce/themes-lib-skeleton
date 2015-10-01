@@ -1,11 +1,10 @@
-
-<div>
-  <label>
-    {{#if this.required}}<span class="required">*</span>{{/if}}
-    {{this.display_name}}
-    <select name="ProductFields[{{this.id}}]">
-      <option>{{lang 'product.select_an_option'}}</option>
-      {{#each this.values}}
+<div class="form-field {{#if required}}required{{/if}}">
+  <label class="form-label" for="product-fields-{{id}}">
+    <div class="form-label-text product-option-title">
+      {{display_name}}
+    </div>
+    <select class="form-input input-select" id="product-fields-{{id}}" name="ProductFields[{{this.id}}]">
+      {{#each values}}
         <option value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>
       {{/each}}
     </select>

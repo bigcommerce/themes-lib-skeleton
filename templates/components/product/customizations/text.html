@@ -1,8 +1,8 @@
-
-<div>
-  <label>
-    {{#if this.required}}<span class="required">*</span>{{/if}}
-    {{this.display_name}}
-    <input type="text" name="ProductFields[{{this.id}}]" value="{{this.prefill}}">
+<div class="form-field {{#if required}}required{{/if}}">
+  <label class="form-label" for="product-fields-{{id}}">
+    <div class="form-label-text product-option-title">
+      {{display_name}}
+    </div>
+    <input class="form-input" id="product-fields-{{id}}" name="ProductFields[{{this.id}}]" type="text" placeholder="{{this.prefill}}" value="{{value}}">
   </label>
 </div>

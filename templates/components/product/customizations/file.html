@@ -1,8 +1,8 @@
-
-<div>
-  <label>
-    {{#if this.required}}<span class="required">*</span>{{/if}}
-    {{this.display_name}}
-    <input type="file" name="ProductFields[{{this.id}}]">
+<div class="form-field  {{#if required}}required{{/if}}">
+  <label class="form-label" for="product-fields-{{id}}">
+    <div class="form-label-text product-customization-title">
+      {{display_name}}
+    </div>
+    <input class="form-input" id="product-fields-{{id}}" name="ProductFields[{{this.id}}]" type="file">
   </label>
 </div>

@@ -1,10 +1,9 @@
-
 <div class="form-field {{#if required}}required{{/if}}">
-  <label class="form-label">
+  <label class="form-label" for="attribute-{{id}}">
     <div class="form-label-text product-option-title">
       {{display_name}}
     </div>
-    <select name="attribute[{{id}}]" class="form-input input-select">
+    <select class="form-input input-select" id="attribute-{{id}}" name="attribute[{{id}}]">
       {{#each values}}
         <option value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>
       {{/each}}
