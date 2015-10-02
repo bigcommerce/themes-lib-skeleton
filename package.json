@@ -3,7 +3,10 @@
   "description": "Pixel Union theme skeleton for the Bigcommerce platform.",
   "version": "0.0.1",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "jspm": "^0.15.1",
+    "jspm-git": "^0.3.3"
+  },
   "jspm": {
     "directories": {
       "baseURL": "assets",
@@ -26,9 +29,9 @@
       "url": "github:jspm/nodelibs-url@^0.1.0"
     },
     "devDependencies": {
-      "babel": "npm:babel-core@^5.0.12",
-      "babel-runtime": "npm:babel-runtime@^5.0.12",
-      "core-js": "npm:core-js@^0.8.1"
+      "babel": "npm:babel-core@^5.6.15",
+      "babel-runtime": "npm:babel-runtime@^5.6.15",
+      "core-js": "npm:core-js@^0.9.4"
     }
   }
 }
