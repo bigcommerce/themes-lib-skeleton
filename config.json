@@ -4,6 +4,15 @@
   "css_compiler": "scss",
   "autoprefixer_cascade": true,
   "autoprefixer_browsers": ["last 3 versions"],
+  "jspm": {
+    "dev": {
+      "dep_location": "assets/js/dependency-bundle.js",
+      "bootstrap": "js/**/* - [js/**/*]"
+    },
+    "bootstrap": "js/app",
+    "bundle_location": "assets/js/bundle.js",
+    "jspm_packages_path": "assets/jspm_packages"
+  },
   "images": {
     "logo": {
       "width": 250,
