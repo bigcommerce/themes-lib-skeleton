@@ -92,13 +92,14 @@ export default class ProductUtils {
         viewModel.$price.html(data.price);
         viewModel.$rrp.html(data.rrp);
 
-        // TODO: Image Switching
-        // if (data.image) {
-        //   const mainImageUrl = utils.tools.image.getSrc(
-        //     data.image.data,
-        //     this.context.themeImageSizes.product
-        //   );
-        // }
+        if (data.image) {
+          const mainImageUrl = utils.tools.image.getSrc(
+            data.image.data,
+            this.context.themeImageSizes.product
+          );
+
+          this.callbacks.switchImage(mainImageUrl);
+        }
 
         this.$productMessage.empty();
 
