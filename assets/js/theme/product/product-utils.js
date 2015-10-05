@@ -41,6 +41,7 @@ export default class ProductUtils {
     return {
       $price: $('[data-product-price]', $el),
       $rrp: $('[data-product-rrp]', $el),
+      $saved: $('[data-product-price-saved]', $el),
       $sku: $('[data-product-sku]', $el),
       $weight: $('[data-product-weight]', $el),
       $addToCart: $('[data-button-purchase]', $el),
@@ -92,6 +93,7 @@ export default class ProductUtils {
         const data = response ? response.data : {};
         const price = data.price.without_tax || data.price.with_tax;
         const rrp = data.price.rrp_without_tax || data.price.rrp_with_tax;
+        const saved = data.price.saved ? data.price.saved : false;
 
         viewModel.$price.html(price.formatted);
         viewModel.$sku.html(data.sku);
@@ -104,6 +106,14 @@ export default class ProductUtils {
           viewModel.$rrp = this.$el.find('[data-product-rrp]');
         } else if (viewModel.$rrp.length) {
           viewModel.$rrp.remove();
+        }
+
+        if (viewModel.$saved.length) {
+          if (saved) {
+            viewModel.$saved.html(saved.formatted);
+          } else {
+            viewModel.$saved.empty();
+          }
         }
 
         if (data.image) {
