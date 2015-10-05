@@ -15,6 +15,7 @@ export default class Product extends PageManager {
       tabSelector: '.tab-link',
       buttonDisabledClass: 'button-disabled',
       callbacks: {
+        willUpdate: () => {},
         didUpdate: (isError, response) => {
           this._updateMessage(isError, response);
         },
