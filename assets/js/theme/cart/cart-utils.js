@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
 import refreshContent from './refresh-content';
+import SelectWrapper from '../components/select-wrapper';
 
 export default class CartUtils {
   constructor(modules, options) {
@@ -40,11 +41,10 @@ export default class CartUtils {
     this.$cartContent.on('cart-initialize-modules', () => {
       this.modules.ShippingCalculator.init();
 
-      // TODO: Add SelectWrapper js
-      // const $select = $('[data-shipping-calculator]').find('select');
-      // $select.each((i) => {
-      //   new SelectWrapper($select.eq(i));
-      // });
+      const $select = $('[data-shipping-calculator]').find('select');
+      $select.each((i, el) => {
+        new SelectWrapper(el);
+      });
     });
   }
 
