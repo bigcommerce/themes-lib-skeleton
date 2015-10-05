@@ -31,3 +31,39 @@
 .form-error-message {
   color: $error-color;
 }
+
+
+.form-select-wrapper {
+  position: relative;
+  background-color: $input-background-color;
+  border: 1px solid $input-border-color;
+  color: $input-color;
+  font-size: 14px;
+  line-height: 1.6;
+  cursor: pointer;
+
+  &:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -1px;
+    border-top: 3px solid $input-border-color;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+  }
+
+  select {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%; /* needed for Firefox */
+    height: 100%; /* needed for IE */
+    opacity: 0;
+    cursor: pointer;
+    appearance: none;
+  }
+}
