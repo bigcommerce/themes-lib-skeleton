@@ -41,6 +41,8 @@ export default class ProductUtils {
     return {
       $price: $('[data-product-price]', $el),
       $rrp: $('[data-product-rrp]', $el),
+      $sku: $('[data-product-sku]', $el),
+      $weight: $('[data-product-weight]', $el),
       $addToCart: $('[data-button-purchase]', $el),
     }
   }
@@ -88,9 +90,21 @@ export default class ProductUtils {
       utils.api.productAttributes.optionChange(this.productId, $form.serialize(), (err, response) => {
         const viewModel = this._getViewModel(this.$el);
         const data = response ? response.data : {};
+        const price = data.price.without_tax || data.price.with_tax;
+        const rrp = data.price.rrp_without_tax || data.price.rrp_with_tax;
 
-        viewModel.$price.html(data.price);
-        viewModel.$rrp.html(data.rrp);
+        viewModel.$price.html(price.formatted);
+        viewModel.$sku.html(data.sku);
+        viewModel.$weight.html(data.weight.formatted);
+
+        if (rrp && viewModel.$rrp.length) {
+          viewModel.$rrp.html(rrp.formatted);
+        } else if (rrp) {
+          viewModel.$price.after(`<span data-product-rrp>${rrp.formatted}</span>`);
+          viewModel.$rrp = this.$el.find('[data-product-rrp]');
+        } else if (viewModel.$rrp.length) {
+          viewModel.$rrp.remove();
+        }
 
         if (data.image) {
           const mainImageUrl = utils.tools.image.getSrc(
