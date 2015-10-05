@@ -11,11 +11,13 @@ export default class ProductUtils {
     this.options = $.extend({
       tabSelector: '.tab-link',
       buttonDisabledClass: 'button-disabled',
-      callbacks: {
-        willUpdate: () => console.log('Update requested.'),
-        didUpdate: () => console.log('Update executed.'),
-      },
     }, options);
+
+    this.callbacks = $.extend({
+      willUpdate: () => console.log('Update requested.'),
+      didUpdate: () => console.log('Update executed.'),
+      switchImage: () => console.log('Image switch attempted.'),
+    }, options.callbacks);
 
     this.tabs = new Tabs({
       moduleSelector: this.$el.find('[data-tabs]')
@@ -135,7 +137,7 @@ export default class ProductUtils {
 
       event.preventDefault();
 
-      this.options.callbacks.willUpdate($(form));
+      this.callbacks.willUpdate($(form));
 
       // Add item to cart
       utils.api.cart.itemAdd(new FormData(form), (err, response) => {
@@ -146,7 +148,7 @@ export default class ProductUtils {
           response = err || response.data.error;
         }
 
-        this.options.callbacks.didUpdate(isError, response, $(form));
+        this.callbacks.didUpdate(isError, response, $(form));
       });
     });
   }
