@@ -135,7 +135,7 @@ export default class ProductUtils {
 
       event.preventDefault();
 
-      this.options.callbacks.willUpdate(null, null, $(form));
+      this.options.callbacks.willUpdate($(form));
 
       // Add item to cart
       utils.api.cart.itemAdd(new FormData(form), (err, response) => {
