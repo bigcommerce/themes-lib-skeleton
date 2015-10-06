@@ -29,6 +29,7 @@ export default class Cart extends PageManager {
     });
 
     this.CouponCodes = new CouponCodes('[data-coupon-codes]', {
+      context,
       visibleClass: 'visible',
       // callbacks: {
       //   willUpdate: () => {},

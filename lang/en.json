@@ -28,7 +28,7 @@
       "change_code": "Change",
       "enter_code": "Enter Your Coupon Code",
       "submit": "Apply",
-      "empty_error": "Please enter your coupon code."
+      "error": "Please enter your coupon code."
     },
     "gift_certificates": {
       "add_code": "Add Certificate",

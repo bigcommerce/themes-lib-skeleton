@@ -1,3 +1,5 @@
+{{inject 'couponCodeEmptyInput' (lang 'cart.coupon_codes.error')}}
+
 <div data-coupon-codes>
   {{#if cart.coupons}}
     {{#each cart.coupons}}
@@ -24,7 +26,7 @@
       <div class="form-field">
         <label class="form-label" for="couponcode">
           <span class="form-label-text">{{lang 'cart.coupon_codes.enter_code'}}</span>
-          <input class="form-input" data-error="{{lang 'cart.coupon_codes.empty_error'}}" id="couponcode" type="text" name="couponcode" value="" placeholder="{{lang 'cart.coupon_codes.enter_code'}}" data-coupon-code-input>
+          <input class="form-input" id="couponcode" type="text" name="couponcode" value="" placeholder="{{lang 'cart.coupon_codes.enter_code'}}" data-coupon-code-input>
         </label>
       </div>
       <div class="form-actions">

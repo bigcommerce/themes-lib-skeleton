@@ -7,6 +7,7 @@ export default class CouponCodes {
     this.$el = $(el);
 
     this.options = $.extend({
+      context: {},
       visibleClass: 'visible',
     }, options);
 
@@ -49,7 +50,7 @@ export default class CouponCodes {
 
     if (!code) {
       // TODO: Proper error handling
-      alert(this.$input.data('error'));
+      alert(this.options.context.couponCodeEmptyInput);
       return this.callbacks.didUpdate();
     }
 
