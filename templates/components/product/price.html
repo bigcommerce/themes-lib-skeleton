@@ -6,12 +6,12 @@
       <meta itemprop="price" content="{{price.without_tax.value}}">
     {{/if}}
 
-    <span data-product-price>
+    <span data-product-price="without-tax">
       {{price.without_tax.formatted}}
     </span>
 
     {{#if price.saved}}
-      <span data-product-rrp>
+      <span data-product-rrp="without-tax">
         {{price.rrp_without_tax.formatted}}
       </span>
     {{/if}}
@@ -29,12 +29,12 @@
       {{/unless}}
     {{/if}}
 
-    <span data-product-price>
+    <span data-product-price="with-tax">
       {{price.with_tax.formatted}}
     </span>
 
     {{#if price.saved}}
-      <span data-product-rrp>
+      <span data-product-rrp="with-tax">
         {{price.rrp_with_tax.formatted}}
       </span>
     {{/if}}
