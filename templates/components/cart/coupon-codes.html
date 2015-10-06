@@ -2,7 +2,7 @@
   {{#if cart.coupons}}
     {{#each cart.coupons}}
       {{lang 'cart.coupon_codes.label' code=code}}
-      <a href="{{remove_url}}" data-coupon-code-remove>({{lang 'cart.coupon_codes.remove'}})</a>
+      <a href="{{remove_url}}">({{lang 'cart.coupon_codes.remove'}})</a>
       {{discount.formatted}}
     {{/each}}
   {{/if}}

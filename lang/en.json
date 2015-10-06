@@ -30,6 +30,15 @@
       "submit": "Apply",
       "empty_error": "Please enter your coupon code."
     },
+    "gift_certificates": {
+      "add_code": "Add Certificate",
+      "gift_certificate": "Gift Certificate",
+      "label": "Gift Certificate ({code})",
+      "enter_code": "Enter your certificate code",
+      "error": "Please enter your valid certificate code.",
+      "remove": "Remove",
+      "submit": "Apply"
+    },
     "shipping_calculator": {
       "title": "Shipping",
       "add_info": "Add Info",

@@ -1,0 +1,23 @@
+{{inject 'giftCertificateInputEmpty' (lang 'cart.gift_certificates.error')}}
+
+<div data-gift-certificates>
+  {{#each cart.gift_certificates}}
+    {{lang 'cart.gift_certificates.label' code=code}}
+    {{remaining.formatted}}
+    <a href="{{remove_url}}">{{lang 'cart.gift_certificates.remove'}}</a>
+    {{used.formatted}}
+  {{/each}}
+
+  <div>
+    <span>{{lang 'cart.gift_certificates.gift_certificate'}}</span>
+      
+    <button data-gift-certificate-toggle>{{lang 'cart.gift_certificates.add_code'}}</button>
+
+    <form class="form" method="post" action="{{urls.cart}}" data-gift-certificate-form>
+      <label class="form-label" for="couponcode">{{lang 'cart.gift_certificates.enter_code'}}</label>
+      <input class="form-input" id="couponcode" type="text" name="certcode" value="" placeholder="{{lang 'cart.gift_certificates.enter_code'}}" data-gift-certificate-input>
+      <input class="button" type="submit" value="{{lang 'cart.gift_certificates.submit'}}">
+      <input type="hidden" name="action" value="applycoupon">
+    </form>
+  </div>
+</div>

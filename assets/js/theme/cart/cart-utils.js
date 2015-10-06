@@ -39,6 +39,7 @@ export default class CartUtils {
     this.$cartContent.on('cart-initialize-modules', () => {
       this.modules.ShippingCalculator.init();
       this.modules.CouponCodes.init();
+      this.modules.GiftCertificates.init();
 
       const $select = $('[data-shipping-calculator]').find('select');
       $select.each((i, el) => {

@@ -4,10 +4,13 @@ import utils from 'bigcommerce/stencil-utils';
 import CartUtils from './cart/cart-utils';
 import ShippingCalculator from './cart/shipping-calculator';
 import CouponCodes from './cart/coupon-codes';
+import GiftCertificates from './cart/gift-certificates';
 import Loading from 'bc-loading';
 
 export default class Cart extends PageManager {
   loaded(next) {
+    const context = this.context;
+
     const loadingOptions = {
       loadingMarkup: '<div class="loading"><span class="loading-spinner"></span></div>',
       visibleClass: 'visible',
@@ -26,6 +29,15 @@ export default class Cart extends PageManager {
     });
 
     this.CouponCodes = new CouponCodes('[data-coupon-codes]', {
+      visibleClass: 'visible',
+      // callbacks: {
+      //   willUpdate: () => {},
+      //   didUpdate: () => {},
+      // },
+    });
+
+    this.GiftCertificates = new GiftCertificates('[data-gift-certificates]', {
+      context,
       visibleClass: 'visible',
       // callbacks: {
       //   willUpdate: () => {},
