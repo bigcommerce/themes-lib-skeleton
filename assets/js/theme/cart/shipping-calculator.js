@@ -8,11 +8,12 @@ export default class ShippingCalculator {
 
     this.options = $.extend({
       visibleClass: 'visible',
-      callbacks: {
-        willUpdate: () => console.log('Update requested.'),
-        didUpdate: () => console.log('Update executed.'),
-      },
     }, options);
+
+    this.callbacks = $.extend({
+      willUpdate: () => console.log('Update requested.'),
+      didUpdate: () => console.log('Update executed.'),
+    }, options.callbacks);
 
     this.init();
   }
@@ -65,7 +66,7 @@ export default class ShippingCalculator {
   }
 
   _calculateShipping() {
-    this.options.callbacks.willUpdate();
+    this.callbacks.willUpdate();
 
     let params = {
       country_id: $('[name="shipping-country"]', this.$calculatorForm).val(),
@@ -80,18 +81,18 @@ export default class ShippingCalculator {
         alert(response.data.errors.join('\n'));
       }
 
-      this.options.callbacks.didUpdate();
+      this.callbacks.didUpdate();
 
       // bind the select button
       this.$shippingQuotes.find('.button').on('click', (event) => {
         event.preventDefault();
 
-        this.options.callbacks.willUpdate();
+        this.callbacks.willUpdate();
 
         const quoteId = $('[data-shipping-quote]:checked').val();
 
         utils.api.cart.submitShippingQuote(quoteId, (response) => {
-          refreshContent(this.options.callbacks.didUpdate);
+          refreshContent(this.callbacks.didUpdate);
         });
       });
     });
