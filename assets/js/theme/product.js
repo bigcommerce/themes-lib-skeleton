@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _ from 'lodash';
 import PageManager from '../page-manager';
 import ProductUtils from './product/product-utils';
 
@@ -11,7 +12,44 @@ export default class Product extends PageManager {
   }
 
   loaded() {
+    const priceWithoutTaxTemplate = _.template(`
+      <% if (typeof(without_tax) !== "undefined") { %>
+        <span data-product-price>
+          <%= without_tax.formatted %>
+        </span>
+      <% } %>
+
+      <% if (typeof(rrp_without_tax) !== "undefined") { %>
+        <span data-product-rrp>
+          <%= rrp_without_tax.formatted %>
+        </span>
+      <% } %>
+    `);
+
+    const priceWithTaxTemplate = _.template(`
+      <% if (typeof(with_tax) !== "undefined") { %>
+        <span data-product-price>
+          <%= with_tax.formatted %>
+        </span>
+      <% } %>
+
+      <% if (typeof(rrp_without_tax) !== "undefined") { %>
+        <span data-product-rrp>
+          <%= rrp_with_tax.formatted %>
+        </span>
+      <% } %>
+    `);
+
+    const priceSavedTemplate = _.template(`
+      <% if (typeof(saved) !== "undefined") { %>
+        <%= saved.formatted %>
+      <% } %>
+    `);
+
     this.ProductUtils = new ProductUtils(this.el, {
+      priceWithoutTaxTemplate,
+      priceWithTaxTemplate,
+      priceSavedTemplate,
       tabSelector: '.tab-link',
       buttonDisabledClass: 'button-disabled',
       callbacks: {

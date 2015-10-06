@@ -6,15 +6,17 @@
       <meta itemprop="price" content="{{price.without_tax.value}}">
     {{/if}}
 
-    <span data-product-price="without-tax">
-      {{price.without_tax.formatted}}
-    </span>
-
-    {{#if price.saved}}
-      <span data-product-rrp="without-tax">
-        {{price.rrp_without_tax.formatted}}
+    <span data-product-price-wrapper="without-tax">
+      <span data-product-price>
+        {{price.without_tax.formatted}}
       </span>
-    {{/if}}
+
+      {{#if price.saved}}
+        <span data-product-rrp>
+          {{price.rrp_without_tax.formatted}}
+        </span>
+      {{/if}}
+    </span>
 
     {{#if show_tax}}
       <span>{{lang 'product.excluding_tax'}}</span>
@@ -29,15 +31,17 @@
       {{/unless}}
     {{/if}}
 
-    <span data-product-price="with-tax">
-      {{price.with_tax.formatted}}
-    </span>
-
-    {{#if price.saved}}
-      <span data-product-rrp="with-tax">
-        {{price.rrp_with_tax.formatted}}
+    <span data-product-price-wrapper="with-tax">
+      <span data-product-price>
+        {{price.with_tax.formatted}}
       </span>
-    {{/if}}
+
+      {{#if price.saved}}
+        <span data-product-rrp>
+          {{price.rrp_with_tax.formatted}}
+        </span>
+      {{/if}}
+    </span>
 
     {{#if show_tax}}
       <span>{{lang 'product.including_tax'}}</span>

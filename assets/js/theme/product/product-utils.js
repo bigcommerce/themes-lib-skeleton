@@ -39,10 +39,8 @@ export default class ProductUtils {
 
   _getViewModel($el) {
     return {
-      $price: $('[data-product-price="without-tax"]', $el),
-      $priceWithTax: $('[data-product-price="with-tax"]', $el),
-      $rrp: $('[data-product-rrp="without-tax"]', $el),
-      $rrpWithTax: $('[data-product-rrp="with-tax"]', $el),
+      $price: $('[data-product-price-wrapper="without-tax"]', $el),
+      $priceWithTax: $('[data-product-price-wrapper="with-tax"]', $el),
       $saved: $('[data-product-price-saved]', $el),
       $sku: $('[data-product-sku]', $el),
       $weight: $('[data-product-weight]', $el),
@@ -93,47 +91,20 @@ export default class ProductUtils {
       utils.api.productAttributes.optionChange(this.productId, $form.serialize(), (err, response) => {
         const viewModel = this._getViewModel(this.$el);
         const data = response ? response.data : {};
-        const price = data.price.without_tax ? data.price.without_tax : false;
-        const priceWithTax = data.price.with_tax ? data.price.with_tax : false;
-        const rrp = data.price.rrp_without_tax ? data.price.rrp_without_tax : false;
-        const rrpWithTax = data.price.rrp_with_tax ? data.price.rrp_with_tax : false;
-        const saved = data.price.saved ? data.price.saved : false;
 
         viewModel.$sku.html(data.sku);
         viewModel.$weight.html(data.weight.formatted);
 
         if (viewModel.$price.length) {
-          viewModel.$price.html(price.formatted);
+          viewModel.$price.html(this.options.priceWithoutTaxTemplate(data.price));
         }
 
         if (viewModel.$priceWithTax.length) {
-          viewModel.$priceWithTax.html(priceWithTax.formatted);
-        }
-
-        if (rrp && viewModel.$rrp.length) {
-          viewModel.$rrp.html(rrp.formatted);
-        } else if (rrp) {
-          viewModel.$price.after(`<span data-product-rrp="without-tax">${rrp.formatted}</span>`);
-          viewModel.$rrp = this.$el.find('[data-product-rrp="without-tax"]');
-        } else if (viewModel.$rrp.length) {
-          viewModel.$rrp.remove();
-        }
-
-        if (rrpWithTax && viewModel.$rrpWithTax.length) {
-          viewModel.$rrp.html(rrpWithTax.formatted);
-        } else if (rrpWithTax) {
-          viewModel.$priceWithTax.after(`<span data-product-rrp="with-tax">${rrpWithTax.formatted}</span>`);
-          viewModel.$rrpWithTax = this.$el.find('[data-product-rrp="with-tax"]');
-        } else if (viewModel.$rrpWithTax.length) {
-          viewModel.$rrpWithTax.remove();
+          viewModel.$priceWithTax.html(this.options.priceWithTaxTemplate(data.price));
         }
 
         if (viewModel.$saved.length) {
-          if (saved) {
-            viewModel.$saved.html(saved.formatted);
-          } else {
-            viewModel.$saved.empty();
-          }
+          viewModel.$saved.html(this.options.priceSavedTemplate(data.price));
         }
 
         if (data.image) {
