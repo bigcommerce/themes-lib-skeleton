@@ -99,8 +99,6 @@ export default class ProductUtils {
         const rrpWithTax = data.price.rrp_with_tax ? data.price.rrp_with_tax : false;
         const saved = data.price.saved ? data.price.saved : false;
 
-        console.log(data.price);
-
         viewModel.$sku.html(data.sku);
         viewModel.$weight.html(data.weight.formatted);
 
