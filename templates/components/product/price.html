@@ -7,12 +7,12 @@
     {{/if}}
 
     <span data-product-price-wrapper="without-tax">
-      <span data-product-price>
+      <span>
         {{price.without_tax.formatted}}
       </span>
 
       {{#if price.saved}}
-        <span data-product-rrp>
+        <span>
           {{price.rrp_without_tax.formatted}}
         </span>
       {{/if}}
@@ -32,12 +32,12 @@
     {{/if}}
 
     <span data-product-price-wrapper="with-tax">
-      <span data-product-price>
+      <span>
         {{price.with_tax.formatted}}
       </span>
 
       {{#if price.saved}}
-        <span data-product-rrp>
+        <span>
           {{price.rrp_with_tax.formatted}}
         </span>
       {{/if}}

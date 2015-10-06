@@ -14,13 +14,13 @@ export default class Product extends PageManager {
   loaded() {
     const priceWithoutTaxTemplate = _.template(`
       <% if (typeof(without_tax) !== "undefined") { %>
-        <span data-product-price>
+        <span>
           <%= without_tax.formatted %>
         </span>
       <% } %>
 
       <% if (typeof(rrp_without_tax) !== "undefined") { %>
-        <span data-product-rrp>
+        <span>
           <%= rrp_without_tax.formatted %>
         </span>
       <% } %>
@@ -28,13 +28,13 @@ export default class Product extends PageManager {
 
     const priceWithTaxTemplate = _.template(`
       <% if (typeof(with_tax) !== "undefined") { %>
-        <span data-product-price>
+        <span>
           <%= with_tax.formatted %>
         </span>
       <% } %>
 
       <% if (typeof(rrp_without_tax) !== "undefined") { %>
-        <span data-product-rrp>
+        <span>
           <%= rrp_with_tax.formatted %>
         </span>
       <% } %>
