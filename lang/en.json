@@ -20,6 +20,16 @@
     "title": "Your Cart",
     "quantity": "Quantity",
     "update": "Update",
+    "coupon_codes": {
+      "label": "Coupon: {code}",
+      "remove": "Remove",
+      "coupon_code": "Coupon Code",
+      "add_code": "Add Code",
+      "change_code": "Change",
+      "enter_code": "Enter Your Coupon Code",
+      "submit": "Apply",
+      "empty_error": "Please enter your coupon code."
+    },
     "shipping_calculator": {
       "title": "Shipping",
       "add_info": "Add Info",

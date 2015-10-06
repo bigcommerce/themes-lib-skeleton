@@ -3,6 +3,7 @@ import PageManager from '../page-manager';
 import utils from 'bigcommerce/stencil-utils';
 import CartUtils from './cart/cart-utils';
 import ShippingCalculator from './cart/shipping-calculator';
+import CouponCodes from './cart/coupon-codes';
 import Loading from 'bc-loading';
 
 export default class Cart extends PageManager {
@@ -24,8 +25,17 @@ export default class Cart extends PageManager {
       // },
     });
 
+    this.CouponCodes = new CouponCodes('[data-coupon-codes]', {
+      visibleClass: 'visible',
+      // callbacks: {
+      //   willUpdate: () => {},
+      //   didUpdate: () => {},
+      // },
+    });
+
     this.CartUtils = new CartUtils({
       ShippingCalculator: this.ShippingCalculator,
+      CouponCodes: this.CouponCodes,
     }, {
       // callbacks: {
       //   willUpdate: () => {},

@@ -1,0 +1,36 @@
+<div data-coupon-codes>
+  {{#if cart.coupons}}
+    {{#each cart.coupons}}
+      {{lang 'cart.coupon_codes.label' code=code}}
+      <a href="{{remove_url}}" data-coupon-code-remove>({{lang 'cart.coupon_codes.remove'}})</a>
+      {{discount.formatted}}
+    {{/each}}
+  {{/if}}
+
+  <div>
+    <span>{{lang 'cart.coupon_codes.coupon_code'}}</span>
+
+    {{#if cart.discount ">" 0}}
+      <button data-coupon-code-toggle>{{cart.discount.formatted}}</button>
+    {{else}}
+      {{#if cart.coupons}}
+        <button data-coupon-code-toggle>{{lang 'cart.coupon_codes.change_code'}}</button>
+      {{else}}
+        <button data-coupon-code-toggle>{{lang 'cart.coupon_codes.add_code'}}</button>
+      {{/if}}
+    {{/if}}
+
+    <form class="form" method="post" action="{{urls.cart}}" data-coupon-code-form>
+      <div class="form-field">
+        <label class="form-label" for="couponcode">
+          <span class="form-label-text">{{lang 'cart.coupon_codes.enter_code'}}</span>
+          <input class="form-input" data-error="{{lang 'cart.coupon_codes.empty_error'}}" id="couponcode" type="text" name="couponcode" value="" placeholder="{{lang 'cart.coupon_codes.enter_code'}}" data-coupon-code-input>
+        </label>
+      </div>
+      <div class="form-actions">
+        <input class="button" type="submit" value="{{lang 'cart.coupon_codes.submit'}}">
+        <input type="hidden" name="action" value="applycoupon">
+      </div>
+    </form>
+  </div>
+</div>
