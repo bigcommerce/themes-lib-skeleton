@@ -59,27 +59,7 @@
     {{/if}}
 
     {{#if product.show_quantity_input}}
-      <div class="form-field" data-product-quantity>
-        <label class="form-label" for="quantity">
-          <span class="form-label-text">{{lang 'product.quantity'}}</span>
-
-          <input
-            class="form-input"
-            type="text"
-            name="qty[]"
-            value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
-            min="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}0{{/if}}"
-            max="{{#if product.max_purchase_quantity '!==' 0}}{{product.max_purchase_quantity}}{{/if}}"
-            disabled="disabled"
-            data-product-quantity-input
-          >
-
-          <div>
-            <span data-product-quantity-change data-quantity-increment>&#43;</span>
-            <span data-product-quantity-change data-quantity-decrement>&ndash;</span>
-          </div>
-        </label>
-      </div>
+      {{> components/common/quantity product}}
     {{/if}}
 
     <div class="form-field" data-product-add>

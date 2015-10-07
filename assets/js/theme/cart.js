@@ -6,10 +6,13 @@ import ShippingCalculator from './cart/shipping-calculator';
 import CouponCodes from './cart/coupon-codes';
 import GiftCertificates from './cart/gift-certificates';
 import Loading from 'bc-loading';
+import QuantityWidget from './components/quantity-widget';
+
 
 export default class Cart extends PageManager {
   loaded(next) {
     const context = this.context;
+    this.quantityControl = new QuantityWidget({scope: '[data-cart-content]'});
 
     const loadingOptions = {
       loadingMarkup: '<div class="loading"><span class="loading-spinner"></span></div>',

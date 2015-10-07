@@ -21,9 +21,12 @@ export default class CartUtils {
   }
 
   _bindEvents() {
-    this.$cartContent.on('click', '[data-cart-item-quantity-change]', (event) => {
-      event.preventDefault();
-      this._updateQuantity(event);
+    this.$cartContent.on('change', '[data-quantity-control-input]', (evt) => {
+      const $target = $(evt.target);
+      const itemId = $target.closest('[data-quantity-control]').data('quantity-control');
+
+      this.productData[itemId].quantityAltered = true;
+      this.productData[itemId].newQuantity = parseInt($target.val(), 10);
     });
 
     this.$cartContent.on('click', '[data-cart-item-update]', (event) => {
@@ -53,31 +56,10 @@ export default class CartUtils {
       const $cartItem = $(el);
       const itemId = $cartItem.data('item-id');
       this.productData[itemId] = {
-        oldQuantity: parseInt($cartItem.find('[data-cart-item-quantity-input]').val(), 10),
+        oldQuantity: parseInt($cartItem.find('[data-quantity-control-input]').attr('value'), 10),
         quantityAltered: false
       };
     });
-  }
-
-  _updateQuantity(event) {
-    const $target = $(event.target);
-    const $cartItem = $target.closest('[data-cart-item]');
-    const itemId = $cartItem.data('item-id');
-    const $quantityInput = $cartItem.find('[data-cart-item-quantity-input]');
-    const min = parseInt($quantityInput.prop('min'), 10);
-    const max = parseInt($quantityInput.prop('max'), 10);
-    let newQuantity = parseInt($quantityInput.val(), 10);
-
-    if ($target.is('[data-cart-item-quantity-increment]') && (!max || newQuantity < max)) {
-      newQuantity = newQuantity + 1;
-    } else if ($target.is('[data-cart-item-quantity-decrement]') && newQuantity > min) {
-      newQuantity = newQuantity - 1;
-    }
-
-    $quantityInput.val(newQuantity);
-
-    this.productData[itemId].newQuantity = newQuantity;
-    this.productData[itemId].quantityAltered = true;
   }
 
   _updateCartItem(event) {

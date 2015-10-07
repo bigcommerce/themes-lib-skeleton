@@ -1,0 +1,21 @@
+{{!
+  Quantity Widget with Increment/Decrement controls.
+
+  @param product
+         cart.item or product object
+}}
+
+<span data-quantity-control="{{id}}">
+  <input
+    class="form-input"
+    type="number"
+    name="qty{{#if product_id}}-{{id}}{{else}}[]{{/if}}"
+    pattern="[0-9]*"
+    value="{{#if quantity}}{{quantity}}{{else}}{{#if min_purchase_quantity}}{{min_purchase_quantity}}{{else}}1{{/if}}"
+    min="{{#if min_purchase_quantity}}{{min_purchase_quantity}}{{else}}0{{/if}}"
+    max="{{max_purchase_quantity}}"
+    data-quantity-control-input
+  >
+  <span data-quantity-control-action="decrement">&ndash;</span>
+  <span data-quantity-control-action="increment">&#43;</span>
+</span>

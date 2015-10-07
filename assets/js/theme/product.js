@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import PageManager from '../page-manager';
 import ProductUtils from './product/product-utils';
+import QuantityWidget from './components/quantity-widget'
 
 export default class Product extends PageManager {
   constructor() {
@@ -12,6 +13,8 @@ export default class Product extends PageManager {
   }
 
   loaded() {
+    this.quantityControl = new QuantityWidget({scope: '[data-cart-item-add]'});
+
     const priceWithoutTaxTemplate = _.template(`
       <% if (typeof(without_tax) !== "undefined") { %>
         <span>
