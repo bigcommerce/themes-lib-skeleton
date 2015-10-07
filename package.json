@@ -33,5 +33,11 @@
       "babel-runtime": "npm:babel-runtime@^5.6.15",
       "core-js": "npm:core-js@^0.9.4"
     }
+  },
+  "devDependencies": {
+    "eslint": "^1.6.0"
+  },
+  "scripts": {
+    "eslint": "./node_modules/eslint/bin/eslint.js assets/js/app.js assets/js/theme; exit 0"
   }
 }
