@@ -23,6 +23,7 @@ System.config({
     "bc-baseline": "bitbucket:pixelunion/bc-baseline@0.2.1",
     "bc-carousel": "bitbucket:pixelunion/bc-carousel@2.1.0",
     "bc-loading": "bitbucket:pixelunion/bc-loading@1.0.0",
+    "bc-modal": "bitbucket:pixelunion/bc-modal@0.0.2",
     "bc-tabs": "bitbucket:pixelunion/bc-tabs@0.1.0",
     "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.3.4",
     "caolan/async": "github:caolan/async@0.9.2",
@@ -45,6 +46,12 @@ System.config({
       "jquery": "github:components/jquery@2.1.4",
       "jquery-trend": "npm:jquery-trend@0.1.0"
     },
+    "bitbucket:pixelunion/bc-modal@0.0.2": {
+      "jquery": "github:components/jquery@2.1.4",
+      "jquery-revealer": "github:pixelunion/jquery.revealer@2.0.0",
+      "jquery-trend": "npm:jquery-trend@0.1.0",
+      "lodash": "npm:lodash@3.10.1"
+    },
     "bitbucket:pixelunion/bc-tabs@0.1.0": {
       "jquery": "github:components/jquery@2.1.4"
     },
@@ -56,8 +63,8 @@ System.config({
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
-    "github:jspm/nodelibs-process@0.1.1": {
-      "process": "npm:process@0.10.1"
+    "github:jspm/nodelibs-process@0.1.2": {
+      "process": "npm:process@0.11.2"
     },
     "github:jspm/nodelibs-url@0.1.0": {
       "url": "npm:url@0.10.3"
@@ -69,11 +76,11 @@ System.config({
       "util": "npm:util@0.10.3"
     },
     "npm:babel-runtime@5.6.15": {
-      "process": "github:jspm/nodelibs-process@0.1.1"
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:core-js@0.9.18": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "process": "github:jspm/nodelibs-process@0.1.1",
+      "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:imagesloaded@3.1.8": {
@@ -84,10 +91,13 @@ System.config({
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:lodash@3.10.1": {
-      "process": "github:jspm/nodelibs-process@0.1.1"
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:process@0.11.2": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0"
     },
     "npm:punycode@1.3.2": {
-      "process": "github:jspm/nodelibs-process@0.1.1"
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:url@0.10.3": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
@@ -97,7 +107,7 @@ System.config({
     },
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",
-      "process": "github:jspm/nodelibs-process@0.1.1"
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:wolfy87-eventemitter@4.3.0": {
       "fs": "github:jspm/nodelibs-fs@0.1.2"
