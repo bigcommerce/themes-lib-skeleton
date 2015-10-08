@@ -6,11 +6,11 @@ export default function(didUpdate, remove) {
   const $cartContent = $('[data-cart-content]');
   const $cartItem = $('[data-cart-item]', $cartContent);
   const options = {
-          template: {
-            content: 'cart/content',
-            totals: 'cart/totals',
-          }
-        };
+    template: {
+      content: 'cart/content',
+      totals: 'cart/totals',
+    },
+  };
 
   // Remove last item from cart? Reload
   if (remove && $cartItem.length === 1) {

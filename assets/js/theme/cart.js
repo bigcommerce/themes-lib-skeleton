@@ -1,12 +1,12 @@
 import $ from 'jquery';
-import PageManager from '../page-manager';
+import PageManager from '../PageManager';
 import utils from 'bigcommerce/stencil-utils';
-import CartUtils from './cart/cart-utils';
-import ShippingCalculator from './cart/shipping-calculator';
-import CouponCodes from './cart/coupon-codes';
-import GiftCertificates from './cart/gift-certificates';
+import CartUtils from './cart/CartUtils';
+import ShippingCalculator from './cart/ShippingCalculator';
+import CouponCodes from './cart/CouponCodes';
+import GiftCertificates from './cart/GiftCertificates';
 import Loading from 'bc-loading';
-import QuantityWidget from './components/quantity-widget';
+import QuantityWidget from './components/QuantityWidget';
 
 
 export default class Cart extends PageManager {

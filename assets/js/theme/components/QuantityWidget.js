@@ -5,7 +5,7 @@ export default class QuantityWidget {
     this.options = $.extend({
       el: '[data-quantity-control]',
       cntrl: '[data-quantity-control-action]',
-      scope: 'body'
+      scope: 'body',
     }, options);
 
     // Bind Control Actions
@@ -17,12 +17,12 @@ export default class QuantityWidget {
       const $quantityInput = $target.siblings('input');
       const value = parseInt($quantityInput.val(),10);
       const min = $quantityInput.attr('min') ? parseInt($quantityInput.attr('min'),10) : 0;
-      const max = $quantityInput.attr('max') ? parseInt($quantityInput.attr(  'max'),10) : Infinity;
+      const max = $quantityInput.attr('max') ? parseInt($quantityInput.attr('max'),10) : Infinity;
 
-      if (action === 'increment' && value < max ) {
-        $quantityInput.val( value + 1 ).trigger('change');
+      if (action === 'increment' && value < max) {
+        $quantityInput.val(value + 1).trigger('change');
       } else if (action === 'decrement' && value > 0 && value > min) {
-        $quantityInput.val( value - 1 ).trigger('change');
+        $quantityInput.val(value - 1).trigger('change');
       }
     });
 

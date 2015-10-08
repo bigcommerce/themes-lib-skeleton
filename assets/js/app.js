@@ -1,74 +1,74 @@
 import stencilUtils from 'bigcommerce/stencil-utils';
 import async from 'caolan/async';
-import account from './theme/account';
-import auth from './theme/auth';
-import blog from './theme/blog';
-import brand from './theme/brand';
-import brands from './theme/brands';
-import cart from './theme/cart';
-import category from './theme/category';
-import compare from './theme/compare';
-import errors from './theme/errors';
-import giftCertificate from './theme/gift-certificate';
-import global from './theme/global';
-import home from './theme/home';
-import orderComplete from './theme/order-complete';
-import page from './theme/page';
-import product from './theme/product';
-import search from './theme/search';
-import sitemap from './theme/sitemap';
-import subscribe from './theme/subscribe';
-import wishlist from './theme/wishlist';
+import Account from './theme/Account';
+import Auth from './theme/Auth';
+import Blog from './theme/Blog';
+import Brand from './theme/Brand';
+import Brands from './theme/Brands';
+import Cart from './theme/Cart';
+import Category from './theme/Category';
+import Compare from './theme/Compare';
+import Errors from './theme/Errors';
+import GiftCertificate from './theme/GiftCertificate';
+import Global from './theme/Global';
+import Home from './theme/Home';
+import OrderComplete from './theme/OrderComplete';
+import Page from './theme/Page';
+import Product from './theme/Product';
+import Search from './theme/Search';
+import Sitemap from './theme/Sitemap';
+import Subscribe from './theme/Subscribe';
+import Wishlist from './theme/Wishlist';
 
-let PageClasses = {
+const PageClasses = {
   mapping: {
-    "pages/account/orders/all": account,
-    "pages/account/addresses": account,
-    "pages/account/add-address": account,
-    "pages/account/add-return": account,
-    "pages/account/add-wishlist": wishlist,
-    "pages/account/recent-items": account,
-    "pages/account/download-item": account,
-    "pages/account/edit": account,
-    "pages/account/return-saved": account,
-    "pages/account/returns": account,
-    "pages/auth/login": auth,
-    "pages/auth/account-created": auth,
-    "pages/auth/create-account": auth,
-    "pages/auth/new-password": auth,
-    "pages/blog": blog,
-    "pages/blog-post": blog,
-    "pages/brand": brand,
-    "pages/brands": brand,
-    "pages/cart": cart,
-    "pages/category": category,
-    "pages/compare": compare,
-    "pages/errors": errors,
-    "pages/gift-certificate/purchase": giftCertificate,
-    "pages/gift-certificate/balance": giftCertificate,
-    "pages/gift-certificate/redeem": giftCertificate,
-    "global": global,
-    "pages/home": home,
-    "pages/order-complete": orderComplete,
-    "pages/page": page,
-    "pages/product": product,
-    "pages/search": search,
-    "pages/sitemap": sitemap,
-    "pages/subscribe": subscribe,
-    "page/account/wishlist-details": wishlist,
-    "pages/account/wishlists": wishlist
+    'global': Global,
+    'pages/account/orders/all': Account,
+    'pages/account/addresses': Account,
+    'pages/account/add-address': Account,
+    'pages/account/add-return': Account,
+    'pages/account/add-wishlist': Wishlist,
+    'pages/account/recent-items': Account,
+    'pages/account/download-item': Account,
+    'pages/account/edit': Account,
+    'pages/account/return-saved': Account,
+    'pages/account/returns': Account,
+    'pages/auth/login': Auth,
+    'pages/auth/account-created': Auth,
+    'pages/auth/create-account': Auth,
+    'pages/auth/new-password': Auth,
+    'pages/blog': Blog,
+    'pages/blog-post': Blog,
+    'pages/brand': Brand,
+    'pages/brands': Brand,
+    'pages/cart': Cart,
+    'pages/category': Category,
+    'pages/compare': Compare,
+    'pages/errors': Errors,
+    'pages/gift-certificate/purchase': GiftCertificate,
+    'pages/gift-certificate/balance': GiftCertificate,
+    'pages/gift-certificate/redeem': GiftCertificate,
+    'pages/home': Home,
+    'pages/order-complete': OrderComplete,
+    'pages/page': Page,
+    'pages/product': Product,
+    'pages/search': Search,
+    'pages/sitemap': Sitemap,
+    'pages/subscribe': Subscribe,
+    'page/account/wishlist-details': Wishlist,
+    'pages/account/wishlists': Wishlist,
   },
   /**
    * Getter method to ensure a good page type is accessed.
    * @param page
    * @returns {*}
    */
-  get: function(page) {
+  get(page) {
     if (this.mapping[page]) {
       return this.mapping[page];
     }
     return false;
-  }
+  },
 };
 
 /**
@@ -79,8 +79,8 @@ function series(pageObj) {
   async.series([
     pageObj.before.bind(pageObj), // Executed first after constructor()
     pageObj.loaded.bind(pageObj), // Main module logic
-    pageObj.after.bind(pageObj) // Clean up method that can be overridden for cleanup.
-  ], function(err) {
+    pageObj.after.bind(pageObj), // Clean up method that can be overridden for cleanup.
+  ], (err) => {
     if (err) {
       throw new Error(err);
     }
@@ -94,7 +94,7 @@ function series(pageObj) {
  * @returns {*}
  */
 function loadGlobal(pages) {
-  let Global = pages.get('global');
+  const Global = pages.get('global');
   return new Global;
 }
 
@@ -105,7 +105,7 @@ function loadGlobal(pages) {
  */
 function loader(pageFunc, pages) {
   if (pages.get('global')) {
-    let globalPageManager = loadGlobal(pages);
+    const globalPageManager = loadGlobal(pages);
     globalPageManager.context = pageFunc.context;
 
     series(globalPageManager);
@@ -120,25 +120,24 @@ function loader(pageFunc, pages) {
  * @param context
  * @returns {*}
  */
-window.stencilBootstrap = function stencilBootstrap(templateFile, context) {
-  let pages = PageClasses;
+window.stencilBootstrap = function stencilBootstrap(templateFile, context = {}) {
+  const pages = PageClasses;
 
-  context = context || '{}';
   context = JSON.parse(context);
 
   return {
     load() {
       $(() => {
-        let PageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
+        const PageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
 
         if (PageTypeFn) {
-          let pageType = new PageTypeFn();
+          const pageType = new PageTypeFn();
           pageType.context = context;
           return loader(pageType, pages);
         }
 
-        throw new Error(templateFile + ' Module not found');
+        throw new Error(`${templateFile} Module not found`);
       });
-    }
+    },
   };
 };

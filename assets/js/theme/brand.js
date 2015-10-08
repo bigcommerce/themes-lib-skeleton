@@ -1,4 +1,4 @@
-import PageManager from '../page-manager';
+import PageManager from '../PageManager';
 
 export default class Brand extends PageManager {
   constructor() {

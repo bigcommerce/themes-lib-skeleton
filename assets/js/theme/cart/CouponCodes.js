@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
-import refreshContent from './refresh-content';
+import refreshContent from './refreshContent';
 
 export default class CouponCodes {
   constructor(el, options) {

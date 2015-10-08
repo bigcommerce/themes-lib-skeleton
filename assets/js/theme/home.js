@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import PageManager from '../page-manager';
+import PageManager from '../PageManager';
 import Carousel from 'bc-carousel';
 
 export default class Home extends PageManager {

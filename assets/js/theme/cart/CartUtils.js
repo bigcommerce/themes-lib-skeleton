@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
-import refreshContent from './refresh-content';
-import SelectWrapper from '../components/select-wrapper';
+import refreshContent from './refreshContent';
+import SelectWrapper from '../components/SelectWrapper';
 
 export default class CartUtils {
   constructor(modules, options) {
@@ -57,7 +57,7 @@ export default class CartUtils {
       const itemId = $cartItem.data('item-id');
       this.productData[itemId] = {
         oldQuantity: parseInt($cartItem.find('[data-quantity-control-input]').attr('value'), 10),
-        quantityAltered: false
+        quantityAltered: false,
       };
     });
   }

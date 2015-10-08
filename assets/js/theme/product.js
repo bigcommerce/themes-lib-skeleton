@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import PageManager from '../page-manager';
-import ProductUtils from './product/product-utils';
-import QuantityWidget from './components/quantity-widget'
+import PageManager from '../PageManager';
+import ProductUtils from './product/ProductUtils';
+import QuantityWidget from './components/QuantityWidget'
 
 export default class Product extends PageManager {
   constructor() {

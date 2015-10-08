@@ -1,7 +1,7 @@
 import $ from 'jquery';
-import PageManager from '../page-manager';
-import CurrencySelector from './components/currency-selector';
-import SelectWrapper from './components/select-wrapper';
+import PageManager from '../PageManager';
+import CurrencySelector from './components/CurrencySelector';
+import SelectWrapper from './components/SelectWrapper';
 
 export default class Global extends PageManager {
   constructor() {

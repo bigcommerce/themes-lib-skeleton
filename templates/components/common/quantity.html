@@ -11,7 +11,7 @@
     type="number"
     name="qty{{#if product_id}}-{{id}}{{else}}[]{{/if}}"
     pattern="[0-9]*"
-    value="{{#if quantity}}{{quantity}}{{else}}{{#if min_purchase_quantity}}{{min_purchase_quantity}}{{else}}1{{/if}}"
+    value="{{#if quantity}}{{quantity}}{{else}}{{#if min_purchase_quantity}}{{min_purchase_quantity}}{{else}}1{{/if}}{{/if}}"
     min="{{#if min_purchase_quantity}}{{min_purchase_quantity}}{{else}}0{{/if}}"
     max="{{max_purchase_quantity}}"
     data-quantity-control-input

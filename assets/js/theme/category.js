@@ -1,5 +1,5 @@
-import PageManager from '../page-manager';
-import FacetedSearch from './components/faceted-search';
+import PageManager from '../PageManager';
+import FacetedSearch from './components/FacetedSearch';
 import Loading from 'bc-loading';
 
 export default class Category extends PageManager {
