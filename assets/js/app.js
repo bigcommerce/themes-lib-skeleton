@@ -40,7 +40,7 @@ const PageClasses = {
     'pages/blog': Blog,
     'pages/blog-post': Blog,
     'pages/brand': Brand,
-    'pages/brands': Brand,
+    'pages/brands': Brands,
     'pages/cart': Cart,
     'pages/category': Category,
     'pages/compare': Compare,
@@ -55,7 +55,7 @@ const PageClasses = {
     'pages/search': Search,
     'pages/sitemap': Sitemap,
     'pages/subscribe': Subscribe,
-    'page/account/wishlist-details': Wishlist,
+    'pages/account/wishlist-details': Wishlist,
     'pages/account/wishlists': Wishlist,
   },
   /**
