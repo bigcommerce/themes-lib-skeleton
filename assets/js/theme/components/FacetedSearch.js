@@ -4,7 +4,7 @@ import Url from 'url';
 import 'history/scripts/bundled/html4+html5/jquery.history';
 
 export default class FacetedSearch {
-  constructor(options, overlayCallbacks, callback) {
+  constructor(options, callback) {
     this.callback = callback;
     this.$body = $(document.body);
 
@@ -22,10 +22,10 @@ export default class FacetedSearch {
       moreToggle: '[data-facet-more]',
     }, options);
 
-    this.overlayCallbacks = $.extend({
+    this.callbacks = $.extend({
       willUpdate: () => console.log('Update requested.'),
       didUpdate: () => console.log('Update executed.'),
-    }, overlayCallbacks);
+    }, options.callbacks);
 
     this._bindEvents();
   }
@@ -104,19 +104,19 @@ export default class FacetedSearch {
   }
 
   _onStateChange(event) {
-    this.overlayCallbacks.willUpdate();
+    this.callbacks.willUpdate();
 
     api.getPage(History.getState().url, this.options, (err, content) => {
       if (err) {
         throw new Error(err);
-        this.overlayCallbacks.didUpdate();
+        this.callbacks.didUpdate();
         return;
       }
 
       if (content) {
         $('[data-category]').html(content.productListing);
         $('[data-category-sidebar]').html(content.sidebar);
-        this.overlayCallbacks.didUpdate();
+        this.callbacks.didUpdate();
       }
     });
   }

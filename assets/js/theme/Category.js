@@ -20,20 +20,12 @@ export default class Category extends PageManager {
 
   _initializeFacetedSearch() {
     const facetedSearchOptions = {
-      config: {
-        category: {
-          shop_by_price: true,
-        },
-      },
-      template: {
-        productListing: 'category/product-listing',
-        sidebar: 'category/sidebar',
-      },
+      callbacks: {
+        willUpdate: () => this.sidebarOverlay.show(),
+        didUpdate: () => this.sidebarOverlay.hide(),
+      }
     };
 
-    const facetedSearch = new FacetedSearch(facetedSearchOptions, {
-      willUpdate: () => this.sidebarOverlay.show(),
-      didUpdate: () => this.sidebarOverlay.hide(),
-    });
+    new FacetedSearch(facetedSearchOptions);
   }
 }
