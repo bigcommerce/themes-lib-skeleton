@@ -13,6 +13,7 @@ export default class Category extends PageManager {
 
   _initializeFacetedSearch() {
     const facetedSearchOptions = {
+      toggleFacet: (event) => this._toggleFacet(event),
       // callbacks: {
       //   willUpdate: () => {},
       //   didUpdate: () => {},
@@ -20,5 +21,21 @@ export default class Category extends PageManager {
     };
 
     new FacetedSearch(facetedSearchOptions);
+  }
+
+  _toggleFacet(event) {
+    const $target = $(event.currentTarget);
+    $target
+      .parents('[data-facet-filter]')
+      .children('[data-facet-filter-wrapper]')
+      .toggleClass('is-open');
+
+    if ($target.hasClass('is-open')) {
+      $target.text('-');
+    } else {
+      $target.text('+');
+    }
+
+    $target.toggleClass('is-open');
   }
 }

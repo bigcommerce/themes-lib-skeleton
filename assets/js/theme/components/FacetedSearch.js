@@ -22,8 +22,9 @@ export default class FacetedSearch {
         productListing: '[data-category]',
         sidebar: '[data-category-sidebar]',
       },
-      filterToggle: '[data-facet-toggle]',
+      facetToggle: '[data-facet-toggle]',
       moreToggle: '[data-facet-more]',
+      toggleFacet: () => console.log('Facet toggled.'),
     }, options);
 
     this.callbacks = $.extend({
@@ -35,8 +36,8 @@ export default class FacetedSearch {
   }
 
   _bindEvents() {
-    this.$body.on('click', this.options.filterToggle, (event) => {
-      this._toggleFilter(event);
+    this.$body.on('click', this.options.facetToggle, (event) => {
+      this._toggleFacet(event);
     });
 
     this.$body.on('click', this.options.moreToggle, (event) => {
@@ -56,20 +57,8 @@ export default class FacetedSearch {
       .removeClass('hidden');
   }
 
-  _toggleFilter(event) {
-    const $target = $(event.currentTarget);
-    $target
-      .parents('[data-facet-filter]')
-      .children('[data-facet-filter-wrapper]')
-      .toggleClass('is-open');
-
-    if ($target.hasClass('is-open')) {
-      $target.text('-');
-    } else {
-      $target.text('+');
-    }
-
-    $target.toggleClass('is-open');
+  _toggleFacet(event) {
+    this.options.toggleFacet(event);
   }
 
   _onFacetClick(event) {

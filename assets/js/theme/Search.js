@@ -21,6 +21,7 @@ export default class Search extends PageManager {
         productListing: '[data-search]',
         sidebar: '[data-search-sidebar]',
       },
+      toggleFacet: (event) => this._toggleFacet(event),
       // callbacks: {
       //   willUpdate: () => {},
       //   didUpdate: () => {},
@@ -28,5 +29,21 @@ export default class Search extends PageManager {
     };
 
     new FacetedSearch(facetedSearchOptions);
+  }
+
+  _toggleFacet(event) {
+    const $target = $(event.currentTarget);
+    $target
+      .parents('[data-facet-filter]')
+      .children('[data-facet-filter-wrapper]')
+      .toggleClass('is-open');
+
+    if ($target.hasClass('is-open')) {
+      $target.text('-');
+    } else {
+      $target.text('+');
+    }
+
+    $target.toggleClass('is-open');
   }
 }
