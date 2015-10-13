@@ -26,11 +26,23 @@
       {{#if settings.show_product_rating}}
         <meta itemprop="ratingValue" content="{{product.rating}}">
         <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+        {{> components/reviews/ratings rating=product.rating}}
       {{/if}}
       {{#if settings.show_product_reviews}}
         <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+        {{#if product.num_reviews 0}}{{lang 'product.reviews.no_reviews'}}{{/if}}
+        <a href="#modal-review-form" class="review-link">{{ lang 'product.reviews.leave_review' }}</a>
       {{/if}}
     </div>
+
+    {{#each product.reviews.messages}}
+      {{#if error}}
+        {{> core/alerts/alert-error message=error dismissable=true}}
+      {{/if}}
+      {{#if success}}
+        {{> core/alerts/alert-success message=success dismissable=true}}
+      {{/if}}
+    {{/each}}
 
     {{#if product.sku}}
       <div data-product-sku>{{product.sku}}</div>
@@ -58,10 +70,6 @@
       </div>
     {{/if}}
 
-    {{#if product.show_quantity_input}}
-      {{> components/common/quantity product}}
-    {{/if}}
-
     <div class="form-field" data-product-add>
       {{#if product.pre_order}}
         <input class="button" type="submit" value="{{lang 'product.pre_order'}}" data-button-purchase data-button-preorder>
@@ -79,4 +87,25 @@
       {{{product.description}}}
     </div>
   {{/if}}
+
+  {{#if product.num_reviews 0 operator='>'}}
+    <div class="product-reviews">
+      <h3>{{lang 'product.reviews.heading'}}</h3>
+
+      {{> components/reviews/ratings rating=product.rating}}
+
+      <div class="rating-summary">
+        {{{lang 'product.reviews.total_based_on' score=product.rating numReviews=product.num_reviews}}}
+      </div>
+
+      <a href="#modal-review-form" class="review-link">{{ lang 'product.reviews.leave_review' }}</a>
+
+      {{#each product.reviews.list}}
+        {{> components/reviews/review-item}}
+      {{/each}}
+    </div>
+  {{/if}}
+
+  {{> components/reviews/review-modal}}
+
 </div>

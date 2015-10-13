@@ -85,9 +85,38 @@
     "quantity": "Quantity",
     "pre_order": "Pre-Order",
     "add_to_cart": "Add To Cart",
-    "select_an_option": "Please Choose An Option"
+    "select_an_option": "Please Choose An Option",
+    "reviews": {
+      "heading": "Product Reviews",
+      "write_review": "Write a Review",
+      "no_reviews": "Be the first to",
+      "total_based_on": "<strong>{score}</strong> based on {numReviews, plural, one{# review} other{# reviews}}.",
+      "leave_review": "leave a review",
+      "rating_label": "Your Rating:",
+      "stars_count": "{NUM, plural, one {# Star} other {# Stars}}",
+      "written_by_on": "Written by {name} on {date}",
+      "form": {
+        "name": "Name",
+        "your_name": "Your Name",
+        "subject": "Subject",
+        "your_subject": "Your Review Subject",
+        "email": "Email Address",
+        "your_email": "Your Email Address",
+        "comments": "Comments",
+        "your_comments": "Your Comments",
+        "submit": "Submit Review"
+      }
+    }
   },
   "forms": {
+    "validation": {
+      "required": "This field is required.",
+      "email": "Please enter a valid email address.",
+      "phone": "Please enter a valid phone number (including your area code)",
+      "rating": "You must enter a rating.",
+      "choose_theme": "Please select a theme.",
+      "number_range": "You must enter a value between *minimum* and *maximum*."
+    },
     "address": {
       "add": {
         "heading": "Add New Address",

@@ -1,0 +1,14 @@
+<article class="review-item" itemprop="review" itemscope itemtype="http://schema.org/Review">
+  <header class="review-item-header">
+    <div class="review-item-stars" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+      {{> components/reviews/ratings rating=rating size="medium"}}
+      <span class="review-item-score" itemprop="ratingValue">{{rating}}/5</span>
+    </div>
+    <h5 class="review-item-title">{{title}}</h5>
+    <div class="review-item-meta">
+      <meta itemprop="author" content="{{name}}">
+      {{lang 'product.reviews.written_by_on' name=name date=date}}
+    </div>
+  </header>
+  <p class="review-item-body" itemprop="reviewBody">{{text}}</p>
+</article>

@@ -1,0 +1,23 @@
+.modal-overlay {
+  background-color: rgba($accent-color, 0.85);
+}
+
+.modal {
+  max-width: 1060px;
+  max-height: 90%;
+  padding: $gutter * 2;
+  overflow-y: scroll;
+  background-color: $body-background-color;
+}
+
+.modal-content {
+  position: relative;
+
+  .modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: $font-size;
+    line-height: 1;
+  }
+}
