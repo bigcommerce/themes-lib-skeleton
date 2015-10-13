@@ -1,9 +1,11 @@
-<div class="form-field {{#if required}}required{{/if}}">
+
+<div class="form-field {{#if required}}form-required{{/if}}">
   <label class="form-label" for="attribute-{{id}}">
-    <div class="form-label-text product-option-title">
+    <div class="form-label-title product-option-title">
       {{display_name}}
+      {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
     </div>
-    <select class="form-input input-select" id="attribute-{{id}}" name="attribute[{{id}}]">
+    <select class="form-input form-select" id="attribute-{{id}}" name="attribute[{{id}}]">
       {{#each values}}
         <option value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>
       {{/each}}

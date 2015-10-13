@@ -1,28 +1,31 @@
-<div class="form-field  {{#if required}}required{{/if}}">
+
+<div class="form-field {{#if required}}form-required{{/if}}">
   <label class="form-label">
 
-    <div class="form-label-text product-option-title">
+    <div class="form-label-title product-option-title">
       {{display_name}}
+      {{#if required}}<span class="required">{{lang 'common.required'}}</span>{{/if}}
     </div>
-    <div class="date-select-group">
-      <select class="form-input input-select month" name="attribute[{{id}}][month]">
+
+    <div class="form-option-date">
+      <select class="form-input form-select form-date-year" name="attribute[{{id}}][year]">
+        <option disabled>{{lang 'date.year'}}</option>
+        {{#enumerate earliest_year latest_year}}
+          <option value="{{this}}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>{{this}}</option>
+        {{/enumerate}}
+      </select>
+
+      <select class="form-input form-select form-date-month" name="attribute[{{id}}][month]">
         <option disabled>{{lang 'date.month'}}</option>
         {{#enumerate 1 12}}
           <option value="{{this}}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>{{getShortMonth this}}</option>
         {{/enumerate}}
       </select>
 
-      <select class="form-input input-select day" name="attribute[{{id}}][day]">
+      <select class="form-input form-select form-date-day" name="attribute[{{id}}][day]">
         <option disabled>{{lang 'date.day'}}</option>
         {{#enumerate 1 31}}
           <option value="{{this}}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>{{this}}</option>
-        {{/enumerate}}
-      </select>
-
-      <select class="form-input input-select year" name="attribute[{{id}}][year]">
-        <option disabled>{{lang 'date.year'}}</option>
-        {{#enumerate earliest_year latest_year}}
-          <option value="{{this}}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>{{this}}</option>
         {{/enumerate}}
       </select>
     </div>

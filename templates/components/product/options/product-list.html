@@ -1,5 +1,6 @@
-<div class="form-field {{#if required }}required{{/if}}">
-  <label class="form-label-text product-option-title">
+
+<div class="form-field {{#if required }}form-required{{/if}}">
+  <label class="form-label product-option-title">
     {{display_name}}
   </label>
 
@@ -7,33 +8,53 @@
     {{!-- same as radio buttons if no image set --}}
     <div class="form-inline">
       {{#each values}}
-        <label class="form-label radio" for="attribute_{{id}}_{{../id}}">
-          <input class="form-input" id="attribute_{{id}}_{{../id}}" name="attribute[{{../id}}]" type="radio" value="{{id}}" {{#if selected}}checked{{/if}} {{#if ../required}}required{{/if}}>
-          <span class="form-label-text">{{label}}</span>
+        <label class="form-label form-radio" for="attribute_{{id}}_{{../id}}">
+          <input class="form-input"
+            id="attribute_{{id}}_{{../id}}"
+            name="attribute[{{../id}}]"
+            type="radio"
+            value="{{id}}"
+            {{#if selected}}checked{{/if}}
+            {{#if ../required}}required{{/if}}>
+          <span class="form-label-text product-option-text">{{label}}</span>
         </label>
       {{/each}}
-      <label class="form-label radio" for="attribute_0_{{id}}">
-        <input class="form-input" id="attribute_0_{{id}}" name="attribute[{{id}}]" type="radio" value="0" {{#if defaultValue '==' 0}}checked{{/if}}>
-        <span class="form-label-text">{{lang 'product.none'}}</span>
+      <label class="form-label form-radio" for="attribute_0_{{id}}">
+        <input class="form-input"
+          id="attribute_0_{{id}}"
+          name="attribute[{{id}}]"
+          type="radio" value="0"
+          {{#if defaultValue '==' 0}}checked{{/if}}>
+        <span class="form-label-text product-option-text">{{lang 'product.none'}}</span>
       </label>
     </div>
   {{else}}
     <ul class="product-picklist">
       {{#each values}}
         <li class="product-picklist-item">
-          <input class="product-picklist-radio" id="attribute_{{id}}_{{../id}}" name="attribute[{{../id}}]" type="radio" value="{{id}}" {{#if selected}}checked{{/if}} {{#if ../required}}required{{/if}}>
           <label class="product-picklist-label" for="attribute_{{id}}_{{../id}}">
+            <input class="product-picklist-radio"
+              id="attribute_{{id}}_{{../id}}"
+              name="attribute[{{../id}}]"
+              type="radio" value="{{id}}"
+              {{#if selected}}checked{{/if}}
+              {{#if ../required}}required{{/if}}>
             <div class="product-picklist-image-wrap">
               <img class="product-picklist-image" src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
             </div>
-            <span class="product-picklist-label-text">{{label}}</span>
+            <span class="product-picklist-label-text form-label-text product-option-text">{{label}}</span>
           </label>
         </li>
       {{/each}}
       <li class="product-picklist-item">
-        <input class="product-picklist-radio" id="attribute_0_{{id}}" name="attribute[{{id}}]" type="radio" value="0" {{#if defaultValue '==' 0}}checked{{/if}}>
         <label class="product-picklist-label picklist-none" for="attribute_0_{{id}}">
-          <span class="product-picklist-label-text">{{lang 'product.none'}}</span>
+          <input class="product-picklist-radio"
+            id="attribute_0_{{id}}"
+            name="attribute[{{id}}]"
+            type="radio"
+            value="0"
+            {{#if defaultValue '==' 0}}checked{{/if}}>
+          <span class="product-picklist-label-text form-label-text product-option-text">{{lang 'product.none'}}</span>
         </label>
       </li>
     </ul>

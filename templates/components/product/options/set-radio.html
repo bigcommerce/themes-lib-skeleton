@@ -1,13 +1,20 @@
-<div class="form-field {{#if required}}required{{/if}}">
-  <div class="product-option-title">
+
+<div class="form-field {{#if required}}form-required{{/if}}">
+  <div class="form-label-title product-option-title">
     {{display_name}}
+    {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
   </div>
-  <div class="form-inline">
-    {{#each values}}
-      <label class="form-label radio" for="attribute_{{id}}_{{../id}}">
-        <input class="form-input" id="attribute_{{id}}_{{../id}}" name="attribute[{{../id}}]" type="radio" value="{{id}}" {{#if selected}}checked{{/if}}>
-        <span class="form-label-text">{{label}}</span>
+  {{#each values}}
+    <div>
+      <label class="form-label form-radio" for="attribute-{{id}}">
+        <input class="form-input"
+          id="attribute-{{id}}"
+          name="attribute[{{../id}}]"
+          type="radio"
+          value="{{id}}"
+          {{#if selected}}checked{{/if}}>
+        <span class="form-label-text product-option-text">{{label}}</span>
       </label>
-    {{/each}}
-  </div>
+    </div>
+  {{/each}}
 </div>

@@ -1,8 +1,18 @@
-<div class="form-field form-inline {{#if required}}required{{/if}}">
-  <label class="form-label" for="attribute-{{id}}">
-    <input class="form-input input-checkbox" id="attribute-{{id}}" name="attribute[{{id}}]" type="checkbox" value="{{value}}" {{#if checked}}checked{{/if}}>
-    <div class="form-label-text">
-      {{display_name}}
-    </div>
+
+<div class="form-field {{#if required}}form-required{{/if}}">
+  <div class="form-label-title product-option-title">
+    {{display_name}}
+    {{#if required}}<span class="required">{{lang 'common.required'}}</span>{{/if}}
+  </div>
+
+  <label class="form-label {{class}}" for="attribute-{{id}}">
+    <input class="form-input form-checkbox"
+      id="attribute-{{id}}"
+      name="attribute[{{id}}]"
+      type="checkbox"
+      value="{{value}}"
+      {{#if checked}}checked{{/if}}
+      {{#if required}}form-required{{/if}}>
+    <span class="form-label-text product-option-text">{{label}}</span>
   </label>
 </div>

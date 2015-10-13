@@ -1,11 +1,18 @@
-<div class="form-field {{#if required}}required{{/if}}">
-  <div class="product-option-title">
+
+<div class="form-field {{#if required}}form-required{{/if}}">
+  <div class="form-label-title product-option-title">
     {{display_name}}
+    {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
   </div>
   <div class="form-rectangles">
     {{#each values}}
-      <label class="form-label rectangle" for="attribute_{{id}}_{{../id}}">
-        <input id="attribute_{{id}}_{{../id}}" name="attribute[{{../id}}]" type="radio" value="{{id}}" {{#if selected}}checked{{/if}}>
+      <label class="form-label rectangle" for="attribute-{{id}}">
+        <input class="form-input form-rectangle"
+          name="attribute[{{../id}}]"
+          id="attribute-{{id}}"
+          type="radio"
+          value="{{id}}"
+          {{#if selected}}checked{{/if}}>
         <span class="rectangle-text">{{label}}</span>
       </label>
     {{/each}}

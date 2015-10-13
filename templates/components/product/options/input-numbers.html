@@ -1,7 +1,9 @@
-<div class="form-field {{#if required}}required{{/if}}">
+
+<div class="form-field {{#if required}}form-required{{/if}}">
   <label class="form-label" for="attribute-{{id}}">
-    <div class="form-label-text product-option-title">
+    <div class="form-label-title product-option-title">
       {{display_name}}
+      {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
     </div>
     <input class="form-input" id="attribute-{{id}}" name="attribute[{{id}}]" type="number" value="{{prefill}}">
   </label>
