@@ -1,0 +1,14 @@
+{{#partial "page"}}
+  <h1>{{brand.name}}</h1>
+
+  <main data-brand>
+    {{> components/brand/product-listing}}
+  </main>
+
+  <aside data-brand-sidebar>
+    {{> components/brand/sidebar}}
+  </aside>
+
+{{/partial}}
+
+{{> layout/base}}

@@ -1,0 +1,31 @@
+<div data-faceted-search>
+  {{!-- TODO: Add sort filter --}}
+  {{!> components/common/sort sort=pagination.brand.sort}}
+
+  {{#if brand.faceted_search_enabled}}
+    {{#each brand.facets}}
+      {{#if visible}}
+        <div data-facet-filter>
+
+          <h3>
+            {{title}}
+
+            {{#if remove_url}}
+              <a href="{{remove_url}}" data-faceted-search-facet data-facet-remove>{{lang 'faceted_search.clear'}}</a>
+            {{/if}}
+
+            {{#unless selected }}
+              {{#if start_collapsed}}
+                <span class="is-open" data-facet-toggle>&#43;</span>
+              {{else}}
+                <span data-facet-toggle>&ndash;</span>
+              {{/if}}
+            {{/unless}}
+          </h3>
+
+          {{{dynamicComponent 'components/faceted-search/facets'}}}
+        </div>
+      {{/if}}
+    {{/each}}
+  {{/if}}
+</div>

@@ -61,11 +61,13 @@
     }
   },
   "category": {
-    "label": "Categories"
+    "label": "Categories",
+    "empty": "There are no products in this category."
   },
   "brand": {
     "label": "Brands",
-    "view_brands": "View all brands"
+    "view_brands": "View all brands",
+    "empty": "There are no products with this brand."
   },
   "faceted_search": {
     "clear": "Clear",
