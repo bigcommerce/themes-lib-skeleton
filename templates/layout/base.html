@@ -19,9 +19,11 @@
   {{{head.scripts}}}
   {{{head.rsslinks}}}
   {{inject 'themeImageSizes' theme_images}}
+  {{> components/global-injects}}
 </head>
 
 <body class="{{page_type}}">
+  <div class="icon-sprite">{{> components/common/icons/sprite}}</div>
 
   {{> components/header}}
 
