@@ -1,9 +1,9 @@
 <div data-faceted-search>
   {{!-- TODO: Add sort filter --}}
-  {{!> components/common/sort sort=pagination.category.sort}}
+  {{!> components/common/sort sort=pagination.product_results.sort}}
 
-  {{#if category.faceted_search_enabled}}
-    {{#each category.facets}}
+  {{#if product_results.faceted_search_enabled}}
+    {{#each product_results.facets}}
       {{#if visible}}
         <div data-facet-filter>
 
@@ -14,7 +14,7 @@
               <a href="{{remove_url}}" data-faceted-search-facet data-facet-remove>{{lang 'faceted_search.clear'}}</a>
             {{/if}}
 
-            {{#unless selected }}
+            {{#unless selected}}
               {{#if start_collapsed}}
                 <span class="is-open" data-facet-toggle>&#43;</span>
               {{else}}
