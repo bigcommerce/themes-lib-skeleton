@@ -18,6 +18,10 @@ export default class FacetedSearch {
         productListing: 'category/product-listing',
         sidebar: 'category/sidebar'
       },
+      scope: {
+        productListing: '[data-category]',
+        sidebar: '[data-category-sidebar]',
+      },
       filterToggle: '[data-facet-toggle]',
       moreToggle: '[data-facet-more]',
     }, options);
@@ -114,8 +118,8 @@ export default class FacetedSearch {
       }
 
       if (content) {
-        $('[data-category]').html(content.productListing);
-        $('[data-category-sidebar]').html(content.sidebar);
+        $(this.options.scope.productListing).html(content.productListing);
+        $(this.options.scope.sidebar).html(content.sidebar);
         this.callbacks.didUpdate();
       }
     });
