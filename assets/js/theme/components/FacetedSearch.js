@@ -51,8 +51,11 @@ export default class FacetedSearch {
   }
 
   _showAdditionalFilters(event) {
+    event.preventDefault();
+
     $(event.currentTarget)
       .addClass('hidden')
+      .parent('li')
       .siblings('li')
       .removeClass('hidden');
   }

@@ -8,7 +8,9 @@
     </li>
   {{/each}}
 
-  {{#if items_count "<" total_items}}
-    <li data-facet-more>{{lang 'faceted_search.show_more'}}</li>
+  {{#if total_items ">" 5}}
+    <li>
+      <a href="#" data-facet-more>{{lang 'faceted_search.show_more'}}</a>
+    </li>
   {{/if}}
 </ul>
