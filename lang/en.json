@@ -111,11 +111,21 @@
   "forms": {
     "validation": {
       "required": "This field is required.",
-      "email": "Please enter a valid email address.",
-      "phone": "Please enter a valid phone number (including your area code)",
-      "rating": "You must enter a rating.",
-      "choose_theme": "Please select a theme.",
-      "number_range": "You must enter a value between *minimum* and *maximum*."
+      "email": "Your E-mail address appears to be invalid.",
+      "number": "You can enter only numbers in this field.",
+      "num_max": "Please enter a number less than {max}.",
+      "num_min": "Please enter a number greater than {min}.",
+      "num_range": "Please enter a number greater than {min} and less than {max}.",
+      "max_length": "Maximum {count} characters allowed.",
+      "min_length": "Minimum {count} characters allowed.",
+      "max_checked": "Maximum {count} options allowed.",
+      "min_checked": "Please select minimum {count} options.",
+      "max_selected": "Maximum {count} selection allowed.",
+      "min_selected": "Minimum {count} selection allowed.",
+      "not_equal": "Fields do not match.",
+      "different": "Fields cannot be the same as each other.",
+      "pick_theme": "Please select a theme.",
+      "terms_agree": "You must agree to these terms before continuing."
     },
     "address": {
       "add": {

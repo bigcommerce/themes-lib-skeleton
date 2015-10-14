@@ -33,6 +33,7 @@ System.config({
     "imagesloaded": "npm:imagesloaded@3.1.8",
     "jquery": "github:components/jquery@2.1.4",
     "jquery-trend": "npm:jquery-trend@0.1.0",
+    "jquery-validetta": "github:PixelUnion/validetta@2.0.0",
     "knockout": "github:knockout/knockout@3.3.0",
     "lodash": "npm:lodash@3.10.1",
     "normalize.scss": "npm:normalize.scss@0.1.0",

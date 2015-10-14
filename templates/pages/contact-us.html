@@ -1,0 +1,23 @@
+{{#partial "page"}}
+
+<div class="container">
+  <article class="page-container page-narrow">
+    <h1 class="page-heading">{{ page.title }} sdfd</h1>
+    <div class="page-content">
+      <div class="page-message-area">
+      {{#if forms.contact.success}}
+        {{> components/alerts/alert-success (lang 'forms.contact_us.successful' shopPath=urls.home)}}
+      {{else}}
+        <p>{{{page.content}}}</p>
+      {{/if}}
+      </div>
+      {{#unless forms.contact.success}}
+        {{> components/page/contact-us-form}}
+      {{/unless}}
+    </div>
+  </article>
+</div>
+
+{{/partial}}
+
+{{> layout/base}}
