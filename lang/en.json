@@ -48,6 +48,23 @@
       "zip_postal_code": "Zip/Postcode",
       "select": "Select",
       "error": "Error"
+    },
+    "gift_wrapping": {
+      "title": "Wrapping: ",
+      "close": "Close",
+      "add": "Add",
+      "change": "Change",
+      "change_or": "or",
+      "remove": "Remove",
+      "gift_message": "Message: ",
+      "choose_how": "Please choose how you'd like to have this item gift wrapped.",
+      "preview": "(Preview)",
+      "remove_confirm": "Are you sure you want to remove the gift wrap option from this item?",
+      "option_same": "I'd like to wrap each of these using the same wrapping option",
+      "option_different": "I'd like to gift wrap each item separately",
+      "item_single": "Wrap: {name}",
+      "item_multiple": "Item {index}: {name}",
+      "choose_type": "Select wrapping option"
     }
   },
   "common": {
