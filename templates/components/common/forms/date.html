@@ -1,23 +1,46 @@
 
-<div>
-  <label for="{{id}}" {{#if style}}style="{{style}}" {{/if}}>{{label}}</label>
-  <div>
-    <select name="{{day.name}}" id="{{id}}" aria-required="{{required}}">
-      {{#each day.items}}
-        <option {{#equals ../day.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
-      {{/each}}
-    </select>
+<div class="form-field form-field-date {{#if required}} form-required{{/if}}" id="{{id}}">
+  <label class="form-label">
 
-    <select name="{{month.name}}" id="{{id}}"  aria-required="{{required}}">
-      {{#each month.items}}
-        <option {{#equals ../month.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
-      {{/each}}
-    </select>
+    <div class="form-field-title">
+      {{label}}
+      {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
+    </div>
 
-    <select name="{{year.name}}" id="{{id}}" aria-required="{{required}}">
-      {{#each year.items}}
-        <option {{#equals ../year.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
-      {{/each}}
-    </select>
-  </div>
+    <div class="form-field-control">
+      <select
+        class="form-input form-select form-date-year"
+        id="date-year-{{id}}"
+        name="{{year.name}}"
+        aria-required="{{required}}">
+        <option disabled>{{lang 'forms.date.year'}}</option>
+        {{#each year.items}}
+          <option {{#equals ../year.value value}}selected{{/equals}} value="{{value}}">{{label}}</option>
+        {{/each}}
+      </select>
+
+      <select
+        class="form-input form-select form-date-month"
+        id="date-month-{{id}}"
+        name="{{month.name}}"
+        aria-required="{{required}}">
+        <option disabled>{{lang 'forms.date.month'}}</option>
+        {{#each month.items}}
+          <option {{#equals ../month.value value}}selected{{/equals}} value="{{value}}">{{label}}</option>
+        {{/each}}
+      </select>
+
+      <select
+        class="form-input form-select form-date-day"
+        id="date-day-{{id}}"
+        name="{{day.name}}"
+        aria-required="{{required}}">
+        <option disabled>{{lang 'forms.date.day'}}</option>
+        {{#each day.items}}
+          <option {{#equals ../day.value value}}selected{{/equals}} value="{{value}}">{{label}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+  </label>
 </div>

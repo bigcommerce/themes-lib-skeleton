@@ -126,11 +126,11 @@
         "heading": "Update Address"
       },
       "submit_value": "Save Address"
+    },
+    "date": {
+      "day": "Day",
+      "month": "Month",
+      "year": "Year"
     }
-  },
-  "date": {
-    "day": "Day",
-    "month": "Month",
-    "year": "Year"
   }
 }

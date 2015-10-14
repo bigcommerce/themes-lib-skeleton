@@ -1,16 +1,43 @@
 
-<div>
+<div class="form-field form-field-selectortext {{#if required}} form-required{{/if}}" id="{{id}}">
   <noscript>
-    <input type="text" name="{{name}}" value="{{value}}" class="{{class}}" aria-required="{{required}}" {{#if style}}style="{{style}}" {{/if}} />
+    <label class="form-label">
+      <div class="form-field-title">
+        {{label}}
+        {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
+      </div>
+      <div class="form-field-control">
+        <input
+          class="form-input"
+          id="input-{{id}}"
+          name="{{name}}"
+          type="text"
+          value="{{value}}"
+          aria-required="{{required}}">
+      </div>
+    </label>
   </noscript>
 
-  <label for="{{id}}">{{label}}</label>
-  <select name="{{name}}" class="{{class}}" aria-required="{{required}}" id="{{id}}" {{#if style}}style="{{style}}" {{/if}}>
-    {{#if options}}
-      <option value="">{{chooseprefix}}</option>
-      {{#each options}}
-        <option {{#equals ../options.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
-      {{/each}}
-    {{/if}}
-  </select>
+  <label class="form-label">
+    <div class="form-field-title">
+      {{label}}
+      {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
+    </div>
+    <div class="form-field-control">
+      <select
+        class="form-input form-select"
+        id="select-{{id}}"
+        name="{{name}}"
+        aria-required="{{required}}"
+        data-label="{{label}}"
+        {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>
+        {{#if options}}
+          <option value="">{{chooseprefix}}</option>
+          {{#each options}}
+            <option {{#if selected}} selected {{/if}}value="{{value}}">{{label}}</option>
+          {{/each}}
+        {{/if}}
+      </select>
+    </div>
+  </label>
 </div>

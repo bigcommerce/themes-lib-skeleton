@@ -1,5 +1,19 @@
 
-<div>
-  <label for="{{id}}">{{label}}</label>
-  <textarea name="{{name}}" id="{{id}}" rows="{{rows}}" aria-required="{{required}}" class="{{class}}" {{#if style}}style="{{style}}" {{/if}}>{{value}}</textarea>
+<div class="form-field form-field-multiline {{#if required}} form-required{{/if}}" id="{{id}}">
+  <label class="form-label">
+    <div class="form-field-title">
+      {{label}}
+      {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
+    </div>
+    <div class="form-field-control">
+      <textarea
+        class="form-input"
+        id="textarea-{{id}}"
+        name="{{name}}"
+        rows="{{rows}}"
+        {{#if style}}style="{{style}}"{{/if}}>
+        {{value}}
+      </textarea>
+    </div>
+  </label>
 </div>

@@ -1,5 +1,19 @@
 
-<div>
-  <label for="{{id}}">{{label}}</label>
-  <input type="text" id="{{id}}" name="{{name}}" {{#if value}}value="{{value}}"{{/if}} class="{{class}}" aria-required="{{required}}" {{#if style}}style="{{style}}"{{/if}}>
+<div class="form-field form-field-text {{#if required}} form-required{{/if}}" id="{{id}}">
+  <label class="form-label">
+    <div class="form-field-title">
+      {{label}}
+      {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
+    </div>
+    <div class="form-field-control">
+      <input class="form-input"
+        id="input-{{id}}"
+        name="{{name}}"
+        type="text"
+        placeholder="{{prefill}}"
+        {{#if value}}value="{{value}}"{{/if}}
+        {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
+        aria-required="{{required}}">
+    </div>
+  </label>
 </div>

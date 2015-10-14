@@ -1,12 +1,24 @@
 
-<div>
-  <label for="{{id}}">{{label}}</label>
-  {{#if checkboxes}}
-    {{#each checkboxes}}
-      <li>
-        <input type="checkbox" value="{{value}}" name="{{name}}" id="{{id}}" class="{{class}}" {{#if style}}style="{{style}}" {{/if}}>
-        <label class="{{class}}" for="{{label}}">{{label}}</label>
-      </li>
-    {{/each}}
-  {{/if}}
-</div>
+{{#if checkboxes}}
+  <div class="form-field form-field-checkboxes {{#if required}} form-required{{/if}}" id="{{id}}">
+    <div class="form-field-title">
+      {{label}}
+      {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
+    </div>
+
+    <div class="form-field-control">
+      {{#each checkboxes}}
+        <label class="form-label {{class}}">
+          <input
+            class="form-input form-checkbox"
+            id="checkbox-{{name}}"
+            name="{{name}}"
+            type="checkbox"
+            value="{{value}}"
+            {{#if checked}}checked{{/if}}>
+          <span class="form-field-text">{{label}}</span>
+        </label>
+      {{/each}}
+    </div>
+  </div>
+{{/if}}
