@@ -105,8 +105,8 @@
   }
 }
 
-.swatches {
-  @extend %clearfix;
+.form-field-swatch {
+  .form-field-control { @extend %clearfix; }
 
   .swatch-wrap {
     position: relative;
@@ -159,7 +159,7 @@
 // ---------------------------------------------------------------- */
 // Date Field Components
 
-.date-select-group {
+.form-field-date {
   @extend %clearfix;
 
   .form-input { float: left; }
@@ -179,7 +179,7 @@
 // ---------------------------------------------------------------- */
 // Rectangles - Form options displayed as a series of rectangles with text
 
-.form-rectangles {
+.form-field-set-rectangle {
   @extend %clearfix;
 
   .rectangle {

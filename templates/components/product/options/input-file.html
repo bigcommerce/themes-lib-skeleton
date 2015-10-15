@@ -1,10 +1,12 @@
 
-<div class="form-field {{#if required}}form-required{{/if}}">
-  <label class="form-label" for="attribute[{{id}}]">
-    <div class="form-label-title product-option-title">
+<div class="form-field form-field-input-file{{#if required}} form-required{{/if}}">
+  <label class="form-label">
+    <div class="form-field-title product-option-title">
       {{display_name}}
       {{#if required}}<span class="required">{{lang 'common.required'}}</span>{{/if}}
     </div>
-    <input class="form-input form-file" id="attribute-{{id}}" name="attribute[{{id}}]" type="file">
+    <div class="form-field-control">
+      <input class="form-input form-file" id="attribute-{{id}}" name="attribute[{{id}}]" type="file">
+    </div>
   </label>
 </div>

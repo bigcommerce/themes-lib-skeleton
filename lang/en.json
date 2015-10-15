@@ -127,6 +127,7 @@
       },
       "submit_value": "Save Address"
     },
+    "swatches_none_selected": "None Selected",
     "date": {
       "day": "Day",
       "month": "Month",
