@@ -23,6 +23,7 @@ export default class GiftCertificates {
     this.$toggle = $('[data-gift-certificate-toggle]', this.$el);
     this.$form = $('[data-gift-certificate-form]', this.$el);
     this.$input = $('[data-gift-certificate-input]', this.$form);
+    this.$certificateErrors = new FlashMessages($('[data-certificate-errors]', this.$el));
 
     this._bindEvents();
   }
@@ -49,8 +50,7 @@ export default class GiftCertificates {
     this.callbacks.willUpdate();
 
     if (! this._isValidCode(code)) {
-      // TODO: Proper error handling
-      alert(this.options.context.giftCertificateInputEmpty);
+      this.$certificateErrors.message(this.options.context.giftCertificateInputEmpty, 'error');
       return this.callbacks.didUpdate();
     }
 
@@ -58,8 +58,7 @@ export default class GiftCertificates {
       if (response.data.status === 'success') {
         refreshContent(this.callbacks.didUpdate);
       } else {
-        // TODO: Proper error handling
-        alert(response.data.errors.join('\n'));
+        this.$certificateErrors.message(response.data.errors.join('\n'), 'error');
         this.callbacks.didUpdate();
       }
     });

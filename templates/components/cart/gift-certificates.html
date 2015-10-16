@@ -10,7 +10,7 @@
 
   <div>
     <span>{{lang 'cart.gift_certificates.gift_certificate'}}</span>
-      
+
     <button data-gift-certificate-toggle>{{lang 'cart.gift_certificates.add_code'}}</button>
 
     <form class="form" method="post" action="{{urls.cart}}" data-gift-certificate-form>
@@ -19,5 +19,6 @@
       <input class="button" type="submit" value="{{lang 'cart.gift_certificates.submit'}}">
       <input type="hidden" name="action" value="applycoupon">
     </form>
+    <div data-certificate-errors></div>
   </div>
 </div>

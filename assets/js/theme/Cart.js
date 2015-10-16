@@ -54,6 +54,7 @@ export default class Cart extends PageManager {
     this.CartUtils = new CartUtils({
       ShippingCalculator: this.ShippingCalculator,
       CouponCodes: this.CouponCodes,
+      GiftCertificates: this.GiftCertificates,
     }, {
       // callbacks: {
       //   willUpdate: () => {},

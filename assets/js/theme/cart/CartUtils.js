@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
+import FlashMessages from '../components/FlashMessages';
 import refreshContent from './refreshContent';
 import SelectWrapper from '../components/SelectWrapper';
 
@@ -65,6 +66,7 @@ export default class CartUtils {
   _updateCartItem(event) {
     const $target = $(event.currentTarget);
     const $cartItem = $target.closest('[data-cart-item]');
+    const flashMessage = new FlashMessages($cartItem);
     const itemId = $cartItem.data('item-id');
 
     this.callbacks.willUpdate();
@@ -81,8 +83,7 @@ export default class CartUtils {
           refreshContent(this.callbacks.didUpdate, remove);
         } else {
           $quantityInput.val(this.productData[itemId].oldQuantity);
-          // TODO: Setup proper error handling?
-          alert(response.data.errors.join('\n'));
+          flashMessage.message(response.data.errors.join('\n'), 'error', true);
 
           this.callbacks.didUpdate();
         }
@@ -91,7 +92,10 @@ export default class CartUtils {
   }
 
   _removeCartItem(event) {
-    const itemId = $(event.currentTarget).closest('[data-cart-item]').data('item-id');
+    const $target = $(event.currentTarget);
+    const $cartItem = $target.closest('[data-cart-item]');
+    const flashMessage = new FlashMessages($cartItem);
+    const itemId = $cartItem.data('item-id');
 
     this.callbacks.willUpdate();
 
@@ -99,8 +103,7 @@ export default class CartUtils {
       if (response.data.status === 'succeed') {
         refreshContent(this.callbacks.didUpdate, true);
       } else {
-        // TODO: Setup proper error handling?
-        alert(response.data.errors.join('\n'));
+        flashMessage.message(response.data.errors.join('\n'), 'error', true);
 
         this.callbacks.didUpdate();
       }

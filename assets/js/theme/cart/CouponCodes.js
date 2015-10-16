@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
+import FlashMessages from '../components/FlashMessages';
 import refreshContent from './refreshContent';
 
 export default class CouponCodes {
@@ -23,6 +24,7 @@ export default class CouponCodes {
     this.$toggle = $('[data-coupon-code-toggle]', this.$el);
     this.$form = $('[data-coupon-code-form]', this.$el);
     this.$input = $('[data-coupon-code-input]', this.$form);
+    this.$couponErrors = new FlashMessages($('[data-coupon-errors]', this.$el));
 
     this._bindEvents();
   }
@@ -46,11 +48,11 @@ export default class CouponCodes {
   _addCode() {
     const code = this.$input.val();
 
+    this.$couponErrors.clear();
     this.callbacks.willUpdate();
 
     if (!code) {
-      // TODO: Proper error handling
-      alert(this.options.context.couponCodeEmptyInput);
+      this.$couponErrors.message(this.options.context.couponCodeEmptyInput, 'error');
       return this.callbacks.didUpdate();
     }
 
@@ -58,8 +60,7 @@ export default class CouponCodes {
       if (response.data.status === 'success') {
         refreshContent(this.callbacks.didUpdate);
       } else {
-        // TODO: Proper error handling
-        alert(response.data.errors.join('\n'));
+        this.$couponErrors.message(response.data.errors.join('\n'), 'error');
         this.callbacks.didUpdate();
       }
     });
