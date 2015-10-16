@@ -57,7 +57,7 @@
     {{#if product.options}}
       <div data-product-option-change>
         {{#each product.options}}
-          {{{dynamicComponent 'components/product/options'}}}
+          {{{dynamicComponent 'core/forms/options'}}}
         {{/each}}
       </div>
     {{/if}}
@@ -65,7 +65,7 @@
     {{#if product.customizations}}
       <div data-product-option-change>
         {{#each product.customizations}}
-          {{{dynamicComponent 'components/product/customizations'}}}
+          {{{dynamicComponent 'core/forms/customizations'}}}
         {{/each}}
       </div>
     {{/if}}
