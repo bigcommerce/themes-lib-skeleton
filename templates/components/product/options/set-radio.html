@@ -1,5 +1,5 @@
 
-<div class="form-field form-field-set-radio{{#if required}} form-required{{/if}}">
+<div class="form-field form-field-options form-field-set-radio{{#if required}} form-required{{/if}}">
   <div class="form-field-title product-option-title">
     {{display_name}}
     {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
@@ -14,7 +14,7 @@
             type="radio"
             value="{{id}}"
             {{#if selected}}checked{{/if}}>
-          <span class="form-field-text product-option-text">{{label}}</span>
+          <span class="form-field-text">{{label}}</span>
         </label>
       </div>
     {{/each}}

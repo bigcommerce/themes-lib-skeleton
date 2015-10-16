@@ -1,6 +1,6 @@
 
-<div class="form-field form-field-product-list{{#if required }} form-required{{/if}}">
-  <label class="form-label product-option-title">
+<div class="form-field form-field-options form-field-product-list{{#if required }} form-required{{/if}}">
+  <label class="form-label">
     {{display_name}}
   </label>
 
@@ -17,7 +17,7 @@
               value="{{id}}"
               {{#if selected}}checked{{/if}}
               {{#if ../required}}required{{/if}}>
-            <span class="form-field-text product-option-text">{{label}}</span>
+            <span class="form-field-text">{{label}}</span>
           </label>
         {{/each}}
         <label class="form-label form-radio">
@@ -26,7 +26,7 @@
             name="attribute[{{id}}]"
             type="radio" value="0"
             {{#if defaultValue '==' 0}}checked{{/if}}>
-          <span class="form-field-text product-option-text">{{lang 'product.none'}}</span>
+          <span class="form-field-text">{{lang 'product.none'}}</span>
         </label>
       </div>
     {{else}}
@@ -43,7 +43,7 @@
               <div class="product-picklist-image-wrap">
                 <img class="product-picklist-image" src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
               </div>
-              <span class="product-picklist-label-text form-field-text product-option-text">{{label}}</span>
+              <span class="product-picklist-label-text form-field-text">{{label}}</span>
             </label>
           </li>
         {{/each}}
@@ -55,7 +55,7 @@
               type="radio"
               value="0"
               {{#if defaultValue '==' 0}}checked{{/if}}>
-            <span class="product-picklist-label-text form-field-text product-option-text">{{lang 'product.none'}}</span>
+            <span class="product-picklist-label-text form-field-text">{{lang 'product.none'}}</span>
           </label>
         </li>
       </ul>

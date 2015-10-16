@@ -1,6 +1,6 @@
 
-<div class="form-field form-field-input-checkbox{{#if required}} form-required{{/if}}">
-  <div class="form-field-title product-option-title">
+<div class="form-field form-field-options form-field-input-checkbox{{#if required}} form-required{{/if}}">
+  <div class="form-field-title">
     {{display_name}}
     {{#if required}}<span class="required">{{lang 'common.required'}}</span>{{/if}}
   </div>
@@ -14,7 +14,7 @@
         value="{{value}}"
         {{#if checked}}checked{{/if}}
         {{#if required}}form-required{{/if}}>
-      <span class="form-field-text product-option-text">{{label}}</span>
+      <span class="form-field-text">{{label}}</span>
     </label>
   </div>
 </div>

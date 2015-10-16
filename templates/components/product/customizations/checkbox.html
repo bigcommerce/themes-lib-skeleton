@@ -1,8 +1,15 @@
-<div class="form-field form-inline {{#if required}}required{{/if}}">
-  <label class="form-label" for="product-field-{{id}}">
-    <input class="form-input input-checkbox" id="product-field-{{id}}" name="ProductFields[{{this.id}}]" type="checkbox" value="{{value}}" {{#if checked}}checked{{/if}}>
-    <div class="form-label-text product-option-title">
-      {{display_name}}
+
+<div class="form-field form-field-customizations form-field form-field-customizations form-field-checkbox{{#if required}} form-required{{/if}}">
+  <label class="form-label">
+    <div class="form-field-control">
+      <input class="form-input input-checkbox"
+        id="product-field-{{id}}"
+        name="ProductFields[{{this.id}}]"
+        type="checkbox"
+        value="{{value}}"
+        {{#if checked}}checked{{/if}}
+        {{#if required}}form-required{{/if}}>
+      <span class="form-field-text product-customization-text">{{display_name}}</span>
     </div>
   </label>
 </div>
