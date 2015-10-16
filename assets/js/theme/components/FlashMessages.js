@@ -3,7 +3,7 @@ import _ from 'lodash';
 import trend from 'jquery-trend';
 
 export default class FlashMessages {
-  constructor($el, options) {
+  constructor($el, options = {}) {
 
     this.$el = $el;
     this.options = $.extend({
@@ -15,9 +15,13 @@ export default class FlashMessages {
       },
       limit: 1,
       template: {},
+      callbacks: {},
+    }, options);
+
+    this.callbacks = $.extend({
       willUpdate: () => {},
       didUpdate: () => {},
-    }, options);
+    }, options.callbacks);
 
     this._bindEvents();
   }
@@ -30,14 +34,14 @@ export default class FlashMessages {
             <a class="alert-dismiss">&times;</a>
           <% } %>
           <%= messageText %>
-        </div>`);
+        </div>
+      `);
     }
 
     // TODO: If bc-core becomes integrated into bc-skeleton then this won't be needed
-    this.$el.on('click','.alert-dismiss', (event) => {
+    this.$el.on('click', '.alert-dismiss', (event) => {
       event.preventDefault();
-      const $target = $(event.currentTarget);
-      const $alert = $target.parent('.alert');
+      const $alert = $(event.currentTarget).parent('.alert');
       this._dismissMessage($alert);
     });
 
@@ -48,7 +52,6 @@ export default class FlashMessages {
 
   /**
    * This method can be used to reset the contents of this.$el
-   * @private
    */
   clear() {
     this.$el.find(`.${this.options.classes.base}`).each((index, target) => {
@@ -61,7 +64,7 @@ export default class FlashMessages {
    * @param $alert
    * @private
    */
-  _dismissMessage($alert){
+  _dismissMessage($alert) {
     $alert.one('trend', () => {
       $alert.remove();
     });
@@ -78,7 +81,7 @@ export default class FlashMessages {
       this._dismissMessage(this.$el.find(`.${this.options.classes.base}:not(.dismissed)`).eq(0));
     }
 
-    this.options.didUpdate($alert, this.$el);
+    this.callbacks.didUpdate($alert, this.$el);
   }
 
   /**
@@ -87,13 +90,13 @@ export default class FlashMessages {
    * @param type
    * @param dismissable
    */
-  message(text, type, dismissable) {
-    this.options.willUpdate(this.$el);
+  message(text, type = 'info', dismissable = false) {
+    this.callbacks.willUpdate(this.$el);
 
     const message = {
       messageType: this.options.classes[type],
       messageText: text,
-      isDismissable: (dismissable ? true : false),
+      isDismissable: dismissable,
     };
 
     const $alert = this.$el.append(this.options.template(message));

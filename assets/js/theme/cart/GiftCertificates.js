@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
+import FlashMessages from '../components/FlashMessages';
 import refreshContent from './refreshContent';
 
 export default class GiftCertificates {
@@ -23,7 +24,7 @@ export default class GiftCertificates {
     this.$toggle = $('[data-gift-certificate-toggle]', this.$el);
     this.$form = $('[data-gift-certificate-form]', this.$el);
     this.$input = $('[data-gift-certificate-input]', this.$form);
-    this.$certificateErrors = new FlashMessages($('[data-certificate-errors]', this.$el));
+    this.$certificateErrors = new FlashMessages($('[data-gift-certificate-errors]', this.$el));
 
     this._bindEvents();
   }
