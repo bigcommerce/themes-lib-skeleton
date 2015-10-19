@@ -8,6 +8,7 @@ export default class CartUtils {
   constructor(modules, options) {
     this.modules = modules;
     this.$cartContent = $('[data-cart-content]');
+    this.flashMessage = new FlashMessages($('[data-cart-errors]', this.$cartContent));
     this.productData = {};
 
     this.callbacks = $.extend({
@@ -66,7 +67,6 @@ export default class CartUtils {
   _updateCartItem(event) {
     const $target = $(event.currentTarget);
     const $cartItem = $target.closest('[data-cart-item]');
-    const flashMessage = new FlashMessages($cartItem);
     const itemId = $cartItem.data('item-id');
 
     this.callbacks.willUpdate();
@@ -83,7 +83,7 @@ export default class CartUtils {
           refreshContent(this.callbacks.didUpdate, remove);
         } else {
           $quantityInput.val(this.productData[itemId].oldQuantity);
-          flashMessage.message(response.data.errors.join('\n'), 'error', true);
+          this.flashMessage.message(response.data.errors.join('\n'), 'error', true);
 
           this.callbacks.didUpdate();
         }
@@ -92,10 +92,7 @@ export default class CartUtils {
   }
 
   _removeCartItem(event) {
-    const $target = $(event.currentTarget);
-    const $cartItem = $target.closest('[data-cart-item]');
-    const flashMessage = new FlashMessages($cartItem);
-    const itemId = $cartItem.data('item-id');
+    const itemId = $(event.currentTarget).closest('[data-cart-item]').data('item-id');
 
     this.callbacks.willUpdate();
 
@@ -103,7 +100,7 @@ export default class CartUtils {
       if (response.data.status === 'succeed') {
         refreshContent(this.callbacks.didUpdate, true);
       } else {
-        flashMessage.message(response.data.errors.join('\n'), 'error', true);
+        this.flashMessage.message(response.data.errors.join('\n'), 'error', true);
 
         this.callbacks.didUpdate();
       }

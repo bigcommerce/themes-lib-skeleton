@@ -3,6 +3,8 @@
     {{!> components/cart/item-gift-wrap}}
 -->
 
+<div data-cart-errors></div>
+
 {{#each cart.items}}
   <article data-cart-item data-item-id="{{id}}">
     <span>{{lang 'cart.quantity'}}:</span>
