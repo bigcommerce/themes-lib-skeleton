@@ -33,7 +33,9 @@ export default class FlashMessages {
           <% if (isDismissable) { %>
             <a class="alert-dismiss">&times;</a>
           <% } %>
-          <%= messageText %>
+          <div class="alert-message">
+            <%= messageText %>
+          </div>
         </div>
       `);
     }
