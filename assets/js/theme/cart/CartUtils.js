@@ -83,7 +83,7 @@ export default class CartUtils {
           refreshContent(this.callbacks.didUpdate, remove);
         } else {
           $quantityInput.val(this.productData[itemId].oldQuantity);
-          this.$cartAlerts.message(response.data.errors.join('\n'), 'error', true);
+          this.$cartAlerts.error(response.data.errors.join('\n'), true);
 
           this.callbacks.didUpdate();
         }
@@ -100,7 +100,7 @@ export default class CartUtils {
       if (response.data.status === 'succeed') {
         refreshContent(this.callbacks.didUpdate, true);
       } else {
-        this.$cartAlerts.message(response.data.errors.join('\n'), 'error', true);
+        this.$cartAlerts.error(response.data.errors.join('\n'), true);
 
         this.callbacks.didUpdate();
       }

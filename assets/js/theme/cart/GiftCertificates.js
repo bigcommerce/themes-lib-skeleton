@@ -51,7 +51,7 @@ export default class GiftCertificates {
     this.callbacks.willUpdate();
 
     if (! this._isValidCode(code)) {
-      this.$certificateAlerts.message(this.options.context.giftCertificateInputEmpty, 'error');
+      this.$certificateAlerts.error(this.options.context.giftCertificateInputEmpty);
       return this.callbacks.didUpdate();
     }
 
@@ -59,7 +59,7 @@ export default class GiftCertificates {
       if (response.data.status === 'success') {
         refreshContent(this.callbacks.didUpdate);
       } else {
-        this.$certificateAlerts.message(response.data.errors.join('\n'), 'error');
+        this.$certificateAlerts.error(response.data.errors.join('\n'));
         this.callbacks.didUpdate();
       }
     });

@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import PageManager from '../PageManager';
-import FlashMessages from './components/FlashMessages';
+import Alert from './components/Alert';
 import ProductUtils from './product/ProductUtils';
 import QuantityWidget from './components/QuantityWidget';
 import ProductReviews from './product/reviews';
@@ -15,7 +15,7 @@ export default class Product extends PageManager {
   }
 
   loaded() {
-    this.flashMessages = new FlashMessages($('[data-product-message]'));
+    this.alert = new Alert($('[data-product-message]'));
     this.quantityControl = new QuantityWidget({scope: '[data-cart-item-add]'});
 
     new ProductReviews(this.context);
@@ -84,7 +84,7 @@ export default class Product extends PageManager {
                   .replace('*checkout_link*', `<a href=${this.context.urlsCheckout}>${this.context.checkoutLink}</a>`);
     }
 
-    this.flashMessages.message(message, (isError ? 'error' : 'success'));
+    this.alert.message(message, (isError ? 'error' : 'success'));
     this.$el.find('[data-product-add] .spinner').removeClass('visible');
   }
 }

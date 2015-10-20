@@ -52,7 +52,7 @@ export default class CouponCodes {
     this.callbacks.willUpdate();
 
     if (!code) {
-      this.$couponAlerts.message(this.options.context.couponCodeEmptyInput, 'error');
+      this.$couponAlerts.error(this.options.context.couponCodeEmptyInput);
       return this.callbacks.didUpdate();
     }
 
@@ -60,7 +60,7 @@ export default class CouponCodes {
       if (response.data.status === 'success') {
         refreshContent(this.callbacks.didUpdate);
       } else {
-        this.$couponAlerts.message(response.data.errors.join('\n'), 'error');
+        this.$couponAlerts.error(response.data.errors.join('\n'));
         this.callbacks.didUpdate();
       }
     });

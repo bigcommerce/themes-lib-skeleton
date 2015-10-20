@@ -81,7 +81,7 @@ export default class ShippingCalculator {
         this.$shippingAlerts.clear();
         this.$shippingQuotes.html(response.content);
       } else {
-        this.$shippingAlerts.message(response.data.errors.join('\n'), 'error');
+        this.$shippingAlerts.error(response.data.errors.join('\n'));
       }
 
       this.callbacks.didUpdate();
