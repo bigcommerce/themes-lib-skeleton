@@ -87,6 +87,33 @@ export default class Alert {
   }
 
   /**
+   * Explicit usage to create an error alert
+   * @param text
+   * @param dismissable
+   */
+  error(text, dismissable = false){
+    this.message(text, 'error', dismissable);
+  }
+
+  /**
+   * Explicit usage to create a success alert
+   * @param text
+   * @param dismissable
+   */
+  success(text, dismissable = false){
+    this.message(text, 'success', dismissable);
+  }
+
+  /**
+   * Explicit usage to create an informational alert
+   * @param text
+   * @param dismissable
+   */
+  info(text, dismissable = false){
+    this.message(text, 'info', dismissable);
+  }
+
+  /**
    *
    * @param text
    * @param type
