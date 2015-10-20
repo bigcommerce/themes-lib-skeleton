@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import trend from 'jquery-trend';
 
-export default class FlashMessages {
+export default class Alert {
   constructor($el, options = {}) {
 
     this.$el = $el;

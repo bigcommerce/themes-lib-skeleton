@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
-import FlashMessages from '../components/FlashMessages';
+import Alert from '../components/Alert';
 import refreshContent from './refreshContent';
 
 export default class GiftCertificates {
@@ -24,7 +24,7 @@ export default class GiftCertificates {
     this.$toggle = $('[data-gift-certificate-toggle]', this.$el);
     this.$form = $('[data-gift-certificate-form]', this.$el);
     this.$input = $('[data-gift-certificate-input]', this.$form);
-    this.$certificateErrors = new FlashMessages($('[data-gift-certificate-errors]', this.$el));
+    this.$certificateAlerts = new Alert($('[data-gift-certificate-errors]', this.$el));
 
     this._bindEvents();
   }
@@ -51,7 +51,7 @@ export default class GiftCertificates {
     this.callbacks.willUpdate();
 
     if (! this._isValidCode(code)) {
-      this.$certificateErrors.message(this.options.context.giftCertificateInputEmpty, 'error');
+      this.$certificateAlerts.message(this.options.context.giftCertificateInputEmpty, 'error');
       return this.callbacks.didUpdate();
     }
 
@@ -59,7 +59,7 @@ export default class GiftCertificates {
       if (response.data.status === 'success') {
         refreshContent(this.callbacks.didUpdate);
       } else {
-        this.$certificateErrors.message(response.data.errors.join('\n'), 'error');
+        this.$certificateAlerts.message(response.data.errors.join('\n'), 'error');
         this.callbacks.didUpdate();
       }
     });

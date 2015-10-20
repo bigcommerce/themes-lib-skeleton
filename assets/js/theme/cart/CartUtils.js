@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
-import FlashMessages from '../components/FlashMessages';
+import Alert from '../components/Alert';
 import refreshContent from './refreshContent';
 import SelectWrapper from '../components/SelectWrapper';
 
@@ -8,7 +8,7 @@ export default class CartUtils {
   constructor(modules, options) {
     this.modules = modules;
     this.$cartContent = $('[data-cart-content]');
-    this.flashMessage = new FlashMessages($('[data-cart-errors]', this.$cartContent));
+    this.$cartAlerts = new Alert($('[data-cart-errors]', this.$cartContent));
     this.productData = {};
 
     this.callbacks = $.extend({
@@ -83,7 +83,7 @@ export default class CartUtils {
           refreshContent(this.callbacks.didUpdate, remove);
         } else {
           $quantityInput.val(this.productData[itemId].oldQuantity);
-          this.flashMessage.message(response.data.errors.join('\n'), 'error', true);
+          this.$cartAlerts.message(response.data.errors.join('\n'), 'error', true);
 
           this.callbacks.didUpdate();
         }
@@ -100,7 +100,7 @@ export default class CartUtils {
       if (response.data.status === 'succeed') {
         refreshContent(this.callbacks.didUpdate, true);
       } else {
-        this.flashMessage.message(response.data.errors.join('\n'), 'error', true);
+        this.$cartAlerts.message(response.data.errors.join('\n'), 'error', true);
 
         this.callbacks.didUpdate();
       }

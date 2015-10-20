@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
-import FlashMessages from '../components/FlashMessages';
+import Alert from '../components/Alert';
 import refreshContent from './refreshContent';
 
 export default class ShippingCalculator {
@@ -23,7 +23,7 @@ export default class ShippingCalculator {
     this.$calculator = $('[data-shipping-calculator]');
     this.$calculatorForm = this.$calculator.children('form');
     this.$shippingQuotes = $('[data-shipping-quotes]');
-    this.$shippingErrors = new FlashMessages($('[data-shipping-errors]'));
+    this.$shippingAlerts = new Alert($('[data-shipping-errors]'));
 
     this._bindEvents();
   }
@@ -78,10 +78,10 @@ export default class ShippingCalculator {
 
     utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {
       if (response.data.quotes) {
-        this.$shippingErrors.clear();
+        this.$shippingAlerts.clear();
         this.$shippingQuotes.html(response.content);
       } else {
-        this.$shippingErrors.message(response.data.errors.join('\n'), 'error');
+        this.$shippingAlerts.message(response.data.errors.join('\n'), 'error');
       }
 
       this.callbacks.didUpdate();
