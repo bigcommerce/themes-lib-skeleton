@@ -32,9 +32,9 @@
   font-size: 14px;
   line-height: 1.6;
   color: $input-color;
+  cursor: pointer;
   background-color: $input-background-color;
   border: 1px solid $input-border-color;
-  cursor: pointer;
 
   &:after {
     position: absolute;
@@ -84,7 +84,7 @@
 .product-option-text {}
 .form-option-text {}
 
-// inline input types
+// inline inputs
 .form-field-product-list,
 .form-field-checkbox,
 .form-field-radio {
@@ -205,8 +205,8 @@
     line-height: 1;
     text-align: center;
     border: {
-      width: 1px;
       style: solid;
+      width: 1px;
     }
   }
 
@@ -221,4 +221,57 @@
     // Selected Item
     &:checked + .rectangle-text {}
   }
+}
+
+
+// ---------------------------------------------------------------- */
+// Pick-Product
+
+.product-picklist-item {
+  position: relative;
+  display: block;
+}
+
+.product-picklist-radio {
+  position: absolute;
+  top: 50%;
+  margin-top: -7px;
+  line-height: 14px;
+}
+
+.product-picklist-item-body {
+  position: relative;
+  display: table;
+  width: 100%;
+  min-height: 60px;
+  padding: 6px 8px 6px 84px;
+  cursor: pointer;
+
+  &.picklist-none { padding-left: 36px; }
+
+  &:hover {
+    z-index: 1;
+  }
+
+  [type="radio"]:checked ~ & {
+    z-index: 2;
+  }
+}
+
+.product-picklist-image-wrap {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 34px;
+  width: 40px;
+  overflow: hidden;
+}
+
+.product-picklist-image {}
+
+.product-picklist-label-text {
+  display: table-cell;
+  line-height: 1.4;
+  color: inherit;
+  vertical-align: middle;
 }
