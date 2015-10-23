@@ -1,15 +1,11 @@
-/* Forms */
-
 .form-input {
   display: block;
   color: $input-color;
   background: $input-background-color;
   border-color: $input-border-color;
-  border-radius: 0;
-  transition: border-color 0.2s $ease-out-quad;
 
   &::placeholder {
-    color: lighten($input-color,20%);
+    color: lighten($input-color, 20%);
   }
 
   &:focus {
@@ -17,19 +13,15 @@
   }
 }
 
-/* Form errors */
+// -------------------------- Form Errors -------------------------- //
+// Default error classes, as dictated by validetta.js
 
-.form-error {
-  color: $error-color;
-  border: 1px solid $error-color;
+.form-inline-message {
+  display: block;
 
-  &::placeholder {
-    color: lighten($error-color,30%);
+  .form-field-invalid & {
+    color: #c00;
   }
-}
-
-.form-error-message {
-  color: $error-color;
 }
 
 // ---------------------------------------------------------------- //
@@ -37,22 +29,22 @@
 
 .form-select-wrapper {
   position: relative;
-  background-color: $input-background-color;
-  border: 1px solid $input-border-color;
-  color: $input-color;
   font-size: 14px;
   line-height: 1.6;
+  color: $input-color;
+  background-color: $input-background-color;
+  border: 1px solid $input-border-color;
   cursor: pointer;
 
   &:after {
-    content: "";
     position: absolute;
-    right: 0;
     top: 50%;
+    right: 0;
     margin-top: -1px;
     border-top: 3px solid $input-border-color;
-    border-left: 3px solid transparent;
     border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
+    content: "";
   }
 
   select {
@@ -62,10 +54,10 @@
     bottom: 0;
     left: 0;
     z-index: 2;
-    width: 100%; /* needed for Firefox */
-    height: 100%; /* needed for IE */
-    opacity: 0;
+    width: 100%; // needed for Firefox
+    height: 100%; // needed for IE
     cursor: pointer;
+    opacity: 0;
     appearance: none;
   }
 }
@@ -80,7 +72,10 @@
 .form-label {}
 
 // Applied to labels that are used as option titles
-.form-label-title {}
+.form-label-title {
+  display: block;
+}
+
 .product-option-title {}
 .form-option-title {}
 
@@ -88,6 +83,19 @@
 .form-label-text {}
 .product-option-text {}
 .form-option-text {}
+
+// inline input types
+.form-field-product-list,
+.form-field-checkbox,
+.form-field-radio {
+  .form-field-control {
+    display: inline-block;
+  }
+
+  .form-input {
+    display: inline-block;
+  }
+}
 
 // Required form element display 'required' text next title
 .required-text {}
@@ -101,7 +109,6 @@
 
   em {
     font-style: normal;
-    color: lighten($body-color, 50%);
   }
 }
 
@@ -110,6 +117,7 @@
 
   .swatch-wrap {
     position: relative;
+    display: block;
     float: left;
     border: 1px solid transparent;
   }
@@ -117,6 +125,7 @@
   // The block that the swatch sits within.
   .swatch {
     position: relative;
+    display: block;
     width: 40px;
     height: 40px;
     padding: 2px;
@@ -196,13 +205,12 @@
     line-height: 1;
     text-align: center;
     border: {
-      size: 2px;
+      width: 1px;
       style: solid;
     }
   }
 
-  // scss-lint:disable QualifyingElement
-  input[type="radio"] {
+  .form-input {
     position: absolute;
     z-index: 1;
     width: 100%;
