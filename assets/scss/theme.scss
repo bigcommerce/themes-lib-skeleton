@@ -5,19 +5,14 @@
 // Settings
 @import "general/user-settings";
 
-// Helpers
+// Utility
 @import "general/mixins";
 @import "general/extends";
+@import "general/functions";
 
 // Modules
 @import "../jspm_packages/bitbucket/pixelunion/bc-carousel@2.1.0/scss/carousel";
 @import "../jspm_packages/bitbucket/pixelunion/bc-modal@0.0.2/scss/modal";
-
-// Module overrides
-@import "modules/carousel";
-
-// Logic
-@import "logic/cart";
 
 // General
 @import "general/fonts";
@@ -28,4 +23,5 @@
 @import "general/reviews";
 @import "general/modals";
 
-// Templates
+// Module overrides
+@import "modules/carousel";
