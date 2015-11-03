@@ -4,9 +4,7 @@ import Alert from '../components/Alert';
 import refreshContent from './refreshContent';
 
 export default class GiftCertificates {
-  constructor(el, options) {
-    this.el = el;
-
+  constructor(options) {
     this.options = $.extend({
       $scope: $('[data-cart-totals]'),
       visibleClass: 'visible',
@@ -19,7 +17,7 @@ export default class GiftCertificates {
 
     this.certificateAlerts = new Alert($('[data-gift-certificate-errors]', this.options.$scope));
 
-    this. _bindEvents();
+    this._bindEvents();
   }
 
   _bindEvents() {

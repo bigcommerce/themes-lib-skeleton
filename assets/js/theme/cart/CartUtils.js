@@ -2,22 +2,18 @@ import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
 import Alert from '../components/Alert';
 import refreshContent from './refreshContent';
-import SelectWrapper from '../components/SelectWrapper';
 
 export default class CartUtils {
-  constructor(modules, options) {
-    this.modules = modules;
+  constructor(options) {
     this.$cartContent = $('[data-cart-content]');
-    this.$cartAlerts = new Alert($('[data-cart-errors]', this.$cartContent));
+    this.cartAlerts = new Alert($('[data-cart-errors]', this.$cartContent));
     this.productData = {};
 
     this.callbacks = $.extend({
       willUpdate: () => console.log('Update requested.'),
       didUpdate: () => console.log('Update executed.'),
     }, options.callbacks);
-  }
 
-  init() {
     this._cacheInitialQuantities();
     this._bindEvents();
   }
@@ -27,8 +23,15 @@ export default class CartUtils {
       const $target = $(evt.target);
       const itemId = $target.closest('[data-quantity-control]').data('quantity-control');
 
-      this.productData[itemId].quantityAltered = true;
-      this.productData[itemId].newQuantity = parseInt($target.val(), 10);
+      const newQuantity = parseInt($target.val(), 10);
+
+      if (this.productData[itemId].oldQuantity !== newQuantity) {
+        this.productData[itemId].quantityAltered = true;
+        this.productData[itemId].newQuantity = newQuantity;
+      } else {
+        delete this.productData[itemId].newQuantity;
+        this.productData[itemId].quantityAltered = false;
+      }
     });
 
     this.$cartContent.on('click', '[data-cart-item-update]', (event) => {
@@ -39,13 +42,6 @@ export default class CartUtils {
     this.$cartContent.on('click', '[data-cart-item-remove]', (event) => {
       event.preventDefault();
       this._removeCartItem(event);
-    });
-
-    this.$cartContent.on('cart-initialize-modules', () => {
-      const $select = $('[data-shipping-calculator]').find('select');
-      $select.each((i, el) => {
-        new SelectWrapper(el);
-      });
     });
   }
 
@@ -79,7 +75,7 @@ export default class CartUtils {
           refreshContent(this.callbacks.didUpdate, remove);
         } else {
           $quantityInput.val(this.productData[itemId].oldQuantity);
-          this.$cartAlerts.error(response.data.errors.join('\n'), true);
+          this.cartAlerts.error(response.data.errors.join('\n'), true);
 
           this.callbacks.didUpdate();
         }
@@ -96,7 +92,7 @@ export default class CartUtils {
       if (response.data.status === 'succeed') {
         refreshContent(this.callbacks.didUpdate, true);
       } else {
-        this.$cartAlerts.error(response.data.errors.join('\n'), true);
+        this.cartAlerts.error(response.data.errors.join('\n'), true);
 
         this.callbacks.didUpdate();
       }

@@ -5,7 +5,6 @@ import refreshContent from './refreshContent';
 
 export default class CouponCodes {
   constructor(options) {
-
     this.options = $.extend({
       $scope: $('[data-cart-totals]'),
       visibleClass: 'visible',

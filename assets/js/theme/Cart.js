@@ -25,7 +25,7 @@ export default class Cart extends PageManager {
     const cartContentOverlay = new Loading(loadingOptions, true, '[data-cart-content]');
     const cartTotalsOverlay = new Loading(loadingOptions, true, '[data-cart-totals]');
 
-    this.ShippingCalculator = new ShippingCalculator('[data-shipping-calculator]', {
+    this.ShippingCalculator = new ShippingCalculator({
       visibleClass: 'visible',
       // callbacks: {
       //   willUpdate: () => {},
@@ -33,7 +33,7 @@ export default class Cart extends PageManager {
       // },
     });
 
-    this.CouponCodes = new CouponCodes('[data-coupon-codes]', {
+    this.CouponCodes = new CouponCodes({
       context,
       visibleClass: 'visible',
       // callbacks: {
@@ -42,7 +42,7 @@ export default class Cart extends PageManager {
       // },
     });
 
-    this.GiftCertificates = new GiftCertificates('[data-gift-certificates]', {
+    this.GiftCertificates = new GiftCertificates({
       context,
       visibleClass: 'visible',
       // callbacks: {
@@ -52,15 +52,11 @@ export default class Cart extends PageManager {
     });
 
     this.CartUtils = new CartUtils({
-      ShippingCalculator: this.ShippingCalculator,
-      CouponCodes: this.CouponCodes,
-      GiftCertificates: this.GiftCertificates,
-    }, {
       // callbacks: {
       //   willUpdate: () => {},
       //   didUpdate: () => {},
       // },
-    }).init();
+    });
 
     next();
   }

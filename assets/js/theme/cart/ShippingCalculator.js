@@ -5,9 +5,7 @@ import refreshContent from './refreshContent';
 import SelectWrapper from '../components/SelectWrapper';
 
 export default class ShippingCalculator {
-  constructor(el, options) {
-    this.$el = $(el);
-
+  constructor(options = {}) {
     this.options = $.extend({
       $scope: $('[data-cart-totals]'),
       visibleClass: 'visible',
