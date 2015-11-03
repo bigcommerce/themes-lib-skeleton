@@ -5,10 +5,10 @@ import refreshContent from './refreshContent';
 
 export default class GiftCertificates {
   constructor(el, options) {
-    this.$el = $(el);
+    this.el = el;
 
     this.options = $.extend({
-      context: {},
+      $scope: $('[data-cart-totals]'),
       visibleClass: 'visible',
     }, options);
 
@@ -17,41 +17,35 @@ export default class GiftCertificates {
       didUpdate: () => console.log('Update executed.'),
     }, options.callbacks);
 
-    this.init();
-  }
+    this.certificateAlerts = new Alert($('[data-gift-certificate-errors]', this.options.$scope));
 
-  init() {
-    this.$toggle = $('[data-gift-certificate-toggle]', this.$el);
-    this.$form = $('[data-gift-certificate-form]', this.$el);
-    this.$input = $('[data-gift-certificate-input]', this.$form);
-    this.$certificateAlerts = new Alert($('[data-gift-certificate-errors]', this.$el));
-
-    this._bindEvents();
+    this. _bindEvents();
   }
 
   _bindEvents() {
-    this.$toggle.on('click', (event) => {
+    this.options.$scope.on('click', '[data-gift-certificate-toggle]', (event) => {
       event.preventDefault();
       this._toggle();
     });
 
-    this.$form.on('submit', (event) => {
+    this.options.$scope.on('submit', '[data-gift-certificate-form]', (event) => {
       event.preventDefault();
       this._addCode();
     });
   }
 
   _toggle() {
-    this.$form.toggleClass(this.options.visibleClass);
+    $('[data-gift-certificate-form]', this.options.$scope).toggleClass(this.options.visibleClass);
   }
 
   _addCode() {
-    const code = this.$input.val();
+    const $input = $('[data-gift-certificate-input]', this.options.$scope);
+    const code = $input.val();
 
     this.callbacks.willUpdate();
 
     if (! this._isValidCode(code)) {
-      this.$certificateAlerts.error(this.options.context.giftCertificateInputEmpty);
+      this.certificateAlerts.error(this.options.context.giftCertificateInputEmpty);
       return this.callbacks.didUpdate();
     }
 
@@ -59,14 +53,13 @@ export default class GiftCertificates {
       if (response.data.status === 'success') {
         refreshContent(this.callbacks.didUpdate);
       } else {
-        this.$certificateAlerts.error(response.data.errors.join('\n'));
+        this.certificateAlerts.error(response.data.errors.join('\n'));
         this.callbacks.didUpdate();
       }
     });
   }
 
   _isValidCode(code) {
-    console.log(typeof code);
     if (typeof code !== 'string') {
       return false;
     }
