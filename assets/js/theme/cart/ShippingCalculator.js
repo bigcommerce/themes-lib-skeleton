@@ -2,12 +2,14 @@ import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
 import Alert from '../components/Alert';
 import refreshContent from './refreshContent';
+import SelectWrapper from '../components/SelectWrapper';
 
 export default class ShippingCalculator {
   constructor(el, options) {
     this.$el = $(el);
 
     this.options = $.extend({
+      $scope: $('[data-cart-totals]'),
       visibleClass: 'visible',
     }, options);
 
@@ -16,36 +18,29 @@ export default class ShippingCalculator {
       didUpdate: () => console.log('Update executed.'),
     }, options.callbacks);
 
-    this.init();
-  }
-
-  init() {
-    this.$calculator = $('[data-shipping-calculator]');
-    this.$calculatorForm = this.$calculator.children('form');
-    this.$shippingQuotes = $('[data-shipping-quotes]');
-    this.$shippingAlerts = new Alert($('[data-shipping-errors]'));
+    this.shippingAlerts = new Alert($('[data-shipping-errors]'));
 
     this._bindEvents();
   }
 
   _bindEvents() {
-    $('[data-shipping-calculator-toggle]').on('click', (event) => {
+    $('[data-shipping-calculator-toggle]', this.options.$scope).on('click', (event) => {
       event.preventDefault();
       this._toggle();
     });
 
-    this.$calculatorForm.on('submit', (event) => {
+    this.options.$scope.on('submit', '[data-shipping-calculator] form', (event) => {
       event.preventDefault();
       this._calculateShipping();
     });
 
-    this.$calculatorForm.find('select[name="shipping-country"]').on('change', (event) => {
+    this.options.$scope.on('change', 'select[name="shipping-country"]', (event) => {
       this._updateStates(event);
     });
   }
 
   _toggle() {
-    this.$calculator.toggleClass(this.options.visibleClass);
+    $('[data-shipping-calculator]', this.options.$scope).toggleClass(this.options.visibleClass);
   }
 
   _updateStates(event) {
@@ -70,24 +65,25 @@ export default class ShippingCalculator {
   _calculateShipping() {
     this.callbacks.willUpdate();
 
-    let params = {
-      country_id: $('[name="shipping-country"]', this.$calculatorForm).val(),
-      state_id: $('[name="shipping-state"]', this.$calculatorForm).val(),
-      zip_code: $('[name="shipping-zip"]', this.$calculatorForm).val()
+    const params = {
+      country_id: $('[name="shipping-country"]', this.options.$scope).val(),
+      state_id: $('[name="shipping-state"]', this.options.$scope).val(),
+      zip_code: $('[name="shipping-zip"]', this.options.$scope).val(),
     };
 
     utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {
+      const $shippingQuotes = $('[data-shipping-quotes]', this.options.$scope);
       if (response.data.quotes) {
-        this.$shippingAlerts.clear();
-        this.$shippingQuotes.html(response.content);
+        this.shippingAlerts.clear();
+        $shippingQuotes.html(response.content);
       } else {
-        this.$shippingAlerts.error(response.data.errors.join('\n'));
+        this.shippingAlerts.error(response.data.errors.join('\n'));
       }
 
       this.callbacks.didUpdate();
 
       // bind the select button
-      this.$shippingQuotes.find('.button').on('click', (event) => {
+      $shippingQuotes.find('.button').on('click', (event) => {
         event.preventDefault();
 
         this.callbacks.willUpdate();

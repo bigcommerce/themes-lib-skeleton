@@ -42,8 +42,6 @@ export default class CartUtils {
     });
 
     this.$cartContent.on('cart-initialize-modules', () => {
-      this.modules.ShippingCalculator.init();
-
       const $select = $('[data-shipping-calculator]').find('select');
       $select.each((i, el) => {
         new SelectWrapper(el);
