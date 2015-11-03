@@ -12,6 +12,8 @@
     <div class="review-form-column">
       <h2 class="review-form-heading">{{lang 'product.reviews.write_review'}}</h2>
       <form class="form" id="form-leave-a-review" action="{{urls.product.post_review}}" method="post">
+        <input type="hidden" name="product_id" value="{{product.id}}">
+        <input type="hidden" name="action" value="post_review">
 
         {{!-- Clickable Stars --}}
         <div class="form-field">
@@ -58,39 +60,16 @@
         </div>
 
         {{!-- Name --}}
-        <div class="form-field">
-          <label class="form-label" for="rating-name">
-            <div class="form-label-text">{{lang 'product.reviews.form.name'}}</div>
-            <input id="rating-name" class="form-input" type="text" placeholder="{{lang 'product.reviews.form.your_name'}}" name="revfromname" required>
-          </label>
-        </div>
+        {{> core/forms/common/text label=(lang 'product.reviews.form.name') name="revfromname" id="revfromname" required="true" prefill=(lang 'product.reviews.form.name')}}
 
         {{!-- Email --}}
-        <div class="form-field">
-          <label class="form-label" for="rating-email">
-            <div class="form-label-text">{{lang 'product.reviews.form.email'}}</div>
-            <input id="rating-email" class="form-input" type="email" name="email" placeholder="{{lang 'product.reviews.form.your_email'}}" required>
-          </label>
-        </div>
+        {{> core/forms/common/email label=(lang 'product.reviews.form.email') name="email" id="rating-email" required="true" prefill=(lang 'product.reviews.form.email')}}
 
         {{!-- Subject --}}
-        <div class="form-field">
-          <label class="form-label" for="rating-title">
-            <div class="form-label-text">{{lang 'product.reviews.form.subject'}}</div>
-            <input id="rating-title" class="form-input" type="text" placeholder="{{lang 'product.reviews.form.your_subject'}}" name="revtitle" required>
-          </label>
-        </div>
+        {{> core/forms/common/text label=(lang 'product.reviews.form.subject') name="revtitle" id="rating-title" required="true" prefill=(lang 'product.reviews.form.subject')}}
 
         {{!-- Comments --}}
-        <div class="form-field">
-          <label class="form-label" for="rating-comment">
-            <div class="form-label-text">{{lang 'product.reviews.form.comments'}}</div>
-            <textarea id="rating-comment" class="form-input" name="revtext" placeholder="{{lang 'product.reviews.form.your_comments'}}" rows="4" required></textarea>
-          </label>
-        </div>
-
-        <input type="hidden" name="product_id" value="{{product.id}}" />
-        <input type="hidden" name="action" value="post_review" />
+        {{> core/forms/common/multiline label=(lang 'product.reviews.form.comments') name="revtext" id="rating-comment" required="true" rows=6 prefill=(lang 'product.reviews.form.comments')}}
 
         <input type="submit" class="form-submit button button-primary" value="{{lang 'product.reviews.form.submit'}}">
       </form>
