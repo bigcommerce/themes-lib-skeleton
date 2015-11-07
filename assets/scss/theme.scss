@@ -6,9 +6,9 @@
 @import "general/user-settings";
 
 // Utility
-@import "general/mixins";
-@import "general/extends";
-@import "general/functions";
+@import "lib/mixins";
+@import "lib/extends";
+@import "lib/functions";
 
 // Modules
 @import "../jspm_packages/bitbucket/pixelunion/bc-carousel@2.1.0/scss/carousel";
