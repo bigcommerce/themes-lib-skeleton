@@ -5,7 +5,7 @@
          cart.item or product object
 }}
 
-<span data-quantity-control="{{id}}">
+<span class="form-field-quantity-control" data-quantity-control="{{id}}">
   <input
     class="form-input"
     type="number"
@@ -13,7 +13,7 @@
     pattern="[0-9]*"
     value="{{#if quantity}}{{quantity}}{{else}}{{#if min_purchase_quantity}}{{min_purchase_quantity}}{{else}}1{{/if}}{{/if}}"
     min="{{#if min_purchase_quantity}}{{min_purchase_quantity}}{{else}}0{{/if}}"
-    max="{{max_purchase_quantity}}"
+    {{#if max_purchase_quantity}}max="{{max_purchase_quantity}}"{{/if}}
     data-quantity-control-input
   >
   <span data-quantity-control-action="decrement">&ndash;</span>
