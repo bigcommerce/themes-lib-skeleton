@@ -1,0 +1,23 @@
+<form method="get" data-sort-by>
+  <div class="form-field form-field-product-sort form-field-select">
+    <label class="form-label">
+      <span class="form-field-title">
+        {{lang 'sorter.sort_by'}}
+      </span>
+      <span class="form-field-control">
+        <span class="form-select-wrapper">
+          <select class="form-input form-select" name="sort">
+            <option value="featured" {{#compare sort 'featured' operator='==='}}selected{{/compare}}>{{lang 'sorter.featured'}}</option>
+            <option value="newest" {{#compare sort 'newest' operator='==='}}selected{{/compare}}>{{lang 'sorter.newest'}}</option>
+            <option value="bestselling" {{#compare sort 'bestselling' operator='==='}}selected{{/compare}}>{{lang 'sorter.top_sellers'}}</option>
+            <option value="alphaasc" {{#compare sort 'alphaasc' operator='==='}}selected{{/compare}}>{{lang 'sorter.alpha_asc'}}</option>
+            <option value="alphadesc" {{#compare sort 'alphadesc' operator='==='}}selected{{/compare}}>{{lang 'sorter.alpha_desc'}}</option>
+            <option value="avgcustomerreview" {{#compare sort 'avgcustomerreview' operator='==='}}selected{{/compare}}>{{lang 'sorter.reviews'}}</option>
+            <option value="priceasc" {{#compare sort 'priceasc' operator='==='}}selected{{/compare}}>{{lang 'sorter.price_asc'}}</option>
+            <option value="pricedesc" {{#compare sort 'pricedesc' operator='==='}}selected{{/compare}}>{{lang 'sorter.price_desc'}}</option>
+          </select>
+        </span>
+      </span>
+    </label>
+  </div>
+</form>
