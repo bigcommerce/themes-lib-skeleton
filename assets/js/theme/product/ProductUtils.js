@@ -45,7 +45,7 @@ export default class ProductUtils {
       $sku: $('[data-product-sku]', $el),
       $weight: $('[data-product-weight]', $el),
       $addToCart: $('[data-button-purchase]', $el),
-    }
+    };
   }
 
   init(context) {
@@ -92,19 +92,36 @@ export default class ProductUtils {
         const viewModel = this._getViewModel(this.$el);
         const data = response ? response.data : {};
 
-        viewModel.$sku.html(data.sku);
-        viewModel.$weight.html(data.weight.formatted);
+        if (viewModel.$sku.length) {
+          viewModel.$sku.html(data.sku);
+        }
+
+        if (viewModel.$weight.length) {
+          viewModel.$weight.html(data.weight.formatted);
+        }
 
         if (viewModel.$price.length) {
-          viewModel.$price.html(this.options.priceWithoutTaxTemplate(data.price));
+          const priceStrings = {
+            price: data.price,
+            excludingTax: this.context.productExcludingTax,
+          };
+          viewModel.$price.html(this.options.priceWithoutTaxTemplate(priceStrings));
         }
 
         if (viewModel.$priceWithTax.length) {
-          viewModel.$priceWithTax.html(this.options.priceWithTaxTemplate(data.price));
+          const priceStrings = {
+            price: data.price,
+            includingTax: this.context.productIncludingTax,
+          };
+          viewModel.$priceWithTax.html(this.options.priceWithTaxTemplate(priceStrings));
         }
 
         if (viewModel.$saved.length) {
-          viewModel.$saved.html(this.options.priceSavedTemplate(data.price));
+          const priceStrings = {
+            price: data.price,
+            savedString: this.context.productYouSave,
+          };
+          viewModel.$saved.html(this.options.priceSavedTemplate(priceStrings));
         }
 
         if (data.image) {

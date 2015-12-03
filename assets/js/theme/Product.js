@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import _ from 'lodash';
 import PageManager from '../PageManager';
 import Alert from './components/Alert';
 import ProductUtils from './product/ProductUtils';
 import QuantityWidget from './components/QuantityWidget';
+import productViewTemplates from './product/productViewTemplates';
 import ProductReviews from './product/reviews';
 
 export default class Product extends PageManager {
@@ -20,44 +20,10 @@ export default class Product extends PageManager {
 
     new ProductReviews(this.context);
 
-    const priceWithoutTaxTemplate = _.template(`
-      <% if (typeof(without_tax) !== "undefined") { %>
-        <span>
-          <%= without_tax.formatted %>
-        </span>
-      <% } %>
-
-      <% if (typeof(rrp_without_tax) !== "undefined") { %>
-        <span>
-          <%= rrp_without_tax.formatted %>
-        </span>
-      <% } %>
-    `);
-
-    const priceWithTaxTemplate = _.template(`
-      <% if (typeof(with_tax) !== "undefined") { %>
-        <span>
-          <%= with_tax.formatted %>
-        </span>
-      <% } %>
-
-      <% if (typeof(rrp_without_tax) !== "undefined") { %>
-        <span>
-          <%= rrp_with_tax.formatted %>
-        </span>
-      <% } %>
-    `);
-
-    const priceSavedTemplate = _.template(`
-      <% if (typeof(saved) !== "undefined") { %>
-        <%= saved.formatted %>
-      <% } %>
-    `);
-
     this.ProductUtils = new ProductUtils(this.el, {
-      priceWithoutTaxTemplate,
-      priceWithTaxTemplate,
-      priceSavedTemplate,
+      priceWithoutTaxTemplate: productViewTemplates.priceWithoutTax,
+      priceWithTaxTemplate: productViewTemplates.priceWithTax,
+      priceSavedTemplate: productViewTemplates.priceSaved,
       tabSelector: '.tab-link',
       buttonDisabledClass: 'button-disabled',
       callbacks: {

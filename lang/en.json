@@ -103,6 +103,9 @@
     "pre_order": "Pre-Order",
     "add_to_cart": "Add To Cart",
     "select_an_option": "Please Choose An Option",
+    "you_save": "You save",
+    "including_tax": "(Inc Tax)",
+    "excluding_tax": "(Exc Tax)",
     "reviews": {
       "heading": "Product Reviews",
       "write_review": "Write a Review",
