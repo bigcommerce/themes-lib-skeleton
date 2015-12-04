@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
-import Tabs from 'bc-tabs';
 
 export default class ProductUtils {
   constructor(el, options) {
@@ -9,7 +8,6 @@ export default class ProductUtils {
     this.$productMessage = this.$el.find('[data-product-message]');
 
     this.options = $.extend({
-      tabSelector: '.tab-link',
       buttonDisabledClass: 'button-disabled',
     }, options);
 
@@ -19,19 +17,10 @@ export default class ProductUtils {
       switchImage: () => console.log('Image switch attempted.'),
     }, options.callbacks);
 
-    this.tabs = new Tabs({
-      moduleSelector: this.$el.find('[data-tabs]')
-    });
-
     this._bindEvents();
   }
 
   _bindEvents() {
-    this.$el.on('click', this.options.tabSelector, (event) => {
-      event.preventDefault();
-      this.tabs.displayTabContent($(event.currentTarget).attr('href'));
-    });
-
     this.$el.on('click', '[data-product-quantity-change]', (event) => {
       this._updateQuantity(event);
     });
