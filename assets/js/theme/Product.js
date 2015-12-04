@@ -24,8 +24,6 @@ export default class Product extends PageManager {
       priceWithoutTaxTemplate: productViewTemplates.priceWithoutTax,
       priceWithTaxTemplate: productViewTemplates.priceWithTax,
       priceSavedTemplate: productViewTemplates.priceSaved,
-      tabSelector: '.tab-link',
-      buttonDisabledClass: 'button-disabled',
       callbacks: {
         didUpdate: (isError, response) => {
           this._updateMessage(isError, response);
