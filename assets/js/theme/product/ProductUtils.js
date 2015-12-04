@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
+import Alert from '../components/Alert';
 
 /**
  * PxU's handler for a couple product-related ajax features.
@@ -31,9 +32,12 @@ export default class ProductUtils {
     this.$el = $(el);
     this.productId = this.$el.find('[data-product-id]').val();
 
-    this.$productMessage = this.$el.find('[data-product-message]');
-
+    // class to add or remove from cart-add button depending on variation availability
     this.buttonDisabledClass = 'button-disabled';
+
+    // two alert locations based on action
+    this.cartAddAlert = new Alert(this.$el.find('[data-product-cart-message]'));
+    this.cartOptionAlert = new Alert(this.$el.find('[data-product-option-message]'));
 
     this.callbacks = $.extend({
       willUpdate: () => console.log('Update requested.'),
@@ -140,23 +144,17 @@ export default class ProductUtils {
           this.callbacks.switchImage(mainImageUrl);
         }
 
-        this.$productMessage.empty();
+        this.cartOptionAlert.clear();
 
         // update submit button state
         if (!data.purchasable || !data.instock) {
+          this.cartOptionAlert.error(data.purchasing_message);
           viewModel.$addToCart
-            .val(this.context.soldOut)
-            .addClass(this.options.buttonDisabledClass)
+            .addClass(this.buttonDisabledClass)
             .prop('disabled', true);
         } else {
-          let buttonText = this.context.addToCart;
-          if (viewModel.$addToCart.is('[data-button-preorder]')) {
-            buttonText = this.context.preOrder;
-          }
-
           viewModel.$addToCart
-            .val(buttonText)
-            .removeClass(this.options.buttonDisabledClass)
+            .removeClass(this.buttonDisabledClass)
             .prop('disabled', false);
         }
       });
@@ -169,9 +167,7 @@ export default class ProductUtils {
   _bindCartAdd() {
     utils.hooks.on('cart-item-add', (event, form) => {
       // Do not do AJAX if browser doesn't support FormData
-      if (window.FormData === undefined) {
-        return;
-      }
+      if (window.FormData === undefined) { return; }
 
       event.preventDefault();
 
@@ -186,13 +182,14 @@ export default class ProductUtils {
           response = err || response.data.error;
         }
 
+        this._updateMessage(isError, response);
         this.callbacks.didUpdate(isError, response, $(form));
       });
     });
   }
 
   /**
-   * Validate and update Quantity input value
+   * Validate and update quantity input value
    */
   _updateQuantity(event) {
     const $target = $(event.currentTarget);
@@ -201,7 +198,8 @@ export default class ProductUtils {
     const max = parseInt($quantity.prop('max'), 10);
     let newQuantity = parseInt($quantity.val(), 10);
 
-    this.$productMessage.empty();
+    this.cartAddAlert.clear();
+    this.cartOptionAlert.clear();
 
     if ($target.is('[data-quantity-increment]') && (!max || newQuantity < max)) {
       newQuantity = newQuantity + 1;
@@ -210,5 +208,21 @@ export default class ProductUtils {
     }
 
     $quantity.val(newQuantity);
+  }
+
+  /**
+   * interpret and display cart-add response message
+   */
+  _updateMessage(isError, response) {
+    let message = '';
+
+    if (isError) {
+      message = response;
+    } else {
+      message = this.context.addSuccess;
+      message = message.replace('*product*', this.$el.find('[data-product-details]').data('product-title'));
+    }
+
+    this.cartAddAlert.message(message, (isError ? 'error' : 'success'));
   }
 }

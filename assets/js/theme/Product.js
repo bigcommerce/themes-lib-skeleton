@@ -31,24 +31,4 @@ export default class Product extends PageManager {
       },
     }).init(this.context);
   }
-
-  _updateMessage(isError, response) {
-    let message = '';
-
-    if (isError) {
-      message = response;
-    }
-
-    else {
-      message = this.context.addSuccess;
-      message = message
-                  .replace('*product*', this.$el.find('[data-product-details]').data('product-title'))
-                  .replace('*cart_link*', `<a href=${this.context.urlsCart}>${this.context.cartLink}</a>`)
-                  .replace('*continue_link*', `<a href='/'>${this.context.homeLink}</a>`)
-                  .replace('*checkout_link*', `<a href=${this.context.urlsCheckout}>${this.context.checkoutLink}</a>`);
-    }
-
-    this.alert.message(message, (isError ? 'error' : 'success'));
-    this.$el.find('[data-product-add] .spinner').removeClass('visible');
-  }
 }
