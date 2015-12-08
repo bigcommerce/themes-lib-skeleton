@@ -30,6 +30,7 @@ import Alert from '../components/Alert';
 export default class ProductUtils {
   constructor(el, options) {
     this.$el = $(el);
+    this.options = options;
     this.productId = this.$el.find('[data-product-id]').val();
 
     // class to add or remove from cart-add button depending on variation availability
