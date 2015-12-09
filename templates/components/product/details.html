@@ -55,7 +55,14 @@
       <div data-product-weight>{{product.weight}}</div>
     {{/if}}
 
-    {{> components/product/price price=product.price show_savings=true schema_org=true}}
+    <div>
+      {{#if product.call_for_price}}
+        {{product.call_for_price}}
+      {{/if}}
+      {{#if product.price}}
+        {{> components/product/price price=product.price show_savings=true schema_org=true}}
+      {{/if}}
+    </div>
 
     {{! container for appending product-option-change errors}}
     <div data-product-option-message></div>
