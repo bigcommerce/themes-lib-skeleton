@@ -1,58 +1,48 @@
 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
   <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
   {{#if price.without_tax}}
-
     {{#if schema_org}}
       <meta itemprop="price" content="{{price.without_tax.value}}">
     {{/if}}
 
-    <span data-product-price-wrapper="without-tax">
-      <span>
-        {{price.without_tax.formatted}}
-      </span>
-
+    <div data-product-price-wrapper="without-tax">
       {{#if price.saved}}
-        <span>
-          {{price.rrp_without_tax.formatted}}
-        </span>
+        <span>{{price.rrp_without_tax.formatted}}</span>
       {{/if}}
-    </span>
 
-    {{#if show_tax}}
-      <span>{{lang 'product.excluding_tax'}}</span>
-    {{/if}}
+      <span> {{price.without_tax.formatted}}</span>
+
+      {{#if price.with_tax}}
+        <span> {{lang 'product.excluding_tax'}}</span>
+      {{/if}}
+    </div>
   {{/if}}
 
   {{#if price.with_tax}}
-
     {{#if schema_org}}
       {{#unless price.without_tax}}
         <meta itemprop="price" content="{{price.with_tax.value}}">
       {{/unless}}
     {{/if}}
 
-    <span data-product-price-wrapper="with-tax">
-      <span>
-        {{price.with_tax.formatted}}
-      </span>
-
+    <div data-product-price-wrapper="with-tax">
       {{#if price.saved}}
-        <span>
-          {{price.rrp_with_tax.formatted}}
-        </span>
+        <span>{{price.rrp_with_tax.formatted}}</span>
       {{/if}}
-    </span>
 
-    {{#if show_tax}}
-      <span>{{lang 'product.including_tax'}}</span>
-    {{/if}}
+      <span> {{price.with_tax.formatted}}</span>
+
+      {{#if price.without_tax}}
+        <span> {{lang 'product.including_tax'}}</span>
+      {{/if}}
+    </div>
   {{/if}}
 
   {{#if show_savings}}
     {{#if price.saved}}
-      <span data-product-price-saved>
-        {{price.saved.formatted}}
-      </span>
+      <div data-product-price-saved>
+        {{lang 'product.you_save'}} {{price.saved.formatted}}
+      </div>
     {{/if}}
   {{/if}}
 </div>

@@ -97,8 +97,6 @@
     "label": "Quick Links"
   },
   "product": {
-    "excluding_tax": "(excl. tax)",
-    "including_tax": "(incl. tax)",
     "quantity": "Quantity",
     "pre_order": "Pre-Order",
     "add_to_cart": "Add To Cart",
