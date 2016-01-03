@@ -24,11 +24,7 @@ export default class Product extends PageManager {
       priceWithoutTaxTemplate: productViewTemplates.priceWithoutTax,
       priceWithTaxTemplate: productViewTemplates.priceWithTax,
       priceSavedTemplate: productViewTemplates.priceSaved,
-      callbacks: {
-        didUpdate: (isError, response) => {
-          this._updateMessage(isError, response);
-        },
-      },
+      callbacks: {},
     }).init(this.context);
   }
 }

@@ -97,6 +97,8 @@ export default class ProductUtils {
       }
 
       utils.api.productAttributes.optionChange(this.productId, $form.serialize(), (err, response) => {
+        this.cartAddAlert.clear();
+
         const viewModel = this._getViewModel(this.$el);
         const data = response ? response.data : {};
 

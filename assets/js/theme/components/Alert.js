@@ -1,3 +1,16 @@
+/**
+ *  Alerts
+ *
+ *  Utility module to display status messages for components.
+ *  Instantiate Class: new Alert()
+ *
+ *  @arg $el       jQuery object
+ *    The specific element that will hold new alert messages.
+ *
+ *  @arg options  Object
+ *  An object containing additional options for the module. (see below)
+ */
+
 import $ from 'jquery';
 import _ from 'lodash';
 import trend from 'jquery-trend';
@@ -67,23 +80,10 @@ export default class Alert {
    * @private
    */
   _dismissMessage($alert) {
+    $alert.addClass('dismissed');
     $alert.one('trend', () => {
       $alert.remove();
     });
-
-    $alert.addClass('dismissed');
-  }
-
-  /**
-   * An in between method that allows for the limit option to take effect before the optional `didUpdate` call back
-   * @private
-   */
-  _update($alert) {
-    if (typeof this.options.limit === 'number' && this.$el.find(`.${this.options.classes.base}`).length > this.options.limit) {
-      this._dismissMessage(this.$el.find(`.${this.options.classes.base}:not(.dismissed)`).eq(0));
-    }
-
-    this.callbacks.didUpdate($alert, this.$el);
   }
 
   /**
@@ -122,6 +122,10 @@ export default class Alert {
   message(text, type = 'info', dismissable = false) {
     this.callbacks.willUpdate(this.$el);
 
+    if (typeof this.options.limit === 'number' && this.$el.find(`.${this.options.classes.base}`).length > this.options.limit) {
+      this._dismissMessage(this.$el.find(`.${this.options.classes.base}:not(.dismissed)`).eq(0));
+    }
+
     const message = {
       messageType: this.options.classes[type],
       messageText: text,
@@ -129,6 +133,7 @@ export default class Alert {
     };
 
     const $alert = this.$el.append(this.options.template(message));
-    this._update($alert);
+
+    this.callbacks.didUpdate($alert, this.$el);
   }
 }
