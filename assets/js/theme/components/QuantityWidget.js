@@ -11,7 +11,7 @@ export default class QuantityWidget {
     // Bind Control Actions
     $(this.options.scope).on('click', this.options.cntrl, (event) => {
       event.preventDefault(); //in case we use <button>/<a> instead of <span>'s
-      const $target = $(event.target);
+      const $target = $(event.currentTarget);
       const action = $target.data('quantity-control-action');
 
       const $quantityInput = $target.siblings('input');
