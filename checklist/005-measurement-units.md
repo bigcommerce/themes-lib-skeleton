@@ -4,6 +4,8 @@ Added: 2016-02-10
 
 Affects: `product.html`
 
+Control Panel: `Settings > Store Settings > Website > Physical Dimension Settings`
+
 > The global Settings object now contains a `settings.measurements` object. Its child `length` and `weight` properties define units of measure, corresponding to control-panel options. (MERC-66)
 
 ```handlebars

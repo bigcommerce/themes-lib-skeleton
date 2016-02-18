@@ -4,6 +4,8 @@ Added: 2016-02-15
 
 Affects: `product.html`, `header.html`, `footer.html`
 
+Control Panel: `Settings > Store Settings > Display > Display Settings`
+
 Any reference to wishlists should be hidden if `settings.show_wishlist` is false.
 
 ```handlebars
