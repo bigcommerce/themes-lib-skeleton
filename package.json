@@ -37,7 +37,7 @@
     }
   },
   "devDependencies": {
-    "eslint": "^1.6.0"
+    "eslint": "^2.2.0"
   },
   "scripts": {
     "eslint": "./node_modules/eslint/bin/eslint.js assets/js/app.js assets/js/theme; exit 0"
