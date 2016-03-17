@@ -1,4 +1,12 @@
 {
+  "root": true,
+  "extends": "eslint:recommended",
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jquery": true,
+    "node": true
+  },
   "rules": {
     "indent": [2, 2, {"SwitchCase": 1}],
     "quotes": [2, "single", "avoid-escape"],
@@ -24,13 +32,6 @@
     "object-shorthand": 2,
     "no-loop-func": 2
   },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "jquery": true,
-    "node": true
-  },
-  "extends": "eslint:recommended",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
