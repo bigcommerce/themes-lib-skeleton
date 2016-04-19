@@ -36,6 +36,7 @@ Because our modules are private and hosted on bitbucket, it's important to also 
 ```
 $ npm install -g jspm-git
 $ jspm registry create bitbucket jspm-git
+base url: ssh://git@bitbucket.org/
 ```
 
 Then run `jspm install` from the theme directory.
