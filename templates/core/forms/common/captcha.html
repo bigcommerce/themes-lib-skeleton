@@ -1,0 +1,38 @@
+{{!
+  Recaptcha form field. Always marked as required.
+
+  Not used by stencil.
+
+  @param label string
+         The title of this form field.
+
+  @param name string (optional)
+         The name attribute for the form inputs. Defaults to
+        `recaptcha_challenge_field`.
+
+  @param captcha string
+         The recaptcha API key to use.
+
+  @param id string (optional)
+         An HTML ID to give the element.
+}}
+<div class="form-field form-field-captcha form-required" {{#if id}}id="{{id}}"{{/if}}>
+  <div class="form-field-title">
+    {{label}}
+    <span class="required-text">{{lang 'common.required'}}</span>
+  </div>
+  <div class="form-field-control">
+    <script src="https://www.google.com/recaptcha/api/challenge?k={{captcha}}"></script>
+    <noscript>
+      <iframe src="https://www.google.com/recaptcha/api/noscript?k={{captcha}}" height="300" width="500" frameborder="0"></iframe>
+      <textarea
+        class="form-input"
+        {{#if id}}id="form-captcha-{{id}}"{{/if}}
+        {{#if name}}name="{{name}}"{{/if}}
+        {{#unless name}}name="recaptcha_challenge_field"{{/unless}}
+        required
+        aria-required="true"></textarea>
+      <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+    </noscript>
+  </div>
+</div>

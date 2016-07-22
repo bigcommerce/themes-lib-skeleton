@@ -1,0 +1,29 @@
+{{#partial 'account-heading'}}
+  {{lang 'core.account.wishlists.view_heading' name=wishlist.name}}
+{{/partial}}
+
+{{#partial 'account-content'}}
+  {{#if wishlist.is_public}}
+    <div class="account-share-wishlist-url">
+      <h2 class="account-sub-heading">{{lang 'core.account.wishlists.share_intro'}}</h2>
+      <input class="form-input" value="{{settings.base_url}}{{wishlist.share_url}}">
+    </div>
+  {{/if}}
+
+  <section class="account-wishlist {{products_per_row_class}}">
+    <h2 class="account-sub-heading">{{lang 'core.account.wishlists.wishlist_contents'}}</h2>
+    {{#if wishlist.items}}
+      <div class="account-wishlist-items account-product-wrapper">
+        {{#each wishlist.items}}
+          {{> core/account/_private/account-product-item show_remove=true remove_url=remove_url default_image=../theme_settings.default_image show_bg=../show_bg}}
+        {{/each}}
+      </div>
+    {{else}}
+      <div class="account-wishlist-empty">
+        {{lang 'core.account.wishlists.details_empty'}}
+      </div>
+    {{/if}}
+  </section>
+{{/partial}}
+
+{{> core/account/_private/layout nav_page='wishlists' class='wishlist-details'}}
