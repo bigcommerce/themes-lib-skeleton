@@ -7,4 +7,5 @@ assets/jspm_packages
 assets/css-artifacts
 assets/js/dependency-bundle.js
 assets/js/dependency-bundle.js.map
+assets/js/bundle.js
 stencil-bundle.zip

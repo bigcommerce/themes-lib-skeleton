@@ -29,7 +29,7 @@ export default class FormValidator {
    * Initialize validation on all matching forms on page load
    */
   initGlobal() {
-    $(this.formSelector).validetta(this.options, this.validationMessages);
+    //TODO $(this.formSelector).validetta(this.options, this.validationMessages);
   }
 
   /*
@@ -39,7 +39,7 @@ export default class FormValidator {
    * @param {object} localOptions - a set of options separate from the ones defined here (optional)
    */
   initSingle($form, localOptions) {
-    const customOptions = localOptions ? localOptions : this.validationOptions;
-    $($form).validetta(customOptions, this.validationMessages);
+    //TODO const customOptions = localOptions ? localOptions : this.validationOptions;
+    //TODO $($form).validetta(customOptions, this.validationMessages);
   }
 }

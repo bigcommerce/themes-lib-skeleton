@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import utils from 'bigcommerce/stencil-utils';
+import utils from '@bigcommerce/stencil-utils';
 import SelectWrapper from '../components/SelectWrapper';
 
 export default function(didUpdate, remove) {

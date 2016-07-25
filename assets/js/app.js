@@ -1,5 +1,5 @@
-import stencilUtils from 'bigcommerce/stencil-utils';
-import async from 'caolan/async';
+import stencilUtils from '@bigcommerce/stencil-utils';
+import async from 'async';
 import Account from './theme/Account';
 import Auth from './theme/Auth';
 import Blog from './theme/Blog';

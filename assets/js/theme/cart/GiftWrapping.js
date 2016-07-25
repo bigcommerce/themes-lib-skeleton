@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import utils from 'bigcommerce/stencil-utils';
-import Modal from 'bc-modal';
+import utils from '@bigcommerce/stencil-utils';
+//TODO import Modal from 'bc-modal';
 
 export default class GiftWrapping {
   constructor(options = {}) {
@@ -18,14 +18,14 @@ export default class GiftWrapping {
 
   _initialize() {
     this.itemId; // later assigned the id of the current product
-
+/* TODO
     this.GiftWrapModal = new Modal({
       modalClass: 'giftwrap-modal',
       afterShow: ($modal) => {
         this._getForm($modal);
       },
     });
-
+*/
     this._bindPageEvents();
   }
 

@@ -33,27 +33,13 @@
   <main class="main-content">
     {{#block "page"}}{{/block}}
   </main>
-
+  <script src="{{cdn '/assets/js/bundle.js'}}"></script>
+  <script>
+    // Exported in app.js
+    window.stencilBootstrap("{{template_file}}", {{jsContext}}).load();
+  </script>
   {{> components/footer}}
 
-   <script>
-    function startupApp(stencilBootstrap) {
-      stencilBootstrap("{{template_file}}", {{jsContext}}).load();
-    }
-  </script>
 
-  {{#if in_production}}
-    <script src="{{cdn '/assets/js/bundle.js'}}"></script>
-    <script>
-      startupApp(stencilBootstrap);
-    </script>
-  {{else}}
-    <script src="{{cdn '/assets/jspm_packages/system.js'}}"></script>
-    <script src="{{cdn '/assets/config.js'}}"></script>
-    <script src="{{cdn '/assets/js/dependency-bundle.js'}}"></script>
-    <script>
-      System.import("js/app").then(function(){ startupApp(stencilBootstrap)});
-    </script>
-  {{/if}}
 </body>
 </html>
