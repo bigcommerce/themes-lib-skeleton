@@ -7,7 +7,20 @@ cart: true
 <article class="page-container cms-page">
   <h1 class="page-heading">{{page.title}}</h1>
   <div class="page-content">
-    {{{page.content}}}
+    {{#if page.content}}
+      {{{page.content}}}
+    {{/if}}
+
+    {{#if page.feed}}
+      <ul>
+        {{#each page.feed}}
+          <li>
+            <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+            <p>{{{content}}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
   </div>
 </article>
 
