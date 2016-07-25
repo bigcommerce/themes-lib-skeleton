@@ -1,0 +1,8 @@
+<section class="sitemap">
+  {{#each sitemap}}
+    <div class="sitemap-group">
+      <h2 class="sitemap-title">{{title}}</h2>
+      {{> components/sitemap-group items=body}}
+    </div>
+  {{/each}}
+</section>
