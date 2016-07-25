@@ -8,7 +8,11 @@ cart: true
   <h1 class="page-heading">{{page.title}}</h1>
   <div class="page-content">
     {{#if page.content}}
-      {{{page.content}}}
+      {{#replace '%%Syndicate%%' page.content}}
+        {{> components/page/rss-feed}}
+      {{else}}
+        {{{page.content}}}
+      {{/replace}}
     {{/if}}
 
     {{#if page.feed}}
