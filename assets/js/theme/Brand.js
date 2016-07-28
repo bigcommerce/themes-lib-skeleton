@@ -1,6 +1,6 @@
 import PageManager from '../PageManager';
 import FacetedSearch from './components/FacetedSearch';
-//TODO import Loading from 'bc-loading';
+import Loading from 'bc-loading';
 
 export default class Brand extends PageManager {
   constructor() {

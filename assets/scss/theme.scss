@@ -11,8 +11,8 @@
 @import "lib/functions";
 
 // Modules
-//@import "../jspm_packages/bitbucket/pixelunion/bc-carousel@2.1.0/scss/carousel";
-//@import "../jspm_packages/bitbucket/pixelunion/bc-modal@0.0.2/scss/modal";
+@import "../../node_modules/bc-modal/dist/scss/modal";
+@import "../../node_modules/bc-carousel/dist/scss/carousel";
 
 // General
 @import "general/fonts";

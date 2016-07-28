@@ -6,7 +6,7 @@ import ShippingCalculator from './cart/ShippingCalculator';
 import CouponCodes from './cart/CouponCodes';
 import GiftCertificates from './cart/GiftCertificates';
 import GiftWrapping from './cart/GiftWrapping';
-//TODO import Loading from 'bc-loading';
+import Loading from 'bc-loading';
 import QuantityWidget from './components/QuantityWidget';
 
 
@@ -22,8 +22,8 @@ export default class Cart extends PageManager {
     };
 
     new GiftWrapping({scope: '[data-cart-content]', context});
-    //const cartContentOverlay = new Loading(loadingOptions, true, '[data-cart-content]');
-    //const cartTotalsOverlay = new Loading(loadingOptions, true, '[data-cart-totals]');
+    const cartContentOverlay = new Loading(loadingOptions, true, '[data-cart-content]');
+    const cartTotalsOverlay = new Loading(loadingOptions, true, '[data-cart-totals]');
 
     this.ShippingCalculator = new ShippingCalculator({
       visibleClass: 'visible',

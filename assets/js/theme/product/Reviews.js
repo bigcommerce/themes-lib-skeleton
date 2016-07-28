@@ -1,5 +1,5 @@
 import $ from 'jquery';
-//import Modal from 'bc-modal';
+import Modal from 'bc-modal';
 import FormValidator from '../utils/FormValidator';
 
 export default class ProductReviews {
