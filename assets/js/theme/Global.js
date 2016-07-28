@@ -7,7 +7,7 @@ import initFormSwatchFields from './core/formSelectedValue';
 
 // global scope jQuery plugins
 /* eslint-disable no-unused-vars */
-//import validetta from 'jquery-validetta';
+import validetta from 'validetta';
 
 export default class Global extends PageManager {
   constructor() {

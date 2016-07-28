@@ -13,7 +13,8 @@
     "jquery-revealer": "git+ssh://git@github.com/pixelunion/jquery.revealer.git",
     "jquery-trend": "^0.1.0",
     "normalize.scss": "^0.1.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "validetta": "github:pixelunion/validetta"
   },
   "devDependencies": {
     "async": "^2.0.1",
