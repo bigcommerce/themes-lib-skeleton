@@ -19,27 +19,28 @@ Provides theme hooks and api calls for stencil themes. Added to themes with JSPM
 Shared templates for our stencil themes. Not bundled with this skeleton. Run the install script included in bc-core to add it to your theme.
 
 
-## JSPM
+## Webpack
 
-Asset packages are handled using [JSPM](http://jspm.io/).
+Webpack is now being used as our module bundler. It can be installed globally:
 
-The plan is to develop a set of reusable 'modules' (carousel, slider, lightbox etc) which theme developers can easily drop into their project using JSPM. Modules will contain core JS and SCSS. So far we have a [carousel](https://bitbucket.org/pixelunion/bc-carousel) thanks to Connor.
+```
+$ npm install -g webpack
+```
 
 ### Installation
 
 ```
-$ npm install -g jspm
+npm install
 ```
 
-Because our modules are private and hosted on bitbucket, it's important to also install [jspm-git](https://www.npmjs.com/package/jspm-git) which will allow for packages to be pulled from registries other than npm and github:
+Once the dependencies are installed, all you have to do is
 
 ```
-$ npm install -g jspm-git
-$ jspm registry create bitbucket jspm-git
-base url: ssh://git@bitbucket.org/
+stencil init
+
+stencil start
 ```
 
-Then run `jspm install` from the theme directory.
 
 ## Theme Directory Structure
 
