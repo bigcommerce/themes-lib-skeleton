@@ -9,6 +9,7 @@
     "bc-carousel": "bitbucket:pixelunion/bc-carousel",
     "bc-loading": "bitbucket:pixelunion/bc-loading",
     "bc-modal": "bitbucket:pixelunion/bc-modal",
+    "eventemitter2": "^2.1.0",
     "history.js": "^1.8.0",
     "jquery-revealer": "git+ssh://git@github.com/pixelunion/jquery.revealer.git",
     "jquery-trend": "git+ssh://git@github.com/pixelunion/jquery.trend.git",
