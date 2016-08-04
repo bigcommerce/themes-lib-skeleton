@@ -14,6 +14,21 @@
       "height": 1280
     }
   },
+  "settings": {
+    "footer-show-copyright": true,
+    "footer-show-sitemap": true,
+    "footer-show-credits": true,
+
+    "show-visa-icon": false,
+    "show-amex-icon": false,
+    "show-paypal-icon": false,
+    "show-mastercard-icon": false,
+    "show-discover-icon": false,
+
+    "collections-products-per-page": 6,
+
+    "blog-posts-per-page": 2
+  },
   "variations": [
     {
       "name": "Default",
