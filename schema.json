@@ -1,0 +1,224 @@
+[
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Typography"
+      },
+      {
+        "type": "heading",
+        "content": "Colors"
+      },
+      {
+        "type": "heading",
+        "content": "Options"
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Typography"
+      },
+      {
+        "type": "heading",
+        "content": "Colors"
+      },
+      {
+        "type": "heading",
+        "content": "Options"
+      },
+      {
+        "type": "checkbox",
+        "label": "Show Copyright Information",
+        "id": "footer-show-copyright",
+        "force_reload": true
+      },
+      {
+        "type": "checkbox",
+        "label": "Show Sitemap",
+        "id": "footer-show-sitemap",
+        "force_reload": true
+      },
+      {
+        "type": "checkbox",
+        "label": "Show Theme Credits",
+        "id": "footer-show-credits",
+        "force_reload": true
+      },
+      {
+        "type": "heading",
+        "content": "Payment Icons"
+      },
+      {
+        "type": "checkbox",
+        "label": "Show Visa Icon",
+        "id": "show-visa-icon",
+        "force_reload": true
+      },
+      {
+        "type": "checkbox",
+        "label": "Show Mastercard Icon",
+        "id": "show-mastercard-icon",
+        "force_reload": true
+      },
+      {
+        "type": "checkbox",
+        "label": "Show American Express Icon",
+        "id": "show-amex-icon",
+        "force_reload": true
+      },
+      {
+        "type": "checkbox",
+        "label": "Show PayPal Icon",
+        "id": "show-paypal-icon",
+        "force_reload": true
+      },
+      {
+        "type": "checkbox",
+        "label": "Show Discover Icon",
+        "id": "show-discover-icon",
+        "force_reload": true
+      }
+    ]
+  },
+  {
+    "name": "Carousel",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Typography"
+      },
+      {
+        "type": "heading",
+        "content": "Colors"
+      },
+      {
+        "type": "heading",
+        "content": "Options"
+      }
+    ]
+  },
+  {
+    "name": "Product Listing",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Typography"
+      },
+      {
+        "type": "heading",
+        "content": "Colors"
+      },
+      {
+        "type": "heading",
+        "content": "Options"
+      },
+      {
+        "type": "select",
+        "label": "Products Per Page",
+        "id": "collections-products-per-page",
+        "options": [
+          {
+            "label": "6",
+            "value": 6
+          },
+          {
+            "label": "8",
+            "value": 8
+          },
+          {
+            "label": "10",
+            "value": 10
+          },
+          {
+            "label": "12",
+            "value": 12
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Single Product Page",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Typography"
+      },
+      {
+        "type": "heading",
+        "content": "Colors"
+      },
+      {
+        "type": "heading",
+        "content": "Options"
+      }
+    ]
+  },
+  {
+    "name": "Blog",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Typography"
+      },
+      {
+        "type": "heading",
+        "content": "Colors"
+      },
+      {
+        "type": "heading",
+        "content": "Options"
+      },
+      {
+        "type": "select",
+        "label": "Blog Posts Per Page",
+        "id": "blog-posts-per-page",
+        "options": [
+          {
+            "label": "2",
+            "value": 2
+          },
+          {
+            "label": "4",
+            "value": 4
+          },
+          {
+            "label": "6",
+            "value": 6
+          },
+          {
+            "label": "8",
+            "value": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "General",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Typography"
+      },
+      {
+        "type": "heading",
+        "content": "Banners"
+      },
+      {
+        "type": "heading",
+        "content": "Buttons"
+      }
+    ]
+  },
+  {
+    "name": "Miscellaneous",
+    "settings": [
+    ]
+  }
+]
