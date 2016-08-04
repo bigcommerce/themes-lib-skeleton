@@ -1,6 +1,6 @@
 {
   "name": "bc-skeleton",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "css_compiler": "scss",
   "autoprefixer_cascade": true,
   "autoprefixer_browsers": ["last 3 versions"],
