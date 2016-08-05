@@ -1,0 +1,27 @@
+<div class="filter filter-sort">
+  <h5 class="filter-title">{{lang 'filter.sort.title'}}</h5>
+
+  <form class="filter-sort-form" data-sort-by>
+    <div class="form-field form-field-select">
+      <label class="form-label">
+        <span class="form-field-control">
+          <span class="form-select-wrapper">
+            <select class="form-input form-select" name="sort">
+              {{#if result_count}}
+                <option value="relevance" {{#if sort '===' 'relevance'}}selected{{/if}}>{{lang 'filter.sort.relevance'}}</option>
+              {{/if}}
+              <option value="featured" {{#if sort '===' 'featured'}}selected{{/if}}>{{lang 'filter.sort.featured'}}</option>
+              <option value="newest" {{#if sort '===' 'newest'}}selected{{/if}}>{{lang 'filter.sort.newest'}}</option>
+              <option value="bestselling" {{#if sort '===' 'bestselling'}}selected{{/if}}>{{lang 'filter.sort.top_sellers'}}</option>
+              <option value="alphaasc" {{#if sort '===' 'alphaasc'}}selected{{/if}}>{{lang 'filter.sort.alpha_asc'}}</option>
+              <option value="alphadesc" {{#if sort '===' 'alphadesc'}}selected{{/if}}>{{lang 'filter.sort.alpha_desc'}}</option>
+              <option value="avgcustomerreview" {{#if sort '===' 'avgcustomerreview'}}selected{{/if}}>{{lang 'filter.sort.reviews'}}</option>
+              <option value="priceasc" {{#if sort '===' 'priceasc'}}selected{{/if}}>{{lang 'filter.sort.price_asc'}}</option>
+              <option value="pricedesc" {{#if sort '===' 'pricedesc'}}selected{{/if}}>{{lang 'filter.sort.price_desc'}}</option>
+            </select>
+          </span>
+        </span>
+      </label>
+    </div>
+  </form>
+</div>

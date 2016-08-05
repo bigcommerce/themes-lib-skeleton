@@ -1,0 +1,14 @@
+{{!
+  @param categories
+         A list of categories.
+}}
+<div class="filter filter-subcategories">
+  <h5 class="filter-title">{{lang 'filter.subcategories.title'}}</h5>
+  <ul class="filter-list">
+    {{#each categories}}
+      <li class="filter-item">
+        <a class="filter-item-link" href="{{url}}">{{name}}</a>
+      </li>
+    {{/each}}
+  </ul>
+</div>

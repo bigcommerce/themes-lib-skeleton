@@ -1,0 +1,83 @@
+{{!
+  @param sort (string)
+         The currently active sorting method.
+
+  @param clear_url (string)
+         A URL for the current page, without any filters applied.
+
+  @param subcategories (array)
+         A list of child categories.
+
+  @param facets_enabled (bool)
+         True if the faceted search feature is enabled, false otherwise.
+
+  @param facets (array)
+         The enabed facets.
+
+  @param facets_selected (array)
+         The currently selected facet filters.
+
+  @param shop_by_price (array)
+         A list of price ranges to filter by.
+
+  @param shop_by_brand (array)
+         A list of brands to filter by.
+}}
+<div data-filters-container>
+
+  <div class="filters" data-filters>
+    {{! Selected Facets }}
+    {{#if facets_enabled}}
+      {{> components/faceted-search/selected
+        selected=facets_selected
+      }}
+    {{/if}}
+
+    {{> components/faceted-search/sort
+      sort=sort
+    }}
+
+    {{#if subcategories}}
+      {{> components/faceted-search/subcategories
+        categories=subcategories
+      }}
+    {{/if}}
+
+    {{! Faceted Search }}
+    {{#if facets_enabled}}
+      {{#each facets}}
+        {{#if visible}}
+          {{#if items.length}}
+            <div class="filter filter-{{type}}">
+              <h5 class="filter-title">{{title}}</h5>
+              {{{dynamicComponent 'components/faceted-search/facets'}}}
+            </div>
+          {{/if}}
+
+          {{#if facet '===' 'price'}}
+            <div class="filter filter-{{type}}">
+              <h5 class="filter-title">{{title}}</h5>
+              {{{dynamicComponent 'components/faceted-search/facets'}}}
+            </div>
+          {{/if}}
+        {{/if}}
+      {{/each}}
+
+    {{! Regular Filters }}
+    {{else}}
+      {{#if shop_by_price.length}}
+        {{> components/faceted-search/shop-by-price
+          shop_by_price=shop_by_price
+          clear_url=clear_url
+        }}
+      {{/if}}
+
+      {{#if shop_by_brand.length}}
+        {{> components/faceted-search/shop-by-brand
+          shop_by_brand=shop_by_brand
+        }}
+      {{/if}}
+    {{/if}}
+  </div>
+
+</div>

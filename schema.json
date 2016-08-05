@@ -120,7 +120,7 @@
       {
         "type": "select",
         "label": "Products Per Page",
-        "id": "collections-products-per-page",
+        "id": "product-count",
         "options": [
           {
             "label": "6",

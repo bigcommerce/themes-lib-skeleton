@@ -1,14 +1,14 @@
+---
+brand:
+  products:
+    limit: {{theme_settings.product-count}}
+---
+
 {{#partial "page"}}
   <h1>{{brand.name}}</h1>
-
-  <main data-brand>
-    {{> components/brand/product-listing}}
-  </main>
-
-  <aside data-brand-sidebar>
-    {{> components/brand/sidebar}}
-  </aside>
-
+  {{> components/brand/filters}}
+  {{> components/brand/products}}
+  {{> components/brand/pagination}}
 {{/partial}}
 
 {{> layout/base}}

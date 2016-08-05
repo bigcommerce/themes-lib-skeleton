@@ -1,23 +1,26 @@
-<!--
+{{!
+  Product listing item
 
-  Product grid thumbnail block
-
-  {{add_to_cart_text}}
-  {{date_added}}
-  {{getImage image 'size'}}
-  {{name}}
-  {{pre_order}}
-  {{{price}}}
-  {{rating}}
-  {{release_date}}
-  {{show_add_to_cart}}
-  {{summary}}
-  {{{url}}}
-
-  {{> components/product/price price=price show_savings=false schema_org=false}}
-
--->
+  @param default_image
+         The image to use if the product has no image assigned.
+}}
 
 <article class="product-item">
-  <h3>{{name}}</h3>
+  <h1 class="product-item-title">
+    <a href="{{url}}">{{name}}</a>
+  </h1>
+
+  <div class="product-item-price">
+    {{> components/product/price}}
+  </div>
+
+  {{#if out_of_stock_message}}
+    <div class="product-item-tag tag-sold-out">{{out_of_stock_message}}</div>
+  {{else}}
+    {{#if price.saved}}
+      <div class="product-item-tag tag-sale">{{lang 'core.product.sale'}}</div>
+    {{/if}}
+  {{/if}}
+
+  <img class="product-item-image" src="{{getImage image 'small' default_image}}">
 </article>

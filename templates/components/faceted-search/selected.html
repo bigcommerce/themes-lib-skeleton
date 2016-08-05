@@ -1,0 +1,28 @@
+{{!
+  @param selected
+         The currently selected filters, as supplied by stencil.
+}}
+{{#if selected.items.length}}
+  <div class="filter-selected">
+    <a class="filter-reset button" href="{{selected.remove_all_url}}" data-faceted-search-facet>
+      {{lang 'filter.clear_selection'}}
+      <span class="filter-selected-item-icon">&times;</span>
+    </a>
+
+    <ul class="filter-selected-list">
+      {{#each selected.items}}
+        <li class="filter-selected-item">
+          <a class="filter-selected-item-link" href="{{url}}" data-faceted-search-facet>
+            {{#if facet '===' 'bool'}}
+              {{title}}
+            {{else}}
+              {{#if param_name}}{{param_name}}:{{/if}} {{title}}
+            {{/if}}
+
+            <span class="filter-selected-item-icon">&times;</span>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}

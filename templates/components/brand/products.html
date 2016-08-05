@@ -1,0 +1,13 @@
+<div class="product-listing" data-listing-container>
+  {{#if brand.products}}
+    {{#each brand.products}}
+      {{> components/product/product-item
+        default_image=(cdn ../theme_settings.default_image)
+      }}
+    {{/each}}
+  {{else}}
+    <div class="product-listing-empty">
+      {{lang 'brand.empty'}}
+    </div>
+  {{/if}}
+</div>

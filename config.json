@@ -4,17 +4,35 @@
   "css_compiler": "scss",
   "autoprefixer_cascade": true,
   "autoprefixer_browsers": ["last 3 versions"],
-  "images": {
-    "logo": {
-      "width": 250,
-      "height": 100
-    },
-    "large": {
-      "width": 1280,
-      "height": 1280
-    }
-  },
   "settings": {
+    "_images": {
+      "logo": {
+        "width": 250,
+        "height": 100
+      },
+      "small": {
+        "width": 400,
+        "height": 400
+      },
+      "medium": {
+        "width": 800,
+        "height": 800
+      },
+      "large": {
+        "width": 1280,
+        "height": 1280
+      },
+      "core-swatch": {
+        "width": 200,
+        "height": 200
+      },
+      "core-product-picklist": {
+        "width": 80,
+        "height": 200
+      }
+    },
+    "default_image": "/assets/img/no-image.svg",
+
     "footer-show-copyright": true,
     "footer-show-sitemap": true,
     "footer-show-credits": true,
@@ -25,7 +43,7 @@
     "show-mastercard-icon": false,
     "show-discover-icon": false,
 
-    "collections-products-per-page": 6,
+    "product-count": 18,
 
     "blog-posts-per-page": 2
   },

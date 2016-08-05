@@ -1,14 +1,17 @@
+---
+category:
+  shop_by_price: true
+  products:
+    limit: {{theme_settings.product-count}}
+shop_by_brand:
+  limit: 5
+---
+
 {{#partial "page"}}
   <h1>{{category.name}}</h1>
-
-  <main data-category>
-    {{> components/category/product-listing}}
-  </main>
-
-  <aside data-category-sidebar>
-    {{> components/category/sidebar}}
-  </aside>
-
+  {{> components/category/filters}}
+  {{> components/category/products}}
+  {{> components/category/pagination}}
 {{/partial}}
 
 {{> layout/base}}

@@ -1,14 +1,13 @@
+---
+product_results:
+  limit: {{theme_settings.product-count}}
+---
+
 {{#partial "page"}}
   <h1>{{! PAGE TITLE}}</h1>
-
-  <main data-search>
-    {{> components/search/product-listing}}
-  </main>
-
-  <aside data-search-sidebar>
-    {{> components/search/sidebar}}
-  </aside>
-
+  {{> components/search/filters}}
+  {{> components/search/products}}
+  {{> components/search/pagination}}
 {{/partial}}
 
 {{> layout/base}}

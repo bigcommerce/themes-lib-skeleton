@@ -21,7 +21,6 @@ export default class Listing {
     this.$body = $(document.body);
     this.$filters = $('[data-filters]');
     this.$filtersContainer = $('[data-filters-container]');
-    this.$filtersToggle = $('[data-filters-toggle]');
     this.$alerts = $('[data-product-grid-alerts]');
 
     this.templateNamespace = templateNamespace;
@@ -33,13 +32,6 @@ export default class Listing {
   }
 
   _bindEvents() {
-    // Toggle filters
-    this.$filtersToggle.on('click', (event) => {
-      this.$filters.slideToggle();
-      this.$filtersToggle.toggleClass('is-active');
-      this._toggleFilterText();
-    });
-
     // Update filters
     this.filters.addTemplate(`${this.templateNamespace}/filters`, (content) => {
       const wasVisible = this.$filters.is(':visible');
@@ -55,9 +47,7 @@ export default class Listing {
 
     // Update product listing
     this.filters.addTemplate(`${this.templateNamespace}/products`, (content) => {
-      this.grid.replaceItems(
-        $(content).filter('.product-item')
-      );
+      $('[data-listing-container]').replaceWith(content);
     });
 
     // Pagination links
@@ -80,7 +70,6 @@ export default class Listing {
 
     this.filters.on('fetch', (state) => {
       this.loader.show();
-      this.grid.getItems().addClass('is-removing');
     });
 
     this.filters.on('update', (state) => {
@@ -94,17 +83,8 @@ export default class Listing {
     });
   }
 
-  _toggleFilterText() {
-    const currentText = this.$filtersToggle.text();
-    const toggledText = this.$filtersToggle.attr('data-toggle-text');
-
-    this.$filtersToggle
-      .text(toggledText)
-      .attr('data-toggle-text', currentText);
-  }
-
   _scrollToTop() {
-    const scrollTop = this.$alerts.offset().top;
+    const scrollTop = $('[data-listing-container]').offset().top;
     $('html,body').animate({ scrollTop });
   }
 }

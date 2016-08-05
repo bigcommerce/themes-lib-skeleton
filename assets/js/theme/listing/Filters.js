@@ -2,7 +2,7 @@ import $ from 'jquery';
 import Url from 'url';
 import stencil from '@bigcommerce/stencil-utils';
 import EventEmitter from 'eventemitter2';
-import 'history.js/history';
+import 'history.js/scripts/bundled/html4+html5/jquery.history';
 import '../global/array-find';
 
 export default class Filters extends EventEmitter {
@@ -120,10 +120,12 @@ export default class Filters extends EventEmitter {
    */
   _urlForRange(form) {
     const params = decodeURI($(form).serialize());
+    const searchValue = Url.parse(location.href, true).query.search_query;
+    const searchQuery = searchValue ? `&search_query=${searchValue}` : '';
 
     return Url.format({
       pathname: Url.parse(location.href).pathname,
-      search: `?${params}`,
+      search: `?${params}${searchQuery}`,
     });
   }
 
