@@ -14,6 +14,19 @@
     {{> components/product/price}}
   </div>
 
+  {{#if show_compare}}
+    <label class="product-item-compare">
+      <input
+        type="checkbox"
+        data-compare-checkbox
+        data-compare-id="{{id}}"
+        data-compare-title="{{name}}"
+        data-compare-url="{{url}}"
+        data-compare-thumbnail="{{getImage image 'small' default_image}}">
+      Compare
+    </label>
+  {{/if}}
+
   {{#if out_of_stock_message}}
     <div class="product-item-tag tag-sold-out">{{out_of_stock_message}}</div>
   {{else}}

@@ -1,8 +1,13 @@
-<div class="product-listing" data-listing-container>
+<div
+  class="product-listing"
+  data-listing-container
+  {{#if brand.show_compare}}data-product-compare{{/if}}>
+
   {{#if brand.products}}
     {{#each brand.products}}
       {{> components/product/product-item
         default_image=(cdn ../theme_settings.default_image)
+        show_compare=../brand.show_compare
       }}
     {{/each}}
   {{else}}

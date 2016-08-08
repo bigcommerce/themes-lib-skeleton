@@ -93,6 +93,11 @@
     "show_more": "Show more",
     "update": "Update"
   },
+  "compare": {
+    "title": "Comparing <span>{num}</span> items",
+    "action": "Compare",
+    "remove_all": "Remove all"
+  },
   "page": {
     "label": "Quick Links"
   },
