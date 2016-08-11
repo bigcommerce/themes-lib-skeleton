@@ -18,7 +18,7 @@
     <link itemprop="availability" href="http://schema.org/OutOfStock">
   {{/unless}}
 
-  <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
+  <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add {{#if customer}}data-is-customer{{/if}}>
     <input type="hidden" name="action" value="add">
     <input type="hidden" name="product_id" value="{{product.id}}" data-product-id>
 
@@ -92,6 +92,24 @@
       <span class="spinner"></span>
     </div>
   </form>
+
+  {{#if settings.show_wishlist}}
+    {{#if customer.wishlists.length}}
+      <ul>
+        {{#each customer.wishlists}}
+          <li>
+            <a href="{{../product.add_to_wishlist_url}}&wishlistid={{id}}" data-wishlist-link="{{view_url}}">
+              {{name}} ({{num_items}})
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <a href="{{product.add_to_wishlist_url}}">
+        {{lang 'product.add_to_wishlist'}}
+      </a>
+    {{/if}}
+  {{/if}}
 
   <div data-product-message></div>
 

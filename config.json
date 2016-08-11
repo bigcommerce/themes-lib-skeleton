@@ -4,6 +4,17 @@
   "css_compiler": "scss",
   "autoprefixer_cascade": true,
   "autoprefixer_browsers": ["last 3 versions"],
+  "resources": {
+    "blog": true,
+    "cart": true,
+    "brands": true,
+    "categories": true,
+    "customer": {
+      "wishlists": {
+        "limit": 10
+      }
+    }
+  },
   "settings": {
     "_images": {
       "logo": {

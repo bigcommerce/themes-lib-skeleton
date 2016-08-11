@@ -129,6 +129,10 @@
         "your_comments": "Your Comments",
         "submit": "Submit Review"
       }
+    },
+    "wishlist": {
+      "add_success": "*product* successfully added to wishlist. <a href='*url*'>View wishlist.</a>",
+      "add_error": "*product* could not be added to wishlist."
     }
   },
   "forms": {

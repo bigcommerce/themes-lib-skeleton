@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 import Alert from '../components/Alert';
+import Loading from 'bc-loading';
 
 /**
  * PxU's handler for a couple product-related ajax features.
@@ -40,6 +41,8 @@ export default class ProductUtils {
     this.cartAddAlert = new Alert(this.$el.find('[data-product-cart-message]'));
     this.cartOptionAlert = new Alert(this.$el.find('[data-product-option-message]'));
 
+    this.loader = new Loading({}, true);
+
     this.callbacks = $.extend({
       willUpdate: () => console.log('Update requested.'),
       didUpdate: () => console.log('Update executed.'),
@@ -56,6 +59,7 @@ export default class ProductUtils {
     this._bindQuantityChange();
     this._bindProductOptionChange();
     this._bindCartAdd();
+    this._bindAddWishlist();
   }
 
   /**
@@ -227,5 +231,39 @@ export default class ProductUtils {
     }
 
     this.cartAddAlert.message(message, (isError ? 'error' : 'success'));
+  }
+
+  /**
+   * Ajax add to wishlist
+   *
+   */
+  _bindAddWishlist() {
+    $('[data-wishlist-link]').on('click', (event) => {
+
+      const $button = $(event.currentTarget);
+      const addUrl = $button.attr('href');
+      const viewUrl = $button.attr('data-wishlist-link');
+      const title = $('[data-product-title]').attr('data-product-title');
+
+      if ($('[data-is-customer]').length) {
+        event.preventDefault();
+
+        this.loader.show();
+
+        $.ajax({
+          type: 'POST',
+          url: addUrl,
+          success: () => {
+            this.cartAddAlert.success(this.context.messagesWishlistAddSuccess.replace('*product*', title).replace('*url*', viewUrl), true);
+          },
+          error: () => {
+            this.cartAddAlert.error(this.context.messagesWishlistAddError.replace('*product*', title), true);
+          },
+          complete: () => {
+            this.loader.hide();
+          },
+        });
+      }
+    });
   }
 }
