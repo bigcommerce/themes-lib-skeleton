@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### [unreleased] - unreleased
+## Changed
+- Simplify app.js
+- add alert templates
+
 ### [2.1.0] - 2016-8-04
 ## Added
 - Added a schema file and the options within to the config

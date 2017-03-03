@@ -1,14 +1,18 @@
-const webpack = require('webpack');
+var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   devtool: 'eval-cheap-module-source-map',
-  bail: false,
+  bail: true,
   module: {
     loaders: [
       {
         test: /\.js$/,
         loader: 'babel',
-        include: /(assets\/js|node_modules\/@bigcommerce\/stencil-utils)/,
+        include: [
+          path.resolve(__dirname, 'assets/js'),
+          path.resolve(__dirname, 'node_modules/@bigcommerce/stencil-utils')
+        ],
         query: {
           compact: false,
           cacheDirectory: true,
@@ -24,5 +28,5 @@ module.exports = {
       'window.jQuery': 'jquery'
     })
   ],
-  watch: false
+  watch: true
 };

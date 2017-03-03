@@ -5,32 +5,28 @@
   "private": true,
   "dependencies": {
     "@bigcommerce/stencil-utils": "^1.0.4",
-    "bc-baseline": "git+ssh://git@bitbucket.org/pixelunion/bc-baseline.git",
+    "bc-baseline": "bitbucket:pixelunion/bc-baseline",
     "bc-carousel": "bitbucket:pixelunion/bc-carousel",
+    "bc-compare": "bitbucket:pixelunion/bc-compare",
     "bc-loading": "bitbucket:pixelunion/bc-loading",
     "bc-modal": "bitbucket:pixelunion/bc-modal",
-    "bc-compare": "bitbucket:pixelunion/bc-compare",
     "eventemitter2": "^2.1.0",
     "history.js": "github:browserstate/history.js",
-    "jquery-revealer": "git+ssh://git@github.com/pixelunion/jquery.revealer.git",
-    "jquery-trend": "git+ssh://git@github.com/pixelunion/jquery.trend.git",
+    "jquery": "^3.1.1",
+    "jquery-revealer": "github:pixelunion/jquery.revealer",
+    "jquery-trend": "github:pixelunion/jquery.trend",
     "normalize.scss": "^0.1.0",
     "path": "^0.12.7",
     "validetta": "github:pixelunion/validetta"
   },
   "devDependencies": {
-    "async": "^2.0.1",
-    "babel-core": "^6.11.4",
-    "babel-eslint": "^6.1.2",
-    "babel-loader": "^6.2.4",
+    "async": "^2.1.4",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.9.0",
     "es6-shim": "^0.35.1",
-    "eslint": "^2.2.0",
-    "jquery": "^3.1.0",
     "shelljs": "^0.7.2",
     "webpack": "^1.13.1"
-  },
-  "scripts": {
-    "eslint": "./node_modules/eslint/bin/eslint.js assets/js/app.js assets/js/theme; exit 0"
   }
 }

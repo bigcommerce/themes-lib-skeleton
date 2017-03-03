@@ -35,14 +35,17 @@
   </main>
 
   {{> components/compare/compare-widget}}
+  {{> components/footer}}
+
+  {{{footer.scripts}}}
 
   <script src="{{cdn '/assets/js/bundle.js'}}"></script>
   <script>
     // Exported in app.js
-    window.stencilBootstrap("{{template_file}}", {{jsContext}}).load();
+    window.stencilBootstrap("{{template_file}}", {{jsContext}});
   </script>
-  {{> components/footer}}
 
+  {{{snippet 'footer'}}}
 
 </body>
 </html>

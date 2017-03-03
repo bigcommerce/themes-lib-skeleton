@@ -1,10 +1,11 @@
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.conf.js');
+var path = require('path');
 
 webpackConfig.context = __dirname;
-webpackConfig.entry = './assets/js/app.js';
+webpackConfig.entry = path.resolve(__dirname, 'assets/js/app.js');
 webpackConfig.output = {
-  path: __dirname + '/assets/js',
+  path: path.resolve(__dirname, 'assets/js'),
   filename: 'bundle.js'
 };
 

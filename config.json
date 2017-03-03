@@ -15,6 +15,11 @@
       }
     }
   },
+  "meta": {
+    "author_name": "Pixel Union",
+    "author_email": "support@pixelunion.net",
+    "author_support_url": "https://www.pixelunion.net/support/"
+  },
   "settings": {
     "_images": {
       "logo": {
@@ -61,9 +66,11 @@
   "variations": [
     {
       "name": "Default",
-      "settings": {
-
-      }
+      "id": "default",
+      "meta":  {
+        "description": "default"
+      },
+      "settings": {}
     }
   ]
 }
