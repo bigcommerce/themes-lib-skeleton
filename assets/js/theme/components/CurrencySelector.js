@@ -8,10 +8,6 @@ export default class CurrencySelector {
     this._bindEvents();
   }
 
-  unload() {
-    //remove all event handlers
-  }
-
   _bindEvents() {
     this.$currencySelector.on('change', (event) => {
       this._updateCurrency();
@@ -21,5 +17,9 @@ export default class CurrencySelector {
   _updateCurrency() {
     let newCurrency = this.$currencySelector.val();
     window.location = newCurrency;
+  }
+
+  unload() {
+    //remove all event handlers
   }
 }

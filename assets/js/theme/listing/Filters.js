@@ -23,10 +23,6 @@ export default class Filters extends EventEmitter {
     this._bindEvents();
   }
 
-  unload() {
-    //remove all event handlers
-  }
-
   /**
    * Add a template that should be fetched when changing filters.
    *
@@ -264,5 +260,9 @@ class TemplateRegistry {
 
   _generateId() {
     return `template-${this.id++}`;
+  }
+
+  unload() {
+    //remove all event handlers
   }
 }

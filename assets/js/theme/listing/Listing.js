@@ -30,10 +30,6 @@ export default class Listing {
     this._bindEvents();
   }
 
-  unload() {
-    //remove all event handlers
-  }
-
   _bindEvents() {
     // Update filters
     this.filters.addTemplate(`${this.templateNamespace}/filters`, (content) => {
@@ -136,5 +132,9 @@ export default class Listing {
   _scrollToTop() {
     const scrollTop = $('[data-listing-container]').offset().top;
     $('html,body').animate({ scrollTop });
+  }
+
+  unload() {
+    //remove all event handlers
   }
 }

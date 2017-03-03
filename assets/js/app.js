@@ -71,11 +71,10 @@ window.stencilBootstrap = function stencilBootstrap(templateFile, context = {}) 
 
   context = JSON.parse(context);
   $(() => {
+    new globalClass(context);
+
     if (pageClass) {
-      new globalClass(context);
       new pageClass(context);
-    } else {
-      throw new Error(`${templateFile} Module not found`);
     }
   });
 };

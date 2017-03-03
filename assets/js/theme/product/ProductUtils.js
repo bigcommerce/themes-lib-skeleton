@@ -50,10 +50,6 @@ export default class ProductUtils {
     }, options.callbacks);
   }
 
-  unload() {
-    //remove all event handlers
-  }
-
   /**
    * pass in the page context and bind events
    */
@@ -269,5 +265,9 @@ export default class ProductUtils {
         });
       }
     });
+  }
+
+  unload() {
+    //remove all event handlers
   }
 }

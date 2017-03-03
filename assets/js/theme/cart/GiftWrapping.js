@@ -16,11 +16,6 @@ export default class GiftWrapping {
     this._initialize();
   }
 
-  unload() {
-    //remove all event handlers
-  }
-
-
   _initialize() {
     this.itemId; // later assigned the id of the current product
     this.GiftWrapModal = new Modal({
@@ -111,5 +106,9 @@ export default class GiftWrapping {
       $singleForm.removeClass('hidden');
       $multiForm.addClass('hidden');
     }
+  }
+
+  unload() {
+    //remove all event handlers
   }
 }

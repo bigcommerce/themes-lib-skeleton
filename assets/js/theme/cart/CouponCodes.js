@@ -20,10 +20,6 @@ export default class CouponCodes {
     this._bindEvents();
   }
 
-  unload() {
-    //remove all event handlers
-  }
-
   _bindEvents() {
     this.options.$scope.on('click', '[data-coupon-code-toggle]', (event) => {
       event.preventDefault();
@@ -60,5 +56,9 @@ export default class CouponCodes {
         this.callbacks.didUpdate();
       }
     });
+  }
+
+  unload() {
+    //remove all event handlers
   }
 }

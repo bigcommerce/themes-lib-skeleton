@@ -11,4 +11,8 @@ export default class Home {
       delay: this.context.carouselDelay
     });
   }
+
+  unload() {
+    //remove all event handlers
+  }
 }

@@ -7,5 +7,4 @@ export default class OrderComplete extends PageManager {
   unload() {
     //remove all event handlers
   }
-
 }

@@ -28,12 +28,12 @@ export default class SelectWrapper {
     });
   }
 
-  unload() {
-    //remove all event handlers
-  }
-
   updateSelectText(option) {
     const newOption = option ? option : this.$el.find('option:selected').text();
     this.$el.siblings('.form-selected-text').text(newOption);
+  }
+
+  unload() {
+    //remove all event handlers
   }
 }

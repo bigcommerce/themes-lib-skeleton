@@ -20,14 +20,14 @@ export default class ProductReviews {
     this._bindEvents();
   }
 
-  unload() {
-    //remove all event handlers
-  }
-
   _bindEvents() {
     $('.review-link').click((event) => {
       event.preventDefault();
       this.reviewModal.open();
     });
+  }
+
+  unload() {
+    //remove all event handlers
   }
 }

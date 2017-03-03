@@ -42,4 +42,8 @@ export default class FormValidator {
     const customOptions = localOptions ? localOptions : this.validationOptions;
     $($form).validetta(customOptions, this.validationMessages);
   }
+
+  unload() {
+    //remove all event handlers
+  }
 }

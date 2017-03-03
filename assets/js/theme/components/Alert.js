@@ -39,10 +39,6 @@ export default class Alert {
     this._bindEvents();
   }
 
-  unload() {
-    //remove all event handlers
-  }
-
   _bindEvents() {
     if (_.isEmpty(this.options.template)) {
       this.options.template = _.template(`
@@ -139,5 +135,9 @@ export default class Alert {
     const $alert = this.$el.append(this.options.template(message));
 
     this.callbacks.didUpdate($alert, this.$el);
+  }
+
+  unload() {
+    //remove all event handlers
   }
 }
