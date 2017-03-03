@@ -1,7 +1,9 @@
-import PageManager from '../PageManager';
+export default class Errors {
+  constructor(context) {
+    this.context = context;
+  }
 
-export default class Errors extends PageManager {
-  constructor() {
-    super();
+  unload() {
+    //remove all event handlers
   }
 }

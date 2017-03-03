@@ -1,7 +1,9 @@
-import PageManager from '../PageManager';
+export default class WishList {
+  constructor(context) {
+    this.context = context;
+  }
 
-export default class WishList extends PageManager {
-  constructor() {
-    super();
+  unload() {
+    //remove all event handlers
   }
 }

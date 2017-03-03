@@ -1,7 +1,9 @@
-import PageManager from '../PageManager';
+export default class PageNotFound {
+  constructor(context) {
+    this.context = context;
+  }
 
-export default class PageNotFound extends PageManager {
-  constructor() {
-    super();
+  unload() {
+    //remove all event handlers
   }
 }

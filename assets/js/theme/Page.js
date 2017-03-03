@@ -1,7 +1,5 @@
-import PageManager from '../PageManager';
-
-export default class Page extends PageManager {
-  constructor() {
-    super();
+export default class Page {
+  constructor(context) {
+    this.context = context;
   }
 }

@@ -21,6 +21,10 @@ export default class ShippingCalculator {
     this._bindEvents();
   }
 
+  unload() {
+    //remove all event handlers
+  }
+
   _bindEvents() {
     $('[data-shipping-calculator-toggle]', this.options.$scope).on('click', (event) => {
       event.preventDefault();

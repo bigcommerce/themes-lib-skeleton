@@ -43,4 +43,8 @@ export default class QuantityWidget {
       }
     });
   }
+
+  unload() {
+    //remove all event handlers
+  }
 }

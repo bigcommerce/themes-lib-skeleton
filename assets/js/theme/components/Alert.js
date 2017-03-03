@@ -39,6 +39,10 @@ export default class Alert {
     this._bindEvents();
   }
 
+  unload() {
+    //remove all event handlers
+  }
+
   _bindEvents() {
     if (_.isEmpty(this.options.template)) {
       this.options.template = _.template(`

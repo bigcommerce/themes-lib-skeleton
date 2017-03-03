@@ -16,6 +16,11 @@ export default class GiftWrapping {
     this._initialize();
   }
 
+  unload() {
+    //remove all event handlers
+  }
+
+
   _initialize() {
     this.itemId; // later assigned the id of the current product
     this.GiftWrapModal = new Modal({

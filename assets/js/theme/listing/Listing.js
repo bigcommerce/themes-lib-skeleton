@@ -30,6 +30,10 @@ export default class Listing {
     this._bindEvents();
   }
 
+  unload() {
+    //remove all event handlers
+  }
+
   _bindEvents() {
     // Update filters
     this.filters.addTemplate(`${this.templateNamespace}/filters`, (content) => {

@@ -1,8 +1,10 @@
-import PageManager from '../PageManager';
+export default class GiftCertificate {
+  constructor(context) {
+    this.context = context;
+  }
 
-export default class GiftCertificate extends PageManager {
-  constructor() {
-    super();
+  unload() {
+    //remove all event handlers
   }
 }
 

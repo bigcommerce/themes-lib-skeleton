@@ -18,6 +18,10 @@ export default class CartUtils {
     this._bindEvents();
   }
 
+  unload() {
+    //remove all event handlers
+  }
+
   _bindEvents() {
     this.$cartContent.on('change', '[data-quantity-control-input]', (evt) => {
       const $target = $(evt.target);

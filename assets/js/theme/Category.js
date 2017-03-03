@@ -1,12 +1,14 @@
-import PageManager from '../PageManager';
 import Listing from './listing/Listing';
 
-export default class Category extends PageManager {
-  loaded(next) {
+export default class Category {
+  constructor(context) {
+    this.context = context;
     this.listing = new Listing('category', {
       category: { products: { limit: this.context.listingProductCount } },
     });
+  }
 
-    next();
+  unload() {
+    //remove all event handlers
   }
 }

@@ -63,7 +63,6 @@ const PageClasses = {
  * on page load with the current template loaded and JS Context passed in
  * @param templateFile String
  * @param context
- * @returns {*}
  */
 
 window.stencilBootstrap = function stencilBootstrap(templateFile, context = {}) {

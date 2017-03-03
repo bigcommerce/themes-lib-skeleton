@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import PageManager from '../PageManager';
 import utils from '@bigcommerce/stencil-utils';
 import CartUtils from './cart/CartUtils';
 import ShippingCalculator from './cart/ShippingCalculator';
@@ -10,9 +9,10 @@ import Loading from 'bc-loading';
 import QuantityWidget from './components/QuantityWidget';
 
 
-export default class Cart extends PageManager {
-  loaded(next) {
-    const context = this.context;
+export default class Cart {
+  constructor(context) {
+    this.context = context;
+
     this.quantityControl = new QuantityWidget({scope: '[data-cart-content]'});
 
     const loadingOptions = {
@@ -21,7 +21,7 @@ export default class Cart extends PageManager {
       scrollLockClass: 'scroll-locked',
     };
 
-    new GiftWrapping({scope: '[data-cart-content]', context});
+    new GiftWrapping({scope: '[data-cart-content]', this.context});
     const cartContentOverlay = new Loading(loadingOptions, true, '[data-cart-content]');
     const cartTotalsOverlay = new Loading(loadingOptions, true, '[data-cart-totals]');
 
@@ -34,7 +34,7 @@ export default class Cart extends PageManager {
     });
 
     this.CouponCodes = new CouponCodes({
-      context,
+      this.context,
       visibleClass: 'visible',
       // callbacks: {
       //   willUpdate: () => {},
@@ -43,7 +43,7 @@ export default class Cart extends PageManager {
     });
 
     this.GiftCertificates = new GiftCertificates({
-      context,
+      this.context,
       visibleClass: 'visible',
       // callbacks: {
       //   willUpdate: () => {},
@@ -57,7 +57,9 @@ export default class Cart extends PageManager {
       //   didUpdate: () => {},
       // },
     });
+  }
 
-    next();
+  unload() {
+    //remove all event handlers
   }
 }

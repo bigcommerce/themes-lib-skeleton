@@ -1,7 +1,11 @@
-import PageManager from '../PageManager';
+import GiftWrapping from './cart/GiftWrapping';
 
-export default class Account extends PageManager {
-  constructor() {
-    super();
+export default class Account {
+  constructor(context) {
+    this.context = context;
+  }
+
+  unload() {
+    //remove all event handlers
   }
 }
