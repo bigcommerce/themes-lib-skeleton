@@ -21,7 +21,7 @@ export default class Cart {
       scrollLockClass: 'scroll-locked',
     };
 
-    new GiftWrapping({scope: '[data-cart-content]', this.context});
+    new GiftWrapping({scope: '[data-cart-content]', context: this.context});
     const cartContentOverlay = new Loading(loadingOptions, true, '[data-cart-content]');
     const cartTotalsOverlay = new Loading(loadingOptions, true, '[data-cart-totals]');
 
@@ -34,7 +34,7 @@ export default class Cart {
     });
 
     this.CouponCodes = new CouponCodes({
-      this.context,
+      context: this.context,
       visibleClass: 'visible',
       // callbacks: {
       //   willUpdate: () => {},
@@ -43,7 +43,7 @@ export default class Cart {
     });
 
     this.GiftCertificates = new GiftCertificates({
-      this.context,
+      context: this.context,
       visibleClass: 'visible',
       // callbacks: {
       //   willUpdate: () => {},
