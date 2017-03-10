@@ -110,7 +110,7 @@
 {{#if customer}}
   <form class="form" method="post" action="{{product.add_to_wishlist_url}}">
     <input type="hidden" name="variation_id" value="">
-    <input class="button secondary" type="submit" value="{{lang 'account.wishlists.add_item'}}">
+    <input class="button button-secondary" type="submit" value="{{lang 'account.wishlists.add_item'}}">
   </form>
 {{/if}}
 ```
