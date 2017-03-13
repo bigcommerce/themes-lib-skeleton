@@ -1,5 +1,5 @@
 
-export default class OrderComplete extends PageManager {
+export default class OrderComplete {
   constructor(context) {
     this.context = context;
   }
