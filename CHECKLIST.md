@@ -1,4 +1,5 @@
 # Skeleton supports these items on the checklist
+## Items with an [x] are implemented in the skeleton
 
 #### - 001 - Product SKU in cart - []
 - This may not be necessary in all themes but it's worth considering
