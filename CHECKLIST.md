@@ -84,7 +84,7 @@ todo add this to core as part of the shipping estimator
 #### - 033 - 'As low as' pricing logic - []
 
 ## TODO
-Shipping estimator in core 
+Shipping estimator in core, including the city, country, state fields in core as well
 
 Figure out a strategy for pricing, currently our pricing display is different than Cornerstone's.
 Would be nice to see sales price used right.
