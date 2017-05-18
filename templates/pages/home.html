@@ -2,9 +2,12 @@
 carousel: true
 cart: true
 products:
+  new:
+    limit: 12
   featured:
     limit: 12
-featured_products: 2
+  top_sellers:
+    limit: 12
 ---
 
 {{#partial "page"}}
@@ -15,6 +18,7 @@ featured_products: 2
 
   {{> components/product/products-new products.new}}
   {{> components/product/products-featured products.featured}}
+  {{> components/product/products-popular products.top_sellers}}
 
 {{/partial}}
 

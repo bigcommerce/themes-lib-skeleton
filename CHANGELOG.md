@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - babel-polyfill import added to app.js file
 - Markup and theme settings added to support optimized checkout
 - Included 'from' price language, theme toggle and markup
+- Popular product list added to homepage
 
 ## Changed
 - Structured data markup is now provided through core jsonld files

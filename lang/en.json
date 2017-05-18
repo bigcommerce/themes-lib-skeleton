@@ -10,7 +10,8 @@
   "home": {
     "heading": "Home",
     "new_products": "New Products",
-    "featured_products": "Featured Products"
+    "featured_products": "Featured Products",
+    "popular_products": "Popular Products"
   },
   "blog": {
     "recent_posts": "Recent Posts",
