@@ -9,7 +9,9 @@
   "resources": {
     "blog": true,
     "cart": true,
-    "brands": true,
+    "shop_by_brand": {
+      "limit": 6
+    },
     "categories": true,
     "customer": {
       "wishlists": {
