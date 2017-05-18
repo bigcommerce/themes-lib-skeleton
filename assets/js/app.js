@@ -1,6 +1,8 @@
+import 'babel-polyfill';
+
 import stencilUtils from '@bigcommerce/stencil-utils';
 import async from 'async';
-import Account from './theme/Account';
+import Account from './theme/core/Account';
 import Auth from './theme/Auth';
 import Blog from './theme/Blog';
 import Brand from './theme/Brand';
@@ -23,6 +25,7 @@ import Wishlist from './theme/Wishlist';
 const PageClasses = {
   'global': Global,
   'pages/account/orders/all': Account,
+  'pages/account/orders/details': Account,
   'pages/account/addresses': Account,
   'pages/account/add-address': Account,
   'pages/account/add-return': Account,
@@ -32,10 +35,12 @@ const PageClasses = {
   'pages/account/edit': Account,
   'pages/account/return-saved': Account,
   'pages/account/returns': Account,
+  'pages/account/inbox': Account,
   'pages/auth/login': Auth,
   'pages/auth/account-created': Auth,
   'pages/auth/create-account': Auth,
   'pages/auth/new-password': Auth,
+  'pages/auth/forgot-password': Auth,
   'pages/blog': Blog,
   'pages/blog-post': Blog,
   'pages/brand': Brand,
@@ -44,6 +49,9 @@ const PageClasses = {
   'pages/category': Category,
   'pages/compare': Compare,
   'pages/errors': Errors,
+  'pages/errors/404': Errors,
+  'pages/errors/500': Errors,
+  'pages/errors/403': Errors,
   'pages/gift-certificate/purchase': GiftCertificate,
   'pages/gift-certificate/balance': GiftCertificate,
   'pages/gift-certificate/redeem': GiftCertificate,
