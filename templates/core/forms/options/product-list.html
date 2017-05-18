@@ -22,16 +22,19 @@
           <span class="form-label-text">{{label}}</span>
         </label>
       {{/each}}
-      <label class="form-label">
-        <input
-          class="form-input form-radio"
-          name="attribute[{{id}}]"
-          type="radio" value="0"
-          {{#if defaultValue '==' 0}}checked{{/if}}
-          {{#if ../required}}required{{/if}}
-          aria-required="{{required}}">
-        <span class="form-label-text">{{lang 'product.none'}}</span>
-      </label>
+      {{#unless required}}
+        <label class="form-label">
+          <input
+            class="form-input form-radio"
+            name="attribute[{{id}}]"
+            type="radio"
+            value="0"
+            {{#if prefill '==' 0}}checked{{/if}}
+            {{#if ../required}}required{{/if}}
+            aria-required="{{required}}">
+          <span class="form-label-text">{{lang 'product.none'}}</span>
+        </label>
+      {{/unless}}
     {{else}}
       {{#each values}}
         <label class="form-label product-picklist-item" data-product-attribute-value="{{id}}">
@@ -50,19 +53,19 @@
           </span>
         </label>
       {{/each}}
-      <label class="form-label product-picklist-item">
-        <input
-          class="form-input form-radio product-picklist-radio"
-          name="attribute[{{id}}]"
-          type="radio"
-          value="0"
-          {{#if defaultValue '==' 0}}checked{{/if}}
-          {{#if ../required}}required{{/if}}
-          aria-required="{{required}}">
-        <span class="product-picklist-item-body picklist-none">
-          <span class="product-picklist-label-text form-label-text">{{lang 'product.none'}}</span>
-        </span>
-      </label>
+      {{#unless required}}
+        <label class="form-label product-picklist-item">
+          <input
+            class="form-input form-radio product-picklist-radio"
+            name="attribute[{{id}}]"
+            type="radio"
+            value="0"
+            {{#if prefill '==' 0}}checked{{/if}}>
+          <span class="product-picklist-item-body picklist-none">
+            <span class="product-picklist-label-text form-label-text">{{lang 'product.none'}}</span>
+          </span>
+        </label>
+      {{/unless}}
     {{/unless}}
   </div>
 </div>

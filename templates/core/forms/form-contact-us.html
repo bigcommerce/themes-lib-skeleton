@@ -26,27 +26,9 @@
     {{> core/forms/common/text label=(lang 'core.contact.rma') name="contact_rma" id="contact_rma" prefill=(lang 'core.contact.rma_placeholder')}}
   {{/if}}
 
-  {{#if forms.contact.captcha_url}}
-    <div class="form-field form-required form-field-captcha">
-      <label class="form-label" for="captcha">
-        <span class="form-field-title">
-          {{lang 'core.contact.captcha'}}
-          <span class="required-text">{{lang 'common.required'}}</span>
-        </span>
-      </label>
-      <div class="captcha-note">{{lang 'core.contact.captcha_desc'}}</div>
-      <div class="captcha-image">
-        <img src="{{forms.contact.captcha_url}}" alt="img">
-      </div>
-      <div class="form-field-control">
-        <input class="form-input form-captcha" type="text" id="captcha" name="captcha" placeholder="{{lang 'core.contact.captcha_placeholder'}}" required>
-      </div>
-    </div>
-  {{else}}
-    <input class="form-input" type="hidden" id="captcha" name="captcha">
-  {{/if}}
-
   {{> core/forms/common/multiline label=(lang 'core.contact.question') name="contact_question" id="contact_question" required=true prefill=(lang 'core.contact.question_placeholder') rows=4}}
+
+  {{{forms.contact.recaptcha.markup}}}
 
   <div class="form-actions">
     <input class="button button-contact-submit" type="submit" value="{{lang 'core.contact.submit'}}">

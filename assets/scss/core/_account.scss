@@ -13,6 +13,7 @@ $account-card-background-color: #f5f5f5 !default;
 
 $giftcard-nav-use-default-styles: true !default;
 
+$account-breakpoint-x-small: 400px !default; // the account table columns change to full-width
 $account-breakpoint-small: 620px !default; // menu changes from full-width to column
 $account-breakpoint-medium: 900px !default; // menu changes from 35% to 25% width
 

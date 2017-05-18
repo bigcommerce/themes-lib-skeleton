@@ -1,8 +1,6 @@
 {{!-- Product: include in product.html page template --}}
 
-{{inject 'productDescription' product.description}}
 <script id="schema-product">
-  var description = JSON.parse({{jsContext}}).productDescription;
 
   var schema = document.createElement('script');
   schema.type = 'application/ld+json';
@@ -11,7 +9,7 @@
     "@type": "Product",
     "name": "{{product.title}}",
     "image": "{{getImage product.main_image}}",
-    "description": description,
+    "description": "{{json product.description}}",
     "sku": "{{product.sku}}",
     "brand": {
       "@type": "Thing",

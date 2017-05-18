@@ -3,7 +3,9 @@
   "version": "2.2.1",
   "css_compiler": "scss",
   "autoprefixer_cascade": true,
-  "autoprefixer_browsers": ["last 3 versions"],
+  "autoprefixer_browsers": [
+    "last 3 versions"
+  ],
   "resources": {
     "blog": true,
     "cart": true,
@@ -48,26 +50,60 @@
       }
     },
     "default_image": "/assets/img/no-image.svg",
-
     "footer-show-copyright": true,
     "footer-show-sitemap": true,
     "footer-show-credits": true,
-
     "show-visa-icon": false,
     "show-amex-icon": false,
     "show-paypal-icon": false,
     "show-mastercard-icon": false,
     "show-discover-icon": false,
-
     "product-count": 18,
-
-    "blog-posts-per-page": 2
+    "blog-posts-per-page": 2,
+    "optimizedCheckout-header-backgroundColor": "#f7f7f7",
+    "optimizedCheckout-show-backgroundImage": false,
+    "optimizedCheckout-backgroundImage": "",
+    "optimizedCheckout-backgroundImage-size": "1000x400",
+    "optimizedCheckout-show-logo": "none",
+    "optimizedCheckout-logo": "",
+    "optimizedCheckout-logo-size": "250x100",
+    "optimizedCheckout-logo-position": "left",
+    "optimizedCheckout-headingPrimary-color": "#2d2d2d",
+    "optimizedCheckout-headingPrimary-font": "Google_Montserrat_400",
+    "optimizedCheckout-headingSecondary-color": "#2d2d2d",
+    "optimizedCheckout-headingSecondary-font": "Google_Montserrat_400",
+    "optimizedCheckout-body-backgroundColor": "#ffffff",
+    "optimizedCheckout-contentPrimary-color": "#4f4f4f",
+    "optimizedCheckout-contentPrimary-font": "Google_Karla_400",
+    "optimizedCheckout-contentSecondary-color": "#989898",
+    "optimizedCheckout-contentSecondary-font": "Google_Karla_400",
+    "optimizedCheckout-buttonPrimary-font": "Google_Karla_400",
+    "optimizedCheckout-buttonPrimary-color": "#ffffff",
+    "optimizedCheckout-buttonPrimary-colorHover": "#ffffff",
+    "optimizedCheckout-buttonPrimary-backgroundColor": "#454545",
+    "optimizedCheckout-buttonPrimary-backgroundColorHover": "#666666",
+    "optimizedCheckout-buttonPrimary-borderColor": "#454545",
+    "optimizedCheckout-buttonPrimary-borderColorHover": "#666666",
+    "optimizedCheckout-buttonSecondary-font": "Google_Karla_400",
+    "optimizedCheckout-buttonSecondary-color": "#4f4f4f",
+    "optimizedCheckout-buttonSecondary-backgroundColor": "#ffffff",
+    "optimizedCheckout-buttonSecondary-borderColor": "#dfdfdf",
+    "optimizedCheckout-link-color": "#4496f6",
+    "optimizedCheckout-link-font": "Google_Karla_400",
+    "optimizedCheckout-discountBanner-backgroundColor": "#f5f5f5",
+    "optimizedCheckout-discountBanner-textColor": "#333333",
+    "optimizedCheckout-discountBanner-iconColor": "#333333",
+    "optimizedCheckout-orderSummary-backgroundColor": "#ffffff",
+    "optimizedCheckout-step-backgroundColor": "#4f4f4f",
+    "optimizedCheckout-step-textColor": "#ffffff",
+    "optimizedCheckout-formField-backgroundColor": "white",
+    "optimizedCheckout-formField-borderColor": "#989898"
   },
   "variations": [
     {
       "name": "Default",
       "id": "default",
-      "meta":  {
+      "meta": {
         "description": "default"
       },
       "settings": {}

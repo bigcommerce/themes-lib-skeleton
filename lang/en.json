@@ -209,7 +209,6 @@
       "rma_placeholder": "RMA Number",
       "captcha": "Are you human?",
       "captcha_placeholder": "Captcha",
-      "captcha_desc": "Please copy the characters from the image into the text field below. Doing this helps us prevent automated submissions.",
       "question": "Comments/Questions",
       "question_placeholder": "Enter your comments here",
       "submit": "Submit Message",
@@ -281,7 +280,7 @@
         },
         "items": {
           "title": "Items",
-          "product_title": "{quantity} \u00d7 {name}",
+          "product_title": "{quantity} × {name}",
           "options": "Options",
           "customizations": "Customizations",
           "gift_wrapping": "Gift wrapping",
@@ -320,7 +319,7 @@
         "quantity_title": "Quantity",
         "price_title": "Price",
         "giftwrap": "Giftwrapping",
-        "quantity": "{quantity} \u00d7 {price}"
+        "quantity": "{quantity} × {price}"
       },
       "orders": {
         "heading_all": "Orders",
@@ -376,7 +375,7 @@
         "successful": "Your return was submitted successfully. We'll respond as soon as we can.",
         "no_returns": "You haven't made any returns yet.",
         "list": {
-          "title": "{quantity} \u00d7 {name}",
+          "title": "{quantity} × {name}",
           "number": "Return #{number}",
           "date": "Requested",
           "action": "Action",

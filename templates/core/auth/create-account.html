@@ -20,18 +20,9 @@
       {{/each}}
     </div>
 
+    {{{forms.create_account.recaptcha.markup}}}
+
     <div class="account-create-form-actions">
-      {{#if forms.create_account.recaptcha.enabled}}
-        <div class="account-create-captcha">
-          <script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}"></script>
-          <noscript>
-            <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.create_account.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
-            <br>
-            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
-            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
-          </noscript>
-        </div>
-      {{/if}}
       <input class="button account-button-primary" type="submit" value="{{lang 'core.auth.create.submit'}}">
     </div>
   </form>

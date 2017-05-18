@@ -3,7 +3,7 @@
 <script id="schema-blog">
   var postDate = '{{blog.post.date_published}}';
   postDate = postDate.split(' ');
-  postDate[0] = postDate[0].replace(/\D/g, '');
+  postDate = postDate[0].replace(/\D/g, '');
   postDate = new Date(postDate);
   try {
     postDate = postDate.toISOString();

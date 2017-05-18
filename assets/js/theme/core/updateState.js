@@ -1,6 +1,6 @@
 
 import $ from 'jquery';
-import utils from 'bigcommerce/stencil-utils';
+import utils from '@bigcommerce/stencil-utils';
 
 /**
  * Return a "State" select input

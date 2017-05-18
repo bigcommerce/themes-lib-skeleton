@@ -1,9 +1,7 @@
-import PageManager from '../../PageManager';
 import $ from 'jquery';
 
-export default class GiftCertificate extends PageManager {
-  constructor() {
-    super();
+export default class GiftCertificate {
+  constructor(context) {
     this.$purchaseForm = $('[data-giftcard-purchase-form]');
     this._bindEvents();
   }
@@ -37,11 +35,10 @@ export default class GiftCertificate extends PageManager {
     // Create preview
     const $preview = $('<iframe>', {
       src: url,
-      load: (event) => {
-        // Calculate iframe height based on its document height
-        const height = $(event.currentTarget.contentDocument).height();
-        $(event.currentTarget).height(height);
-      },
+    }).on('load', (event) => {
+      // Calculate iframe height based on its document height
+      const height = $(event.currentTarget.contentDocument).height();
+      $(event.currentTarget).height(height);
     });
 
     // Update preview
@@ -49,4 +46,9 @@ export default class GiftCertificate extends PageManager {
       .addClass('has-preview')
       .html($preview);
   }
+
+  // backwards compatibility for Page Manager
+  loaded() {}
+  before() {}
+  after() {}
 }

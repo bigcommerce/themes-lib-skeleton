@@ -20,10 +20,13 @@
 .account-item-body,
 .account-item-badge,
 .account-item-actions {
-  display: table-cell;
   padding-top: $account-gutter-inner;
   padding-bottom: $account-gutter-inner;
-  vertical-align: top;
+
+  @media screen and (min-width: $account-breakpoint-x-small) {
+    display: table-cell;
+    vertical-align: top;
+  }
 }
 
 // Link
@@ -54,8 +57,10 @@
 .account-item-body {
   width: 100%;
 
-  .account-item-thumbnail + & {
-    padding-left: $account-gutter-inner;
+  @media screen and (min-width: $account-breakpoint-x-small) {
+    .account-item-thumbnail + & {
+      padding-left: $account-gutter-inner;
+    }
   }
 }
 
