@@ -1,0 +1,11 @@
+<div>
+  {{#if content_results}}
+    {{#each content_results}}
+      {{> components/search/content-item}}
+    {{/each}}
+  {{else}}
+    <div class="no-results-wrapper">
+      {{lang 'search.no_content'}}
+    </div>
+  {{/if}}
+</div>

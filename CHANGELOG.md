@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Included 'from' price language, theme toggle and markup
 - Popular product list added to homepage
 - Shop by brand support through config.json
+- Support for content results on search page
 
 ## Changed
 - Structured data markup is now provided through core jsonld files
