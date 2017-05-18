@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Changed
 - Structured data markup is now provided through core jsonld files
+- Front matter updated across theme
 
 ### [2.2.1] - 2017-03-06
 ## Fixed
