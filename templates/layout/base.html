@@ -19,6 +19,8 @@
   {{inject 'themeImageSizes' theme_images}}
   {{> components/global-injects}}
   {{> components/snippets/facebook-like}}
+
+  {{> core/structured-data/website}}
 </head>
 
 <body class="{{page_type}}">
@@ -38,6 +40,8 @@
   {{> components/footer}}
 
   {{{footer.scripts}}}
+
+  {{> core/structured-data/breadcrumbs}}
 
   <script src="{{cdn '/assets/js/bundle.js'}}"></script>
   <script>

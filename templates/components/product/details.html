@@ -12,24 +12,16 @@
 {{inject 'urlsCheckout' urls.checkout.single_address}}
 
 <div data-product-details data-product-title="{{product.title}}">
-  {{#unless product.out_of_stock_message}}
-    <link itemprop="availability" href="http://schema.org/InStock">
-  {{else}}
-    <link itemprop="availability" href="http://schema.org/OutOfStock">
-  {{/unless}}
 
   <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add {{#if customer}}data-is-customer{{/if}}>
     <input type="hidden" name="action" value="add">
     <input type="hidden" name="product_id" value="{{product.id}}" data-product-id>
 
-    <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+    <div>
       {{#if settings.show_product_rating}}
-        <meta itemprop="ratingValue" content="{{product.rating}}">
-        <meta itemprop="ratingCount" content="{{product.num_reviews}}">
         {{> components/reviews/ratings rating=product.rating}}
       {{/if}}
       {{#if settings.show_product_reviews}}
-        <meta itemprop="reviewCount" content="{{product.num_reviews}}">
         {{#if product.num_reviews 0}}{{lang 'product.reviews.no_reviews'}}{{/if}}
         <a href="#modal-review-form" class="review-link">{{ lang 'product.reviews.leave_review' }}</a>
       {{/if}}
@@ -114,7 +106,7 @@
   <div data-product-message></div>
 
   {{#if product.description}}
-    <div itemprop="description">
+    <div>
       {{{product.description}}}
     </div>
   {{/if}}

@@ -1,9 +1,5 @@
-<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-  <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+<div>
   {{#if price.without_tax}}
-    {{#if schema_org}}
-      <meta itemprop="price" content="{{price.without_tax.value}}">
-    {{/if}}
 
     <div data-product-price-wrapper="without-tax">
       {{#if price.saved}}
@@ -19,11 +15,6 @@
   {{/if}}
 
   {{#if price.with_tax}}
-    {{#if schema_org}}
-      {{#unless price.without_tax}}
-        <meta itemprop="price" content="{{price.with_tax.value}}">
-      {{/unless}}
-    {{/if}}
 
     <div data-product-price-wrapper="with-tax">
       {{#if price.saved}}
