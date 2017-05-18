@@ -106,6 +106,7 @@
     "pre_order": "Pre-Order",
     "add_to_cart": "Add To Cart",
     "select_an_option": "Please Choose An Option",
+    "price_from_message": "from ",
     "you_save": "You save",
     "including_tax": "(Inc Tax)",
     "excluding_tax": "(Exc Tax)",

@@ -50,6 +50,7 @@
       }
     },
     "default_image": "/assets/img/no-image.svg",
+    "price_from": false,
     "footer-show-copyright": true,
     "footer-show-sitemap": true,
     "footer-show-credits": true,

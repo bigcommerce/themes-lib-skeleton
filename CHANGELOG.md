@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### [unreleased] - unreleased
+## Added
+- Missing template references added to app.js file
+- babel-polyfill import added to app.js file
+- Markup and theme settings added to support optimized checkout
+- Included 'from' price language, theme toggle and markup
+
+## Changed
+- Structured data markup is now provided through core jsonld files
+
 ### [2.2.1] - 2017-03-06
 ## Fixed
 - Context fix in cart.js
