@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Popular product list added to homepage
 - Shop by brand support through config.json
 - Support for content results on search page
+- Templates for subscribed and unsubscribed added
 
 ## Changed
 - Structured data markup is now provided through core jsonld files

@@ -62,6 +62,7 @@ const PageClasses = {
   'pages/search': Search,
   'pages/sitemap': Sitemap,
   'pages/subscribe': Subscribe,
+  'pages/Unsubscribe': Unsubscribe,
   'pages/account/wishlist-details': Wishlist,
   'pages/account/wishlists': Wishlist,
 };
