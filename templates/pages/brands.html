@@ -1,0 +1,20 @@
+{{#partial "page"}}
+
+  <h1 class="page-heading">{{lang 'brand.label'}}</h1>
+
+  <section class="brands-index">
+    <ul class="brands-list">
+      {{#if theme_settings.show_brand_images}}
+        {{#each brands}}
+          {{> components/brand-list-image}}
+        {{/each}}
+      {{else}}
+        {{#each brands}}
+          {{> components/brand-list}}
+        {{/each}}
+      {{/if}}
+    </ul>
+  </section>
+
+{{/partial}}
+{{> layout/base}}
