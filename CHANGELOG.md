@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-### [unreleased] - unreleased
+### [2.2.2] - 2017-05-19
 ## Added
 - Missing template references added to app.js file
 - babel-polyfill import added to app.js file
