@@ -1,0 +1,18 @@
+{{#any cart.status_messages product.shipping_messages shipping_messages}}
+  <div class="site-alerts" data-site-alerts>
+
+    {{#if shipping_messages}}
+      {{#each shipping_messages}}
+        {{> core/alerts/alert-info message=message dismissable=true}}
+      {{/each}}
+    {{/if}}
+
+    {{#if product.shipping_messages}}
+      {{#each product.shipping_messages}}
+        {{> core/alerts/alert-info message=message dismissable=true}}
+      {{/each}}
+    {{/if}}
+  </div>
+{{/any}}
+
+<div class="site-alerts" data-cart-errors></div>

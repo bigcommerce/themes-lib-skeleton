@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Shop by brand support through config.json
 - Support for content results on search page
 - Templates for errors/, gift-certificate/, unavailable/ brands, compare, subscribed, and unsubscribed added
+- Common snippets for alerts, body-classes, breadcrumbs and search-form added
 
 ## Changed
 - Structured data markup is now provided through core jsonld files
