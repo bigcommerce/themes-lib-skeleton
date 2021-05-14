@@ -61,7 +61,7 @@ All your global styles.
 Page-specific: `_home.scss`, `_blog-post.scss` etc.
 
 ##### modules/
-For overrides to any modules you may need. If you've got a `carousel` module and you want different arrow colours or the like, drop a `_carousel.scss` in here. Never be editing anything within a jspm package.
+For overrides to any modules you may need. If you've got a `carousel` module and you want different arrow colours or the like, drop a `_carousel.scss` in here.
 
 ### JS
 ```
