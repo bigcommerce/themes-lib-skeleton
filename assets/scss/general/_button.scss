@@ -1,29 +1,121 @@
 /* Buttons */
 
+button {
+  border-radius: 0;
+}
+
 .button {
-  color: $primary-button-color;
+  @include border-box(5px, 0, $color-primary);
+  position: relative;
+  padding: 10px 40px;
   font-family: $button-font;
+  font-size: 16px;
   font-weight: $button-weight;
-  background: $accent-color;
+  color: $color-compliment;
+  color: $primary-button-color;
   transition: all 0.2s $ease-out-quad;
 
+  &:not(.secondary) {
+    @include border-box(5px, 0, $color-primary);
+    padding: 10px 20px;
+  }
+
   &:hover {
-    @include button-hover($accent-color,background);
+    @include button-hover($color-secondary, background);
     color: $primary-button-color;
   }
 
-  &-secondary {
-    background: $secondary-button-background;
-    color: $secondary-button-color;
+  &.secondary {
+    color: $color-primary;
+    background: $color-compliment;
+    border: 1px solid $color-primary;
 
     &:hover {
-      @include button-hover($secondary-button-background,background);
-      color: $secondary-button-color;
+      color: $color-compliment;
+      background: $color-primary;
     }
   }
 
-  &-disabled {
+  &.button-disabled {
+    color: $color-compliment;
     background: $disabled-button-background;
-    color: $disabled-button-color;
+    cursor: not-allowed;
   }
+}
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  color: inherit;
+  pointer-events: none;
+  border: 2px solid;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: 0.8s loader linear infinite;
+}
+
+@keyframes loader {
+  0% { transform: rotate(0deg); }
+
+  100% { transform: rotate(360deg); }
+}
+
+.button-progress {
+  position: relative;
+
+  &.in-progress {
+    .button-text {
+      visibility: hidden;
+    }
+  }
+
+  .complete-text {
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    visibility: hidden;
+
+    .product-actions & {
+      top: 10px;
+    }
+
+    svg {
+      display: inline-block;
+      width: 14px;
+      height: 10px;
+    }
+
+    span {
+      margin: auto;
+    }
+
+    .checkmark {
+      @extend %checkmark;
+    }
+  }
+
+  &.will-complete {
+    .complete-text {
+      visibility: visible;
+    }
+
+    .checkmark {
+      @extend %checkmark-visible;
+      transition-delay: 0.5s;
+    }
+  }
+}
+
+.overlay-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
