@@ -1,0 +1,39 @@
+%revealer-fade {
+  display: none;
+
+  &.visible,
+  &.animating {
+    display: inline-block;
+  }
+
+  &.animating {
+    opacity: 0;
+    transition: all 0.4s $ease-out-quad;
+  }
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+
+%revealer-dropdown {
+  display: none;
+
+  &.animating,
+  &.visible {
+    display: block;
+  }
+
+  &.animating-in,
+  &.animating-out {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease, transform 0.3s ease;
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
