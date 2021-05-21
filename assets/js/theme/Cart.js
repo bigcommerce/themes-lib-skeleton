@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import PageManager from '../PageManager';
 import utils from '@bigcommerce/stencil-utils';
 import CartUtils from './cart/CartUtils';
 import ShippingCalculator from './cart/ShippingCalculator';
@@ -6,60 +6,72 @@ import CouponCodes from './cart/CouponCodes';
 import GiftCertificates from './cart/GiftCertificates';
 import GiftWrapping from './cart/GiftWrapping';
 import Loading from 'bc-loading';
+import loadingOptions from './utils/loadingOptions';
 import QuantityWidget from './components/QuantityWidget';
+import Modals from './common/Modals';
+import EditOptions from './cart/EditOptions';
 
+export default class Cart extends PageManager {
+  constructor() {
+    super();
 
-export default class Cart {
-  constructor(context) {
-    this.context = context;
+    this.cartContentOverlay = new Loading(loadingOptions, false, '[data-cart-content]');
+    this.cartTotalsOverlay = new Loading(loadingOptions, false, '[data-cart-totals]');
 
-    this.quantityControl = new QuantityWidget({scope: '[data-cart-content]'});
+    new QuantityWidget({scope: '[data-cart-content]'});
 
-    const loadingOptions = {
-      loadingMarkup: '<div class="loading"><span class="loading-spinner"></span></div>',
-      visibleClass: 'visible',
-      scrollLockClass: 'scroll-locked',
-    };
+    new ShippingCalculator();
 
-    new GiftWrapping({scope: '[data-cart-content]', context: this.context});
-    const cartContentOverlay = new Loading(loadingOptions, true, '[data-cart-content]');
-    const cartTotalsOverlay = new Loading(loadingOptions, true, '[data-cart-totals]');
+    new Modals();
 
-    this.ShippingCalculator = new ShippingCalculator({
-      visibleClass: 'visible',
-      // callbacks: {
-      //   willUpdate: () => {},
-      //   didUpdate: () => {},
-      // },
+    new CartUtils({
+      callbacks: {
+        willUpdate: () => {
+          this.cartContentOverlay.show();
+        },
+        didUpdate: () => {},
+      },
     });
 
-    this.CouponCodes = new CouponCodes({
-      context: this.context,
-      visibleClass: 'visible',
-      // callbacks: {
-      //   willUpdate: () => {},
-      //   didUpdate: () => {},
-      // },
-    });
-
-    this.GiftCertificates = new GiftCertificates({
-      context: this.context,
-      visibleClass: 'visible',
-      // callbacks: {
-      //   willUpdate: () => {},
-      //   didUpdate: () => {},
-      // },
-    });
-
-    this.CartUtils = new CartUtils({
-      // callbacks: {
-      //   willUpdate: () => {},
-      //   didUpdate: () => {},
-      // },
-    });
+    if (window.ApplePaySession && $('.dev-environment').length) {
+      $(document.body).addClass('apple-pay-supported');
+    }
   }
 
-  unload() {
-    //remove all event handlers
+  loaded() {
+    new GiftWrapping({
+      scope: '[data-cart-content]',
+      context: this.context,
+    });
+
+    new CouponCodes({
+      scope: '[data-cart-totals]',
+      context: this.context,
+      visibleClass: 'visible',
+      callbacks: {
+        willUpdate: () => {
+          this.cartTotalsOverlay.show();
+        },
+        didUpdate: () => {
+          this.cartTotalsOverlay.hide();
+        },
+      },
+    });
+
+    new GiftCertificates({
+      scope: '[data-cart-totals]',
+      context: this.context,
+      visibleClass: 'visible',
+      callbacks: {
+        willUpdate: () => {
+          this.cartTotalsOverlay.show();
+        },
+        didUpdate: () => {
+          this.cartTotalsOverlay.hide();
+        },
+      },
+    });
+
+    new EditOptions(this.context);
   }
 }
