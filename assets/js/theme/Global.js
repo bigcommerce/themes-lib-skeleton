@@ -1,17 +1,25 @@
-import $ from 'jquery';
+import 'core-js/es/promise';
+import PageManager from '../PageManager';
+import './utils/themePlugins';
+import modernizr from './utils/modernizr'
 import CurrencySelector from './components/CurrencySelector';
 import SelectWrapper from './components/SelectWrapper';
 import FormValidator from './utils/FormValidator';
-import formSelectedValue from './core/formSelectedValue';
+import Dropdown from './components/Dropdown';
+import Banner from './components/Banner';
+import MiniCart from './components/MiniCart';
+import Header from './components/Header';
+import './core/selectOption';
 
-// global scope jQuery plugins
-/* eslint-disable no-unused-vars */
-import validetta from 'validetta';
+export default class Global extends PageManager {
+  constructor() {
+    super();
 
-export default class Global {
-  constructor(context) {
-    this.context = context;
-    new CurrencySelector('[data-currency-switcher]');
+    new CurrencySelector('[data-currency-selector]');
+    new Dropdown($('[data-dropdown]'));
+    new Banner();
+    new Header();
+    new MiniCart();
 
     const $select = $('select');
     if ($select.length) {
@@ -19,15 +27,11 @@ export default class Global {
         new SelectWrapper(el);
       });
     }
-
-    formSelectedValue();
-
-    // global form validation
-    this.validator = new FormValidator(this.context);
-    this.validator.initGlobal();
   }
 
-  unload() {
-    //remove all event handlers
+  loaded() {
+    // Global form validation
+    this.validator = new FormValidator(this.context);
+    this.validator.initGlobal();
   }
 }
