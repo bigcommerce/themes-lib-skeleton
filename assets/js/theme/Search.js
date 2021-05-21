@@ -1,15 +1,15 @@
-import Listing from './listing/Listing';
+import PageManager from '../PageManager';
+import ProductCatalog from './catalog/ProductCatalog';
+import CustomTabs from './common/Tabs';
 
-export default class Search {
-  constructor(context) {
-    this.context = context;
+export default class Search extends PageManager {
+  constructor() {
+    super();
 
-    this.listing = new Listing('search', {
-      product_results: {limit: this.context.listingProductCount},
-    });
+    new CustomTabs();
   }
 
-  unload() {
-    //remove all event handlers
+  loaded() {
+    new ProductCatalog(this.context);
   }
 }

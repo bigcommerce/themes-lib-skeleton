@@ -1,9 +1,7 @@
-export default class Brands {
-  constructor(context) {
-    this.context = context;
-  }
+import PageManager from '../PageManager';
 
-  unload() {
-    //remove all event handlers
+export default class Brands extends PageManager {
+  constructor() {
+    super();
   }
 }

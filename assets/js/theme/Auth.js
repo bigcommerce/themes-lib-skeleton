@@ -1,9 +1,3 @@
-export default class Auth {
-  constructor(context) {
-    this.context = context;
-  }
+import Auth from './core/Auth';
 
-  unload() {
-    //remove all event handlers
-  }
-}
+export default Auth;

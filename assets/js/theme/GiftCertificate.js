@@ -1,10 +1,12 @@
-export default class GiftCertificate {
-  constructor(context) {
-    this.context = context;
+import PageManager from '../PageManager';
+import GiftCards from './core/GiftCertificate';
+
+export default class GiftCertificate extends PageManager {
+  constructor() {
+    super();
   }
 
-  unload() {
-    //remove all event handlers
+  loaded() {
+    new GiftCards();
   }
 }
-
