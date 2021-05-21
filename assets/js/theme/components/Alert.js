@@ -11,13 +11,11 @@
  *  An object containing additional options for the module. (see below)
  */
 
-import $ from 'jquery';
 import _ from 'lodash';
 import trend from 'jquery-trend';
 
 export default class Alert {
   constructor($el, options = {}) {
-
     this.$el = $el;
     this.options = $.extend({
       classes: {
@@ -44,7 +42,11 @@ export default class Alert {
       this.options.template = _.template(`
         <div class='${this.options.classes.base} <%= messageType %>'>
           <% if (isDismissable) { %>
-            <a class="alert-dismiss">&times;</a>
+            <a class="alert-dismiss">
+              <svg class="icon-x" width="11" height="11" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg" role="presentation">
+                <path d="M.367.933l9.2 9.2c.156.156.41.156.566 0 .156-.156.156-.41 0-.566l-9.2-9.2C.777.21.523.21.367.367.21.523.21.777.367.933zm9.2-.566l-9.2 9.2c-.156.156-.156.41 0 .566.156.156.41.156.566 0l9.2-9.2c.156-.156.156-.41 0-.566-.156-.156-.41-.156-.566 0z" fill-rule="nonzero" fill="currentColor"/>
+              </svg>
+            </a>
           <% } %>
           <div class="alert-message">
             <%= messageText %>
@@ -53,7 +55,6 @@ export default class Alert {
       `);
     }
 
-    // TODO: If bc-core becomes integrated into bc-skeleton then this won't be needed
     this.$el.on('click', '.alert-dismiss', (event) => {
       event.preventDefault();
       const $alert = $(event.currentTarget).parent('.alert');
@@ -135,9 +136,5 @@ export default class Alert {
     const $alert = this.$el.append(this.options.template(message));
 
     this.callbacks.didUpdate($alert, this.$el);
-  }
-
-  unload() {
-    //remove all event handlers
   }
 }
