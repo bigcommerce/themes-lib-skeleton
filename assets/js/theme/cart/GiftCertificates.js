@@ -1,7 +1,7 @@
-import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 import Alert from '../components/Alert';
-import refreshContent from './refreshContent';
+import progressButton from '../utils/progressButton';
+import refreshCart from './refreshCart';
 
 export default class GiftCertificates {
   constructor(options) {
@@ -15,45 +15,68 @@ export default class GiftCertificates {
       didUpdate: () => console.log('Update executed.'),
     }, options.callbacks);
 
-    this.certificateAlerts = new Alert($('[data-gift-certificate-errors]', this.options.$scope));
+    this.$scope = $(this.options.$scope);
+
+    this.certificateAlerts = new Alert($('[data-alerts]'));
 
     this._bindEvents();
   }
 
   _bindEvents() {
-    this.options.$scope.on('click', '[data-gift-certificate-toggle]', (event) => {
+    this.$scope.on('click', '[data-gift-certificate-toggle]', (event) => {
       event.preventDefault();
       this._toggle();
     });
 
-    this.options.$scope.on('submit', '[data-gift-certificate-form]', (event) => {
+    this.$scope.on('submit', '[data-gift-certificate-form]', (event) => {
       event.preventDefault();
       this._addCode();
+    });
+
+    this.$scope.on('click', '[data-gift-certificate-remove]', (event) => {
+      event.preventDefault();
+      this._removeCode($(event.currentTarget).attr('href'));
     });
   }
 
   _toggle() {
-    $('[data-gift-certificate-form]', this.options.$scope).toggleClass(this.options.visibleClass);
+    $('[data-gift-certificate-form]', this.$scope).toggleClass(this.options.visibleClass);
   }
 
   _addCode() {
-    const $input = $('[data-gift-certificate-input]', this.options.$scope);
+    const $input = $('[data-gift-certificate-input]', this.$scope);
     const code = $input.val();
+    const $button = $('[data-gift-certificate-form]').find('[data-gift-certificate-submit]');
 
-    this.callbacks.willUpdate();
+    this.certificateAlerts.clear();
+
+    // update button state
+    progressButton.progress($button);
 
     if (! this._isValidCode(code)) {
-      this.certificateAlerts.error(this.options.context.giftCertificateInputEmpty);
+      this.certificateAlerts.error(this.options.context.giftCertificateInputEmpty, true);
       return this.callbacks.didUpdate();
     }
 
     utils.api.cart.applyGiftCertificate(code, (err, response) => {
       if (response.data.status === 'success') {
-        refreshContent(this.callbacks.didUpdate);
+        refreshCart(this.callbacks.didUpdate);
+        progressButton.confirmComplete($button);
       } else {
-        this.certificateAlerts.error(response.data.errors.join('\n'));
+        this.certificateAlerts.error(response.data.errors.join('\n'), true);
         this.callbacks.didUpdate();
+        progressButton.complete($button);
       }
+    });
+  }
+
+  _removeCode(removeUrl) {
+    this.callbacks.willUpdate();
+
+    $.post(removeUrl, () => {
+      refreshCart(() => {
+        this.callbacks.didUpdate();
+      });
     });
   }
 
@@ -62,10 +85,7 @@ export default class GiftCertificates {
       return false;
     }
 
-    return /^[A-Z0-9]{3}\-[A-Z0-9]{3}\-[A-Z0-9]{3}\-[A-Z0-9]{3}$/.exec(code);
-  }
-
-  unload() {
-    //remove all event handlers
+    // Add any custom gift certificate validation logic here
+    return true;
   }
 }
