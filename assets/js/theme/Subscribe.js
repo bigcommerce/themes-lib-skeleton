@@ -1,9 +1,7 @@
-export default class Subscribe {
-  constructor(context) {
-    this.context = context;
-  }
+import PageManager from '../PageManager';
 
-  unload() {
-    //remove all event handlers
+export default class Subscribe extends PageManager {
+  constructor() {
+    super();
   }
 }

@@ -1,0 +1,20 @@
+<div
+  class="
+    upper-footer
+    {{> components/footer/footer-classes
+      equals_to=false
+      class='upper-footer-columns'
+    }}
+  "
+>
+  {{#if theme_settings.footer_menu_one '!=' 'disable'}}
+    {{> components/footer/link-list iterable=theme_settings.footer_menu_one}}
+  {{/if}}
+  {{#if theme_settings.footer_menu_two '!=' 'disable'}}
+    {{> components/footer/link-list iterable=theme_settings.footer_menu_two}}
+  {{/if}}
+  {{> components/footer/social}}
+  {{#if theme_settings.show_address}}
+    {{> components/footer/address}}
+  {{/if}}
+</div>

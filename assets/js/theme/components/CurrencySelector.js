@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 export default class CurrencySelector {
   constructor(el) {
     this.$el = $(el);
@@ -10,16 +8,12 @@ export default class CurrencySelector {
 
   _bindEvents() {
     this.$currencySelector.on('change', (event) => {
-      this._updateCurrency();
+      this._updateCurrency(event.currentTarget);
     });
   }
 
-  _updateCurrency() {
-    let newCurrency = this.$currencySelector.val();
+  _updateCurrency(currentTarget) {
+    const newCurrency = $(currentTarget).val();
     window.location = newCurrency;
-  }
-
-  unload() {
-    //remove all event handlers
   }
 }

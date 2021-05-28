@@ -1,0 +1,45 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.pagination-link-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: {
+    style: solid;
+    width: 1px;
+    color: $color-line;
+  }
+
+  &:not(:first-child) {
+    left: -1px;
+  }
+
+  &.pagination-link-current {
+    z-index: 10;
+    border: {
+      width: 1px;
+      color: $color-primary;
+    }
+  }
+}
+
+.pagination-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: $color-text;
+
+  &:hover { border-color: transparent; }
+}

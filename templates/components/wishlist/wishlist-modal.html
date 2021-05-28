@@ -1,0 +1,55 @@
+<div id="modal-wishlist-form" class="modal-container wishlist-modal-container">
+  <a href="#" class="modal-close">{{> components/icons/close}}</a>
+
+  <div class="modal-body">
+    {{> components/common/page-title
+      title=(lang "product.add_to_wishlist")
+    }}
+    <form
+      id="form-wishlist"
+      class="form"
+      data-validated-form
+    >
+    <div class="form-field form-field-options form-field-select form-required">
+      <label class="form-label">
+        <span class="form-field-title">
+          {{lang 'product.add_to_wishlist'}}
+        </span>
+        <span class="form-field-control">
+          <div class="form-select-wrapper">
+            <select
+              class="form-input form-select"
+              id="product-wishlist"
+              name="product-wishlist"
+              aria-required="true"
+              required
+            >
+              <option value="" selected disabled>{{lang 'product.pick_one'}}</option>
+              {{#each customer.wishlists}}
+                <option
+                  value="{{../product.add_to_wishlist_url}}&wishlistid={{id}}"
+                  label="{{name}}"
+                  {{#if selected}}selected{{/if}}
+                >
+                  {{name}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+        </span>
+      </label>
+    </div>
+    <button
+      class="button button-progress"
+      type="submit"
+      data-wishlist-submit
+    >
+      <span class="button-text">{{lang 'product.add'}}</span>
+      <span class="complete-text">
+        {{> components/icons/checkmark}}
+      </span>
+    </button>
+    <div class="wishlist-alerts" data-product-message></div>
+  </form>
+  </div>
+</div>

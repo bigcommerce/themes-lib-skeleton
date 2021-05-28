@@ -1,23 +1,92 @@
 .modal-overlay {
-  background-color: rgba($accent-color, 0.85);
+  background-color: rgba($color-secondary, 0.85);
 }
 
 .modal {
-  max-width: 1060px;
+  width: 90%;
+  max-width: 600px;
   max-height: 90%;
   padding: $gutter * 2;
   overflow-y: scroll;
   background-color: $body-background-color;
+
+  &.giftwrap-modal {
+    padding: 60px 30px;
+  }
 }
 
 .modal-content {
   position: relative;
+  overflow: hidden;
 
   .modal-close {
     position: absolute;
-    top: 0;
     right: 0;
     font-size: $font-size;
     line-height: 1;
+    color: $color-text;
+
+    svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    &:hover {
+      color: $color-primary;
+      border-color: transparent;
+    }
+  }
+}
+
+.modal-content,
+.modal-body {
+  .page-title {
+    @extend %h3;
+    padding: 0;
+    background: transparent;
+    border: 0;
+  }
+}
+
+.modal-body {
+  text-align: center;
+}
+
+// Wishlist modal
+.wishlist-modal-container {
+  display: none;
+}
+
+.modal-add-wishlist {
+
+  .form-field-title {
+    @include sr-only;
+  }
+
+  .form-field-control {
+    max-width: 100%;
+  }
+
+  .form-select-wrapper {
+    width: 100%;
+    line-height: 2;
+  }
+
+  .button {
+    width: 160px;
+    height: 50px;
+    margin-top: 10px;
+  }
+}
+
+.wishlist-alerts {
+  margin-top: 30px;
+}
+
+// Giftwrap modal
+.giftwrap-modal {
+  .form-actions {
+    margin-top: 30px;
   }
 }

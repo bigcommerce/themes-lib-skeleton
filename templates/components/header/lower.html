@@ -1,0 +1,17 @@
+<div class="lower-header">
+
+  {{> components/navigation/navigation
+    style=theme_settings.nav_background_color
+  }}
+
+  {{#if template_file '!==' 'pages/home'}}
+    <div class="breadcrumb-sharing-wrapper">
+      {{> components/header/breadcrumbs}}
+
+      {{#if template_file '===' 'pages/product'}}
+        {{> components/header/sharer url=product.url}}
+      {{/if}}
+    </div>
+  {{/if}}
+
+</div>

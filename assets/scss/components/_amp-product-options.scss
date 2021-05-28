@@ -1,0 +1,61 @@
+.amp-product-options {
+  .add-to-cart-quantity-container {
+    display: inline-block;
+    margin-bottom: 35px;
+
+    .form-label {
+      display: block;
+    }
+
+    .form-label-text {
+      margin-top: 35px;
+      margin-bottom: 10px;
+      margin-left: 0;
+    }
+  }
+
+  .form-field-quantity-control {
+    position: relative;
+    display: block;
+
+    .form-input {
+      width: 100%;
+      padding-right: 40px;
+      padding-left: 40px;
+      text-align: center;
+    }
+
+    .quantity-control-action {
+      position: absolute;
+      top: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 10px;
+      height: 40px;
+      margin-top: -20px;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+
+    .quantity-decrement {
+      left: 8px;
+    }
+
+    .quantity-increment {
+      right: 8px;
+    }
+  }
+
+  .button-progress .complete-text {
+    top: calc(50% - 10px);
+  }
+
+  .alert-message {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}

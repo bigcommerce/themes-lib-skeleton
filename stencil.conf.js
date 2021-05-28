@@ -1,79 +1,76 @@
-var webpack = require('webpack');
-var webpackConfig = require('./webpack.conf.js');
-var path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
+      CleanPlugin = require('clean-webpack-plugin'),
+      LodashPlugin = require('lodash-webpack-plugin'),
+      path = require('path'),
+      webpack = require('webpack');
 
-webpackConfig.context = __dirname;
-webpackConfig.entry = path.resolve(__dirname, 'assets/js/app.js');
-webpackConfig.output = {
-  path: path.resolve(__dirname, 'assets/js'),
-  filename: 'bundle.js'
-};
-
-/**
- * Watch options for the core watcher
- * @type {{files: string[], ignored: string[]}}
- */
-var watchOptions = {
-  // If files in these directories change, reload the page.
-  files: [
-    '/templates',
-    '/lang'
-  ],
-
-  //Do not watch files in these directories
-  ignored: [
-    '/assets/scss',
-    '/assets/less',
-    '/assets/css',
-  ]
-};
-
-/**
- * Hook into the stencil-cli browsersync instance for rapid development of themes.
- * Watch any custom files and trigger a rebuild
- * @param {Object} Bs
- */
-function development(Bs) {
-  var compiler = webpack(webpackConfig);
-  // Rebuild the bundle once at bootup
-  compiler.watch({}, function(err, stats) {
-    if (err) {
-      console.error(err)
-    }
-
-    Bs.reload();
-  });
-}
-
-/**
- */
-/**
- * Hook into the `stencil bundle` command and build your files before they are packaged as a .zip
- * Be sure to call the `done()` callback when finished
- * @param {function} done
- */
-function production(done) {
-  var compiler;
-
-  webpackConfig.devtool = false;
-  webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
-  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    comments: false
-  }));
-
-  compiler = webpack(webpackConfig);
-
-  compiler.run(function(err, stats) {
-    if (err) {
-      throw err;
-    }
-
-    done();
-  });
-}
-
+// Common configuration, with extensions in webpack.dev.js and webpack.prod.js.
 module.exports = {
-  watchOptions: watchOptions,
-  development: development,
-  production: production,
+  bail: true,
+  context: __dirname,
+  entry: {
+    main: './assets/js/app.js',
+    head_async: ['lazysizes', 'lazysizes_parent_fit'],
+    polyfills: './assets/js/polyfills.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include: /(assets\/js|assets\\js|stencil-utils)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              '@babel/plugin-syntax-dynamic-import', // add support for dynamic imports (used in app.js)
+              'lodash', // Tree-shake lodash
+            ],
+            presets: [
+              ['@babel/preset-env', {
+                loose: true, // Enable "loose" transformations for any plugins in this preset that allow them
+                modules: false, // Don't transform modules; needed for tree-shaking
+                useBuiltIns: 'entry', // Tree-shake babel-polyfill
+                targets: '> 1%, last 2 versions, Firefox ESR',
+                corejs: '^3.6.5',
+              }],
+            ],
+          },
+        },
+      },
+    ],
+  },
+  output: {
+    chunkFilename: 'theme-bundle.chunk.[name].js',
+    filename: 'theme-bundle.[name].js',
+    path: path.resolve(__dirname, 'assets/dist'),
+  },
+  performance: {
+    hints: 'warning',
+    maxAssetSize: 1024 * 300,
+    maxEntrypointSize: 1024 * 300,
+  },
+  plugins: [
+      new CleanPlugin(['assets/dist'], {
+        verbose: false,
+        watch: false,
+      }),
+      new LodashPlugin(), // Complements babel-plugin-lodash by shrinking its cherry-picked builds further.
+      new webpack.ProvidePlugin({ // Provide jquery automatically without explicit import
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+      }),
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: false,
+      }),
+  ],
+  resolve: {
+    alias: {
+      jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
+      eventemitter2: path.resolve(__dirname, 'node_modules/eventemitter2/lib/eventemitter2.js'),
+      lazysizes: path.resolve(__dirname, 'node_modules/lazysizes/lazysizes.min.js'),
+      lazysizes_parent_fit: path.resolve(__dirname, 'node_modules/lazysizes/plugins/parent-fit/ls.parent-fit')
+    },
+  },
 };

@@ -69,10 +69,12 @@
               {{/each}}
 
             {{else}}
-              {{#each options}}
-                <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
-              {{/each}}
-
+              {{#if options}}
+                <option value="" disabled>{{chooseprefix}}</option>
+                {{#each options}}
+                  <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+                {{/each}}
+              {{/if}}
             {{/if}}
 
           {{/if}}

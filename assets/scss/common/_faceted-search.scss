@@ -1,0 +1,209 @@
+// Product Sort
+.form-field-product-sort {
+  padding-top: 30px;
+  margin-bottom: 50px;
+  border-top: 1px solid $color-line;
+
+  @include breakpoint(s) {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .form-select-wrapper {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+
+    @include breakpoint(s) {
+      display: inline-block;
+      width: auto;
+      min-width: 170px;
+      margin-top: 0;
+      margin-left: 30px;
+    }
+  }
+
+  .form-field-control {
+    @include breakpoint(s) {
+      width: auto;
+    }
+  }
+}
+
+// Faceted Search
+.faceted-search {
+  display: none;
+  margin-bottom: 30px;
+
+  &.is-visible {
+    display: block;
+  }
+
+  @include breakpoint(s) {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  .form-field {
+    display: inline-block;
+
+    .form-field-control {
+      float: left;
+      width: 50%;
+
+      &:first-child {
+        padding-right: 5px;
+      }
+    }
+
+    .form-input {
+      display: inline-block;
+    }
+  }
+}
+
+.facet-toggle {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 12px;
+  height: 12px;
+
+  &::before,
+  &::after {
+    position: absolute;
+    display: block;
+    background: $color-text-light;
+    content: "";
+  }
+
+  &::before {
+    top: 0;
+    left: 5px;
+    width: 2px;
+    height: 12px;
+    transition: all 0.1s ease;
+
+    .is-open & { display: none; }
+  }
+
+  &::after {
+    top: 5px;
+    left: 0;
+    width: 12px;
+    height: 2px;
+  }
+}
+
+.facet-remove {
+  @extend %link;
+  font-family: $font-primary;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.facet-item,
+.brand-list-item {
+  color: $color-text;
+
+  &.is-selected {
+    color: $color-primary;
+  }
+
+  .icon {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+  }
+}
+
+.facet-link,
+.brand-link {
+  color: inherit;
+
+  .icon-close {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+  }
+}
+
+.facet-title {
+  position: relative;
+  margin-bottom: 15px;
+  color: $color-secondary;
+  cursor: pointer;
+}
+
+.mobile-facet-title {
+  position: relative;
+  display: block;
+  margin-top: 0;
+
+  @include breakpoint(s) {
+    display: none;
+  }
+
+  .icon-arrow-down {
+    position: absolute;
+    top: 13px;
+    right: 0;
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    transition: all 0.3s $ease-out-quad;
+  }
+
+  &.is-open {
+    .icon-arrow-down {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.facet-search-filter-wrapper {
+  @extend %revealer-fade;
+
+  &.visible { display: block; }
+}
+
+.facet-search-clear {
+  @extend %link;
+  display: none;
+  font-weight: 300;
+  color: $color-primary;
+  border-color: $color-primary;
+
+  &:hover {
+    color: $color-secondary;
+  }
+
+  &.visible {
+    display: inline-block;
+  }
+}
+
+.form-range-facet {
+  .form-actions {
+    padding: 5px !important; //override form action styles to correct button
+
+    .button {
+      width: 100%;
+    }
+  }
+}
+
+// Facet option list expand
+.facet-default.visible {
+  display: block;
+}
+
+.facet-toggle-more {
+  .toggle-link-text-on {
+    display: none;
+  }
+}
+
+.faceted-search-option-columns {
+  display: none;
+}

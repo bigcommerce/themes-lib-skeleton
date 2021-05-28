@@ -1,0 +1,12 @@
+<div class="form-select-wrapper" data-currency-selector>
+  <span class="form-selected-text" data-currency-selector-toggle>
+    {{currency_selector.active_currency_name}}
+  </span>
+  <select>
+    {{#each currency_selector.currencies}}
+      <option value="{{{switch_url}}}" {{#if is_active}}selected{{/if}}>
+        {{name}}
+      </option>
+    {{/each}}
+  </select>
+</div>

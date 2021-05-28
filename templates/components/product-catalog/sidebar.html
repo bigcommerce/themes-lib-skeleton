@@ -1,0 +1,106 @@
+<aside class="catalog-sidebar" data-catalog-sidebar>
+  <h3 class="facet-title mobile-facet-title" data-facet-panel-toggle>
+    {{lang 'faceted_search.title'}}
+    {{> components/icons/arrow-down}}
+  </h3>
+  <div
+    class="faceted-search
+    {{#if catalog_type.selected.remove_all_url}}active-filters{{/if}}"
+    data-faceted-search
+  >
+    {{#if catalog_type.faceted_search_enabled}}
+      {{#each catalog_type.facets}}
+        {{#if visible}}
+          {{#if items}}
+            <div data-facet-filter>
+              <h3
+                class="facet-title {{#unless start_collapsed}}is-open{{/unless}}"
+                data-facet-toggle
+              >
+                {{title}}
+                {{#if remove_url}}
+                  <a
+                    class="facet-remove"
+                    href="{{remove_url}}"
+                    data-faceted-search-facet
+                    data-facet-remove
+                  >
+                    {{lang 'faceted_search.clear'}}
+                  </a>
+                {{/if}}
+                <span class="facet-toggle"></span>
+              </h3>
+
+              {{{dynamicComponent 'components/faceted-search/facets'}}}
+            </div>
+          {{/if}}
+          {{#if facet '===' 'price'}}
+            <div data-facet-filter>
+              <h3
+                class="facet-title {{#unless start_collapsed}}is-open{{/unless}}"
+                data-facet-toggle
+              >
+                {{title}}
+                {{#if remove_url}}
+                  <a
+                    class="facet-remove"
+                    href="{{remove_url}}"
+                    data-faceted-search-facet
+                    data-facet-remove
+                  >
+                    {{lang 'faceted_search.clear'}}
+                  </a>
+                {{/if}}
+                <span class="facet-toggle"></span>
+              </h3>
+              {{{dynamicComponent 'components/faceted-search/facets'}}}
+            </div>
+          {{/if}}
+        {{/if}}
+      {{/each}}
+      <a
+        class="facet-search-clear"
+        href="{{catalog_type.selected.remove_all_url}}"
+        rel="nofollow"
+        data-faceted-search-facet
+        data-facet-remove-all
+      >
+        {{lang 'faceted_search.reset_all'}}
+      </a>
+    {{else}}
+      {{> components/product-catalog/shop-by-price
+        shop_by_price=catalog_type.shop_by_price
+        listtype_url=catalog_type.url
+      }}
+
+      {{#if catalog_type.subcategories}}
+        <div data-facet-filter>
+          <h3 class="facet-title is-open" data-facet-toggle>
+            {{lang 'category.subcategories'}}
+            <span class="facet-toggle"></span>
+          </h4>
+          <div class="facet-search-filter-wrapper visible" data-facet-filter-wrapper>
+            <ul class="faceted-search-filter-list facet-default subcategories">
+              {{#each catalog_type.subcategories}}
+                <li class="facet-item">
+                  <a
+                    href="{{url}}"
+                    rel="nofollow"
+                    class="facet-link"
+                    alt="{{name}}"
+                  >
+                    {{name}}
+                  </a>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      {{/if}}
+
+      {{> components/product-catalog/shop-by-brand
+        list=shop_by_brand
+      }}
+    {{/if}}
+  </div>
+</aside>

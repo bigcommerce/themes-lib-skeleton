@@ -1,38 +1,76 @@
 {{inject 'couponCodeEmptyInput' (lang 'cart.coupon_codes.error')}}
 
 <div data-coupon-codes>
-  {{#if cart.coupons}}
-    {{#each cart.coupons}}
-      {{lang 'cart.coupon_codes.label' code=code}}
-      <a href="{{remove_url}}">({{lang 'cart.coupon_codes.remove'}})</a>
-      {{discount.formatted}}
-    {{/each}}
-  {{/if}}
-
-  <div>
-    <span>{{lang 'cart.coupon_codes.coupon_code'}}</span>
-
+  <div class="coupon-codes">
     {{#if cart.discount ">" 0}}
-      <button data-coupon-code-toggle>{{cart.discount.formatted}}</button>
+      <button data-modal-toggle="coupon-code" data-coupon-code-toggle>
+        {{cart.discount.formatted}}
+      </button>
     {{else}}
       {{#if cart.coupons}}
-        <button data-coupon-code-toggle>{{lang 'cart.coupon_codes.change_code'}}</button>
+        {{#each cart.coupons}}
+          <p class="coupon-code-value">{{discount.formatted}}</p>
+        {{/each}}
+        <button data-modal-toggle="coupon-code" data-coupon-code-toggle>
+          {{lang 'cart.coupon_codes.change_code'}}
+        </button>
       {{else}}
-        <button data-coupon-code-toggle>{{lang 'cart.coupon_codes.add_code'}}</button>
+        <button data-modal-toggle="coupon-code" data-coupon-code-toggle>
+          {{lang 'cart.coupon_codes.add_code'}}
+        </button>
       {{/if}}
     {{/if}}
 
-    <form class="form" method="post" action="{{urls.cart}}" data-coupon-code-form>
-      <div class="form-field">
-        <label class="form-label" for="couponcode">
-          <span class="form-label-text">{{lang 'cart.coupon_codes.enter_code'}}</span>
-          <input class="form-input" id="couponcode" type="text" name="couponcode" value="" placeholder="{{lang 'cart.coupon_codes.enter_code'}}" data-coupon-code-input>
-        </label>
+    {{#if cart.coupons}}
+      {{#each cart.coupons}}
+        <div class="coupon-code-wrapper">
+          <a class="coupon-code-tooltip" title="{{code}}">{{code}}</a>
+          <a class="coupon-code-remove" href="{{remove_url}}" data-coupon-remove>
+            ({{lang 'cart.coupon_codes.remove'}})
+          </a>
+        </div>
+      {{/each}}
+    {{/if}}
+
+    <div class="coupon-code-modal" data-modal="coupon-code" data-coupon-code-form>
+      <div class="coupon-code">
+        <button class="modal-close coupon-code-modal-close" data-modal-toggle="coupon-code">
+          {{> components/icons/close}}
+        </button>
+        <h3 class="coupon-code-modal-title">{{lang 'cart.coupon_codes.title'}}</h3>
+        <form class="form" method="post" action="{{urls.cart}}">
+          <div class="form-field">
+            <label class="form-label" for="couponcode">
+              <span class="form-label-text">{{lang 'cart.coupon_codes.enter_code'}}</span>
+              <input
+                class="form-input"
+                id="couponcode"
+                type="text"
+                name="couponcode"
+                value=""
+                placeholder="{{lang 'cart.coupon_codes.enter_code'}}"
+                data-coupon-code-input
+              >
+            </label>
+          </div>
+          <div class="form-actions">
+            <div class="coupon-code-submit-button-wrapper">
+              <button
+                class="button coupon-code-submit-button button-progress"
+                type="submit"
+                value="{{lang 'cart.coupon_codes.submit'}}"
+                data-coupon-code-submit
+              >
+                <span class="button-text">{{lang 'cart.coupon_codes.submit'}}</span>
+                <span class="complete-text">
+                  {{> components/icons/checkmark}}
+                </span>
+              </button>
+            </div>
+            <input type="hidden" name="action" value="applycoupon">
+          </div>
+        </form>
       </div>
-      <div class="form-actions">
-        <input class="button" type="submit" value="{{lang 'cart.coupon_codes.submit'}}">
-        <input type="hidden" name="action" value="applycoupon">
-      </div>
-    </form>
+    </div>
   </div>
 </div>

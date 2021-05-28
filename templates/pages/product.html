@@ -1,58 +1,71 @@
 ---
-cart: true
 product:
   reviews:
-    limit: 9
-  videos:
-    limit: 9
+      limit: 99
+  videos: true
   related_products:
     limit: 4
-  brands: true
 ---
-
-<!--
-
-  Single Product Page
-
-    Base
-    {{product.title}}
-    {{product.price.base}}
-    {{product.id}}
-    {{{product.description}}}
-    {{product.stock_level}}
-    {{product.detail_messages}}
-
-    Brand
-    {{product.brand.name}}
-    {{product.brand.url}}
-
-    Reviews
-    {{product.num_reviews}}
-    {{this.product.rating}}
-
-    Urls
-    {{product.url}}
-    {{product.cart_url}}
-    {{product.add_to_wishlist_url}}
-
-    Conditionals
-    {{product.can_purchase}}
-    {{product.out_of_stock_message}}
-    {{product.pre_order}}
-
-  {{!> components/product/images}}
-  {{!> components/product/review rating=product.rating total=product.num_reviews}}
-
--->
 
 
 {{#partial "page"}}
 
-  <div data-product-container>
-    {{> components/product/details}}
+  <div class="product-container" data-product-container>
+    <div
+      class="product-details-wrapper"
+      data-product-details
+      data-product-title="{{product.title}}"
+      {{#if settings.data_tag_enabled}}
+        data-event-type="product"
+        data-entity-id="{{product.id}}"
+        data-name="{{product.title}}"
+        data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+        data-product-brand="{{product.brand.name}}"
+        data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}"
+        data-product-variant="single-product-option"
+      {{/if}}
+    >
+
+      {{> components/product/details-compact}}
+
+      {{> components/product/tabs}}
+    </div>
+
+    {{{region name="product_below_content"}}}
   </div>
 
-  {{{pre product}}}
+  {{#if product.related_products}}
+    <section class="products-related">
+      <h2 class="section-title">{{lang 'product.related_products'}}</h2>
+      <div class="product-related-items">
+        {{#each product.related_products}}
+          {{> components/product-catalog/product-item
+            image_ratio=../theme_settings.product_grid_image_ratio
+            fit=../theme_settings.product_grid_image_cropping
+            lazyload=../theme_settings.lazyload_mode
+            fallback_size=../theme_settings.product-list
+            default=../theme_settings.default_image
+            price_range_display=../theme_settings.price_range_display
+            retail_price_label=../theme_settings.retail-price-label
+            non_sale_price_label=../theme_settings.non-sale-price-label
+            sale_price_label=../theme_settings.sale-price-label
+            price_label=../theme_settings.price-label
+            sale_badges=../theme_settings.sale-badges
+            data_tag_enabled=../settings.data_tag_enabled
+            event="list"
+            position=(add @index 1)
+          }}
+        {{/each}}
+
+        {{#for 1 3}}
+          <div class="product-item-empty">
+          </div>
+        {{/for}}
+      </div>
+    </section>
+  {{/if}}
+
+  {{> components/wishlist/wishlist-modal}}
 
   {{> core/structured-data/product}}
   {{> core/structured-data/product-reviews}}

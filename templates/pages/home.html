@@ -2,11 +2,11 @@
 carousel: true
 products:
   new:
-    limit: 12
+    limit: 8
   featured:
-    limit: 12
+    limit: 8
   top_sellers:
-    limit: 12
+    limit: 8
 brands: true
 blog:
   recent_posts:
@@ -19,10 +19,28 @@ blog:
     {{inject 'carouselDelay' carousel.swap_frequency}}
   {{/if}}
 
-  {{> components/product/products-new products.new}}
-  {{> components/product/products-featured products.featured}}
-  {{> components/product/products-popular products.top_sellers}}
+  {{> components/home/section
+    item_type=theme_settings.home_section_1_item_type
+    background=theme_settings.home_section_1_background
+    limit=theme_settings.home_section_1_limit
+  }}
+  {{> components/home/section
+    item_type=theme_settings.home_section_2_item_type
+    background=theme_settings.home_section_2_background
+    limit=theme_settings.home_section_2_limit
+  }}
+  {{> components/home/section
+    item_type=theme_settings.home_section_3_item_type
+    background=theme_settings.home_section_3_background
+    limit=theme_settings.home_section_3_limit
+  }}
+  {{> components/home/section
+    item_type=theme_settings.home_section_4_item_type
+    background=theme_settings.home_section_4_background
+    limit=theme_settings.home_section_4_limit
+  }}
 
+  {{> components/home/recent-posts}}
 {{/partial}}
 
 {{> layout/base}}

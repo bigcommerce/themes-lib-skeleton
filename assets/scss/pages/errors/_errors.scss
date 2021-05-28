@@ -1,0 +1,33 @@
+.error-content {
+  @extend %content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-wrapper {
+  @include border-box(20px, 0, $color-compliment);
+  width: 100%;
+  padding: 60px 30px;
+  text-align: center;
+  border: 1px solid $color-line;
+
+  @include breakpoint(m) { width: 40%; }
+
+  &:hover { border: 1px solid $color-line; }
+
+  .page-supertitle { text-transform: uppercase; }
+
+  .page-supertitle,
+  .page-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: normal;
+  }
+
+  .error-btn {
+    @include border-box(5px, 0, $color-primary);
+    padding: 10px 40px;
+    color: $color-compliment;
+  }
+}

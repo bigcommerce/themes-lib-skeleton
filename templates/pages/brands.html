@@ -1,20 +1,36 @@
 {{#partial "page"}}
 
-  <h1 class="page-heading">{{lang 'brand.label'}}</h1>
+  <h1 class="page-title">{{lang 'brands.title'}}</h1>
 
-  <section class="brands-index">
-    <ul class="brands-list">
-      {{#if theme_settings.show_brand_images}}
+  {{{region name="brands_below_header"}}}
+
+  <section class="brands-listing">
+    <div class="container">
+      <ul class="brand-items-list">
         {{#each brands}}
-          {{> components/brand-list-image}}
+          <li class="brand-item {{#unless image}}no-brand-image{{/unless}}">
+            {{#if image}}
+              {{> components/common/responsive-image
+                image=image
+                class="responsive-image"
+                fit=../../theme_settings.product_grid_image_cropping
+                lazyload=../../theme_settings.lazyload_mode
+                fallback_size=../../theme_settings.product-list
+                default=../../theme_settings.default_image
+              }}
+            {{else}}
+              <a class="brand-item-title" href="{{url}}">
+                <span class="brand-name">{{name}}</span>
+              </a>
+            {{/if}}
+          </li>
         {{/each}}
-      {{else}}
-        {{#each brands}}
-          {{> components/brand-list}}
-        {{/each}}
-      {{/if}}
-    </ul>
+      </ul>
+    </div>
+
+    {{{region name="brands_below_content"}}}
   </section>
 
 {{/partial}}
+
 {{> layout/base}}

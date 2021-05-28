@@ -1,10 +1,20 @@
-
-<div class="form-field form-field-options form-field-textarea{{#if required}} form-required{{/if}}"
-  data-product-attribute="textarea">
+<div
+  class="
+    form-field
+    form-field-options
+    form-field-textarea
+    {{#if required}}
+      form-required
+    {{/if}}
+  "
+  data-product-attribute="textarea"
+>
   <label class="form-label">
     <span class="form-field-title">
       {{display_name}}
-      {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
+      {{#if required}}
+        <span class="required-text">{{lang 'common.required'}}</span>
+      {{/if}}
     </span>
     <span class="form-field-control">
       <textarea
@@ -12,9 +22,11 @@
         id="attribute-{{id}}"
         name="attribute[{{id}}]"
         rows="4"
-        placeholder="{{prefill}}"
         {{#if required}}required{{/if}}
-        aria-required="{{required}}"></textarea>
+        aria-required="{{required}}"
+      >
+        {{prefill}}
+      </textarea>
     </span>
   </label>
 </div>

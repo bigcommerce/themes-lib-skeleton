@@ -1,3 +1,13 @@
-{{! Add body classes needed across theme here and include in
-  layout/base.html on the body tag
-}}
+{{#if theme_settings.remove_borders}}
+  no-decorative-borders
+{{/if}}
+{{#unless in_production}} dev-environment{{/unless}}
+{{#if theme_settings.price_use_headingfont}}
+  price-style-heading
+{{/if}}
+{{#if theme_settings.menu_use_headingfont}}
+  menu-style-heading
+{{/if}}
+{{#if theme_settings.product_grid_image_cropping '==' 'image-cover'}}
+  image-crop
+{{/if}}

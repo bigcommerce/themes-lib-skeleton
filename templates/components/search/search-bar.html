@@ -1,0 +1,22 @@
+<section class="search-bar" data-search-bar>
+  {{{snippet 'forms_search'}}}
+  <form
+    class="search-form"
+    action="/search.php"
+    data-validated-form
+  >
+    <div class="form-field">
+      <button class="search-bar-submit" type="submit">
+        {{> components/icons/search}}
+      </button>
+      <input
+        class="search-input form-input"
+        name="search_query"
+        placeholder="{{lang 'search.placeholder'}}"
+        autocomplete="off"
+        aria-label="{{lang 'header.search'}}"
+        required
+      >
+    </div>
+  </form>
+</section>

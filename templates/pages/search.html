@@ -1,14 +1,111 @@
 ---
 product_results:
-  limit: {{theme_settings.product-count}}
+  shop_by_price: true
+  products:
+    limit: {{theme_settings.products_per_page}}
 ---
 
 {{#partial "page"}}
-  <h1>{{! PAGE TITLE}}</h1>
-  {{> components/search/filters}}
-  {{> components/search/products}}
-  {{> components/search/content}}
-  {{> components/search/pagination}}
+
+  {{> components/common/page-title
+    title=(lang 'search_results.title' term=forms.search.query)
+  }}
+
+  {{#if forms.search.has_suggestions}}
+    {{#if forms.search.suggested_query}}
+      <div class="search-results-suggestion">
+        <a href="{{forms.search.suggested_query.url}}">
+          {{lang 'search.suggestion' suggestion=forms.search.suggested_query.query}}
+        </a>
+      </div>
+    {{/if}}
+  {{/if}}
+
+  {{#any product_results.products content_results}}
+    <div class="tab-search-toggles">
+      <button
+        class="
+          tab-search-toggle
+          tab-product-results-toggle
+          {{#if product_results.products}}
+            tab-selected
+          {{else}}
+            tab-empty
+          {{/if}}
+        "
+        data-tab-toggle="0"
+        data-tab-group="0"
+      >
+        {{lang 'search_results.product_results.title'}}
+      </button>
+      <button
+        class="
+          tab-search-toggle
+          tab-content-results-toggle
+          {{#if content_results}}
+            {{#unless product_results.products}}
+              tab-selected
+            {{/unless}}
+          {{else}}
+            tab-empty
+          {{/if}}
+        "
+        data-tab-toggle="1"
+        data-tab-group="0"
+      >
+        {{lang 'search_results.content_results.title'}}
+      </button>
+    </div>
+
+    <section
+      class="
+      catalog-wrapper
+      tab-search-results
+      tab-product-results
+      {{#if product_results.products}}tab-selected{{else}}tab-empty{{/if}}"
+      data-facet-content
+      data-pagination-content
+      data-pagination-id="0"
+      data-tab="0"
+      data-tab-group="0"
+      {{#if settings.data_tag_enabled}}
+        data-list-name="{{lang 'data_tags.search'}}"
+      {{/if}}
+    >
+
+      {{> components/product-catalog/catalog-index}}
+    </section>
+    <section
+      class="
+      tab-search-results
+      tab-content-results
+      {{#if content_results}}
+        {{#unless product_results.products}}
+          tab-selected
+        {{/unless}}
+      {{else}}
+        tab-empty
+      {{/if}}
+      "
+      data-tab="1"
+      data-tab-group="0"
+      data-pagination-content
+      data-pagination-id="1"
+    >
+      <main class="search-results content-results">
+        {{> components/search/content-listing}}
+      </main>
+    </section>
+
+    {{{region name="search_below_content"}}}
+  {{else}}
+    <section class="tab-search-results tab-selected">
+      <main class="search-results empty-results">
+        {{lang 'search_results.no_results'}}
+      </main>
+    </section>
+  {{/any}}
+
 {{/partial}}
 
 {{> layout/base}}

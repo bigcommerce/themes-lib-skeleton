@@ -1,0 +1,383 @@
+$local-header-item-height: 85px;
+
+.main-header {
+  position: relative;
+  width: 100%;
+  background-color: $color-background;
+
+  &.background-style-alternate {
+    background-color: $color-background-alt;
+  }
+
+  &.background-style-heading {
+    background-color: $color-secondary;
+  }
+}
+
+.upper-header {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  height: $local-header-item-height * 2;
+
+  @include breakpoint(s) {
+    flex-wrap: nowrap;
+    height: $local-header-item-height;
+  }
+
+  &::after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: $local-header-item-height;
+    border: {
+      color: $color-line;
+      style: solid;
+      width: 0 0 1px 0;
+    }
+    content: "";
+
+    .background-style-heading & {
+      border-color: $color-text;
+    }
+
+    .mini-cart-is-open & {
+      width: 75%;
+
+      @include breakpoint(s) {
+        width: calc(100% - 70px);
+      }
+    }
+  }
+}
+
+.upper-header-item {
+  @extend %clearfix;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  flex-basis: 25%;
+  justify-content: center;
+  height: $local-header-item-height;
+  color: $color-text;
+  text-align: center;
+  background-color: transparent;
+  border: {
+    color: $color-line;
+    style: solid;
+    width: 0 1px 0 0;
+    radius: 0;
+  }
+  outline: none;
+
+  @include breakpoint(m) {
+    flex-direction: column;
+  }
+
+  &.branding-wrapper,
+  &.cart-wrapper {
+    flex-direction: row;
+  }
+
+  .background-style-heading & {
+    color: $color-white;
+    border-color: $color-text;
+  }
+
+  @include breakpoint(s) { flex-basis: 70px; }
+
+  .logo-left &,
+  .logo-center &, {
+    &:last-child { border: 0; }
+  }
+
+  &:hover {
+    color: $color-compliment;
+    background-color: $color-primary;
+    border-color: $color-primary;
+  }
+
+  &.mobile-menu-wrapper {
+    @include breakpoint(s) { display: none; }
+
+    &:focus { outline: 0; }
+  }
+
+  &.currency-selector-wrapper {
+    display: none;
+    flex-basis: auto;
+    width: 100px;
+
+    @include breakpoint(s) {
+      display: block;
+
+      .logo-left & {
+        order: 2;
+      }
+
+      .logo-center & {
+        order: 1;
+      }
+
+      .logo-right & {
+        order: 5;
+      }
+    }
+
+    .form-select-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      color: inherit;
+      text-align: center;
+      background-color: inherit;
+      border: 0;
+    }
+
+    .form-selected-text {
+      font-size: rem-calc(12px);
+    }
+  }
+
+  &.branding-wrapper {
+    flex-basis: auto;
+    flex-grow: 1;
+    justify-content: center;
+    order: 4;
+    min-width: 125px;
+    padding: 0 25px;
+    text-align: center;
+    background-color: transparent;
+    border-width: 0;
+
+    @include breakpoint(s) {
+      justify-content: initial;
+      border-width: 0 1px 0 0;
+
+      .logo-left & {
+        justify-content: flex-start;
+        order: 1;
+        padding-left: 10vw;
+      }
+
+      .logo-center & {
+        order: 2;
+      }
+
+      .logo-right & {
+        justify-content: flex-end;
+        order: 6;
+        padding-right: 10vw;
+      }
+    }
+
+    &:hover {
+      border-color: $color-line;
+    }
+  }
+
+  &.search-wrapper {
+
+    @include breakpoint(s) {
+      order: 3;
+
+      .logo-right & {
+        order: 1;
+      }
+    }
+  }
+
+  &.account-wrapper {
+    @include breakpoint(s) {
+      order: 4;
+
+      .logo-right & {
+        order: 2;
+      }
+    }
+
+    .button-text {
+      @include sr-only;
+    }
+  }
+
+  &.wishlist-wrapper {
+    display: none;
+
+    @include breakpoint(s) {
+      display: inherit;
+
+      .logo-left &,
+      .logo-center & {
+        order: 5;
+      }
+
+      .logo-right & {
+        order: 3;
+      }
+    }
+  }
+
+  &.cart-wrapper {
+
+    @include breakpoint(s) {
+      order: 6;
+
+      .logo-right & {
+        order: 4;
+      }
+    }
+
+    a {
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+    }
+
+    &:not(.cart-empty) {
+      color: $color-primary;
+    }
+
+    &:hover {
+      color: $color-compliment;
+    }
+
+    .mini-cart-count {
+      position: relative;
+      top: 3px;
+      display: none;
+      margin-left: 5px;
+
+      &.show {
+        display: block;
+      }
+    }
+  }
+
+  .branding {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    @media screen and (max-width: 800px) and (min-width: 720px) {
+      padding-right: 25px;
+    }
+  }
+
+  .header-logo-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 125px;
+    max-height: 65px;
+    margin: 0 auto;
+  }
+
+  .icon-wrapper {
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+
+    &.icon-wrapper-alt {
+      display: none;
+    }
+  }
+
+  &.cart-wrapper {
+    .icon-wrapper {
+      margin: 0;
+    }
+  }
+
+  &.upper-header-item-active {
+    color: $color-primary;
+
+    &:hover {
+      color: $color-compliment;
+      background-color: $color-primary;
+    }
+
+    .icon-wrapper {
+      display: none;
+
+      &.icon-wrapper-alt { display: block; }
+    }
+  }
+
+  .icon {
+    display: block;
+    width: 17px;
+    height: 17px;
+  }
+}
+
+.lower-header {
+  position: relative;
+}
+
+.breadcrumb-sharing-wrapper {
+  @extend %content, %content-alt;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: {
+    top: 25px;
+    bottom: 25px;
+  }
+
+  @include breakpoint(s) {
+    flex-wrap: nowrap;
+  }
+}
+
+.breadcrumb {
+  a {
+    color: $color-text;
+  }
+
+  &:last-child {
+    color: $color-secondary;
+  }
+}
+
+.breadcrumbs {
+  @include breakpoint(s) {
+    padding-right: 30px;
+  }
+}
+
+.breadcrumbs,
+.share-links {
+  flex-basis: auto;
+  width: 100%;
+
+  @include breakpoint(s) { width: auto; }
+}
+
+.share-links {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+
+  @include breakpoint(s) { margin-top: 0; }
+
+  .share-links-title { margin-right: 15px; }
+
+  .social-icon {
+    margin-right: 5px;
+    background-color: $color-secondary;
+
+    &:hover {
+      background-color: $color-primary;
+    }
+
+    a {
+      color: $color-compliment;
+    }
+  }
+}

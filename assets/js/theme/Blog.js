@@ -1,10 +1,9 @@
-export default class Blog {
-  constructor(context) {
-    this.context = context;
-  }
+import PageManager from '../PageManager';
 
-  unload() {
-    //remove all event handlers
+export default class Blog extends PageManager {
+  constructor() {
+    super();
+
+    this.$blogContent = $('[data-blog-index]');
   }
 }
-

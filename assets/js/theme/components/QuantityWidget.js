@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 export default class QuantityWidget {
   constructor(options = {}) {
     this.options = $.extend({
@@ -42,9 +40,5 @@ export default class QuantityWidget {
         $target.val($target.attr('value'));
       }
     });
-  }
-
-  unload() {
-    //remove all event handlers
   }
 }

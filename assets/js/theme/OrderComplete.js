@@ -1,10 +1,7 @@
+import PageManager from '../PageManager';
 
-export default class OrderComplete {
-  constructor(context) {
-    this.context = context;
-  }
-
-  unload() {
-    //remove all event handlers
+export default class OrderComplete extends PageManager {
+  constructor() {
+    super();
   }
 }

@@ -1,0 +1,100 @@
+<article class="product-item" data-product-item>
+  <div
+    class="
+      product-item-image
+      {{image_ratio}}
+      {{#if template '==' 'pages/custom/product/alternate-product'}}
+        here-I-am
+      {{/if}}
+      {{#unless image}}
+        product-item-image-noimage
+      {{/unless}}
+    "
+    {{#if data_tag_enabled}}
+      data-event-type="{{event}}"
+      data-entity-id="{{id}}"
+      data-position="{{position}}"
+      data-name="{{name}}"
+      data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+      data-product-brand="{{brand.name}}"
+      data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+    {{/if}}
+  >
+    <a href="{{url}}">
+      {{> components/common/responsive-image
+        image=image
+        class="responsive-image"
+        fit=fit
+        fallback_size=fallback_size
+        lazyload=lazyload
+        default_image=default
+      }}
+    </a>
+
+    {{#unless out_of_stock_message}}
+      {{#if sale_badges}}
+        {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+          <div class="product-item-alert-overlay">
+            <span class="product-item-alert">
+              {{lang 'product.on_sale'}}
+            </span>
+          </div>
+        {{/or}}
+      {{/if}}
+    {{/unless}}
+
+    {{#any pre_order out_of_stock_message}}
+      <div class="product-item-alert-overlay">
+        <span class="product-item-alert">
+          {{#if out_of_stock_message}}
+            {{out_of_stock_message}}
+          {{else if pre_order}}
+            {{lang 'product.pre_order'}}
+          {{/if}}
+        </span>
+      </div>
+    {{/any}}
+    {{#any show_customize compare}}
+      <div class="product-item-overlay {{#unless show_customize}}compare-only{{/unless}}">
+        {{#if show_customize}}
+          <a class="product-item-customize" href="{{url}}">
+            {{lang 'product.customize'}}
+          </a>
+        {{/if}}
+        {{#if compare}}
+          <label class="product-item-compare-wrapper">
+            <input
+              class="form-checkbox product-item-compare"
+              type="checkbox"
+              data-compare-checkbox
+              data-compare-id="{{id}}"
+              data-compare-title="{{name}}"
+              data-compare-url="{{url}}"
+              data-compare-price="{{price}}"
+              data-compare-thumbnail="{{getImage image 'thumb' (cdn default)}}"
+            >
+            <span class="form-label-text">{{lang 'product.compare_toggle'}}</span>
+          </label>
+        {{/if}}
+      </div>
+    {{/any}}
+  </div>
+  <div class="product-item-info">
+    {{#if settings.show_product_reviews}}
+      {{> components/product/review-stars stars=rating}}
+    {{/if}}
+    {{#if brand.name}}
+      <span class="product-item-brand">{{brand.name}}</span>
+    {{/if}}
+    <h3 class="product-item-name"><a href="{{url}}">{{name}}</a></h3>
+    <span class="product-item-price">
+      {{> core/products/price
+        price_range_display=price_range_display
+        retail_price_label=retail_price_label
+        non_sale_price_label=non_sale_price_label
+        sale_price_label=sale_price_label
+        price_label=price_label
+      }}
+    </span>
+  </div>
+</article>

@@ -1,1 +1,21 @@
-&copy; <script>document.write(new Date().getFullYear())</script> <a href="{{settings.base_url}}">{{settings.store_name}}</a>
+{{#any theme_settings.store_copyright theme_settings.theme_credits}}
+  <div class="footer-copyright">
+    <ul class="copyright-details">
+      {{#if theme_settings.store_copyright}}
+        <li class="site-footer-credits-list-item copyright-year">
+          &copy; <script>document.write(new Date().getFullYear())</script> <a href="{{settings.base_url}}">{{settings.store_name}}</a>
+        </li>
+      {{/if}}
+
+      {{#if theme_settings.theme_credits}}
+        <li class="site-footer-credits-list-item">
+          <p>Bespoke theme by <a href="https://pixelunion.net" target="_blank" rel="nofollow">Pixel Union</a>,</p>
+        </li>
+
+        <li class="site-footer-credits-list-item">
+          <p>Powered by <a href="http://www.bigcommerce.com/" target="_blank" rel="nofollow">BigCommerce</a></p>
+        </li>
+      {{/if}}
+    </ul>
+  </div>
+{{/any}}

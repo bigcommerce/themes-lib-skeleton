@@ -1,0 +1,92 @@
+{{#if settings.add_this.buttons}}
+  <div class="share-links">
+    <span class="share-links-title">
+      {{lang 'share_links.title'}}
+    </span>
+    {{#each settings.add_this.buttons}}
+      {{#if service '===' 'facebook'}}
+        <div class="social-icon">
+          <a
+            target="_blank"
+            href="http://www.facebook.com/sharer.php?u={{../../url}}"
+            class="share-facebook"
+            data-share
+          >
+            {{> components/icons/social/facebook}}
+          </a>
+        </div>
+      {{/if}}
+
+      {{#if service '===' 'twitter'}}
+        <div class="social-icon">
+          <a
+            target="_blank"
+            href="https://twitter.com/share?url={{../../url}}&amp;text={{../../title}}"
+            class="share-twitter"
+            data-share
+          >
+            {{> components/icons/social/twitter}}
+          </a>
+        </div>
+      {{/if}}
+
+      {{#if service '===' 'linkedin'}}
+        <div class="social-icon">
+          <a
+            target="_blank"
+            href="//www.linkedin.com/cws/share?url={{../../url}}"
+            class="share-linkedin"
+            data-share
+          >
+            {{> components/icons/social/linkedin}}
+          </a>
+        </div>
+      {{/if}}
+
+      {{#if service '===' 'google_plusone'}}
+        <div class="social-icon">
+          <a
+            target="_blank"
+            href="//plus.google.com/share?url={{../../url}}"
+            class="share-google"
+            data-share
+          >
+            {{> components/icons/social/google-plus}}
+          </a>
+        </div>
+      {{/if}}
+
+      {{#if service '===' 'email'}}
+        <div class="social-icon">
+          <a
+            href="mailto:?subject={{../../title}}&amp;body={{../../url}}"
+            class="share-email"
+          >
+            {{> components/icons/social/mail}}
+          </a>
+        </div>
+      {{/if}}
+
+      {{#if service '===' 'print'}}
+        <div class="social-icon">
+          <a href="javascript:;" onclick="window.print()" class="share-print" data-share-print>
+            {{> components/icons/social/print}}
+          </a>
+        </div>
+      {{/if}}
+
+      {{#if service '===' 'pinterest'}}
+        <div class="social-icon">
+          <a
+            target="_blank"
+            class="share-pinterest"
+            href="//pinterest.com/pin/create/button/?url={{../../../url}}{{#if ../../../image}}&amp;media={{getImage ../../../../image '1200x1200'}}{{/if}}&amp;description={{../../../title}}"
+            data-share
+           >
+            {{> components/icons/social/pinterest}}
+          </a>
+        </div>
+      {{/if}}
+    {{/each}}
+  </div>
+{{/if}}

@@ -1,0 +1,52 @@
+{{!--
+  Catalog Header
+
+  @param catalog_type object
+    The catalog list (category / brand / search)
+--}}
+
+<header class="product-catalog-header">
+  {{#if catalog_type.image}}
+    <div
+      class="
+        product-catalog-banner
+        {{theme_settings.product_catalog_banner_image_ratio}}
+      "
+    >
+      {{> components/common/responsive-image
+        image=catalog_type.image
+        fit='image-cover'
+        class="responsive-image"
+        lazyload=theme_settings.lazyload_mode
+        fallback_size=theme_settings.banner
+        default=theme_settings.default_image
+      }}
+    </div>
+  {{/if}}
+
+{{#any catalog_type.image catalog_type.description}}
+  <div
+    class="
+      product-catalog-banner-info-wrapper
+      image-{{theme_settings.product_catalog_banner_image_ratio}}
+      {{#unless catalog_type.image}}no-catalog-image{{/unless}}
+    "
+  >
+    <div class="product-catalog-banner-info">
+      {{> components/common/page-title
+        title=catalog_type.name
+      }}
+
+      {{#if catalog_type.description}}
+        <div class="product-catalog-description rte">
+          {{{catalog_type.description}}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+{{else}}
+  {{> components/common/page-title
+    title=catalog_type.name
+  }}
+{{/any}}
+</header>

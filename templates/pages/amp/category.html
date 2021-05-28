@@ -1,0 +1,68 @@
+---
+category:
+  shop_by_price: true
+  products:
+    limit: {{theme_settings.products_per_page}}
+---
+
+{{#partial 'amp-cart-icon'}}
+  <div class="amp-mini-cart">
+    <a
+      class="cart-wrapper {{#if cart.items.length '===' 0}}cart-empty{{/if}}"
+      href="{{urls.cart}}"
+    >
+      <div class="icon-wrapper">
+        {{> components/icons/cart}}
+      </div>
+      <span class="mini-cart-count {{#if cart.quantity '>' 0}}show{{/if}}">
+        <span class="number">
+          {{cart.quantity}}
+        </span>
+      </span>
+    </a>
+  </div>
+{{/partial}}
+
+{{#partial 'amp-custom-header-styles'}}
+  {{> components/amp/styles/mini-cart}}
+{{/partial}}
+
+{{> core/amp/pages/category
+  header_background=theme_settings.body_background_color
+  header_text=theme_settings.text_color
+  body_background=theme_settings.body_background_color
+  color_headings=theme_settings.headings_color
+  color_text=theme_settings.text_color
+  footer_background=theme_settings.body_background_color
+  footer_text=theme_settings.text_color
+  color_accent=theme_settings.accent_color
+  color_borders=theme_settings.border_color
+}}
+
+{{#partial 'amp-product-listing'}}
+  {{> core/amp/category/product-listing
+    default=theme_settings.default_image
+    as_low_as=theme_settings.price_from
+    image_ratio=theme_settings.product_grid_image_ratio
+    image_cropping=theme_settings.product_grid_image_cropping
+    catalog_columns="one"
+    info_alignment="center"
+  }}
+{{/partial}}
+
+{{#partial 'amp-footer'}}
+  {{> core/amp/common/footer
+    theme_credits=theme_settings.theme_credits
+    theme_name="Bespoke"
+    store_copyright=theme_settings.store_copyright
+  }}
+{{/partial}}
+
+{{#partial 'amp-social'}}
+  {{> components/footer/social}}
+{{/partial}}
+
+{{#partial 'amp-custom-footer-styles'}}
+  {{> components/amp/styles/social-links}}
+{{/partial}}
+{{> layout/amp}}

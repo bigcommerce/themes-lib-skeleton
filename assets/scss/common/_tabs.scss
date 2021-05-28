@@ -1,0 +1,130 @@
+.tab-toggles {
+  display: none;
+  justify-content: center;
+
+  @include breakpoint(s) {
+    display: flex;
+  }
+}
+
+.tab-toggle {
+  display: flex;
+  align-items: center;
+  flex-basis: auto;
+  justify-content: center;
+
+  a {
+    display: block;
+    padding: {
+      top: 25px;
+      right: 50px;
+      bottom: 25px;
+      left: 50px;
+    }
+
+    font: {
+      family: $font-primary;
+      size: rem-calc(12px);
+    }
+    color: $color-text;
+    text-transform: uppercase;
+  }
+
+  &.tab-selected {
+    a {
+      font-weight: 600;
+      border-color: $color-secondary;
+    }
+  }
+}
+
+.tabs {
+  position: relative;
+  overflow: hidden;
+}
+
+.tab {
+  position: relative;
+  z-index: 5;
+
+  &:not(.tab-selected) {
+    @include breakpoint(s) {
+      position: absolute;
+      z-index: -1;
+    }
+  }
+}
+
+// Product tabs using bc-tabs
+.product-tabs {
+  width: 100%;
+  border-top: 1px solid $color-line;
+
+  .tabs {
+    position: relative;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+
+    @include breakpoint(s) {
+      display: flex;
+    }
+  }
+
+  &::before {
+    // This for bc-tabs' slide functionality
+    display: none;
+    content: "slide";
+
+    @include breakpoint(s) {
+      content: "";
+    }
+  }
+}
+
+.product-tab-title {
+  margin-right: 50px;
+  text-align: center;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.product-accordion-title {
+  display: block;
+  width: 100%;
+  text-align: center;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  .product-info-links {
+    border-color: $color-line;
+  }
+
+  @include breakpoint(s) {
+    display: none;
+  }
+}
+
+.product-info-links {
+  @extend %tab-style;
+}
+
+.product-tabs-section {
+  @extend %content;
+  display: none;
+  background: $color-background-alt;
+  border-top: 1px solid $color-line;
+
+  &.active {
+    display: block;
+  }
+}
+
+.product-tabs-content {
+  width: 100%;
+}

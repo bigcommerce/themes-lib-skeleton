@@ -4,6 +4,21 @@
 
     {{#each order.items}}
       <article class="account-item">
+        <div class="account-item-checkbox form-field form-field-checkbox">
+          {{#if show_reorder}}
+            <div class="form-field-control">
+              <label for="account-product-id-{{order_product_id}}" class="form-label">
+                <input
+                  class="form-input form-checkbox"
+                  type="checkbox"
+                  id="account-product-id-{{order_product_id}}"
+                  value="{{order_product_id}}"
+                >
+                  <span class="form-label-text"></span>
+              </label>
+            </div>
+          {{/if}}
+        </div>
         <div class="account-item-thumbnail">
           {{#if type '===' 'giftcertificate'}}
             <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}">
@@ -37,7 +52,7 @@
                   {{#each options}}
                     <div class="account-receipt-item-option">
                       <span class="account-receipt-option-name">{{name}}:</span>
-                      <span class="account-receipt-option-value">{{value}}</span>
+                      <span class="account-receipt-option-value">{{{sanitize value}}}</span>
                     </div>
                   {{/each}}
                 </div>

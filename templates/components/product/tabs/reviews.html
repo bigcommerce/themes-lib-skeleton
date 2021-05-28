@@ -1,0 +1,71 @@
+<section
+  class="product-tabs-section product-tabs-reviews"
+  id="write_review"
+  data-tab-content
+>
+  {{#if product.reviews.list.length}}
+    <div class="product-reviews">
+      <div class="product-reviews-heading">
+        <h3 class="product-reviews-title">
+          {{lang 'product.reviews.heading'}}
+        </h3>
+        <div class="product-reviews-cta">
+          <a
+            href="#modal-review-form"
+            class="review-link button new-review"
+            data-review-link
+          >
+            {{lang 'product.reviews.write_review'}}
+          </a>
+        </div>
+      </div>
+
+      {{#each product.reviews.list}}
+        {{> components/reviews/review-item
+          index=@index
+        }}
+      {{/each}}
+
+      {{#for 1 3}}
+        <div class="review-item-empty"></div>
+      {{/for}}
+
+      {{#if product.reviews.list.length '>' 12}}
+        <div class="reviews-more-wrap">
+          <div class="review-more-link-container">
+            <a
+              class="review-link show-more-link"
+              href="#"
+              data-show-all-reviews
+            >
+              {{lang 'product.reviews.load_more'}}
+            </a>
+          </div>
+          <a
+            href="#modal-review-form"
+            class="review-link button"
+            data-review-link
+          >
+            {{lang 'product.reviews.leave_review'}}
+          </a>
+        </div>
+      {{/if}}
+    </div>
+  {{else}}
+    <div class="product-reviews no-reviews">
+      <h3 class="product-reviews-title">
+        {{lang 'product.reviews.no_reviews'}}
+      </h3>
+      <div class="product-reviews-cta">
+        <a
+          href="#modal-review-form"
+          class="review-link button"
+          data-review-link
+        >
+          {{lang 'product.reviews.leave_review'}}
+        </a>
+      </div>
+    </div>
+  {{/if}}
+  {{> components/reviews/review-modal}}
+</section>

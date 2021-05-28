@@ -6,6 +6,8 @@ cart: true
 
 <article class="page-container cms-page">
   <h1 class="page-heading">{{page.title}}</h1>
+
+  {{{region name="page_above_content"}}}
   <div class="page-content">
     {{#if page.content}}
       {{#replace '%%Syndicate%%' page.content}}
@@ -19,13 +21,17 @@ cart: true
       <ul>
         {{#each page.feed}}
           <li>
-            <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+            <h6>
+              <a href="{{url}}" target="_blank">{{title}}</a>
+            </h6>
             <p>{{{content}}}</p>
           </li>
         {{/each}}
       </ul>
     {{/if}}
   </div>
+
+  {{{region name="page_below_content"}}}
 </article>
 
 {{/partial}}

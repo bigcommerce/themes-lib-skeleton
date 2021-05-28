@@ -1,0 +1,51 @@
+.site-alerts {
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  color: $color-compliment;
+  text-align: center;
+
+  .alert {
+    position: relative;
+  }
+}
+
+.alert-message {
+  padding: 25px 30px;
+  color: $color-compliment;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.alert-success {
+  background-color: $color-success;
+}
+
+.alert-error {
+  background-color: $color-error;
+}
+
+.alert-dismiss {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  width: 14px;
+  height: 14px;
+  font-size: rem-calc(18px);
+  color: $color-compliment;
+  cursor: pointer;
+  transform: translateY(-50%);
+
+  @include breakpoint(s) {
+    top: 50%;
+    right: 10vw;
+  }
+}

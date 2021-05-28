@@ -1,0 +1,63 @@
+---
+product:
+  reviews:
+      limit: 99
+  videos: true
+  related_products:
+    limit: 4
+---
+
+
+{{#partial "page"}}
+
+  <div class="product-container" data-product-container data-customize-product>
+    <div
+      class="product-details-wrapper"
+      data-product-details
+      data-product-title="{{product.title}}"
+    >
+
+      {{> components/product/details-tabbed}}
+
+      {{> components/product/tabs}}
+
+      {{> components/reviews/review-modal}}
+    </div>
+  </div>
+
+  {{#if product.related_products}}
+    <section class="products-related">
+      <h2 class="section-title">{{lang 'product.related_products'}}</h2>
+      <div class="product-related-items">
+        {{#each product.related_products}}
+          {{> components/product-catalog/product-item
+            image_ratio=../theme_settings.product_grid_image_ratio
+            image_size=../theme_settings.product_grid_image_cropping
+            default=../theme_settings.default_image
+            price_range_display=../theme_settings.price_range_display
+            retail_price_label=../theme_settings.retail-price-label
+            non_sale_price_label=../theme_settings.non-sale-price-label
+            sale_price_label=../theme_settings.sale-price-label
+            price_label=../theme_settings.price-label
+            sale_badges=../theme_settings.sale-badges
+            data_tag_enabled=../settings.data_tag_enabled
+            event="list"
+            position=(add @index 1)
+          }}
+        {{/each}}
+
+        {{#for 1 3}}
+          <div class="product-item-empty">
+          </div>
+        {{/for}}
+      </div>
+    </section>
+  {{/if}}
+
+  {{> components/wishlist/wishlist-modal}}
+
+  {{> core/structured-data/product}}
+  {{> core/structured-data/product-reviews}}
+
+{{/partial}}
+{{> layout/base}}

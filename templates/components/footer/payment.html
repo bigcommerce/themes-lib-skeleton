@@ -1,0 +1,46 @@
+{{#any
+  theme_settings.payment_american_express
+  theme_settings.payment_discover
+  theme_settings.payment_mastercard
+  theme_settings.payment_paypal
+  theme_settings.payment_visa
+  theme_settings.payment_apple_pay}}
+  <div class="footer-payment-icons">
+
+    {{#if theme_settings.payment_visa}}
+      <div class="payment-icon visa">
+        {{> components/icons/payment/payment-icon icon="visa"}}
+      </div>
+    {{/if}}
+
+    {{#if theme_settings.payment_mastercard}}
+      <div class="payment-icon mastercard">
+        {{> components/icons/payment/payment-icon icon="mastercard"}}
+      </div>
+    {{/if}}
+
+    {{#if theme_settings.payment_american_express}}
+      <div class="payment-icon american-express">
+        {{> components/icons/payment/payment-icon icon="american-express"}}
+      </div>
+    {{/if}}
+
+    {{#if theme_settings.payment_discover}}
+      <div class="payment-icon discover">
+        {{> components/icons/payment/payment-icon icon="discover"}}
+      </div>
+    {{/if}}
+
+    {{#if theme_settings.payment_paypal}}
+      <div class="payment-icon paypal">
+        {{> components/icons/payment/payment-icon icon="paypal"}}
+      </div>
+    {{/if}}
+
+    {{#if theme_settings.payment_apple_pay}}
+      <div class="payment-icon apple-pay">
+        {{> components/icons/payment/payment-icon icon="apple-pay"}}
+      </div>
+    {{/if}}
+  </div>
+{{/any}}

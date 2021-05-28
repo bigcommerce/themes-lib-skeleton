@@ -1,15 +1,12 @@
-import Listing from './listing/Listing';
+import PageManager from '../PageManager';
+import ProductCatalog from './catalog/ProductCatalog';
 
-export default class Brand {
-  constructor(context) {
-    this.context = context;
-
-    this.listing = new Listing('brand', {
-      brand: {products: {limit: this.context.listingProductCount}},
-    });
+export default class Brand extends PageManager {
+  constructor() {
+    super();
   }
 
-  unload() {
-    //remove all event handlers
+  loaded() {
+    new ProductCatalog(this.context, 'brand');
   }
 }

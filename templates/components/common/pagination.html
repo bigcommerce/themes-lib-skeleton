@@ -1,21 +1,24 @@
-{{#if links.length}}
-  <div class="listing-pagination" data-listing-pagination>
-    {{#if previous}}
-      <a class="listing-pagination-link previous" href="{{previous}}" data-listing-pagination-link>
-        {{lang 'core.pagination.previous'}}
-      </a>
-    {{/if}}
-
-    {{#each links}}
-      <a class="listing-pagination-link {{#if ../current "==" number}}active{{/if}}" href="{{url}}">
-        {{number}}
-      </a>
-    {{/each}}
-
-    {{#if next}}
-      <a class="listing-pagination-link next" href="{{next}}" data-listing-pagination-link>
-        {{lang 'core.pagination.next'}}
-      </a>
-    {{/if}}
-  </div>
-{{/if}}
+<div class="pagination-container">
+  {{#if pagination.links.length}}
+    <div class="pagination">
+      {{#each pagination.links}}
+        <div
+          class="pagination-link-wrapper
+          {{#if number '===' ../pagination.current}}
+            pagination-link-current
+          {{/if}}"
+        >
+          <a
+            class="pagination-link"
+            href="{{url}}"
+            data-pagination
+            data-pagination-id="0"
+            data-pagination-link="{{url}}"
+          >
+            {{number}}
+          </a>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

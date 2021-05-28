@@ -1,0 +1,90 @@
+<section
+  class="flickity-carousel carousel-{{style}}"
+  data-flickity-carousel
+  data-swap-frequency="{{carousel.swap_frequency}}"
+  aria-live="polite"
+>
+  {{#each carousel.slides}}
+    <figure
+      class="flickity-slide"
+      data-flickity-slide
+    >
+      <div
+        class="flickity-slide-image {{../cropping}}"
+        data-flickity-bg-lazyload="{{image}}"
+      >
+        <img src="{{image}}" class="carousel-image" alt="{{{alt_text}}}" />
+      </div>
+
+      <div class="flickity-slide-info-wrapper">
+        {{#unless button_text}}
+          {{#if url}}
+            <a class="flickity-slide-link" href="{{url}}"></a>
+          {{/if}}
+        {{/unless}}
+        <figcaption
+          class="
+            slide-info
+            {{#any text heading button_text}}
+              has-slide-info
+            {{/any}}
+          "
+        >
+          {{#if ../carousel.slides.length '>' 1}}
+            <button
+              class="flickity-slide-btn slide-prev"
+              type="button"
+              data-flickity-slide-prev
+            >
+              {{> components/icons/arrow-left}}
+            </button>
+          {{/if}}
+
+          {{#any text heading button_text}}
+            {{#if heading}}
+              <h2
+                class="
+                  carousel-heading
+                  {{#any text button_text}}
+                    has-additional-lines
+                  {{/any}}
+                "
+              >
+                {{{heading}}}
+              </h2>
+            {{/if}}
+            {{#if text}}
+              <p
+                class="
+                  carousel-text
+                  {{#unless button_text}}
+                    no-carousel-button
+                  {{/unless}}
+                "
+              >
+                {{{text}}}
+              </p>
+            {{/if}}
+            {{#if url}}
+              {{#if button_text}}
+                <a class="button carousel-button" href="{{{url}}}">
+                  {{{button_text}}}
+                </a>
+              {{/if}}
+            {{/if}}
+          {{/any}}
+
+          {{#if ../carousel.slides.length '>' 1}}
+            <button
+              class="flickity-slide-btn slide-next"
+              type="button"
+              data-flickity-slide-next
+            >
+              {{> components/icons/arrow-right}}
+            </button>
+          {{/if}}
+        </figcaption>
+      </div>
+    </figure>
+  {{/each}}
+</section>

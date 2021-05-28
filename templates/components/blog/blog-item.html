@@ -1,12 +1,72 @@
-<!--
-  Blog excerpt here
-
-  {{title}}
-  {{thumbnail}}
-  {{date_published}}
-  {{url}}
--->
-
-<article class="blog-item">
-  <h4 class="title">{{title}}</h4>
+<article
+  class="blog-item
+  {{#if homepage}}blog-item-{{index}}{{/if}}
+  {{#if minimal}}blog-item-minimal{{/if}}
+  {{#if blog_index}}
+    {{#if blog_layout '==' 'masonry'}}
+      layout-grid-item
+    {{else}}
+      layout-column-item
+    {{/if}}
+  {{/if}}"
+>
+  {{#if homepage}}
+    <span class="blog-item-index">
+      {{#if index '===' 0}}
+        {{lang 'blog.recent_post.one'}}
+      {{else if index '===' 1}}
+        {{lang 'blog.recent_post.two'}}
+      {{else if index '===' 2}}
+        {{lang 'blog.recent_post.three'}}
+      {{/if}}
+    </span>
+  {{/if}}
+  {{#unless minimal}}
+    {{#if thumbnail}}
+      <figure class="blog-item-thumbnail {{image_ratio}}">
+        {{> components/common/responsive-image
+          image=thumbnail
+          class="responsive-image"
+          fit=fit
+          fallback_size=fallback_size
+          lazyload=lazyload
+          default_image=default_image
+        }}
+      </figure>
+    {{/if}}
+  {{/unless}}
+  <div
+    class="
+      blog-item-content
+      {{#unless minimal}}
+        {{#unless thumbnail}}
+          no-thumbnail
+        {{/unless}}
+      {{/unless}}
+    "
+  >
+    {{#unless minimal}}
+      <span class="blog-item-published-date">{{date_published}}</span>
+    {{/unless}}
+    <h2 class="blog-item-title">
+      {{#unless minimal}}
+        <a href="{{url}}">
+      {{/unless}}
+      {{title}}
+      {{#unless minimal}}
+        </a>
+      {{/unless}}
+    </h2>
+    <p class="blog-item-summary">{{{summary}}}&hellip;</p>
+    <a class="blog-item-readmore" href="{{url}}">{{lang 'home.read_more'}}</a>
+    {{#if blog_layout '==' 'column'}}
+      {{#if author}}
+        <div class="blog-item-meta">
+          <div class="post-meta post-author">
+            {{{lang 'blog.posted_by' author=author}}}
+          </div>
+        </div>
+      {{/if}}
+    {{/if}}
+  </div>
 </article>

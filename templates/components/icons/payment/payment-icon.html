@@ -1,0 +1,13 @@
+{{#if icon '===' 'american-express'}}
+  {{> components/icons/payment/american-express}}
+{{else if icon '==='  'discover'}}
+  {{> components/icons/payment/discover}}
+{{else if icon '==='  'mastercard'}}
+  {{> components/icons/payment/mastercard}}
+{{else if icon '==='  'paypal'}}
+  {{> components/icons/payment/paypal}}
+{{else if icon '==='  'visa'}}
+  {{> components/icons/payment/visa}}
+  {{else if icon '==='  'apple-pay'}}
+    {{> components/icons/payment/apple-pay}}
+{{/if}}

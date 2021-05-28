@@ -1,0 +1,35 @@
+{{!--
+  Images List - Secondary images displayed as thumbnails
+  Used to control the primary image displayed.
+
+  @param size - the size of the images to load
+--}}
+
+<div class="product-images-pagination" data-images-pagination>
+  {{#each product.images}}
+    <div
+      class="product-images-pagination-thumb"
+      data-image-position="{{@index}}"
+      data-product-thumbnails-slide
+    >
+      <a href="{{getImage this 'product'}}">
+        <img src="{{getImage this ../size}}" alt="{{alt}}">
+      </a>
+    </div>
+  {{/each}}
+  {{#if product.videos.list.length}}
+    {{#each product.videos.list}}
+      <div
+        class="product-images-pagination-thumb product-images-pagination-video"
+        data-image-position="{{@index}}"
+        data-product-thumbnails-slide
+      >
+        <a href="https://www.youtube.com/watch?v={{id}}" target="_blank">
+          <img
+            src="https://img.youtube.com/vi/{{id}}/0.jpg"
+            alt="{{'core.account.products.videos.header'}}">
+        </a>
+      </div>
+    {{/each}}
+  {{/if}}
+</div>

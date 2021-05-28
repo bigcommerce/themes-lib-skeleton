@@ -1,0 +1,26 @@
+{{#if brand_results.length}}
+  <div class="search-result-group-wrapper">
+    <h6 class="search-results-title">{{lang 'search_results.brand_results.title'}}</h6>
+    {{#each brand_results}}
+      <div class="search-result search-result-brand">
+        <a href="{{url}}">{{name}}</a>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
+
+{{#if category_results.length}}
+  <div class="search-result-group-wrapper">
+    <h6 class="search-results-title">{{lang 'search_results.category_results.title'}}</h6>
+    <ul>
+      {{#each category_results}}
+        <li class="search-result search-result-category">
+          {{#each this}}
+            <a href="{{url}}">{{name}}</a>
+            {{#unless @last}} > {{/unless}}
+          {{/each}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}

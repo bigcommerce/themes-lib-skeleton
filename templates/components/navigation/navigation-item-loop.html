@@ -1,0 +1,26 @@
+<li class="nav-menu-item-all nav-tier-item">
+  <a href="{{url}}">
+    {{#if show_all}}
+      {{lang 'header.all'}} {{name}}
+    {{else}}
+      {{name}}
+    {{/if}}
+  </a>
+</li>
+{{#each children}}
+  <li class="nav-tier-item {{#if children}}has-children{{/if}}" {{#if children}}data-tier{{/if}}>
+    <a href="{{url}}" {{#if children}}data-tier-toggle{{/if}}>
+      {{name}}
+      {{#if children}}
+        <span class="dropdown-arrow">
+          {{> components/icons/arrow-down}}
+        </span>
+      {{/if}}
+    </a>
+    <ul class="dropdown-tier" data-tier-panel>
+      {{> components/navigation/navigation-item-loop
+        show_all=../show_all
+      }}
+    </ul>
+  </li>
+{{/each}}

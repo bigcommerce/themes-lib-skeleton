@@ -1,0 +1,41 @@
+{{#if shop_by_price}}
+  <div data-facet-filter>
+    <h3
+      class="facet-title is-open"
+      data-facet-toggle
+    >
+      {{lang 'faceted_search.shop_by_price'}}
+      <span class="facet-toggle"></span>
+    </h3>
+    <div class="facet-search-filter-wrapper visible" data-facet-filter-wrapper>
+      <ul class="faceted-search-filter-list facet-default price">
+        {{#each shop_by_price}}
+          <li class="facet-item {{#if selected}}is-selected{{/if}}" data-facet-item>
+            {{#if selected}}
+              <a
+                class="facet-link"
+                rel="nofollow"
+                href="{{../../listtype_url}}"
+                alt="{{low.formatted}} - {{high.formatted}}"
+                data-faceted-search-facet
+              >
+                {{> components/icons/close}}
+                {{low.formatted}} - {{high.formatted}}
+              </a>
+            {{else}}
+              <a
+                class="facet-link"
+                rel="nofollow"
+                href="{{url}}"
+                alt="{{low.formatted}} - {{high.formatted}}"
+                data-faceted-search-facet
+              >
+                {{low.formatted}} - {{high.formatted}}
+              </a>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+{{/if}}

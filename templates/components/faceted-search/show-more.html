@@ -1,0 +1,11 @@
+{{#if category.facets}}
+  {{> components/faceted-search/show-more-facets category}}
+{{/if}}
+
+{{#if brand.facets}}
+  {{> components/faceted-search/show-more-facets brand}}
+{{/if}}
+
+{{#if product_results.facets}}
+  {{> components/faceted-search/show-more-facets product_results}}
+{{/if}}

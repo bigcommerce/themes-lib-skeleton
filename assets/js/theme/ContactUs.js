@@ -1,9 +1,7 @@
-export default class ContactUs {
-  constructor(context) {
-    this.context = context;
-  }
+import PageManager from '../PageManager';
 
-  unload() {
-    //remove all event handlers
+export default class ContactUs extends PageManager {
+  constructor() {
+    super();
   }
 }

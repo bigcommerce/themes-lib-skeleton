@@ -1,0 +1,33 @@
+.cart-wrapper {
+  width: 30px;
+}
+
+.cart-wrapper:not(.cart-empty) {
+  color: {{color_accent}};
+}
+
+.icon-cart {
+  fill: {{color_accent}};
+}
+
+.cart-empty .icon-cart {
+  fill: {{color_text}};
+}
+
+.icon-wrapper {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  margin: 0 auto;
+}
+
+.mini-cart-count {
+  position: relative;
+  top: 3px;
+  display: none;
+}
+
+.mini-cart-count.show {
+  font-size: 14px;
+  display: inline-block;
+}

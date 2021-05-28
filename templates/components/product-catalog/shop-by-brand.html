@@ -1,0 +1,26 @@
+<div data-facet-filter>
+  {{#if list.length}}
+    <h3
+      class="facet-title {{#unless start_collapsed}}is-open{{/unless}}"
+      data-facet-toggle
+    >
+      {{lang 'faceted_search.shop_by_brand'}}
+      <span class="facet-toggle"></span>
+    </h3>
+    <div class="facet-search-filter-wrapper visible" data-facet-filter-wrapper>
+      <ul class="brand-list">
+        {{#each list}}
+          <li class="brand-list-item">
+            <a
+              class="brand-link"
+              rel="nofollow"
+              href="{{url}}"
+            >
+              {{name}}
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+</div>

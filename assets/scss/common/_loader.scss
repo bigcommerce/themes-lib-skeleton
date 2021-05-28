@@ -1,0 +1,73 @@
+$square-size: 50px;
+$separation: 50%;
+$duration: 1s;
+
+.loader {
+  position: relative;
+  width: $square-size;
+  height: $square-size;
+  margin: 50px auto;
+  animation: invert $duration * 2 infinite steps(2,end);
+}
+
+.loader-square {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $color-primary;
+  border-radius: 0;
+}
+
+.loader-square-1 { animation: loader-square-1 $duration infinite alternate linear; }
+
+.loader-square-2 { animation: loader-square-2 $duration infinite alternate linear; }
+
+.loader-square-3 { animation: loader-square-3 $duration infinite alternate linear; }
+
+.loader-square-4 { animation: loader-square-4 $duration infinite alternate linear; }
+
+@keyframes invert {
+  100% { transform: rotate(180deg); }
+}
+
+@keyframes loader-square-1 {
+  12% { transform: none; }
+  26% { transform: translateX($separation / 2) scale(1, 0.8); }
+  40% { transform: translateX($separation) scale(0.8, 0.8); }
+  60% { transform: translateX($separation) scale(0.8, 0.8); }
+  74% { transform: translate($separation, $separation / 2) scale(0.6, 0.8); }
+  88% { transform: translate($separation, $separation) scale(0.6, 0.6); }
+  100% { transform: translate($separation, $separation) scale(0.6, 0.6); }
+}
+
+@keyframes loader-square-2 {
+  12% { transform: none; }
+  26% { transform: translateX($separation / 2) scale(1, 0.8); }
+  40% { transform: translateX($separation) scale(0.8, 0.8); }
+  60% { transform: translateX($separation) scale(0.8, 0.8); }
+  74% { transform: translate($separation, -$separation / 2) scale(0.6, 0.8) }
+  88% { transform: translate($separation, -$separation) scale(0.6, 0.6); }
+  100% { transform: translate($separation, -$separation) scale(0.6, 0.6); }
+}
+
+@keyframes loader-square-3 {
+  12% { transform: none; }
+  26% { transform: translateX(-$separation / 2) scale(1, 0.8); }
+  40% { transform: translateX(-$separation) scale(0.8, 0.8); }
+  60% { transform: translateX(-$separation) scale(0.8, 0.8); }
+  74% { transform: translate(-$separation, $separation / 2) scale(0.6, 0.8); }
+  88% { transform: translate(-$separation, $separation) scale(0.6, 0.6); }
+  100% { transform: translate(-$separation, $separation) scale(0.6, 0.6); }
+}
+
+@keyframes loader-square-4 {
+  12% { transform: none; }
+  26% { transform: translateX(-$separation / 2) scale(1, 0.8);}
+  40% { transform: translateX(-$separation) scale(0.8, 0.8); }
+  60% { transform: translateX(-$separation) scale(0.8, 0.8); }
+  74% { transform: translate(-$separation, -$separation / 2) scale(0.6, 0.8); }
+  88% { transform: translate(-$separation, -$separation) scale(0.6, 0.6); }
+  100% { transform: translate(-$separation, -$separation) scale(0.6, 0.6); }
+}

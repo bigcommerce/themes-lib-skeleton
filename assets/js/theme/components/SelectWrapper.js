@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 /*
  * Prepends a span containing the currently selected text value to matching select elements
  * and updates that span's text on input change.
@@ -8,7 +6,7 @@ import $ from 'jquery';
  */
 export default class SelectWrapper {
   constructor(el) {
-    this.$el = $(el);
+    this.$el =  el.jquery ? el : $(el);
     this.$parent = this.$el.parent('.form-select-wrapper');
 
     // only run if wrapper is in place AND it's not the currency selector
@@ -18,7 +16,16 @@ export default class SelectWrapper {
   }
 
   _init() {
-    this.$el.before(`<span class="form-selected-text">${this.$el.find('option:selected').text()}</span>`);
+    // grab selected option if it exists, otherwise grab the first option
+    const $currentOption =
+      this.$el.find('option[selected]').length
+        ? this.$el.find('option[selected]')
+        : this.$el.find('option:first');
+
+    if (this.$parent.find('.form-selected-text').length === 0) {
+      this.$el.before(`<span class="form-selected-text">${$currentOption.text()}</span>`);
+    }
+
     this._bindEvents();
   }
 
@@ -31,9 +38,5 @@ export default class SelectWrapper {
   updateSelectText(option) {
     const newOption = option ? option : this.$el.find('option:selected').text();
     this.$el.siblings('.form-selected-text').text(newOption);
-  }
-
-  unload() {
-    //remove all event handlers
   }
 }

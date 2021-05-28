@@ -1,4 +1,6 @@
 {{!-- Blog Post: include in blog-post.html page template --}}
+{{!-- Note: not having a modified date throws an error in the validator --}}
+{{!-- BC doesn't give us a modified date so I'll be using the published date --}}
 
 <script id="schema-blog">
   var postDate = '{{blog.post.date_published}}';
@@ -29,6 +31,7 @@
       "width": 800
     },
     "datePublished": postDate,
+    "dateModified": postDate,
     "author": {
       "@type": "Person",
       "name": "{{blog.post.author}}"

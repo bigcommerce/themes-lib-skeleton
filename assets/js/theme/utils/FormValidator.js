@@ -1,9 +1,17 @@
-import $ from 'jquery';
-
 export default class FormValidator {
   constructor(context) {
     this.context = context;
     this.formSelector = '[data-validated-form]';
+    this.options = {
+      onError: function(event) {
+        const fields = this.getInvalidFields();
+        if (!fields || !fields.length) return;
+
+        $(document.body).trigger('invalid-form-field', {
+          field: fields[0].field,
+        });
+      }
+    };
 
     this.validationOptions = {};
 
@@ -41,9 +49,5 @@ export default class FormValidator {
   initSingle($form, localOptions) {
     const customOptions = localOptions ? localOptions : this.validationOptions;
     $($form).validetta(customOptions, this.validationMessages);
-  }
-
-  unload() {
-    //remove all event handlers
   }
 }

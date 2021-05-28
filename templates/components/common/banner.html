@@ -1,0 +1,45 @@
+<section
+  class="
+    banner
+    {{#if banner_style}}
+      banner-{{banner_style}}
+    {{/if}}
+    {{#if visible}}
+      visible
+    {{/if}}
+  "
+  data-banner
+>
+  {{#if settings.data_tag_enabled}}
+    {{#each (limit banner 1)}}
+      <div
+        class="banner-content"
+        data-event-type="promotion"
+        data-entity-id="{{this.id}}"
+        data-name="{{this.banner-name}}"
+        data-position="{{this.location}}"
+        data-name="{{this.banner-name}}"
+      >
+        <div data-event-type="promotion-click">
+          {{{this.content}}}
+        </div>
+    </div>
+    {{#if dismissable}}
+      <button class="btn-banner-dismiss" data-banner-dismiss>
+        {{> components/icons/close}}
+      </button>
+    {{/if}}
+    {{/each}}
+  {{else}}
+    {{#each (limit banner 1)}}
+      <div class="banner-content">
+        {{{this.content}}}
+      </div>
+      {{#if dismissable}}
+        <button class="btn-banner-dismiss" data-banner-dismiss>
+          {{> components/icons/close}}
+        </button>
+      {{/if}}
+    {{/each}}
+  {{/if}}
+</section>

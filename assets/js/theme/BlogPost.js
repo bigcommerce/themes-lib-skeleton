@@ -1,9 +1,7 @@
-export default class BlogPost {
-  constructor(context) {
-    this.context = context;
-  }
+import PageManager from '../PageManager';
 
-  unload() {
-    //remove all event handlers
+export default class BlogPost extends PageManager {
+  constructor() {
+    super();
   }
 }

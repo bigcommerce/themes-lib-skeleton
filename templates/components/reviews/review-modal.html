@@ -1,19 +1,26 @@
-<div id="modal-review-form" class="review-modal-container">
-  <a href="#" class="modal-close">&times;</a>
+<div class="review-modal-container" id="modal-review-form">
+  <a href="#" class="modal-close">{{> components/icons/close}}</a>
 
   <div class="modal-body">
-    <div class="review-image-column">
-      <figure class="review-image-container">
-        <img src="{{getImage product.main_image}}">
-        <figcaption class="review-image-caption">{{product.title}}</figcaption>
-      </figure>
-    </div>
-
     <div class="review-form-column">
-      <h2 class="review-form-heading">{{lang 'product.reviews.write_review'}}</h2>
-      <form class="form" id="form-leave-a-review" action="{{urls.product.post_review}}" method="post">
+      <h2 class="review-form-heading">
+        {{lang 'product.reviews.write_review'}}
+      </h2>
+      <form
+        class="form review-form"
+        id="form-leave-a-review"
+        action="{{urls.product.post_review}}"
+        method="post"
+      >
         <input type="hidden" name="product_id" value="{{product.id}}">
         <input type="hidden" name="action" value="post_review">
+        {{#if product.reviews.throttleToken}}
+          <input
+            type="hidden"
+            name="throttleToken"
+            value="{{product.reviews.throttleToken}}"
+          />
+        {{/if}}
 
         {{!-- Clickable Stars --}}
         <div class="form-field">
@@ -21,57 +28,142 @@
             {{lang 'product.reviews.rating_label'}}
           </div>
           <fieldset class="input-stars form-fieldset">
-            <input type="radio" id="stars-5" class="show-for-sr" name="revrating" value="5">
-            <label for="stars-5" class="star" title="{{lang 'product.reviews.stars_count' NUM=5}}">
-              <svg class="star star-full">
-                <use xlink:href="#icon-star">
-              </svg>
-              <span class="span show-for-sr">{{lang 'product.reviews.stars_count' NUM=5}}</span>
+            <input
+              type="radio"
+              id="stars-5"
+              class="show-for-sr"
+              name="revrating"
+              value="5"
+              checked
+            >
+            <label
+              for="stars-5"
+              class="star"
+              title="{{lang 'product.reviews.stars_count' NUM=5}}"
+            >
+              {{> components/icons/product/star}}
+              <span class="span show-for-sr">
+                {{lang 'product.reviews.stars_count' NUM=5}}
+              </span>
             </label>
-            <input type="radio" id="stars-4" class="show-for-sr" name="revrating" value="4">
-            <label for="stars-4" class="star" title="{{lang 'product.reviews.stars_count' NUM=4}}">
-              <svg class="star star-full">
-                <use xlink:href="#icon-star">
-              </svg>
-              <span class="span show-for-sr">{{lang 'product.reviews.stars_count' NUM=4}}</span>
+            <input
+              type="radio"
+              id="stars-4"
+              class="show-for-sr"
+              name="revrating"
+              value="4"
+            >
+            <label
+              for="stars-4"
+              class="star"
+              title="{{lang 'product.reviews.stars_count' NUM=4}}"
+            >
+              {{> components/icons/product/star}}
+              <span class="span show-for-sr">
+                {{lang 'product.reviews.stars_count' NUM=4}}
+              </span>
             </label>
-            <input type="radio" id="stars-3" class="show-for-sr" name="revrating" value="3">
-            <label for="stars-3" class="star" title="{{lang 'product.reviews.stars_count' NUM=3}}">
-              <svg class="star star-full">
-                <use xlink:href="#icon-star">
-              </svg>
-              <span class="span show-for-sr">{{lang 'product.reviews.stars_count' NUM=3}}</span>
+            <input
+              type="radio"
+              id="stars-3"
+              class="show-for-sr"
+              name="revrating"
+              value="3"
+            >
+            <label
+              for="stars-3"
+              class="star"
+              title="{{lang 'product.reviews.stars_count' NUM=3}}"
+            >
+              {{> components/icons/product/star}}
+              <span class="span show-for-sr">
+                {{lang 'product.reviews.stars_count' NUM=3}}
+              </span>
             </label>
-            <input type="radio" id="stars-2" class="show-for-sr" name="revrating" value="2">
-            <label for="stars-2" class="star" title="{{lang 'product.reviews.stars_count' NUM=2}}">
-              <svg class="star star-full">
-                <use xlink:href="#icon-star">
-              </svg>
-              <span class="span show-for-sr">{{lang 'product.reviews.stars_count' NUM=2}}</span>
+            <input
+              type="radio"
+              id="stars-2"
+              class="show-for-sr"
+              name="revrating"
+              value="2"
+            >
+            <label
+              for="stars-2"
+              class="star"
+              title="{{lang 'product.reviews.stars_count' NUM=2}}"
+            >
+              {{> components/icons/product/star}}
+              <span class="span show-for-sr">
+                {{lang 'product.reviews.stars_count' NUM=2}}
+              </span>
             </label>
-            <input type="radio" id="stars-1" class="show-for-sr" name="revrating" value="1">
-            <label for="stars-1" class="star" title="{{lang 'product.reviews.stars_count' NUM=1}}">
-              <svg class="star star-full">
-                <use xlink:href="#icon-star">
-              </svg>
-              <span class="span show-for-sr">{{lang 'product.reviews.stars_count' NUM=1}}</span>
+            <input
+              type="radio"
+              id="stars-1"
+              class="show-for-sr"
+              name="revrating"
+              value="1"
+            >
+            <label
+              for="stars-1"
+              class="star"
+              title="{{lang 'product.reviews.stars_count' NUM=1}}"
+            >
+              {{> components/icons/product/star}}
+              <span class="span show-for-sr">
+                {{lang 'product.reviews.stars_count' NUM=1}}
+              </span>
             </label>
           </fieldset>
         </div>
 
         {{!-- Name --}}
-        {{> core/forms/common/text label=(lang 'product.reviews.form.name') name="revfromname" id="revfromname" required="true" prefill=(lang 'product.reviews.form.name')}}
+        {{> core/forms/common/text
+          label=(lang 'product.reviews.form.name')
+          name="revfromname"
+          id="revfromname"
+          required="true"
+          prefill=(lang 'product.reviews.form.name')
+        }}
 
         {{!-- Email --}}
-        {{> core/forms/common/email label=(lang 'product.reviews.form.email') name="email" id="rating-email" required="true" prefill=(lang 'product.reviews.form.email')}}
+        {{> core/forms/common/email
+          label=(lang 'product.reviews.form.email')
+          name="email"
+          id="rating-email"
+          required="true"
+          prefill=(lang 'product.reviews.form.email')
+        }}
 
         {{!-- Subject --}}
-        {{> core/forms/common/text label=(lang 'product.reviews.form.subject') name="revtitle" id="rating-title" required="true" prefill=(lang 'product.reviews.form.subject')}}
+        {{> core/forms/common/text
+          label=(lang 'product.reviews.form.subject')
+          name="revtitle"
+          id="rating-title"
+          required="true"
+          prefill=(lang 'product.reviews.form.subject')
+        }}
 
         {{!-- Comments --}}
-        {{> core/forms/common/multiline label=(lang 'product.reviews.form.comments') name="revtext" id="rating-comment" required="true" rows=6 prefill=(lang 'product.reviews.form.comments')}}
+        {{> core/forms/common/multiline
+          label=(lang 'product.reviews.form.comments')
+          name="revtext"
+          id="rating-comment"
+          required="true"
+          rows=6
+          prefill=(lang 'product.reviews.form.comments')
+        }}
 
-        <input type="submit" class="form-submit button button-primary" value="{{lang 'product.reviews.form.submit'}}">
+        {{!-- Recaptcha V2 --}}
+        {{{product.reviews.recaptcha.markup}}}
+
+        <div class="review-form-submit">
+          <input
+            type="submit"
+            class="form-submit button button-primary"
+            value="{{lang 'product.reviews.form.submit'}}"
+          >
+        </div>
       </form>
     </div>
 

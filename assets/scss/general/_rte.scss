@@ -1,0 +1,17 @@
+.rte,
+.cms-page {
+  @extend %rte;
+
+  a { @extend %link; }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  ul {
+    margin-left: 15px;
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+}

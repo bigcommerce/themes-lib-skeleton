@@ -1,0 +1,37 @@
+<div class="categories-featured-wrapper">
+  {{#each (limit items limit)}}
+    <div class="category-featured">
+      <a class="category-featured-link" href="{{url}}">
+        <div
+          class="
+            category-featured-image
+            {{../theme_settings.category_image_ratio}}
+          "
+        >
+          {{#if image}}
+            {{> components/common/responsive-image
+              image=image
+              class="responsive-image"
+              fit='image-cover'
+              lazyload=../theme_settings.lazyload_mode
+              fallback_size=../theme_settings.thumbnail
+              default=../theme_settings.default_image
+            }}
+          {{else}}
+            <img
+              class="responsive-image"
+              src="{{getImage image 'thumbnail' (cdn 'assets/img/no-image.svg')}}"
+              alt="{{image.alt}}"
+            >
+          {{/if}}
+        </div>
+        <div class="category-featured-info-wrapper">
+          <div class="category-featured-info">
+            <h2 class="category-featured-title">{{name}}</h2>
+            <span class="category-shop">{{lang 'home.shop_now'}}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  {{/each}}
+</div>

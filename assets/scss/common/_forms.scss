@@ -1,0 +1,732 @@
+.form-input {
+  display: block;
+  color: $input-color;
+  background: $input-background-color;
+  border-color: $input-border-color;
+
+  &::placeholder {
+    color: lighten($input-color, 20%);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+textarea,
+input[type="email"],
+input[type="number"],
+input[type="password"]{
+  padding-top: 15px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+// -------------------------- Form Errors -------------------------- //
+// Default error classes, as dictated by validetta.js
+
+.form-inline-message {
+  display: block;
+
+  .form-field-invalid & {
+    color: #c00;
+  }
+
+  .form-field-checkbox & {
+    position: absolute;
+  }
+}
+
+// ---------------------------------------------------------------- //
+// Select Wrappers - Provides some additional style control for select elements
+
+.form-select-wrapper {
+  position: relative;
+  padding: 10px 20px 10px 10px;
+  font-size: rem-calc(14px);
+  line-height: 1.6;
+  color: $input-color;
+  cursor: pointer;
+  background-color: $input-background-color;
+  border: 1px solid $input-border-color;
+
+  .form-selected-text {
+    &::after {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      margin-top: -1.5px;
+      margin-left: 5px;
+      border-top: 3px solid currentColor;
+      border-right: 3px solid transparent;
+      border-left: 3px solid transparent;
+      content: "";
+    }
+
+    .currency-selector-wrapper & {
+      &::after {
+        right: 30px;
+      }
+    }
+  }
+
+  select {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%; // needed for Firefox
+    height: 100%; // needed for IE
+    color: $color-text;
+    cursor: pointer;
+    opacity: 0;
+    appearance: none;
+  }
+
+  .giftwrap-select {
+    padding-left: 15px;
+    background: transparent;
+    border: 0;
+    opacity: 1;
+  }
+
+  .giftwrap-form & {
+    height: 50px;
+  }
+}
+
+// ---------------------------------------------------------------- //
+// Common Form Classes:
+
+// Wraps each field component
+.form-field {
+  display: block;
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+// Applied to labels that are used as option titles
+.form-label-title {
+  display: block;
+}
+
+// inline inputs
+.form-field-product-list,
+.form-field-checkbox,
+.form-field-radio,
+.form-field-date {
+  .form-field-control {
+    display: inline-block;
+  }
+
+  .form-input {
+    display: inline-block;
+  }
+}
+
+.account-address-form {
+  .form-field-control {
+    display: block;
+  }
+}
+
+.form-field-control {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+
+  @include breakpoint(s) {
+    max-width: 370px;
+
+    .giftwrap-form & {
+      max-width: 100%;
+    }
+
+    .wishlist-form & {
+      max-width: 520px;
+    }
+  }
+
+  textarea,
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+  }
+}
+
+.form-date-year,
+.form-date-month,
+.form-date-day {
+  .form-selected-text {
+    padding: 0 10px 0 0;
+  }
+}
+
+// Required form element display 'required' text next title
+.required-text {
+  @include sr-only;
+}
+
+
+// ---------------------------------------------------------------- */
+// Swatch: Set of options displaying color / pattern choices
+.swatch-value {
+  font-weight: normal;
+  color: $color-text;
+}
+
+.form-field-swatch {
+  .form-label-text {
+    @include sr-only;
+  }
+
+  .form-field-control {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .swatch-wrap {
+    position: relative;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border: 1px solid rgba($color-line, 0.5);
+
+    &.swatch-none {
+      .swatch {
+        border-color: transparent;
+      }
+
+      &:hover .swatch {
+        border-color: $color-primary;
+      }
+
+      .swatch-radio {
+        &:checked + .swatch {
+          border-color: $color-primary;
+        }
+      }
+    }
+  }
+
+  // The block that the swatch sits within.
+  .swatch {
+    position: relative;
+    display: block;
+    width: 40px;
+    height: rem-calc(40);
+    border: 1px solid transparent;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .swatch-wrap:hover .swatch {
+    border-color: $color-primary;
+  }
+
+  // Blocks displaying the pattern / colors
+  .swatch-color {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+    background-size: cover;
+
+    &.secondary {
+      left: 50%;
+    }
+
+    &.tertiary {
+      top: 50%;
+      left: 50%;
+    }
+  }
+
+  .swatch-radio {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+
+    // Selected Swatch Item
+    &:checked + .swatch {
+      border-color: $color-primary;
+    }
+  }
+
+  .swatch-pattern-expanded {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 100%;
+    display: none;
+    padding: 3px;
+    background: $color-background;
+    transform: translateX(-50%);
+
+    img {
+      display: block;
+      width: 100px;
+      max-width: none;
+    }
+  }
+
+  @include breakpoint(ms) {
+    .swatch-wrap:hover .swatch-pattern-expanded {
+      display: block;
+    }
+  }
+}
+
+
+// ---------------------------------------------------------------- */
+// Date Field Components
+
+.form-field-date {
+  @extend %clearfix;
+
+  .form-input { float: left; }
+
+  .form-date-year { width: 44%; }
+
+  .form-date-month {
+    width: 25%;
+    margin-right: 3%;
+    margin-left: 3%;
+  }
+
+  .form-date-day { width: 25%; }
+}
+
+
+// ---------------------------------------------------------------- */
+// Rectangles - Form options displayed as a series of rectangles with text
+
+.form-field-rectangle {
+  .form-field-control {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .rectangle {
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+    margin: 0 rem-calc(5) rem-calc(5) 0;
+
+    &:hover .rectangle-text {
+      color: $color-primary;
+      border-color: $color-primary;
+    }
+  }
+
+  .rectangle-text {
+    display: block;
+    min-width: rem-calc(55);
+    padding: rem-calc(15);
+    margin: 0 rem-calc(6) 0 0;
+    font-weight: 300;
+    line-height: 1;
+    text-align: center;
+    border: 1px solid $color-border;
+  }
+
+  .form-input {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+
+    &:checked + .rectangle-text {
+      color: $color-primary;
+      background-color: $body-background-color;
+      border-color: $color-primary;
+    }
+  }
+}
+
+.form-field-text,
+.form-field-selectortext {
+  .form-input {
+    padding: {
+      top: 12px;
+      right: 20px;
+      bottom: 12px;
+      left: 15px;
+    }
+
+    &:focused {
+      border-color: $color-border;
+    }
+  }
+}
+
+.form-state-input {
+  padding: {
+    top: 13px;
+    right: 20px;
+    bottom: 12px;
+    left: 15px;
+  }
+
+  &:focused {
+    border-color: $color-border;
+  }
+}
+
+.form-file-text {
+  display: inline-block;
+  flex-basis: auto;
+  width: calc(75% - 10px);
+  padding: {
+    right: 15px;
+    left: 15px;
+  }
+}
+
+.form-file-wrapper {
+  position: relative;
+  display: inline-block;
+  flex-basis: auto;
+  width: auto;
+
+  .form-file-title {
+    display: block;
+    padding: {
+      top: 12px;
+      right: 50px;
+      bottom: 12px;
+      left: 50px;
+    }
+    color: $color-primary;
+    border: {
+      color: $color-primary;
+      style: solid;
+      width: 1px;
+    }
+  }
+
+  .form-file {
+    width: 100%;
+    height: 100%;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    opacity: 1;
+  }
+}
+
+.form-file-types,
+.form-file-size {
+  display: block;
+  margin-top: 10px;
+
+  + .form-file-size {
+    margin-top: 0;
+  }
+}
+
+.form-checkbox-wrapper {
+  position: relative;
+  width: 18px;
+  height: 18px;
+
+  .form-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    appearance: none;
+  }
+
+  .form-checkbox-unchecked,
+  .form-checkbox-checked {
+    width: 100%;
+    height: 100%;
+
+    .icon { display: block; }
+  }
+
+  .form-checkbox-unchecked {
+    display: block;
+    color: $color-border;
+  }
+
+  .form-checkbox-checked {
+    display: none;
+    color: $color-primary;
+  }
+
+  .form-checkbox:hover ~ .form-checkbox-unchecked { color: $color-primary; }
+
+  .form-checkbox:checked {
+    ~ .form-checkbox-unchecked { display: none; }
+    ~ .form-checkbox-checked { display: block; }
+  }
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+
+  .form-field-text &,
+  .form-field-number &,
+  .form-field-textarea &,
+  .form-field-select &,
+  .form-field-date &,
+  .form-field-file & {
+    flex-wrap: wrap;
+  }
+
+  .giftwrap-form & {
+    display: block;
+  }
+
+  .account-content &,
+  .giftwrap-form &,
+  .account-address-form & {
+    display: block;
+  }
+}
+
+.form-field-title {
+  display: block;
+  flex-basis: auto;
+  width: 100%;
+  margin: {
+    top: 35px;
+    bottom: 10px;
+  }
+  color: $color-secondary;
+
+  .account-address-form & {
+    display: inline-block;
+    width: auto;
+  }
+
+  .form-required &::after {
+    position: relative;
+    top: 5px;
+    right: 3px;
+    font-size: 24px;
+    color: $color-error;
+    content: "*";
+  }
+}
+
+.form-radio,
+.form-rectangle {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border: 0;
+  appearance: none;
+
+  &:checked {
+    &::after {
+      border: {
+        width: 5px;
+      }
+    }
+  }
+
+  &::after {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: {
+      color: $color-primary;
+      style: solid;
+      width: 1px;
+      radius: 15px;
+    }
+    content: "";
+  }
+}
+
+.form-radio {
+  .account-wrapper & {
+    width: auto !important; //override width from core account styles
+    margin-right: 15px;
+    vertical-align: middle;
+  }
+}
+
+.form-label-text {
+  margin: {
+    left: 10px;
+  }
+}
+
+.form-field-checkbox {
+  position: relative;
+
+  .form-label-text {
+    position: relative;
+  }
+}
+
+.form-checkbox {
+  @include sr-only;
+}
+
+input[type=checkbox] + .form-label-text {
+  margin-left: 30px;
+
+  &::before {
+    position: absolute;
+    bottom: 3px;
+    left: -30px;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 1px solid $color-primary;
+    content: "";
+  }
+}
+
+input[type=checkbox]:checked + .form-label-text::before {
+  font-size: 0;
+  color: $color-compliment;
+  text-align: center;
+  background-color: $color-primary;
+  border: 1px solid $color-primary;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='18' viewBox='0 0 7 5'%3E%3Cpath fill='%23ffffff' fill-rule='evenodd' d='M6.173.139L2.366 3.858.826 2.355a.492.492 0 0 0-.684 0 .465.465 0 0 0 0 .669l1.881 1.838a.489.489 0 0 0 .685 0l.001-.002L6.86.807a.465.465 0 0 0 0-.668.492.492 0 0 0-.686 0z'/%3E%3C/svg%3E");
+}
+
+// ---------------------------------------------------------------- */
+// Pick-Product
+
+.product-picklist-item-body {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.product-picklist-image-wrap {
+  width: 40px;
+  height: auto;
+}
+
+.product-picklist-image {}
+
+.product-picklist-label-text {
+  display: table-cell;
+  line-height: 1.4;
+  color: inherit;
+  vertical-align: middle;
+}
+
+.form-field-number,
+.form-field-quantity-control,
+.form-field-range {
+  .form-field-control {
+    position: relative;
+    display: inline-block;
+    max-width: 100px;
+    min-width: 100px;
+
+    + .form-field-control {
+      margin-left: 10px;
+
+      .faceted-search & {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .form-actions {
+    @extend .button;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: {
+      top: 15px;
+      right: 15px;
+      bottom: 15px;
+      left: 15px;
+    }
+    cursor: pointer;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+  }
+
+  .form-field-control-up {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 50%;
+    cursor: pointer;
+
+    .icon-arrow-up {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  .form-field-control-down {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 50%;
+    cursor: pointer;
+
+    .icon-arrow-down {
+      width: 8px;
+      height: 8px;
+    }
+  }
+}
+
+// reCaptcha styles
+.g-recaptcha {
+  margin-top: 35px;
+  transform: scale(0.66);
+  text-align: center;
+
+  @include breakpoint(s) {
+    transform: scale(1);
+  }
+}
+
+// Hide HTML5 Up and Down arrows in number input[type="number"]
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

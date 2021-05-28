@@ -1,0 +1,64 @@
+.giftcard-nav {
+  .giftcard-nav-item {
+    @extend %link;
+
+    &.is-active {
+      color: $color-secondary;
+
+      &:hover {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+.giftcertificates_redeem {
+  .giftcard-body {
+    padding: 0 20px;
+  }
+}
+
+.giftcard-heading {
+  color: $color-secondary;
+}
+
+.giftcard-form {
+  .form-label {
+    flex-wrap: wrap;
+  }
+
+  .form-field-checkbox {
+    margin-top: 35px;
+    .form-label {
+      flex-wrap: nowrap;
+    }
+  }
+}
+
+.giftcard-form-actions {
+  @include border-box(5px, 5px, $color-primary);
+  margin-top: 35px;
+
+  &:hover {
+    background-color: $color-secondary;
+  }
+
+  .button {
+    background-color: transparent;
+  }
+}
+
+.giftcard-balance-container {
+  .form-actions {
+    @include border-box(5px, 5px, $color-primary);
+
+    &:hover {
+      background-color: $color-secondary;
+    }
+
+    .button {
+      padding: 6px 20px;
+      background-color: transparent;
+    }
+  }
+}

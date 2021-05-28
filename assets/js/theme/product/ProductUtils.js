@@ -1,7 +1,8 @@
-import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 import Alert from '../components/Alert';
-import Loading from 'bc-loading';
+import progressButton from '../utils/progressButton';
+import FormValidator from '../utils/FormValidator';
+import AttributesHelper from './AttributesHelper';
 
 /**
  * PxU's handler for a couple product-related ajax features.
@@ -32,21 +33,24 @@ export default class ProductUtils {
   constructor(el, options) {
     this.$el = $(el);
     this.options = options;
+    this.$body = $(document.body);
+    this.$form = this.$el.find('form[data-cart-item-add]');
     this.productId = this.$el.find('[data-product-id]').val();
+    this.productAttributesData = window.BCData.product_attributes;
 
     // class to add or remove from cart-add button depending on variation availability
     this.buttonDisabledClass = 'button-disabled';
 
     // two alert locations based on action
-    this.cartAddAlert = new Alert(this.$el.find('[data-product-cart-message]'));
+    this.cartAddAlert = new Alert(this.$body.find('[data-product-cart-message]'));
     this.cartOptionAlert = new Alert(this.$el.find('[data-product-option-message]'));
-
-    this.loader = new Loading({}, true);
+    this.attributesHelper = new AttributesHelper(el);
 
     this.callbacks = $.extend({
-      willUpdate: () => console.log('Update requested.'),
-      didUpdate: () => console.log('Update executed.'),
-      switchImage: (url) => console.log(`Image switch attempted for ${url}`),
+      willUpdate: () => {},
+      didUpdate: () => {},
+      switchImage: () => {},
+      originalImage: () => {},
     }, options.callbacks);
   }
 
@@ -55,11 +59,38 @@ export default class ProductUtils {
    */
   init(context) {
     this.context = context;
+    const $productOptionsElement = $('[data-product-option-change]', this.$form);
+    const hasOptions = $productOptionsElement.length > 0 ? true : false;
+    const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
+     if (hasDefaultOptions || (_.isEmpty(this.productAttributesData) && hasOptions)) {
+      const $productId = $('[name="product_id"]', this.$form).val();
+      utils.api.productAttributes.optionChange($productId, this.$form.serialize(), (err, response) => {
+        const attributesData = response.data || {};
+        const attributesContent = response.content || {};
+        this.attributesHelper.updateAttributes(attributesData);
+      });
+    } else {
+      this.attributesHelper.updateAttributes(this.productAttributesData);
+    }
 
-    this._bindQuantityChange();
     this._bindProductOptionChange();
-    this._bindCartAdd();
-    this._bindAddWishlist();
+
+    this._boundCartCallback = this._bindCartAdd.bind(this);
+    utils.hooks.on('cart-item-add', this._boundCartCallback);
+
+    // Trigger a change event so the values are correct for pre-selected options
+    $('[data-cart-item-add]').find('input[type="radio"], input[type="checkbox"], select').first().change();
+
+    this.attributesHelper.updateAttributes(window.BCData.product_attributes);
+  }
+
+  /**
+   *
+   * Cleanup - useful for closing quickshop modals
+   *
+   */
+  destroy() {
+    utils.hooks.off('cart-item-add', this._boundCartCallback);
   }
 
   /**
@@ -75,16 +106,30 @@ export default class ProductUtils {
       $sku: $('[data-product-sku]', $el),
       $weight: $('[data-product-weight]', $el),
       $addToCart: $('[data-button-purchase]', $el),
+      stock: {
+        $selector: $('[data-product-stock]', $el),
+        $level: $('[data-product-stock-level]', $el),
+      },
     };
   }
 
   /**
-   * Bind quantity input changes.
-   */
-  _bindQuantityChange() {
-    this.$el.on('click', '[data-product-quantity-change]', (event) => {
-      this._updateQuantity(event);
-    });
+  * https://stackoverflow.com/questions/49672992/ajax-request-fails-when-sending-formdata-including-empty-file-input-in-safari
+  * Safari browser with jquery 3.3.1 has an issue uploading empty file parameters. This function removes any empty files from the form params
+  * @param formData: FormData object
+  * @returns FormData object
+  */
+  filterEmptyFilesFromForm(formData) {
+    try {
+      for (const [key, val] of formData) {
+        if (val instanceof File && !val.name && !val.size) {
+          formData.delete(key);
+        }
+      }
+    } catch (e) {
+      console.error(e); // eslint-disable-line no-console
+    }
+    return formData;
   }
 
   /**
@@ -100,121 +145,153 @@ export default class ProductUtils {
         return;
       }
 
+      this.cartAddAlert.clear();
+      this.cartOptionAlert.clear();
+
       utils.api.productAttributes.optionChange(this.productId, $form.serialize(), (err, response) => {
         this.cartAddAlert.clear();
 
-        const viewModel = this._getViewModel(this.$el);
-        const data = response ? response.data : {};
-
-        // updating price
-        if (viewModel.$price.length) {
-          const priceStrings = {
-            price: data.price,
-            excludingTax: this.context.productExcludingTax,
-          };
-          viewModel.$price.html(this.options.priceWithoutTaxTemplate(priceStrings));
+        // If our form data doesn't include the product-options-count with a positive value, return
+        if (this.$el.find('[data-product-options-count]').val < 1) {
+          return;
         }
 
-        if (viewModel.$priceWithTax.length) {
-          const priceStrings = {
-            price: data.price,
-            includingTax: this.context.productIncludingTax,
-          };
-          viewModel.$priceWithTax.html(this.options.priceWithTaxTemplate(priceStrings));
-        }
+        const productAttributesData = response.data || {};
+        const productAttributesContent = response.content || {};
 
-        if (viewModel.$saved.length) {
-          const priceStrings = {
-            price: data.price,
-            savedString: this.context.productYouSave,
-          };
-          viewModel.$saved.html(this.options.priceSavedTemplate(priceStrings));
-        }
-
-        // update sku if exists
-        if (viewModel.$sku.length) {
-          viewModel.$sku.html(data.sku);
-        }
-
-        // update weight if exists
-        if (viewModel.$weight.length) {
-          viewModel.$weight.html(data.weight.formatted);
-        }
-
-        // handle product variant image if exists
-        if (data.image) {
-          const mainImageUrl = utils.tools.image.getSrc(
-            data.image.data,
-            this.context.themeImageSizes.product
-          );
-
-          this.callbacks.switchImage(mainImageUrl);
-        }
-
-        this.cartOptionAlert.clear();
-
-        // update submit button state
-        if (!data.purchasable || !data.instock) {
-          this.cartOptionAlert.error(data.purchasing_message);
-          viewModel.$addToCart
-            .addClass(this.buttonDisabledClass)
-            .prop('disabled', true);
-        } else {
-          viewModel.$addToCart
-            .removeClass(this.buttonDisabledClass)
-            .prop('disabled', false);
-        }
+        this.attributesHelper.updateAttributes(productAttributesData);
+        this._updateView(productAttributesData);
+        this.setProductVariant();
       });
     });
+  }
+
+  _updateView(data) {
+    const viewModel = this._getViewModel(this.$el);
+
+    // updating price
+    if (data.price && viewModel.$price.length) {
+      const priceStrings = {
+        price: data.price,
+        excludingTax: this.context.productExcludingTax,
+        savedString: this.context.productYouSave,
+        salePriceLabel: this.context.salePriceLabel,
+        nonSalePriceLabel: this.context.nonSalePriceLabel,
+        retailPriceLabel: this.context.retailPriceLabel,
+        priceLabel: this.context.priceLabel,
+      };
+      viewModel.$price.html(this.options.priceWithoutTaxTemplate(priceStrings));
+    }
+
+    if (data.price && viewModel.$priceWithTax.length) {
+      const priceStrings = {
+        price: data.price,
+        includingTax: this.context.productIncludingTax,
+        savedString: this.context.productYouSave,
+        salePriceLabel: this.context.salePriceLabel,
+        nonSalePriceLabel: this.context.nonSalePriceLabel,
+        retailPriceLabel: this.context.retailPriceLabel,
+        priceLabel: this.context.priceLabel,
+      };
+      viewModel.$priceWithTax.html(this.options.priceWithTaxTemplate(priceStrings));
+    }
+
+    if (data.price && viewModel.$saved.length) {
+      const priceStrings = {
+        price: data.price,
+        savedString: this.context.productYouSave,
+      };
+
+      if(data.price.saved){
+        priceStrings.savedString = this.context.productYouSave.replace('{amount}', data.price.saved.formatted);
+      }
+
+      viewModel.$saved.html(this.options.priceSavedTemplate(priceStrings));
+    }
+
+    // stock
+    if (data.stock) {
+      viewModel.stock.$selector.removeClass('product-details-hidden');
+      viewModel.stock.$level.text(data.stock);
+    } else {
+      viewModel.stock.$level.text('0');
+    }
+
+    // update sku if exists
+    if (data.sku && viewModel.$sku.length) {
+      viewModel.$sku.html(data.sku);
+    }
+
+    // update weight if exists
+    if (data.weight && viewModel.$weight.length) {
+      viewModel.$weight.html(data.weight.formatted);
+    }
+
+    // handle product variant image if exists
+    if (data.image) {
+      this.callbacks.switchImage(data.image);
+    } else {
+      this.callbacks.originalImage();
+    }
+
+    // update submit button state
+    if (!data.purchasable || !data.instock) {
+      this.cartOptionAlert.error(data.purchasing_message || this.context.productOptionUnavailable, true);
+      viewModel.$addToCart
+        .addClass(this.buttonDisabledClass)
+        .prop('disabled', true);
+    } else {
+      viewModel.$addToCart
+        .removeClass(this.buttonDisabledClass)
+        .prop('disabled', false);
+    }
   }
 
   /**
    * Add a product to cart
    */
-  _bindCartAdd() {
-    utils.hooks.on('cart-item-add', (event, form) => {
-      // Do not do AJAX if browser doesn't support FormData
-      if (window.FormData === undefined) { return; }
+  _bindCartAdd(event, form) {
+    // Do not do AJAX if browser doesn't support FormData
+    if (window.FormData === undefined) { return; }
 
-      event.preventDefault();
+    event.preventDefault();
 
-      this.callbacks.willUpdate($(form));
+    const $button = $(event.currentTarget)
+      .closest('[data-product-container]')
+      .find('[data-button-purchase]');
 
-      // Add item to cart
-      utils.api.cart.itemAdd(new FormData(form), (err, response) => {
-        let isError = false;
+    const quantity = this.$el.find('input.product-quantity').val();
+    const formData = new FormData(form);
 
-        if (err || response.data.error) {
-          isError = true;
-          response = err || response.data.error;
-        }
+    // update button state
+    progressButton.progress($button);
 
-        this._updateMessage(isError, response);
-        this.callbacks.didUpdate(isError, response, $(form));
-      });
-    });
-  }
+    this.callbacks.willUpdate($(form));
 
-  /**
-   * Validate and update quantity input value
-   */
-  _updateQuantity(event) {
-    const $target = $(event.currentTarget);
-    const $quantity = $target.closest('[data-product-quantity]').find('[data-product-quantity-input]');
-    const min = parseInt($quantity.prop('min'), 10);
-    const max = parseInt($quantity.prop('max'), 10);
-    let newQuantity = parseInt($quantity.val(), 10);
-
+    // Remove old alters
     this.cartAddAlert.clear();
     this.cartOptionAlert.clear();
 
-    if ($target.is('[data-quantity-increment]') && (!max || newQuantity < max)) {
-      newQuantity = newQuantity + 1;
-    } else if ($target.is('[data-quantity-decrement]') && newQuantity > min) {
-      newQuantity = newQuantity - 1;
-    }
+    // Add item to cart
+    utils.api.cart.itemAdd(this.filterEmptyFilesFromForm(formData), (err, response) => {
+      let isError = false;
 
-    $quantity.val(newQuantity);
+      if (err || response.data.error) {
+        isError = true;
+        response = err || response.data.error;
+        progressButton.complete($button);
+      } else {
+        progressButton.confirmComplete($button);
+      }
+
+      /**
+       * interpret and display cart-add response message
+       */
+      this.context.productTitle = $button.attr('data-product-title');
+      this._updateMessage(isError, response);
+
+      this.callbacks.didUpdate(isError, response, $(form));
+    });
   }
 
   /**
@@ -227,47 +304,123 @@ export default class ProductUtils {
       message = response;
     } else {
       message = this.context.addSuccess;
-      message = message.replace('*product*', this.$el.find('[data-product-details]').data('product-title'));
+      message = message
+                  .replace('*product*', this.$el.find('[data-product-details]').data('product-title'))
+                  .replace('*cart_link*', `<a href=${this.context.urlsCart}>${this.context.cartLink}</a>`)
+                  .replace('*checkout_link*', `<a href=${this.context.urlsCheckout}>${this.context.checkoutLink}</a>`);
     }
 
-    this.cartAddAlert.message(message, (isError ? 'error' : 'success'));
+    this.cartAddAlert.message(message, (isError ? 'error' : 'success'), true);
+
+    setTimeout(() => {
+      this.cartAddAlert.clear();
+    }, 6000);
   }
 
-  /**
-   * Ajax add to wishlist
-   *
-   */
-  _bindAddWishlist() {
-    $('[data-wishlist-link]').on('click', (event) => {
+  setProductVariant() {
+    const unsatisfiedRequiredFields = [];
+    const options = [];
 
-      const $button = $(event.currentTarget);
-      const addUrl = $button.attr('href');
-      const viewUrl = $button.attr('data-wishlist-link');
-      const title = $('[data-product-title]').attr('data-product-title');
+    $.each($('[data-product-attribute]'), (index, value) => {
+      const optionLabel = value.children[0].innerText;
+      const optionTitle = optionLabel.split(':')[0].trim();
+      const required = optionLabel.toLowerCase().includes('required');
+      const type = value.getAttribute('data-product-attribute');
 
-      if ($('[data-is-customer]').length) {
-        event.preventDefault();
+      if (
+        (type === 'input-file' || type === 'input-text' || type === 'input-number')
+        && value.querySelector('input').value === '' && required
+      ) {
+        unsatisfiedRequiredFields.push(value);
+      }
 
-        this.loader.show();
+      if (type === 'textarea' && value.querySelector('textarea').value === '' && required) {
+        unsatisfiedRequiredFields.push(value);
+      }
 
-        $.ajax({
-          type: 'POST',
-          url: addUrl,
-          success: () => {
-            this.cartAddAlert.success(this.context.messagesWishlistAddSuccess.replace('*product*', title).replace('*url*', viewUrl), true);
-          },
-          error: () => {
-            this.cartAddAlert.error(this.context.messagesWishlistAddError.replace('*product*', title), true);
-          },
-          complete: () => {
-            this.loader.hide();
-          },
-        });
+      if (type === 'date') {
+        const isSatisfied = Array.from(value.querySelectorAll('select')).every((select) => select.selectedIndex !== 0);
+
+        if (isSatisfied) {
+          const dateString = Array.from(value.querySelectorAll('select')).map((x) => x.value).join('-');
+          options.push(`${optionTitle}:${dateString}`);
+          return;
+        }
+
+        if (required) {
+            unsatisfiedRequiredFields.push(value);
+        }
+      }
+
+      if (type === 'set-select') {
+        const select = value.querySelector('select');
+        const selectedIndex = select.selectedIndex;
+
+        if (selectedIndex !== 0) {
+          options.push(`${optionTitle}:${select.options[selectedIndex].innerText}`);
+          return;
+        }
+
+        if (required) {
+          unsatisfiedRequiredFields.push(value);
+        }
+      }
+
+      if (
+        type === 'set-rectangle'
+        || type === 'set-radio'
+        || type === 'swatch'
+        || type === 'input-checkbox'
+        || type === 'product-list'
+      ) {
+        const checked = value.querySelector(':checked');
+        if (checked) {
+          if (type === 'set-rectangle' || type === 'set-radio' || type === 'product-list') {
+            const label = checked.labels[0].innerText;
+
+            if (label) {
+              options.push(`${optionTitle}:${label}`);
+            }
+          }
+
+          if (type === 'swatch') {
+            const label = checked.labels[0].children[0];
+
+            if (label) {
+              options.push(`${optionTitle}:${label.title}`);
+            }
+          }
+
+          if (type === 'input-checkbox') {
+            options.push(`${optionTitle}:Yes`);
+          }
+
+          return;
+        }
+
+        if (type === 'input-checkbox') {
+          options.push(`${optionTitle}:No`);
+        }
+
+        if (required) {
+            unsatisfiedRequiredFields.push(value);
+        }
       }
     });
-  }
 
-  unload() {
-    //remove all event handlers
+    let productVariant = unsatisfiedRequiredFields.length === 0 ? options.sort().join(', ') : 'unsatisfied';
+    const view = $('.product-details-wrapper');
+
+    if (productVariant) {
+      productVariant = productVariant === 'unsatisfied' ? '' : productVariant;
+
+      if (view.attr('data-event-type')) {
+        view.attr('data-product-variant', productVariant);
+      } else {
+        const productName = view.find('.product-title')[0].innerText;
+        const card = $(`[data-name="${productName}"]`);
+        card.attr('data-product-variant', productVariant);
+      }
+    }
   }
 }

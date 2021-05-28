@@ -1,103 +1,14 @@
-{{!--
-  Compare Page Template
-  Shows a selection of product for comparison.
---}}
-
 {{#partial "page"}}
 
-  <h1 class="page-heading">{{ lang 'compare.title' num=comparisons.length}}</h1>
+  <section class="page-compare">
+    {{> components/common/page-title
+      title=(lang 'compare.title' count=comparisons.length)
+    }}
 
-  <div class="compare-page-wrap">
-    <section class="compare-page compare-length-{{comparisons.length}}">
-      <div class="compare-image-wrapper">
-        {{#each comparisons}}
-          <div class="compare-column-section compare-image">
-            <a href="{{url}}" title="{{name}}">
-              <img src="{{getImage image 'large' (cdn 'assets/img/no-image.svg')}}" alt="{{image.alt}}">
-            </a>
-
-            <div class="compare-details-title">
-              <h1 class="compare-item-title">
-                <a href="{{url}}">{{name}}</a>
-              </h1>
-            </div>
-
-            <div class="compare-item-price">
-              {{> components/product/price}}
-            </div>
-
-            <div class="compare-page-actions">
-              {{#if ../comparisons.length ">" 2}}
-                <a class="compare-remove-link" href="{{remove_url}}"></a>
-              {{/if}}
-              {{#if show_cart_action}}
-                {{#if has_options}}
-                  <a href="{{url}}" class="button button-primary">
-                    {{lang 'product.details.link'}}
-                  </a>
-                {{else}}
-                  {{#if out_of_stock_message}}
-                    <a href="{{url}}" class="button button-primary button-progress button-disabled">{{out_of_stock_message}}</a>
-                  {{else}}
-                    <a href="{{add_to_cart_url}}" class="button button-primary button-progress">
-                      {{#if pre_order}}
-                        {{lang 'product.pre_order'}}
-                      {{else}}
-                        {{lang 'product.add_to_cart'}}
-                      {{/if}}
-                    </a>
-                  {{/if}}
-                {{/if}}
-              {{/if}}
-
-              {{#if settings.show_wishlist}}
-                {{#if customer.wishlists.length}}
-                  <div class="add-to-wishlist-container" data-dropdown>
-                    <a class="add-to-wishlist-link" href="#" data-dropdown-toggle>
-                      {{lang 'product.add_to_wishlist'}}
-                    </a>
-                    <ul class="add-to-wishlists" data-dropdown-panel>
-                     {{#each customer.wishlists}}
-                       <li><a href="{{../product.add_to_wishlist_url}}&wishlistid={{id}}" data-wishlist="{{view_url}}">{{name}} ({{num_items}})</a></li>
-                     {{/each}}
-                    </ul>
-                  </div>
-                {{else}}
-                  <a class="add-to-wishlist-link" href="{{product.add_to_wishlist_url}}">{{lang 'product.add_to_wishlist'}}</a>
-                {{/if}}
-              {{/if}}
-            </div>
-          </div>
-        {{/each}}
-      </div>
-
-      <div class="compare-description-wrapper">
-        <h2 class="compare-table-heading">
-          {{lang 'common.compare.description_header'}}
-        </h2>
-        {{#each comparisons}}
-          <div class="compare-column-section compare-description">
-            <div class="compare-item-summary">{{{summary}}}</div>
-          </div>
-        {{/each}}
-      </div>
-
-      <div class="compare-rating-wrapper">
-        <h2 class="compare-table-heading">
-          {{lang 'common.compare.rating_header'}}
-        </h2>
-        {{#each comparisons}}
-          <div class="compare-column-section compare-rating">
-            {{#if rating}}
-              {{> components/reviews/rating rating=rating}}
-            {{else}}
-              {{> components/reviews/rating rating=0}}
-            {{/if}}
-          </div>
-        {{/each}}
-      </div>
-    </section>
-  </div>
+    <div class="compare-grid-wrapper">
+      {{> components/compare/compare-grid}}
+    </div>
+  </section>
 
 {{/partial}}
 

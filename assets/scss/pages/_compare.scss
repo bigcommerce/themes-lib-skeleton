@@ -1,0 +1,92 @@
+$compare-gutter: 35px;
+
+.compare-grid-wrapper {
+  @extend %content;
+}
+
+.compare-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.compare-grid-item {
+  flex-basis: auto;
+  width: 100%;
+  margin-bottom: 75px;
+
+  @include breakpoint(s) {
+    width: calc(50% - 15px);
+  }
+
+  @include breakpoint(m) {
+    width: calc(33.33% - 30px);
+  }
+
+  a {
+    &:hover {
+      border-color: transparent;
+    }
+  }
+}
+
+.compare-grid-item-image {
+  position: relative;
+}
+
+.compare-grid-section {
+  padding-bottom: $compare-gutter;
+  border-bottom: 1px solid $color-line;
+
+  &:last-child {
+    @include breakpoint(s) {
+      border-bottom: 0;
+    }
+  }
+
+  .rating-stars {
+    display: flex;
+  }
+
+  .no-rating-stars {
+    margin: 0;
+    line-height: 1.45;
+  }
+}
+
+.compare-grid-summary {
+  display: inline-block;
+
+  @include breakpoint(s) {
+    padding-right: 15px;
+  }
+}
+
+.compare-grid-item-header {
+  padding-top: $compare-gutter;
+}
+
+.compare-grid-actions {
+  display: flex;
+  margin-top: $compare-gutter;
+
+  .button {
+    margin-right: $compare-gutter;
+  }
+}
+
+.compare-grid-item-remove {
+  padding-top: 8px;
+}
+
+.compare-grid-item-label {
+  margin-bottom: 5px;
+  color: $color-secondary;
+}
+
+.compare-wishlist {
+  .product-wishlist {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}

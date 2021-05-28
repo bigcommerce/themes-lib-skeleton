@@ -1,0 +1,64 @@
+<section class="product-tabs" data-tabs>
+  <ul class="tabs">
+    {{#if product.description}}
+      <li class="product-tab-title tab-title">
+        <a href="#description" class="product-info-links" data-tab-link>
+          {{lang 'product.tabs.product_description'}}
+        </a>
+      </li>
+    {{/if}}
+    {{#if settings.show_product_reviews}}
+      <li class="product-tab-title tab-title">
+        <a href="#write_review" class="product-info-links" data-tab-link>
+          {{lang 'product.tabs.product_reviews' review_count=product.reviews.total}}
+        </a>
+      </li>
+    {{/if}}
+    {{#unless theme_settings.hide_details}}
+      <li class="product-tab-title tab-title">
+        <a href="#additional-info" class="product-info-links" data-tab-link>
+          {{lang 'product.tabs.additional_info'}}
+        </a>
+      </li>
+    {{/unless}}
+  </ul>
+
+  {{#if product.description}}
+    <div
+      class="product-tabs-content
+      product-tabs-content-mobile
+      {{#unless product.images}}
+        product-description-no-image
+      {{/unless}}"
+    >
+      <div class="product-accordion-title accordion-title">
+        <a href="#description" class="product-info-links" data-tab-link>
+          {{lang 'product.tabs.product_description'}}
+        </a>
+      </div>
+      {{> components/product/tabs/description}}
+    </div>
+  {{/if}}
+
+  {{#if settings.show_product_reviews}}
+    <div class="product-tabs-content product-tabs-content-mobile">
+      <div class="product-accordion-title accordion-title">
+        <a href="#write_review" class="product-info-links" data-tab-link>
+          {{lang 'product.tabs.product_reviews' review_count=product.reviews.total}}
+        </a>
+      </div>
+      {{> components/product/tabs/reviews}}
+    </div>
+  {{/if}}
+
+  {{#unless theme_settings.hide_details}}
+    <div class="product-tabs-content product-tabs-content-mobile">
+      <div class="product-accordion-title accordion-title">
+        <a href="#additional-info" class="product-info-links" data-tab-link>
+          {{lang 'product.tabs.additional_info'}}
+        </a>
+      </div>
+      {{> components/product/tabs/additional-info}}
+    </div>
+  {{/unless}}
+</section>

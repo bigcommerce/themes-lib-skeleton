@@ -1,101 +1,149 @@
-import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
+import Loading from 'bc-loading';
+import Modal from 'bc-modal';
 import Alert from '../components/Alert';
-import refreshContent from './refreshContent';
-import SelectWrapper from '../components/SelectWrapper';
+import refreshCart from './refreshCart';
+import loadingOptions from '../utils/loadingOptions';
 
 export default class ShippingCalculator {
   constructor(options = {}) {
     this.options = $.extend({
       $scope: $('[data-cart-totals]'),
-      visibleClass: 'visible',
+      modalId: '#shipping-modal-displayed',
     }, options);
 
+    // Callbacks not necessary with current implementation.
     this.callbacks = $.extend({
-      willUpdate: () => console.log('Update requested.'),
-      didUpdate: () => console.log('Update executed.'),
+      willUpdate: () => {},
+
+      // Close the modal when update completed
+      didUpdate: () => {
+        this.shippingLoading.hide();
+        this.ShippingModal.close();
+      },
     }, options.callbacks);
 
-    this.shippingAlerts = new Alert($('[data-shipping-errors]'));
-
-    this._bindEvents();
-  }
-
-  _bindEvents() {
-    $('[data-shipping-calculator-toggle]', this.options.$scope).on('click', (event) => {
-      event.preventDefault();
-      this._toggle();
+    // Set up the modal in which to display the shipping calculator.
+    this.ShippingModal = new Modal({
+      el: $('#shipping-modal'),
+      modalId: this.options.modalId,
+      modalClass: 'shipping-modal',
+      afterShow: this._bindModalEvents.bind(this),
     });
 
-    this.options.$scope.on('submit', '[data-shipping-calculator] form', (event) => {
+    this.shippingCalculator = '[data-shipping-calculator]';
+    this.$shippingQuotes = $('[data-shipping-quotes]');
+
+    this._bindPageEvents();
+  }
+
+  _bindPageEvents() {
+    this.options.$scope.on('click','[data-shipping-calculator-toggle]', () => {
+      this._emptyQuotes();
+      this.ShippingModal.open();
+    });
+  }
+
+  _bindModalEvents($modal) {
+    this.$shippingModalContent = $modal;
+
+    this.shippingAlerts = new Alert($('[data-shipping-errors]'));
+    this.shippingLoading = new Loading(loadingOptions, false, this.shippingCalculator);
+
+    // When changing country, update the available province / states
+    this.$shippingModalContent.on('change', 'select[name="shipping-country"]', (event) => {
+      this._updateStates(event);
+      this.shippingAlerts.clear();
+    });
+
+    // Calculate shipping on form submit.
+    this.$shippingModalContent.on('submit', `${this.shippingCalculator} form`, (event) => {
       event.preventDefault();
       this._calculateShipping();
     });
-
-    this.options.$scope.on('change', 'select[name="shipping-country"]', (event) => {
-      this._updateStates(event);
-    });
   }
 
-  _toggle() {
-    $('[data-shipping-calculator]', this.options.$scope).toggleClass(this.options.visibleClass);
-  }
-
+  // Update the province / states displayed based on country.
   _updateStates(event) {
-    const $target = $(event.currentTarget);
-    const country = $target.val();
-    const $stateElement = $('[name="shipping-state"]');
+    const country = $(event.currentTarget).val();
+    const shippingState = 'shipping-state';
+    const $label = $('.form-selected-text');
+    const $stateElement = $(`[name="${shippingState}"]`);
+    const $stateLabel = $stateElement.prev($label);
+    console.log($stateLabel);
+
+    this.shippingLoading.show();
+    this._emptyQuotes();
 
     utils.api.country.getByName(country, (err, response) => {
       if (response.data.states.length) {
         const stateArray = [];
+
         stateArray.push(`<option value="">${response.data.prefix}</option>`);
+
         $.each(response.data.states, (i, state) => {
           stateArray.push(`<option value="${state.id}">${state.name}</option>`);
         });
-        $stateElement.replaceWith(`<select class="form-select" id="shipping-state" name="shipping-state" data-field-type="State">${stateArray.join(' ')}</select>`);
+
+        $stateElement
+          .parent()
+          .addClass('form-select-wrapper')
+          .end()
+          .replaceWith(`<select class="form-select form-input" id="${shippingState}" name="${shippingState}" data-field-type="State">${stateArray.join(' ')}</select>`);
+
+        $stateLabel.removeClass('hidden');
       } else {
-        $stateElement.replaceWith('<input type="text" id="shipping-state" name="shipping-state" data-field-type="State">');
+        $stateElement
+          .parent()
+          .removeClass('form-select-wrapper')
+          .end()
+          .replaceWith(`<input class="form-input form-state-input" type="text" id="${shippingState}" name="${shippingState}" data-field-type="State">`);
+
+        $stateLabel.addClass('hidden');
       }
+
+      this.shippingLoading.hide();
     });
   }
 
+  // Calculates the shipping method
   _calculateShipping() {
-    this.callbacks.willUpdate();
-
     const params = {
-      country_id: $('[name="shipping-country"]', this.options.$scope).val(),
-      state_id: $('[name="shipping-state"]', this.options.$scope).val(),
-      zip_code: $('[name="shipping-zip"]', this.options.$scope).val(),
+      country_id: $('[name="shipping-country"]', this.$shippingModalContent).val(),
+      state_id: $('[name="shipping-state"]', this.$shippingModalContent).val(),
+      city: $('[name="shipping-city"]', this.$shippingModalContent).val(),
+      zip_code: $('[name="shipping-zip"]', this.$shippingModalContent).val(),
     };
 
+    this.shippingLoading.show();
+    this.shippingAlerts.clear();
+
     utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {
-      const $shippingQuotes = $('[data-shipping-quotes]', this.options.$scope);
       if (response.data.quotes) {
         this.shippingAlerts.clear();
-        $shippingQuotes.html(response.content);
+        this.$shippingQuotes.html(response.content);
       } else {
-        this.shippingAlerts.error(response.data.errors.join('\n'));
+        this.shippingAlerts.error(response.data.errors.join('\n'), true);
       }
 
-      this.callbacks.didUpdate();
+      this.ShippingModal.position();
 
       // bind the select button
-      $shippingQuotes.find('.button').on('click', (event) => {
+      this.$shippingQuotes.find('.button[type="submit"]').on('click', (event) => {
         event.preventDefault();
-
-        this.callbacks.willUpdate();
-
+        this.shippingLoading.show();
         const quoteId = $('[data-shipping-quote]:checked').val();
 
-        utils.api.cart.submitShippingQuote(quoteId, (response) => {
-          refreshContent(this.callbacks.didUpdate);
+        utils.api.cart.submitShippingQuote(quoteId, () => {
+          refreshCart(this.callbacks.didUpdate);
         });
       });
+
+      this.shippingLoading.hide();
     });
   }
 
-  unload() {
-    //remove all event handlers
+  _emptyQuotes() {
+    this.$shippingQuotes.empty();
   }
 }

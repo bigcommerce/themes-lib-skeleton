@@ -2,17 +2,19 @@
 
 <div class="container">
   <article class="page-container page-narrow">
-    <h1 class="page-heading">{{ page.title }} sdfd</h1>
+    <h1 class="page-heading">{{ page.title }}</h1>
     <div class="page-content">
       <div class="page-message-area">
-      {{#if forms.contact.success}}
-        {{> components/alerts/alert-success (lang 'forms.contact_us.successful' shopPath=urls.home)}}
-      {{else}}
-        <p>{{{page.content}}}</p>
-      {{/if}}
+        {{#if forms.contact.success}}
+          {{> core/alerts/alert-success message=(lang 'core.contact.successful' shopPath=urls.home)}}
+        {{else}}
+          <p>{{{page.content}}}</p>
+        {{/if}}
       </div>
       {{#unless forms.contact.success}}
-        {{> core/forms/form-contact-us}}
+        <div class="contact-form-container">
+          {{> core/forms/form-contact-us}}
+        </div>
       {{/unless}}
     </div>
   </article>

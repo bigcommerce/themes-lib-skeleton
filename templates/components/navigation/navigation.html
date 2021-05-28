@@ -1,0 +1,50 @@
+<nav class="menu main-menu menu-{{style}}" data-main-menu>
+  <ul class="nav-menu">
+    {{#if theme_settings.show_home}}
+      <li class="nav-menu-item">
+        <a href="{{urls.home}}">
+          {{lang 'home.heading'}}
+        </a>
+      </li>
+    {{/if}}
+    {{#if theme_settings.show_categories}}
+      {{#if theme_settings.categories_display_type '==' 'categories-main'}}
+        {{> components/navigation/navigation-list
+          navigation=categories
+          show_all=true
+        }}
+      {{else if theme_settings.categories_display_type '==' 'categories-dropdown'}}
+        {{> components/navigation/navigation-shop}}
+      {{else}}
+        {{> components/navigation/navigation-mega}}
+     {{/if}}
+    {{/if}}
+    {{#if theme_settings.show_pages}}
+      {{> components/navigation/navigation-list
+        navigation=pages
+        show_all=false
+      }}
+      {{#if settings.gift_certificates_enabled}}
+        <li class="nav-menu-item">
+          <a href="{{urls.gift_certificate.purchase}}">
+            {{lang 'footer.gift_certificates'}}
+          </a>
+        </li>
+      {{/if}}
+    {{/if}}
+    {{#if customer}}
+      <li class="nav-menu-item">
+        <a href="{{urls.auth.logout}}">
+          {{lang 'header.log_out'}}
+        </a>
+      </li>
+    {{/if}}
+    {{#if currency_selector.currencies.length ">" 1}}
+      <li class="nav-menu-item currency-selector-wrapper">
+        {{> components/common/currency-selector}}
+      </li>
+    {{/if}}
+  </ul>
+
+  {{{region name="home_below_menu"}}}
+</nav>

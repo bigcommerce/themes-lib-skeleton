@@ -1,0 +1,73 @@
+.banner {
+  position: relative;
+  display: none;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: {
+    top: 25px;
+    right: 30px;
+    bottom: 25px;
+    left: 30px;
+  };
+  color: $color-compliment;
+  background-color: $color-secondary;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+
+  &.animating,
+  &.visible {
+    display: flex;
+  }
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.banner-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.banner-cookies {
+  background-color: $color-secondary;
+}
+
+.banner-success {
+  background-color: $color-success;
+}
+
+.banner-error {
+  background-color: $color-error;
+}
+
+.banner-info {
+  background-color: $color-info;
+}
+
+.banner-content {
+  flex-grow: 1;
+  padding-right: 30px;
+
+  p {
+    margin: 0;
+  }
+}
+
+.btn-banner-dismiss {
+  width: 14px;
+  height: 14px;
+  background: none;
+  border: 0;
+  appearance: none;
+}
+
+.promo-message {
+  @extend .banner;
+  display: block;
+  text-align: center;
+  opacity: 1;
+}
