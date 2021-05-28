@@ -1,0 +1,55 @@
+<div class="tab-footer tab-footer-product-customizations">
+  <div class="form-field product-actions" data-product-add>
+    {{#if nav_link}}
+      <span class="tab-footer-button tab-footer-button-left">
+        {{> components/icons/arrow-left}}
+        <button
+          class="tab-footer-continue tab-footer-return"
+          data-tab-trigger="product-customizations"
+          data-tab-group="product-form"
+        >
+          {{lang 'product.tabs.product_customizations'}}
+        </button>
+      </span>
+    {{/if}}
+    {{#if product.can_purchase}}
+      <button
+        class="button button-progress"
+        type="submit"
+        data-button-purchase
+        data-product-title="{{product.title}}"
+        {{#if settings.data_tag_enabled}}
+          data-event-type="product-click"
+        {{/if}}
+      >
+        {{#if product.pre_order}}
+          <span class="button-text">{{lang 'product.pre_order'}}</span>
+        {{else}}
+          <span class="button-text">{{lang 'product.add_to_cart'}}</span>
+        {{/if}}
+        <span class="complete-text">
+          {{> components/icons/checkmark}}
+        </span>
+      </button>
+    {{else}}
+      {{#if product.price}}
+        {{#if product.out_of_stock}}
+          <div
+            class="button button-disabled"
+            {{#if settings.data_tag_enabled}}
+              data-event-type="product-click"
+            {{/if}}
+          >
+            {{lang 'product.sold_out'}}
+          </div>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+
+    {{#if wishlist}}
+      {{#if settings.show_wishlist}}
+        {{> components/wishlist/wishlist}}
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

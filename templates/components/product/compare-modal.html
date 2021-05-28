@@ -1,0 +1,32 @@
+<section class="compare-modal" data-compare-widget data-compare-count="0" aria-hidden="true">
+  <div class="compare-modal-header">
+    <button class="compare-widget-toggle is-open">
+      <span class="compare-one">{{lang 'compare.compare_one'}}</span>
+      <span class="compare-multiple">
+        <span class="compare-count"></span>
+        {{lang 'compare.compare_multiple'}}
+      </span>
+      {{> components/icons/arrow-down}}
+    </button>
+  </div>
+  <div class="compare-widget-items-wrap">
+    <span class="compare-modal-title">
+      {{lang 'compare.compare'}}
+    </span>
+    <div class="compare-modal-items" data-compare-items>
+      {{! Compare items injected here }}
+    </div>
+    <div class="compare-modal-footer">
+      <a
+        class="compare-modal-submit"
+        href="{{urls.compare}}"
+        data-compare-link="{{urls.compare}}"
+      >
+        {{lang 'compare.submit'}}
+      </a>
+      <button class="compare-widget-remove-all" data-compare-remove-all>
+        {{lang 'compare.remove_all'}}
+      </button>
+    </div>
+  </div>
+</section>

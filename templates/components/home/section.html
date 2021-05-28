@@ -1,0 +1,72 @@
+{{!--
+  Homepage Section - Displays featured content on the homepage
+
+  @param item_type      The type of items to display in the section (featured, new, top sellers, or categories)
+  @param background     The background color to use for the section (alt or regular)
+  @param limit     How many items to display
+--}}
+
+{{#if limit '>' 0}}
+  <section class="products-home products-{{item_type}} products-home-{{background}}">
+    {{#if item_type '===' 'categories'}}
+        {{> components/home/section-title
+          title=(lang 'home.featured_categories')
+        }}
+      {{/if}}
+
+      {{#if item_type '===' 'featured'}}
+        {{> components/home/section-title
+          title=(lang 'home.featured_products')
+        }}
+      {{/if}}
+
+      {{#if item_type '===' 'new'}}
+        {{> components/home/section-title
+          title=(lang 'home.new_products')
+        }}
+      {{/if}}
+
+      {{#if item_type '===' 'top-sellers'}}
+        {{> components/home/section-title
+          title=(lang 'home.top_sellers')
+        }}
+      {{/if}}
+
+      {{#if item_type '===' 'categories'}}
+        {{> components/home/categories-featured
+          items=categories
+        }}
+      {{/if}}
+
+      {{#if item_type '===' 'featured'}}
+        {{> components/home/grid
+          items=products.featured
+          number=../limit
+          data='featured'
+        }}
+
+        {{{region name="home_below_featured_products"}}}
+      {{/if}}
+
+      {{#if item_type '===' 'new'}}
+        {{> components/home/grid
+          items=products.new
+          number=../limit
+          data='new'
+        }}
+
+        {{{region name="home_below_new_products"}}}
+      {{/if}}
+
+      {{#if item_type '===' 'top-sellers'}}
+        {{> components/home/grid
+          items=products.top_sellers
+          number=../limit
+          data='top-sellers'
+        }}
+
+        {{{region name="home_below_top_products"}}}
+      {{/if}}
+
+  </section>
+{{/if}}

@@ -1,0 +1,13 @@
+
+<footer class="main-footer footer-{{theme_settings.footer_background_color}}">
+  {{#if banners.bottom}}
+    {{> components/common/banner
+      banner=banners.bottom_metadata
+      dismissable=true
+      visible=true
+    }}
+  {{/if}}
+
+  {{> components/footer/upper-footer}}
+  {{> components/footer/lower-footer}}
+</footer>

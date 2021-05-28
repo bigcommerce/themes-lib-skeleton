@@ -1,0 +1,29 @@
+<li class="nav-menu-item simple-parent" data-dropdown>
+  <a class="shop-dropdown-toggle" href="#" data-dropdown-toggle>
+    {{lang 'header.shop'}}
+    <span class="dropdown-arrow">
+      {{> components/icons/arrow-down}}
+    </span>
+  </a>
+  <ul class="dropdown shop-dropdown simple-dropdown" data-dropdown-panel>
+    {{#each categories}}
+      <li class="nav-menu-item {{#if children}}has-children{{/if}}" {{#if children}}data-tier{{/if}}>
+        {{#if children}}
+          <a href="{{url}}" data-tier-toggle>
+            {{name}}
+            <span class="dropdown-arrow">
+              {{> components/icons/arrow-down}}
+            </span>
+          </a>
+          <ul class="dropdown-tier" data-tier-panel>
+            {{> components/navigation/navigation-item-loop
+              show_all=true
+            }}
+          </ul>
+        {{else}}
+          <a href="{{url}}">{{name}}</a>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+</li>

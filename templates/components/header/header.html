@@ -1,0 +1,23 @@
+<header
+  class="main-header
+  logo-{{theme_settings.header_logo_alignment}}
+  background-style-{{theme_settings.header_background_color}}"
+  role="banner"
+  data-main-header
+>
+  {{#if banners.top}}
+    {{> components/common/banner
+      banner=banners.top_metadata
+      dismissable=true
+      visible=true
+    }}
+  {{/if}}
+
+  {{> components/search/search-bar}}
+  {{> components/header/upper}}
+  {{> components/mini-cart/mini-cart}}
+  {{> components/header/lower}}
+
+  {{{region name="header_bottom--global"}}}
+  {{{region name="header_bottom"}}}
+</header>

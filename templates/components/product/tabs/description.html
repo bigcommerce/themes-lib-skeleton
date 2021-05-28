@@ -1,0 +1,26 @@
+<section
+  class="product-tabs-section product-tabs-description user-content"
+  id="description"
+  data-tab-content
+>
+  <div class="product-description-wrapper">
+    {{#if product.description}}
+      <div class="product-description rte">
+        {{{product.description}}}
+      </div>
+    {{/if}}
+    {{#if product.images.length}}
+      <div class="product-description-image">
+        {{#each (limit product.images 1)}}
+          {{> components/common/responsive-image
+            image=this
+            fit='image-contain'
+            lazyload=../theme_settings.lazyload_mode
+            fallback_size=../theme_settings.product
+            default=../theme_settings.default_image
+          }}
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+</section>

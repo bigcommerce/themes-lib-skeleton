@@ -1,10 +1,17 @@
-<ul class="{{#if selected}}is-open{{/if}} {{#unless start_collapsed}}is-open{{/unless}}" data-facet-filter-wrapper>
-  {{#each items}}
-    <li data-facet-item>
-      <a href="{{url}}" data-faceted-search-facet>
-        {{!> components/products/rating rating=param_value}}
-        {{#if ../show_product_counts}}<span data-facet-item-count>({{count}})</span>{{/if}}
-      </a>
-    </li>
-  {{/each}}
-</ul>
+<div
+  class="facet-search-filter-wrapper
+  {{#unless start_collapsed}}visible{{/unless}}"
+  data-facet-filter-wrapper
+>
+  <ul class="facet-list-items rating-facet-list">
+    {{#each items}}
+      <li class="{{#if selected}}is-selected{{/if}}" data-facet-item>
+        <a href="{{url}}" data-faceted-search-facet>
+          <span data-facet-item-count>
+            {{> components/product/review-stars stars=param_value}}
+          </span>
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</div>

@@ -1,19 +1,84 @@
-<!--
-  Gift wrap:
-    {{!> components/cart/item-gift-wrap}}
--->
-
 <div data-cart-errors></div>
 
-{{#each cart.items}}
-  <article data-cart-item data-item-id="{{id}}">
-    <span>{{lang 'cart.quantity'}}:</span>
-    {{> components/common/quantity this}}
-    {{> components/cart/gift-wrap-item this}}
+<div class="cart-content-header">
+  <span class="cart-content-header-item cart-content-header-product">
+    {{lang 'cart.header.product'}}
+  </span>
+  <span class="cart-content-header-item cart-content-header-price">
+    {{lang 'cart.header.price'}}
+  </span>
+  <span class="cart-content-header-item cart-content-header-quantity">
+    {{lang 'cart.header.quantity'}}
+  </span>
+  <span class="cart-content-header-item cart-content-header-gift-wrapping">
+    {{lang 'cart.header.gift_wrapping'}}
+  </span>
+  <span class="cart-content-header-item cart-content-header-total">
+    {{lang 'cart.header.total'}}
+  </span>
+  <span class="cart-content-header-item cart-content-header-remove">
+    {{lang 'cart.header.remove'}}
+  </span>
+</div>
 
-    <div>
-      <span data-cart-item-update>{{lang 'cart.update'}}</span>
-      <a href="{{remove_url}}" data-cart-item-remove>&times;</a>
+{{#each cart.items}}
+  <article class="cart-item" data-cart-item data-item-id="{{id}}">
+    <div class="cart-item-cell cart-item-info">
+      <div class="cart-item-info-wrap">
+        <div class="cart-item-image">
+          {{#if type '===' 'GiftCertificate'}}
+            {{> components/icons/giftcard}}
+          {{else}}
+
+            {{> components/common/responsive-image
+              image=image
+              image_ratio="ratio-any"
+              fit="image-contain"
+              lazyload=../../theme_settings.lazyload_mode
+              fallback_size=../../theme_settings.thumb
+              default=../../theme_settings.default_image
+            }}
+          {{/if}}
+        </div>
+        <div class="cart-item-static-info">
+          <span class="cart-item-brand">{{brand.name}}</span>
+          <h3 class="cart-item-name">
+            <a href="{{url}}">
+              {{name}}
+            </a>
+          </h3>
+          {{> components/cart/item-options}}
+        </div>
+      </div>
+    </div>
+    <div class="cart-item-cell cart-item-price">
+      <div {{#if price_discounted}}class="price-is-discounted"{{/if}}>
+        {{price.formatted}}
+      </div>
+      {{#if price_discounted}}
+        <div class="cart-item-discount">
+          {{price_discounted.formatted}}
+        </div>
+      {{/if}}
+    </div>
+    <div class="cart-item-cell cart-item-quantity">
+      {{> components/common/quantity this}}
+    </div>
+    {{> components/cart/gift-wrap-item this}}
+    <div class="cart-item-cell cart-item-total">
+      {{#if total_discounted}}
+        <div class="price-is-discounted">{{total.formatted}}</div>
+        <div>{{total_discounted.formatted}}</div>
+      {{else}}
+        <div class="cart-item-price">{{total.formatted}}</div>
+      {{/if}}
+      <span class="cart-item-remove">
+        <a href="{{remove_url}}" data-cart-item-remove>
+          {{> components/icons/close}}
+        </a>
+      </span>
     </div>
   </article>
 {{/each}}
+
+{{{ remote_api_scripts }}}

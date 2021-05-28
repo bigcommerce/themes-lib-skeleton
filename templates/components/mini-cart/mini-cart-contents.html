@@ -1,0 +1,88 @@
+<div class="mini-cart-items">
+  {{#if cart.items.length}}
+    {{#each cart.items}}
+      <div class="mini-cart-item">
+        <div class="mini-cart-item-wrap">
+          {{#if type '==' 'GiftCertificate'}}
+            <a href="{{edit_url}}">
+              {{> components/icons/giftcard}}
+            </a>
+          {{else}}
+            {{> components/common/responsive-image
+              image=image
+              image_ratio="ratio-any"
+              fit="image-contain"
+              lazyload=../../theme_settings.lazyload_mode
+              fallback_size=../../theme_settings.thumb
+              default=../../theme_settings.default_image
+            }}
+          {{/if}}
+          <div class="mini-cart-item-description">
+            <span class="mini-cart-item-brand">{{brand.name}}</span>
+            <a href="{{url}}" class="mini-cart-item-title">{{name}}</a>
+            <div class="mini-cart-item-options">
+              {{> components/cart/item-options}}
+            </div>
+          </div>
+          <div class="mini-cart-item-price">
+            {{quantity}} &times;
+            <span class="{{#if price_discounted}}price-discounted{{/if}}">
+              {{price.formatted}}
+            </span>
+            {{#if price_discounted}}
+              <span class="cart-item-discount">
+                {{price_discounted.formatted}}
+              </span>
+            {{/if}}
+          </div>
+          <div class="mini-cart-item-actions">
+            <a
+              class="link"
+              data-cart-item-remove
+              data-product-id="{{id}}"
+              href="{{remove_url}}">
+              {{> components/icons/close}}
+            </a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    <p class="mini-cart-empty">{{lang 'mini_cart.empty'}}</p>
+  {{/if}}
+</div>
+
+{{#if cart.items.length}}
+  <footer class="mini-cart-footer">
+    <span class="cart-count sr-only">{{cart.quantity}}</span>
+    <div class="mini-cart-footer-container">
+      <p class="mini-cart-title">{{lang 'mini_cart.subtotal'}}</p>
+      <span
+        class="mini-cart-subtotal"
+        data-cart-subtotal="{{cart.sub_total.value}}"
+      >
+        {{cart.sub_total.formatted}}
+      </span>
+    </div>
+    <div class="mini-cart-footer-container mini-cart-actions">
+      <a
+        class="mini-cart-link"
+        href="{{urls.cart}}"
+      >
+        {{lang 'mini_cart.view_cart'}}
+      </a>
+      <a
+        class="button button-primary"
+        href="{{urls.checkout.single_address}}"
+      >
+        {{lang 'mini_cart.checkout'}}
+      </a>
+
+      {{#if cart.show_multiple_address_shipping}}
+        <a class="checkout-multiple" href="{{urls.checkout.multiple_address}}">
+          {{lang 'cart.summary.checkout_multiple'}}
+        </a>
+      {{/if}}
+    </div>
+  </footer>
+{{/if}}

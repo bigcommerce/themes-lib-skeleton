@@ -1,13 +1,13 @@
-<article class="review-item">
+<article class="review-item {{#if index '>' 11}}hidden{{/if}}">
   <header class="review-item-header">
     <div class="review-item-stars">
-      {{> components/reviews/ratings rating=rating size="medium"}}
+      {{> components/product/review-stars stars=rating}}
       <span class="review-item-score">{{rating}}/5</span>
     </div>
-    <h5 class="review-item-title">{{title}}</h5>
     <div class="review-item-meta">
       {{lang 'product.reviews.written_by_on' name=name date=date}}
     </div>
+    <h1 class="review-item-title">{{{sanitize title}}}</h1>
   </header>
-  <p class="review-item-body">{{text}}</p>
+  <p class="review-item-body">{{{sanitize text}}}</p>
 </article>

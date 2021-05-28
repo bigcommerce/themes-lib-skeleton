@@ -1,4 +1,8 @@
-<ul class="faceted-search-filter-list faceted-search-option-columns" data-facet-filter-wrapper>
+<ul
+  class="faceted-search-filter-list
+  faceted-search-option-columns"
+  data-facet-filter-wrapper
+>
   {{#each facets}}
     {{#if facet '===' ../all_facets}}
       {{#each items}}
@@ -7,10 +11,18 @@
             href="{{url}}"
             class="facet-link"
             rel="nofollow"
-            data-id="{{ id }}"
-            data-faceted-search-facet>
-            {{title}}
-            {{#if ../show_product_counts}}<span data-facet-item-count>({{count}})</span>{{/if}}
+            data-id="{{id}}"
+            data-faceted-search-facet
+          >
+            {{#if selected}}
+              {{> components/icons/close}}
+            {{/if}}
+            {{{title}}}
+            {{#if ../show_product_counts}}
+              <span data-facet-item-count>
+                ({{count}})
+              </span>
+            {{/if}}
           </a>
         </li>
       {{/each}}

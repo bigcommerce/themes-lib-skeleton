@@ -1,0 +1,12 @@
+<section class="breadcrumbs">
+  {{#each breadcrumbs}}
+    {{#unless @last}}
+      <span class="breadcrumb">
+        <a href="{{url}}">{{name}}</a>
+        <span class="breadcrumb-separator">{{lang 'breadcrumbs.separator'}}</span>
+    {{else}}
+        {{name}}
+      </span>
+    {{/unless}}
+  {{/each}}
+</section>

@@ -1,0 +1,58 @@
+{{!
+  Link lists
+
+  @param iterable  options
+         'pages', 'social' and 'brands' to determine content of the link list
+}}
+
+<nav class="menu footer-menu">
+  <h6 class="footer-section-title">{{iterable}}</h6>
+  <ul class="nav-menu">
+    {{#if iterable '==' 'pages'}}
+      {{#each pages}}
+        <li class="nav-menu-item">
+          <a href="{{url}}">
+            {{name}}
+          </a>
+        </li>
+      {{/each}}
+      {{#if settings.gift_certificates_enabled}}
+        <li class="nav-menu-item">
+          <a href="{{urls.gift_certificate.purchase}}">
+            {{lang 'footer.gift_certificates'}}
+          </a>
+        </li>
+      {{/if}}
+      {{#if theme_settings.show_sitemap}}
+        <li class="nav-menu-item sitemap">
+          <a href="{{urls.sitemap}}">{{lang 'sitemap.title'}}</a>
+        </li>
+      {{/if}}
+    {{/if}}
+
+    {{#if iterable '==' 'brands'}}
+      {{#each shop_by_brand}}
+        {{#if @index '<' 5}}
+          <li class="nav-menu-item">
+            <a href="{{url}}">{{name}}</a>
+          </li>
+        {{/if}}
+      {{/each}}
+      {{#if shop_by_brand.length '>' 5}}
+        <li class="nav-menu-item">
+          <a href="{{urls.brands}}" class="link-list-view-all">
+            {{lang 'footer.view_brands'}}
+          </a>
+        </li>
+      {{/if}}
+    {{/if}}
+
+    {{#if iterable '==' 'categories'}}
+      {{#each categories}}
+        <li class="nav-menu-item">
+          <a href="{{url}}">{{name}}</a>
+        </li>
+      {{/each}}
+    {{/if}}
+  </ul>
+</nav>

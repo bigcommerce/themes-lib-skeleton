@@ -1,10 +1,38 @@
-<!--
+{{!--
+  Product Media
+  The main full size images and videos displayed on product pages.
 
-  Product Images Loop
+  @param size - the size of the images to load
+--}}
 
-  {{#each images}}
-    {{getImage this 'size'}}
-    {{this.alt}}
-  {{/each}}
-
--->
+<div class="product-slides-container" id="product-images">
+  <div class="product-slides-wrap" data-images-primary>
+    {{#if product.images}}
+      {{#each product.images}}
+        <a
+          href="{{getImage this}}"
+          class="product-slide"
+          data-image-position="{{@index}}"
+          data-product-image
+        >
+          <img src="{{getImage this ../size}}" alt="{{alt}}">
+        </a>
+      {{/each}}
+    {{else}}
+      <div class="product-slide">
+        <img src="{{getImage image 'thumbnail' (cdn 'assets/img/no-image.svg')}}">
+      </div>
+    {{/if}}
+    {{#if product.videos.list.length}}
+      {{#each product.videos.list}}
+        <div
+          class="product-slide product-slide-video"
+          data-image-position="{{@index}}"
+          data-product-image
+        >
+          <iframe width="480" height="315" src="https://www.youtube.com/embed/{{id}}?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div
+  class="
+    footer-social-icons
+    {{> components/footer/footer-classes
+      equals_to=true
+      class='social-icons-only'
+    }}
+  "
+>
+  <h6 class="footer-section-title">{{lang 'social.follow_us'}}</h6>
+  {{#each social_media}}
+    <div class="social-icon {{name}}">
+      <a href="{{url}}" class="{{display_name}}" target="_blank">
+        {{> components/icons/social/social-icon icon=name}}
+      </a>
+    </div>
+  {{/each}}
+
+  {{{region name="ssl_site_seal--global"}}}
+</div>

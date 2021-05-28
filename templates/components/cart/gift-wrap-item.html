@@ -1,26 +1,29 @@
 {{inject 'removeGiftWrap' (lang 'cart.gift_wrapping.remove_confirm')}}
 
-{{#if show_gift_wrapping}}
-  <dl>
+<div class="cart-item-cell cart-item-gift-wrapping">
+  {{#if show_gift_wrapping}}
     {{#if gift_wrapping}}
-      <dt>{{lang 'cart.gift_wrapping.title'}}</dt>
-      <dd>
-        {{gift_wrapping.name}}
-        <span>
-          (<a href="#" data-item-giftwrap="{{id}}">{{lang 'cart.gift_wrapping.change'}}</a>
-          {{lang 'cart.gift_wrapping.change_or'}}
-          <a href="{{gift_wrapping.remove_url}}" data-giftwrap-remove>
-            {{lang 'cart.gift_wrapping.remove'}}
-          </a>)
-        </span>
-      </dd>
       {{#if gift_wrapping.message}}
-        <dt>{{lang 'cart.gift_wrapping.gift_message'}}</dt>
-        <dd>{{gift_wrapping.message}}</dd>
+        <p class="cart-item-gift-wrapping-message">"{{gift_wrapping.message}}"</p>
       {{/if}}
+      <span class="cart-item-gift-wrapping-modifiers">
+        <a class="cart-item-gift-wrapping-edit" href="#" data-item-giftwrap="{{id}}">
+          {{lang 'cart.gift_wrapping.change'}}
+        </a>
+        <a
+          class="cart-item-gift-wrapping-remove"
+          href="{{gift_wrapping.remove_url}}"
+          data-giftwrap-remove
+        >
+          {{lang 'cart.gift_wrapping.remove'}}
+        </a>
+      </span>
     {{else}}
-      <dt>{{lang 'cart.gift_wrapping.title'}}</dt>
-      <dd><a href="#" data-item-giftwrap="{{id}}">{{lang 'cart.gift_wrapping.add'}}</a></dd>
+      <span>
+        <a href="#" data-item-giftwrap="{{id}}">
+          {{lang 'cart.gift_wrapping.add'}}
+        </a>
+      </span>
     {{/if}}
-  </dl>
-{{/if}}
+  {{/if}}
+</div>

@@ -1,0 +1,36 @@
+<div
+  class="blog-index-content
+  {{#if theme_settings.blog_layout '==' 'masonry'}}
+    grid-masonry
+  {{else}}
+    blog-column
+  {{/if}}"
+  data-blog-index
+>
+  {{#if theme_settings.blog_layout '==' 'masonry'}}
+    <div class="layout-grid-sizer"></div>
+    <div class="layout-grid-gutter"></div>
+  {{/if}}
+
+  {{#each blog.posts}}
+    {{> components/blog/blog-item
+      this
+      homepage=false
+      blog_index=true
+      fit=../theme_settings.product_grid_image_cropping
+      lazyload=../theme_settings.lazyload_mode
+      fallback_size=../theme_settings.product-list
+      default=../theme_settings.default_image
+      blog_layout=../theme_settings.blog_layout
+      image_ratio=../theme_settings.product_grid_image_ratio
+    }}
+  {{/each}}
+
+  {{#for 1 2}}
+    <article class="blog-item blog-item-empty"></article>
+  {{/for}}
+</div>
+
+{{#if pagination.blog.links.length}}
+  {{> components/common/pagination pagination=pagination.blog}}
+{{/if}}

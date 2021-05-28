@@ -1,0 +1,25 @@
+<div class="product-wishlist">
+  {{#if customer.wishlists.length}}
+    <span class="product-item-wishlist-icon">
+      {{> components/icons/wishlist}}
+      <a
+        href="#modal-wishlist-form"
+        class="product-item-wishlist wishlist-modal-link"
+        data-wishlist-link
+      >
+        {{lang 'product.add_to_wishlist'}}
+      </a>
+    </span>
+  {{else}}
+    <span class="product-item-wishlist-icon">
+      {{> components/icons/wishlist}}
+      <a
+        href="{{product.add_to_wishlist_url}}"
+        class="product-item-wishlist"
+        data-wishlist-link
+      >
+        {{lang 'product.add_to_wishlist'}}
+      </a>
+    </span>
+  {{/if}}
+</div>

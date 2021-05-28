@@ -1,16 +1,40 @@
-<ul class="{{#if selected}}is-open{{/if}} {{#unless start_collapsed}}is-open{{/unless}} {{#if items_count '<' total_items}}has-additional-filters{{/if}}" data-count="{{items_count}}" data-facet-filter-wrapper>
-  {{#each items}}
-    <li class="{{#if @index '>=' 5}}hidden{{/if}}" data-facet-item>
-      <a href="{{url}}" data-faceted-search-facet>
-        {{title}}
-        {{#if ../show_product_counts}}<span data-facet-item-count>({{count}})</span>{{/if}}
-      </a>
-    </li>
-  {{/each}}
-
-  {{#if total_items ">" 5}}
-    <li>
-      <a href="#" data-facet-more>{{lang 'faceted_search.show_more'}}</a>
-    </li>
+<div
+  class="facet-search-filter-wrapper
+  {{#unless start_collapsed}}visible{{/unless}}"
+  data-facet-filter-wrapper
+>
+  <ul class="faceted-search-filter-list facet-default multi" data-count="{{items_count}}">
+    {{#each items}}
+      <li class="facet-item {{#if selected}}is-selected{{/if}}" data-facet-item>
+        <a
+          href="{{url}}"
+          rel="nofollow"
+          class="facet-link"
+          data-faceted-search-facet
+        >
+          {{#if selected}}
+            {{> components/icons/close}}
+          {{/if}}
+          {{{title}}}
+          {{#if ../show_product_counts}}
+            <span data-facet-item-count>
+              ({{count}})
+            </span>
+          {{/if}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+  {{#if show_more_toggle}}
+    <a class="facet-toggle-more facet-link" href="#" data-facet-more="{{facet}}">
+      <span class="facet-item toggle-link-text-off">
+        {{lang 'faceted_search.show_more'}}
+        {{> components/icons/arrow-down}}
+      </span>
+      <span class="facet-item toggle-link-text-on">
+        {{lang 'faceted_search.show_less'}}
+        {{> components/icons/arrow-up}}
+      </span>
+    </a>
   {{/if}}
-</ul>
+</div>

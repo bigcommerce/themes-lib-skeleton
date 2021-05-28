@@ -1,0 +1,87 @@
+{{#if settings.show_product_rating}}
+  <div class="product-review-total">
+    <a href="#write_review" class="review-totals-link" data-review-section-link>
+      {{> components/product/review-stars stars=product.rating}}
+      {{lang 'product.reviews.review_total' review_total=product.num_reviews}}
+    </a>
+  </div>
+{{/if}}
+{{#if product.brand}}
+  <div class="product-brand">
+    <a href="{{product.brand.url}}">{{product.brand.name}}</a>
+  </div>
+{{/if}}
+<h1 class="product-title">{{product.title}}</h1>
+<div class="product-price">
+  {{#if product.call_for_price}}
+    {{product.call_for_price}}
+  {{/if}}
+  {{#if product.price}}
+    {{> core/products/price
+      price=product.price
+      show_savings=true
+      price_range_display=theme_settings.price_range_display
+      retail_price_label=theme_settings.retail-price-label
+      non_sale_price_label=theme_settings.non-sale-price-label
+      sale_price_label=theme_settings.sale-price-label
+      price_label=theme_settings.price-label
+      sale_badges=theme_settings.sale-badges
+    }}
+  {{/if}}
+</div>
+
+{{{region name="product_below_price"}}}
+
+<div class="product-stock">
+  <span
+    class="{{#unless product.stock_level}}product-details-hidden{{/unless}}"
+    data-product-stock
+  >
+    {{lang 'product.current_stock'}}
+  </span>
+  <span
+    class="{{#unless product.stock_level}}product-details-hidden{{/unless}}"
+    data-product-stock
+    data-product-stock-level
+  >
+    {{#if product.stock_level}}
+      {{product.stock_level}}
+    {{else}}
+      0
+    {{/if}}
+  </span>
+
+  {{#if product.out_of_stock}}
+    <span class="stock-message">
+      {{#if product.out_of_stock_message}}
+        {{product.out_of_stock_message}}
+      {{else}}
+        {{lang 'product.sold_out'}}
+      {{/if}}
+    </span>
+  {{/if}}
+</div>
+
+{{#if product.sku}}
+  <div class="product-sku">
+    <span
+      class="product-sku-title"
+      data-product-sku-label
+    >
+      {{lang 'product.tabs.details.sku'}}
+    </span>
+    <span class="product-sku-value" data-product-sku>
+      {{product.sku}}
+    </span>
+  </div>
+{{/if}}
+
+{{#if pricing}}
+  {{> components/product/bulk-pricing}}
+{{/if}}
+
+{{#if wishlist}}
+  {{#if settings.show_wishlist}}
+    {{> components/wishlist/wishlist}}
+  {{/if}}
+{{/if}}

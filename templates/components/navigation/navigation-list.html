@@ -1,0 +1,19 @@
+{{#each navigation}}
+  <li class="nav-menu-item" {{#if children}}data-dropdown{{/if}}>
+    {{#if children}}
+      <a href="{{url}}" data-dropdown-toggle>
+        {{name}}
+        <span class="dropdown-arrow">
+          {{> components/icons/arrow-down}}
+        </span>
+      </a>
+      <ul class="dropdown" data-dropdown-panel>
+        {{> components/navigation/navigation-item-loop
+          show_all=../../show_all
+        }}
+      </ul>
+    {{else}}
+      <a href="{{url}}">{{name}}</a>
+    {{/if}}
+  </li>
+{{/each}}

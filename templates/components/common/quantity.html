@@ -5,8 +5,8 @@
          cart.item or product object
 }}
 
-{{#if show_product_quantity}}
-  <span class="form-field-quantity-control" data-quantity-control="{{id}}">
+<span class="form-field-quantity-control" data-quantity-control="{{id}}">
+  <span class="form-field-control">
     <input
       class="form-input"
       type="number"
@@ -17,7 +17,7 @@
       {{#if max_purchase_quantity}}max="{{max_purchase_quantity}}"{{/if}}
       data-quantity-control-input
     >
-    <span data-quantity-control-action="decrement">&ndash;</span>
-    <span data-quantity-control-action="increment">&#43;</span>
+    <div class="form-field-control-up" data-quantity-control-action="increment">{{> components/icons/arrow-up}}</div>
+    <div class="form-field-control-down" data-quantity-control-action="decrement">{{> components/icons/arrow-down}}</div>
   </span>
-{{/if}}
+</span>

@@ -1,0 +1,35 @@
+
+<div class="content-listing">
+  {{#if content_results}}
+    {{#each content_results}}
+      <div class="content-result">
+        <div class="content-result-type">
+          {{lang 'search.content_type' type=type}}
+        </div>
+        <h2 class="content-result-title">{{title}}</h2>
+
+        {{#if content}}
+          <p class="content-result-content">{{{content}}}</p>
+        {{/if}}
+
+        <a class="content-result-link" href="{{url}}">
+          {{#if type '==' 'Page'}}
+            {{lang 'search_results.content_results.view'}}
+          {{else}}
+            {{lang 'search_results.content_results.read_more'}}
+          {{/if}}
+        </a>
+      </div>
+    {{/each}}
+  {{else}}
+    <div class="search-results empty-results">
+      {{lang 'search_results.no_content_results'}}
+    </div>
+  {{/if}}
+</div>
+
+{{> components/common/pagination
+  links=pagination.content_results.links
+  id=1
+  current=pagination.content_results.current
+}}

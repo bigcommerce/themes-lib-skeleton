@@ -1,0 +1,31 @@
+{{#if settings.blog_enabled}}
+  {{#if theme_settings.home_show_blog}}
+    {{#if blog.recent_posts}}
+      <section
+        class="recent-posts
+        recent-posts-{{blog.recent_posts.length}}
+        {{#if theme_settings.use_minimal}}recent-posts-minimal{{/if}}"
+      >
+        {{> components/home/section-title
+          title=(lang 'home.recent_posts')
+        }}
+        <a class="recent-posts-view-all-link" href="{{{blog.url}}}">
+          {{{lang 'blog.view_all'}}}
+        </a>
+        {{#each  blog.recent_posts}}
+          {{> components/blog/blog-item
+            index=@index
+            homepage=true
+            blog_index=false
+            fit=../theme_settings.product_grid_image_cropping
+            lazyload=../theme_settings.lazyload_mode
+            fallback_size=../theme_settings.product-list
+            default=../theme_settings.default_image
+            minimal=../theme_settings.use_minimal
+            image_ratio=../theme_settings.product_grid_image_ratio
+          }}
+        {{/each}}
+      </section>
+    {{/if}}
+  {{/if}}
+{{/if}}

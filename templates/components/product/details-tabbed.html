@@ -1,0 +1,187 @@
+<div class="product-header-wrapper product-tabbed-header">
+  {{> components/product/layout/header
+    pricing=true
+    wishlist=true
+  }}
+</div>
+<div class="product-images-customization-wrapper">
+  {{> components/product/layout/images-wrapper}}
+
+  <div class="product-customization-wrapper">
+    <form
+      class="form product-customizer"
+      id="form-add-to-cart"
+      method="post"
+      action="{{product.cart_url}}"
+      enctype="multipart/form-data"
+      data-cart-item-add
+      data-validated-form
+      {{#if customer}}data-is-customer{{/if}}
+    >
+      <input type="hidden" name="action" value="add">
+      <input type="hidden" name="product_id" value="{{product.id}}" data-product-id>
+
+      <form
+        class="form"
+        id="form-add-to-cart"
+        method="post"
+        action="{{product.cart_url}}"
+        enctype="multipart/form-data"
+        data-cart-item-add
+        data-validated-form
+        {{#if customer}}data-is-customer{{/if}}
+      >
+        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="product_id" value="{{product.id}}" data-product-id>
+
+      <div class="tab-toggles tab-toggles-product-form">
+        <div
+          class="tab-toggle tab-toggle-product-options tab-selected"
+          data-tab-toggle="product-options"
+          data-tab-group="product-form"
+        >
+          <div class="tab-toggle-overlay">
+            {{> components/icons/product/product-tab-left}}
+          </div>
+          <div class="tab-toggle-content">
+            {{lang 'product.tabs.product_options'}}
+          </div>
+        </div>
+        <div
+          class="tab-toggle tab-toggle-product-customizations"
+          data-tab-toggle="product-customizations"
+          data-tab-group="product-form"
+        >
+          <div class="tab-toggle-overlay">
+            {{> components/icons/product/product-tab}}
+          </div>
+          <div class="tab-toggle-content">
+            {{lang 'product.tabs.product_customizations'}}
+          </div>
+        </div>
+        <div
+          class="tab-toggle tab-toggle-product-summary"
+          data-tab-toggle="product-summary"
+          data-tab-group="product-form"
+        >
+          <div class="tab-toggle-overlay">
+            {{> components/icons/product/product-tab}}
+          </div>
+          <div class="tab-toggle-content">
+            {{lang 'product.tabs.product_summary'}}
+          </div>
+        </div>
+      </div>
+
+      <div class="tabs tabs-product-form">
+        <div
+          class="tab tab-product-options tab-selected"
+          data-tab="product-options"
+          data-tab-group="product-form"
+          data-product-option-content
+        >
+
+          {{! container for appending product-option-change errors}}
+          <div data-product-option-message></div>
+
+          {{#if product.options}}
+            <div data-product-option-change>
+              {{#each product.options}}
+                {{{dynamicComponent 'core/forms/options'}}}
+              {{/each}}
+            </div>
+          {{/if}}
+
+          {{#if product.customizations}}
+            <div data-product-option-change>
+              {{#each product.customizations}}
+                {{{dynamicComponent 'core/forms/customizations'}}}
+              {{/each}}
+            </div>
+          {{/if}}
+
+          {{#if theme_settings.show_product_quantity_box}}
+            <div class="add-to-cart-quantity-container">
+              <div class="form-field form-field-number" data-product-quantity>
+                <label class="form-label">
+                  <span class="form-field-title">{{ lang 'product.quantity'}}</span>
+                  {{> components/common/quantity product}}
+                </label>
+              </div>
+            </div>
+          {{/if}}
+
+          <div class="tab-continue-wrapper tab-footer-product-options">
+            <span class="tab-footer-button">
+              <button
+                class="tab-footer-continue"
+                data-tab-trigger="product-customizations"
+                data-tab-group="product-form"
+              >
+                {{lang 'product.tabs.product_customizations'}}
+              </button>
+              {{> components/icons/arrow-right}}
+            </span>
+          </div>
+        </div>
+
+        <div
+          class="tab tab-product-customizations"
+          data-tab="product-customizations"
+          data-tab-group="product-form"
+        >
+
+        <div
+          class="tab-product-customize-dynamic-content"
+          data-product-customize-dynamic-content
+        >
+        </div>
+
+          {{#if product.event_date}}
+            {{> core/products/event}}
+          {{/if}}
+
+          <div class="tab-continue-wrapper tab-footer-product-customizations">
+            <span class="tab-footer-button tab-footer-button-left">
+              {{> components/icons/arrow-left}}
+              <button
+                class="tab-footer-continue tab-footer-return"
+                data-tab-trigger="product-options"
+                data-tab-group="product-form"
+              >
+                {{lang 'product.tabs.product_options'}}
+              </button>
+            </span>
+            <span class="tab-footer-button">
+              <button
+                class="tab-footer-continue"
+                data-tab-trigger="product-summary"
+                data-tab-group="product-form"
+              >
+                {{lang 'product.tabs.product_summary'}}
+              </button>
+              {{> components/icons/arrow-right}}
+            </span>
+          </div>
+        </div>
+
+        <div
+          class="tab tab-product-summary"
+          data-tab="product-summary"
+          data-tab-group="product-form"
+        >
+            <div
+              class="tab-product-summary-dynamic-content"
+              data-product-summary-dynamic-content
+            >
+            </div>
+
+            {{> components/product/layout/form-actions
+              wishlist=false
+              nav_link=true
+            }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

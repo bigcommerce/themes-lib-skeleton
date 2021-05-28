@@ -1,3 +1,100 @@
-{{> components/cart/shipping-calculator cart.shipping_handling}}
-{{> components/cart/coupon-codes}}
-{{> components/cart/gift-certificates}}
+<div class="cart-summary-title">
+  <h3>{{lang 'cart.summary.title'}}</h3>
+</div>
+<div class="cart-summary-items">
+  <div class="cart-summary-item cart-subtotal">
+    <span class="cart-subtotal-title">{{lang 'cart.summary.sub_total'}}</span>
+    <span class="cart-subtotial-value">{{cart.sub_total.formatted}}</span>
+  </div>
+  {{#if cart.discount.value "<" 0}}
+    <div class="cart-summary-item cart-discounts-total">
+      <span class="cart-discounts-title">{{lang 'cart.summary.discounts_total'}}</span>
+      <span class="cart-discounts-value">{{cart.discount.formatted}}</span>
+    </div>
+  {{/if}}
+
+  {{#if cart.gift_wrapping_cost.value '>' 0}}
+    <div class="cart-summary-item cart-giftwrap-total">
+      <span class="cart-giftwrap-title">{{lang 'cart.gift_wrapping.title'}}:</span>
+      <span class="cart-giftwrap-value">{{cart.gift_wrapping_cost.formatted}}</span>
+    </div>
+  {{/if}}
+
+  {{#if cart.taxes}}
+    <div class="cart-summary-item cart-taxes-total">
+      <span class="cart-taxes-title">{{lang 'cart.summary.taxes_total'}}</span>
+      <span class="cart-taxes-value">
+        {{#each cart.taxes}}
+          <span class="cart-tax-item">
+            {{#if included}}
+              {{lang 'cart.summary.tax_item_incl' value=cost.formatted}}
+            {{else}}
+              {{lang 'cart.summary.tax_item' value=cost.formatted}}
+            {{/if}}
+          </span>
+        {{/each}}
+      </span>
+    </div>
+  {{/if}}
+  <div class="cart-summary-item cart-coupon-codes">
+    <span class="cart-coupon-codes-title">{{lang 'cart.summary.coupon_codes'}}</span>
+    {{> components/cart/coupon-codes}}
+  </div>
+  {{#if settings.gift_certificates_enabled}}
+    <div class="cart-summary-item cart-gift-certificates">
+      <span class="cart-gift-certificates-title">{{lang 'cart.summary.gift_certificates'}}</span>
+      {{> components/cart/gift-certificates}}
+    </div>
+  {{/if}}
+
+  {{! Shipping and Handling }}
+  {{#if cart.shipping_handling.show_estimator}}
+    <div class="cart-summary-item cart-calculate-shipping">
+      <span class="cart-calculate-shipping-title">
+        {{lang 'cart.summary.calculate_shipping'}}
+      </span>
+      {{#if cart.shipping_handling.shipping_cost}}
+        <span class="cart-shipping-estimate">
+          <div>{{cart.shipping_handling.shipping_cost.formatted}}</div>
+          <a
+            href="#shipping-modal"
+            class="shipping-recalculate-button"
+            data-shipping-calculator-toggle
+          >
+            {{lang 'cart.shipping_calculator.recalculate_shipping'}}
+          </a>
+        </span>
+      {{else}}
+        <a
+          href="#shipping-modal"
+          class="button"
+          data-shipping-calculator-toggle
+        >
+          {{lang 'cart.shipping_calculator.add_info'}}
+        </a>
+      {{/if}}
+      {{> components/cart/shipping-calculator cart.shipping_handling}}
+    </div>
+  {{/if}}
+  <div class="cart-summary-item cart-grandtotal">
+    <span class="cart-grandtotal-title">{{lang 'cart.summary.grand_total'}}</span>
+    <span class="cart-grandtotal-value">{{cart.grand_total.formatted}}</span>
+  </div>
+  <div class="cart-summary-item cart-checkout">
+    {{#if cart.show_primary_checkout_button}}
+      <a class="button checkout-button default-checkout-button" href="checkout.php">
+        {{lang 'cart.summary.checkout'}}
+      </a>
+      {{#if cart.show_multiple_address_shipping}}
+        <a class="checkout-multiple" href="{{urls.checkout.multiple_address}}">
+          {{lang 'cart.summary.checkout_multiple'}}
+        </a>
+      {{/if}}
+    {{/if}}
+    {{#if cart.additional_checkout_buttons}}
+      {{#each cart.additional_checkout_buttons}}
+        <div class="checkout-button additional-checkout-button">{{{this}}}</div>
+      {{/each}}
+    {{/if}}
+  </div>
+</div>

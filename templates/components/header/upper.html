@@ -1,0 +1,91 @@
+<div class="upper-header">
+
+  {{#if currency_selector.currencies.length ">" 1}}
+    <div class="upper-header-item currency-selector-wrapper">
+      {{> components/common/currency-selector}}
+    </div>
+  {{/if}}
+
+  <button class="upper-header-item mobile-menu-wrapper" data-menu-toggle>
+    <div class="icon-wrapper">
+      {{> components/icons/menu}}
+    </div>
+  </button>
+
+  <div class="upper-header-item branding-wrapper">
+    <div class="branding" data-branding>
+      {{#if settings.store_logo.image.data}}
+        <a class="logo" href="/">
+          <img
+            class="header-logo-image"
+            src="{{getImage settings.store_logo.image 'logo'}}"
+            alt="{{settings.store_logo.image.alt}}"
+          >
+        </a>
+      {{else}}
+        <h1 class="text"><a href="/">{{settings.store_logo.title}}</a></h1>
+      {{/if}}
+    </div>
+  </div>
+
+  <button class="upper-header-item search-wrapper" data-search-toggle>
+    <div class="icon-wrapper">
+      {{> components/icons/search}}
+    </div>
+    <div class="icon-wrapper icon-wrapper-alt">
+      {{> components/icons/close}}
+    </div>
+  </button>
+
+  {{#if settings.account_creation_enabled}}
+    {{#if customer}}
+      {{#contains page_type 'account'}}
+        <a class="upper-header-item account-wrapper" href="{{urls.auth.logout}}">
+          <div class="icon-wrapper">
+            {{> components/icons/account}}
+          </div>
+          <span class="button-text">{{lang 'header.log_out'}}</span>
+        </a>
+      {{else}}
+        <a class="upper-header-item account-wrapper" href="{{urls.account.index}}">
+          <div class="icon-wrapper">
+            {{> components/icons/account}}
+          </div>
+          <span class="button-text">{{lang 'header.account'}}</span>
+        </a>
+      {{/contains}}
+    {{else}}
+      <a
+        class="upper-header-item account-wrapper"
+        href="{{urls.auth.login}}"
+        data-toggle-login-modal
+      >
+        {{> components/icons/account}}
+        <span class="button-text">{{lang 'header.log_in'}}</span>
+      </a>
+    {{/if}}
+  {{/if}}
+
+  {{#if settings.show_wishlist}}
+    <a class="upper-header-item wishlist-wrapper" href="{{urls.account.wishlists.all}}">
+      <div class="icon-wrapper">
+        {{> components/icons/wishlist}}
+      </div>
+    </a>
+  {{/if}}
+
+  <a
+    class="upper-header-item cart-wrapper {{#if cart.items.length '===' 0}}cart-empty{{/if}}"
+    href="{{urls.cart}}"
+    data-cart-preview
+  >
+    <div class="icon-wrapper">
+      {{> components/icons/cart}}
+    </div>
+    <span class="mini-cart-count {{#if cart.quantity '>' 0}}show{{/if}}">
+      <span class="number">
+        {{cart.quantity}}
+      </span>
+    </span>
+  </a>
+</div>
