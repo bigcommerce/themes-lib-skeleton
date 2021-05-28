@@ -4,7 +4,9 @@
   "version": "2.2.2",
   "private": true,
   "dependencies": {
-    "@bigcommerce/stencil-utils": "^1.0.4",
+    "@babel/polyfill": "^7.4.4",
+    "@bigcommerce/stencil-utils": "^5.0.3",
+    "async": "^2.1.4",
     "bc-baseline": "bitbucket:pixelunion/bc-baseline",
     "bc-carousel": "bitbucket:pixelunion/bc-carousel",
     "bc-compare": "bitbucket:pixelunion/bc-compare",
@@ -26,16 +28,26 @@
     "normalize.scss": "^0.1.0",
     "object-fit-images": "^3.2.4",
     "path": "^0.12.7",
+    "url": "^0.11.0",
     "validetta": "github:pixelunion/validetta#v2.0.3",
+    "whatwg-fetch": "^3.4.0"
   },
   "devDependencies": {
-    "async": "^2.1.4",
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-es2015": "^6.9.0",
-    "es6-shim": "^0.35.1",
-    "shelljs": "^0.7.2",
-    "webpack": "^1.13.1"
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@bigcommerce/citadel": "^2.15.1",
+    "@bigcommerce/stencil-cli": "^2.1.1",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-lodash": "^3.3.2",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.18.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "core-js": "^3.6.5",
+    "lodash-webpack-plugin": "^0.11.2",
+    "webpack": "~4.27.1",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-cli": "~3.1.2",
+    "webpack-merge": "~4.1.2"
   }
 }
