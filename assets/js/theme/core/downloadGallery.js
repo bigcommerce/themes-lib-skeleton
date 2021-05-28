@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 /**
  * Simple image gallery for orders with digital downloads.
  */

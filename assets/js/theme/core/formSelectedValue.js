@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 const fieldSelector = '[data-swatch-selector]';
 const valueSelector = '.swatch-wrap[data-swatch-value]';
 const labelSelector = '.swatch-value[data-swatch-value]';
