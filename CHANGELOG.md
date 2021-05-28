@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### [unreleased] - unreleased
+## Added
+- Missing Core files
+- Missing AMP files
+- Missing scss files
+- Missing js files
+- Missing page html files
+- New packages to package.json
+
+## Changed
+- Webpack files
+- Folder structure is altered to meet more modern themes
+- config.json and schema.json to meet more modern themes
+
 ### [2.2.2] - 2017-05-19
 ## Added
 - Missing template references added to app.js file
