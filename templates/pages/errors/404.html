@@ -1,11 +1,18 @@
+
 {{#partial "page"}}
 
-  <h1 class="page-heading">{{lang 'errors.e404.title'}}</h1>
+{{> components/header/breadcrumbs breadcrumbs}}
 
-  <section class="section error">
-    <div class="container">
-      <h4>{{lang 'errors.e404.message'}}</h4>
-    </div>
-  </section>
+<div class="error-content">
+  <div class="error-wrapper">
+    <h6 class="page-supertitle">{{lang 'page_errors.404.supertitle'}}</h6>
+    <h1 class="page-title">{{lang 'page_errors.404.title'}}</h1>
+    <h3 class="page-subtitle">{{lang 'page_errors.404.subtitle'}}</h3>
+
+    <a class="button" href="{{urls.home}}">{{lang 'page_errors.404.cta'}}</a>
+  </div>
+</div>
+
 {{/partial}}
+
 {{> layout/base}}

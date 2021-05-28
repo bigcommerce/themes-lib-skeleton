@@ -1,18 +1,13 @@
+
 {{#partial "page"}}
 
-  {{> components/common/breadcrumbs breadcrumbs}}
+<article class="page-container giftcard-page">
+  {{> core/gift-certificate/navigation page='purchase'}}
 
-  <div class="container">
-    <aside class="giftcard-sidebar">
-      {{> core/gift-certificate/navigation page='purchase'}}
-    </aside>
-
-    <section class="giftcard-content">
-      <h1 class="giftcard-header">{{lang 'core.giftcard.purchase.heading'}}</h1>
-      <p class="giftcard-subheading">{{lang 'core.giftcard.purchase.subheading'}}</p>
-      {{> core/gift-certificate/purchase}}
-    </section>
+  <div class="page-content layout-container">
+    {{> core/gift-certificate/purchase}}
   </div>
+</article>
 
 {{/partial}}
 

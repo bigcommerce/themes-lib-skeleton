@@ -1,14 +1,30 @@
 ---
 brand:
+  shop_by_price: true
   products:
-    limit: {{theme_settings.product-count}}
+    limit: {{theme_settings.products_per_page}}
 ---
 
 {{#partial "page"}}
-  <h1>{{brand.name}}</h1>
-  {{> components/brand/filters}}
-  {{> components/brand/products}}
-  {{> components/brand/pagination}}
+
+  {{> components/product-catalog/catalog-header
+    catalog_type=brand
+  }}
+
+  {{{region name="brand_below_header"}}}
+
+  <section class="catalog-wrapper"
+    data-facet-content
+    data-pagination-content
+    data-pagination-id="0"
+    {{#if settings.data_tag_enabled}}
+      data-list-name="{{lang 'data_tags.brand' name=brand.name}}"
+    {{/if}}
+  >
+
+    {{> components/product-catalog/catalog-index}}
+  </section>
+  {{{region name="category_below_content"}}}
 {{/partial}}
 
 {{> layout/base}}

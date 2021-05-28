@@ -1,14 +1,27 @@
 {{#partial "page"}}
 
-  <h1 class="page-heading">{{lang 'cart.title'}}</h1>
+  <h1 class="page-title">{{lang 'cart.title'}}</h1>
 
-  <div data-cart-content>
-    {{> components/cart/content}}
+  <div
+    class="cart-content
+    {{#unless cart.items}}cart-content-empty{{/unless}}"
+    data-cart-content
+  >
+    {{#if cart.items}}
+      {{> components/cart/content}}
+    {{else}}
+      <span>{{lang 'cart.empty.error'}}</span>
+      <a href="{{urls.home}}">{{lang 'cart.empty.continue_shopping'}}</a>
+    {{/if}}
   </div>
 
-  <div data-cart-totals>
-    {{> components/cart/totals}}
-  </div>
+  {{#if cart.items}}
+    <div class="cart-totals">
+      <div class="cart-summary" data-cart-totals>
+        {{> components/cart/totals}}
+      </div>
+    </div>
+  {{/if}}
 
 {{/partial}}
 {{> layout/base}}

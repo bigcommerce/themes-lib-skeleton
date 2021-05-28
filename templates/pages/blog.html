@@ -2,20 +2,17 @@
 cart: true
 blog:
   posts:
-    limit: 4
-    summary: 150
+    limit: {{theme_settings.blog_posts_per_page}}
+    summary: 250
 ---
 
 {{#partial "page"}}
 
+  <h1 class="page-title">{{blog.name}}</h1>
 
-<div class="blog-index">
-  {{#each blog.posts}}
-    {{> components/blog/blog-item this}}
-  {{/each}}
-</div>
-
-{{{pre this}}}
+  <div class="blog-index" data-pagination-content data-pagination-id="0">
+    {{> components/blog/blog-listing}}
+  </div>
 
 {{/partial}}
 

@@ -1,11 +1,18 @@
+
 {{#partial "page"}}
 
-  <h1 class="page-heading">{{lang 'errors.e500.title'}}</h1>
+{{> components/header/breadcrumbs breadcrumbs}}
 
-  <section class="section error">
-    <div class="container">
-      <h4>{{lang 'errors.e500.message'}}</h4>
-    </div>
-  </section>
+<div class="error-content">
+  <div class="error-wrapper">
+    <h6 class="page-supertitle">{{lang 'page_errors.500.supertitle'}}</h6>
+    <h1 class="page-title">{{lang 'page_errors.500.title'}}</h1>
+    <h3 class="page-subtitle">{{lang 'page_errors.500.subtitle'}}</h3>
+
+    <a class="button" href="{{urls.home}}">{{lang 'page_errors.500.cta'}}</a>
+  </div>
+</div>
+
 {{/partial}}
+
 {{> layout/base}}

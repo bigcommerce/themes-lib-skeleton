@@ -10,28 +10,19 @@ product:
 
 {{#partial "page"}}
 
-  <div class="product-container" data-product-container>
+  <div class="product-container" data-product-container data-customize-product>
     <div
       class="product-details-wrapper"
       data-product-details
       data-product-title="{{product.title}}"
-      {{#if settings.data_tag_enabled}}
-        data-event-type="product"
-        data-entity-id="{{product.id}}"
-        data-name="{{product.title}}"
-        data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
-        data-product-brand="{{product.brand.name}}"
-        data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}"
-        data-product-variant="single-product-option"
-      {{/if}}
     >
 
-      {{> components/product/details-compact}}
+      {{> components/product/details-tabbed}}
 
       {{> components/product/tabs}}
-    </div>
 
-    {{{region name="product_below_content"}}}
+      {{> components/reviews/review-modal}}
+    </div>
   </div>
 
   {{#if product.related_products}}
@@ -41,9 +32,7 @@ product:
         {{#each product.related_products}}
           {{> components/product-catalog/product-item
             image_ratio=../theme_settings.product_grid_image_ratio
-            fit=../theme_settings.product_grid_image_cropping
-            lazyload=../theme_settings.lazyload_mode
-            fallback_size=../theme_settings.product-list
+            image_size=../theme_settings.product_grid_image_cropping
             default=../theme_settings.default_image
             price_range_display=../theme_settings.price_range_display
             retail_price_label=../theme_settings.retail-price-label
