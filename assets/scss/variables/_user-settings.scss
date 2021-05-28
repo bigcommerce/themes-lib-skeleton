@@ -1,27 +1,86 @@
+// scss-lint:disable NameFormat
+$color-white: #fff;
+$color-black: #000;
 
-$body-background-color: #fff;
-$body-color: #666;
-$body-font: "Georgia", serif;
+$color-primary: stencilColor("accent_color");
+$color-secondary: stencilColor("headings_color");
+$color-compliment: $color-white;
+$color-success: stencilColor("success_color");
+$color-error: stencilColor("error_color");
+$color-info: stencilColor("info_color");
 
-$accent-color: teal;
-$border-color: #e4e4e4;
+$color-text: stencilColor("text_color");
+$color-text-light: lighten($color-text, 50%);
+$color-text-dark: lighten($color-text, 8.3%);
+$color-line: stencilColor("border_color");
+$color-border: $color-line;
 
-$input-background-color: #f7f7f7;
-$input-color: #666;
-$input-border-color: #e4e4e4;
+$color-background: stencilColor("body_background_color");
+$color-background-alt: stencilColor("alt_background_color");
 
-$heading-font: "Helvetica Neue", sans-serif;
-$heading-weight: 700;
+$color-heading: stencilColor("headings_color");
+
+$font-primary: stencilFontFamily("primary-font");
+$font-secondary: stencilFontFamily("secondary-font");
+
+$font-standard-family: $font-primary;
+$font-standard-size: 14px;
+$font-standard-weight: 400;
+$font-standard-line-height: 24px;
+$font-bold-weight: 600;
+
+$font-link-family: $font-secondary;
+$font-link-weight: 400;
+
+$font-h1-family: $font-secondary;
+$font-h1-size: rem-calc(44px);
+$font-h1-line-height: 64px;
+$font-h1-spacing: -1.5px;
+
+$font-h2-family: $font-secondary;
+$font-h2-size: rem-calc(32px);
+$font-h2-line-height: 48px;
+$font-h2-spacing: -1px;
+
+$font-h3-family: $font-secondary;
+$font-h3-size: rem-calc(24px);
+$font-h3-line-height: 36px;
+$font-h3-spacing: -1px;
+
+$font-h4-family: $font-secondary;
+$font-h4-size: rem-calc(20px);
+$font-h4-line-height: 30px;
+$font-h4-spacing: 0;
+
+$font-h5-family: $font-primary;
+$font-h5-size: rem-calc(20px);
+$font-h5-line-height: 30px;
+$font-h5-spacing: 0;
+
+$body-background-color: $color-background;
+$body-color: $color-text;
+
+$link-color: $color-primary;
+
+$accent-color: $color-primary;
+$border-color: $color-border;
+
+$input-background-color: $color-white;
+$input-color: $color-text;
+$input-border-color: $color-border;
+
+$heading-font: $font-secondary;
+$heading-weight: 400;
 $heading-color: #333;
 
-$section-title-color: #333;
+$section-title-color: $color-heading;
 
 $meta-font: "Helvetica Neue", sans-serif;
 $meta-weight: 400;
 $meta-color: #888;
 
-$button-font: "Helvetica Neue", sans-serif;
-$button-weight: 700;
+$button-font: $font-secondary;
+$button-weight: 400;
 $primary-button-color: #fff;
 
 $secondary-button-background: #999;
@@ -29,5 +88,3 @@ $secondary-button-color: #777;
 
 $disabled-button-background: #999;
 $disabled-button-color: #777;
-
-$error-color: red;
