@@ -1,9 +1,19 @@
-
-<div class="form-field form-field-options form-field-checkbox{{#if required}} form-required{{/if}}"
-  data-product-attribute="input-checkbox">
+<div
+  class="
+    form-field
+    form-field-options
+    form-field-checkbox
+    {{#if required}}
+      form-required
+    {{/if}}
+  "
+  data-product-attribute="input-checkbox"
+>
   <div class="form-field-title">
     {{display_name}}
-    {{#if required}}<span class="required-text">{{lang 'common.required'}}</span>{{/if}}
+    {{#if required}}
+      <span class="required-text">{{lang 'common.required'}}</span>
+    {{/if}}
   </div>
 
   <div class="form-field-control">
@@ -14,9 +24,13 @@
         name="attribute[{{id}}]"
         type="checkbox"
         value="{{value}}"
-        {{#if checked}}checked{{/if}}
+        {{#if checked}}
+          checked
+          data-default
+        {{/if}}
         {{#if required}}required{{/if}}
-        aria-required="{{required}}">
+        aria-required="{{required}}"
+      >
       <span class="form-label-text">{{label}}</span>
     </label>
   </div>

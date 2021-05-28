@@ -22,7 +22,7 @@
 
       <span class="form-select-wrapper form-date-month">
         <select class="form-input form-select" name="EventDate[Mth]" required>
-          <option disabled>{{lang 'forms.date.month'}}</option>
+          <option disabled selected>{{lang 'forms.date.month'}}</option>
           {{#for 1 12}}
             <option value="{{$index}}">{{getShortMonth $index}}</option>
           {{/for}}
@@ -31,7 +31,7 @@
 
       <span class="form-select-wrapper form-date-day">
         <select class="form-input form-select" name="EventDate[Day]" required>
-          <option disabled>{{lang 'forms.date.day'}}</option>
+          <option disabled selected>{{lang 'forms.date.day'}}</option>
           {{#for 1 31}}
             <option value="{{$index}}">{{$index}}</option>
           {{/for}}

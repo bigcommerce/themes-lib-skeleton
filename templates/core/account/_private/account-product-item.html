@@ -15,7 +15,7 @@
          available.
 
   @param show_rating bool
-         If true, include the product's rating if there are enough votes.
+         If true, include the product rating if there are enough votes.
 }}
 <article class="account-product-item">
   <figure class="account-product-item-thumbnail" {{#if show_bg}}style="background-image: url({{getImage image 'account-product-thumbnail' (cdn default_image)}})"{{/if}}>
@@ -50,7 +50,13 @@
     {{/if}}
 
     <div class="account-product-item-price">
-      {{> core/products/price}}
+      {{> core/products/price
+        price=price
+        retail_price_label=theme_settings.retail-price-label
+        non_sale_price_label=theme_settings.non-sale-price-label
+        sale_price_label=theme_settings.sale-price-label
+        price_label=theme_settings.price-label
+      }}
     </div>
 
     {{#if show_compare}}
