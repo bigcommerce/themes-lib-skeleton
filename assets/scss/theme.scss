@@ -1,14 +1,13 @@
-// Libraries
-@import "../../node_modules/normalize.scss/normalize";
-@import "../../node_modules/bc-baseline/baseline";
-
-// Settings
-@import "general/user-settings";
-
 // Utility
+@import "lib/functions";
+
+// Variables
+@import "variables/user-settings";
+
+// Utility (without dependants)
 @import "lib/mixins";
 @import "lib/extends";
-@import "lib/functions";
+@import "lib/animations";
 
 // Modules
 @import "../../node_modules/bc-modal/dist/scss/modal";
@@ -17,11 +16,71 @@
 // General
 @import "general/fonts";
 @import "general/general";
+@import "general/images";
 @import "general/button";
-@import "general/form";
 @import "general/table";
 @import "general/reviews";
 @import "general/modals";
+@import "general/rte";
+@import "general/social-icons";
+@import "general/payment-icons";
 
-// Module overrides
-@import "modules/carousel";
+// Pages
+@import "product-catalog/catalog";
+
+// Pages
+@import "pages/home";
+@import "pages/product";
+@import "pages/cart";
+@import "pages/compare";
+@import "pages/contact";
+@import "pages/page";
+@import "pages/search";
+@import "pages/gift_certificate";
+@import "pages/errors/errors";
+@import "pages/blog-post";
+@import "pages/blog";
+@import "pages/account";
+@import "pages/sitemap";
+@import "pages/brands";
+
+// Common
+@import "common/loader";
+@import "common/pagination";
+@import "common/faceted-search";
+@import "common/tabs";
+@import "common/forms";
+
+// Components
+@import "components/apple-pay";
+@import "components/flickity";
+@import "components/loading";
+@import "components/social-icon";
+@import "components/header";
+@import "components/navigation";
+@import "components/navigation-mega";
+@import "components/navigation-mobile";
+@import "components/mini-cart";
+@import "components/footer";
+@import "components/carousel";
+@import "components/product-item";
+@import "components/review-stars";
+@import "components/newsletter";
+@import "components/product-images";
+@import "components/shipping-calculator";
+@import "components/gift-certificate";
+@import "components/coupon-code";
+@import "components/banner";
+@import "components/alerts";
+@import "components/compare";
+@import "components/search-bar";
+@import "components/blog-item";
+@import "components/amp-product-options";
+@import "components/cart-edit-options";
+
+// Core
+@import "core/account";
+@import "core/unavailable";
+@import "core/swatch";
+@import "core/price";
+@import "core/cookie-notification";
