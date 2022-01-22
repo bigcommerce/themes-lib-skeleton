@@ -24,7 +24,7 @@
     "jquery": "^3.5.1",
     "jquery-revealer": "github:pixelunion/jquery.revealer",
     "jquery-trend": "github:pixelunion/jquery.trend",
-    "lazysizes": "5.2.1",
+    "lazysizes": "5.3.2",
     "normalize.scss": "^0.1.0",
     "object-fit-images": "^3.2.4",
     "path": "^0.12.7",
