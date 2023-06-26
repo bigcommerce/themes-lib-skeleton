@@ -7,16 +7,14 @@
 
 <div
   class="product-listing product-{{number}}"
-  {{#if settings.data_tag_enabled}}
-    {{#if data '===' 'featured'}}
-      data-list-name="{{lang 'data_tags.featured'}}"
-    {{/if}}
-    {{#if data '===' 'new'}}
-      data-list-name="{{lang 'data_tags.new'}}"
-    {{/if}}
-    {{#if data '===' 'top-sellers'}}
-      data-list-name="{{lang 'data_tags.popular'}}"
-    {{/if}}
+  {{#if data '===' 'featured'}}
+    data-list-name="{{lang 'data_tags.featured'}}"
+  {{/if}}
+  {{#if data '===' 'new'}}
+    data-list-name="{{lang 'data_tags.new'}}"
+  {{/if}}
+  {{#if data '===' 'top-sellers'}}
+    data-list-name="{{lang 'data_tags.popular'}}"
   {{/if}}
 >
   {{#each (limit items limit)}}
@@ -33,7 +31,6 @@
       sale_price_label=../theme_settings.sale-price-label
       price_label=../theme_settings.price-label
       sale_badges=../theme_settings.sale-badges
-      data_tag_enabled=../settings.data_tag_enabled
       event="list"
       position=(add @index 1)
     }}

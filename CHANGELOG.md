@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Draft
+### Changed
+- Populate data tags despite of data_tag_enabled setting [#2](https://github.com/bigcommerce/themes-lib-skeleton/pull/2)
+
 ### [3.0.0] - 2021-05-028
 ## Added
 - Missing Core files

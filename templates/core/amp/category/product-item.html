@@ -1,14 +1,12 @@
 <article
   class="amp-grid-item amp-product-grid-item"
-  {{#if data_tag_enabled}}
-    data-event-type="product"
-    data-entity-id="{{id}}"
-    data-name="{{title}}"
-    data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
-    data-product-brand="{{brand.name}}"
-    data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
-    data-product-variant="single-product-option"
-  {{/if}}
+  data-event-type="product"
+  data-entity-id="{{id}}"
+  data-name="{{title}}"
+  data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+  data-product-brand="{{brand.name}}"
+  data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+  data-product-variant="single-product-option"
 >
   {{#if price.saved}}
     {{#unless out_of_stock_message}}

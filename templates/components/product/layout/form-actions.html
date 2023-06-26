@@ -18,9 +18,7 @@
         type="submit"
         data-button-purchase
         data-product-title="{{product.title}}"
-        {{#if settings.data_tag_enabled}}
-          data-event-type="product-click"
-        {{/if}}
+        data-event-type="product-click"
       >
         {{#if product.pre_order}}
           <span class="button-text">{{lang 'product.pre_order'}}</span>
@@ -36,9 +34,7 @@
         {{#if product.out_of_stock}}
           <div
             class="button button-disabled"
-            {{#if settings.data_tag_enabled}}
-              data-event-type="product-click"
-            {{/if}}
+            data-event-type="product-click"
           >
             {{lang 'product.sold_out'}}
           </div>

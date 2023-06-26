@@ -10,15 +10,13 @@
         product-item-image-noimage
       {{/unless}}
     "
-    {{#if data_tag_enabled}}
-      data-event-type="{{event}}"
-      data-entity-id="{{id}}"
-      data-position="{{position}}"
-      data-name="{{name}}"
-      data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
-      data-product-brand="{{brand.name}}"
-      data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
-    {{/if}}
+    data-event-type="{{event}}"
+    data-entity-id="{{id}}"
+    data-position="{{position}}"
+    data-name="{{name}}"
+    data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+    data-product-brand="{{brand.name}}"
+    data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
   >
     <a href="{{url}}">
       {{> components/common/responsive-image
